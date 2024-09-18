@@ -3,7 +3,9 @@ using UnityEngine;
 public class PlayerController: MonoBehaviour
 {
     // Movement variables
+    public float initialMoveSpeed = 1f;
     public float moveSpeed = 5f;
+    public float topSpeed = 100f;
     public float jumpForce = 10f;
 
     // Ground check variables
@@ -36,6 +38,11 @@ public class PlayerController: MonoBehaviour
         {
             Jump();
         }
+        if (horizontalInput == 0)
+        {
+            moveSpeed = initialMoveSpeed;
+        }
+
     }
 
     void FixedUpdate()
@@ -47,6 +54,11 @@ public class PlayerController: MonoBehaviour
     void Move()
     {
         // Move the player horizontally based on input
+        if (moveSpeed <= topSpeed)
+        {
+            moveSpeed += 1f;
+        }
+        
         rb.velocity = new Vector2(horizontalInput * moveSpeed, rb.velocity.y);
     }
 
