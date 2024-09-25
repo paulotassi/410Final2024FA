@@ -5,8 +5,11 @@ public class PlayerController: MonoBehaviour
     // Movement variables
     public float initialMoveSpeed = 1f;
     public float moveSpeed = 5f;
+    public float flightSpeed = 1f;
     public float topSpeed = 100f;
     public float jumpForce = 10f;
+    public float transitionThreshold = 50f;
+    public float gravityChangeRate = 0.1f;
 
     // Ground check variables
     public Transform groundCheck;
@@ -18,6 +21,8 @@ public class PlayerController: MonoBehaviour
     private Rigidbody2D rb;
     public bool isGrounded;
     private float horizontalInput;
+    private float verticalInput;
+    private bool flightMode = false;
 
     void Start()
     {
@@ -29,6 +34,7 @@ public class PlayerController: MonoBehaviour
     {
         // Get horizontal input (A/D or Left/Right arrow keys)
         horizontalInput = Input.GetAxis("Horizontal");
+        verticalInput = Input.GetAxis("Vertical");
 
         // Check if the player is on the ground
         isGrounded = Physics2D.OverlapCircle(groundCheck.position - groundCheckYOffset, groundCheckRadius, groundLayer);
@@ -41,6 +47,24 @@ public class PlayerController: MonoBehaviour
         if (horizontalInput == 0)
         {
             moveSpeed = initialMoveSpeed;
+        }
+        // Lines 48 to 55 are the transitionary state for Flight Mode.
+        if (rb.velocity.x >= transitionThreshold && rb.gravityScale >= 0|| rb.velocity.x <= -transitionThreshold && rb.gravityScale >= 0)
+        {
+            rb.gravityScale -= gravityChangeRate * Time.deltaTime; 
+            
+        }
+        else if (rb.velocity.x <= transitionThreshold && rb.gravityScale <= 1 || rb.velocity.x >= -transitionThreshold && rb.gravityScale <= 1)
+        {
+            rb.gravityScale += (gravityChangeRate) * Time.deltaTime;
+        }
+        if (rb.gravityScale <= 0.5f)
+        {
+            flightMode = true;
+        }
+        else
+        {
+            flightMode = false;
         }
 
     }
@@ -60,6 +84,11 @@ public class PlayerController: MonoBehaviour
         }
         
         rb.velocity = new Vector2(horizontalInput * moveSpeed, rb.velocity.y);
+
+        if (flightMode == true)
+        {
+            rb.velocity = new Vector2(horizontalInput * moveSpeed, verticalInput * flightSpeed);
+        }
     }
 
     void Jump()
