@@ -20,6 +20,7 @@ public class PlayerController: MonoBehaviour
     private Rigidbody2D rb;
     public bool isGrounded;
     private float horizontalInput;
+    private bool flightMode = false;
 
     void Start()
     {
@@ -44,13 +45,23 @@ public class PlayerController: MonoBehaviour
         {
             moveSpeed = initialMoveSpeed;
         }
-        if (gameObject.GetComponent<Rigidbody2D>().velocity.x >= transitionThreshold && gameObject.GetComponent<Rigidbody2D>().gravityScale >= 0|| gameObject.GetComponent<Rigidbody2D>().velocity.x <= -transitionThreshold && gameObject.GetComponent<Rigidbody2D>().gravityScale >= 0)
+        // Lines 48 to 55 are the transitionary state for Flight Mode.
+        if (rb.velocity.x >= transitionThreshold && rb.gravityScale >= 0|| rb.velocity.x <= -transitionThreshold && rb.gravityScale >= 0)
         {
-            gameObject.GetComponent<Rigidbody2D>().gravityScale -= gravityChangeRate * Time.deltaTime; 
+            rb.gravityScale -= gravityChangeRate * Time.deltaTime; 
+            
         }
-        else if (gameObject.GetComponent<Rigidbody2D>().velocity.x <= transitionThreshold && gameObject.GetComponent<Rigidbody2D>().gravityScale <= 1 || gameObject.GetComponent<Rigidbody2D>().velocity.x >= -transitionThreshold && gameObject.GetComponent<Rigidbody2D>().gravityScale <= 1)
+        else if (rb.velocity.x <= transitionThreshold && rb.gravityScale <= 1 || rb.velocity.x >= -transitionThreshold && rb.gravityScale <= 1)
         {
-            gameObject.GetComponent<Rigidbody2D>().gravityScale += gravityChangeRate * Time.deltaTime;
+            rb.gravityScale += gravityChangeRate * Time.deltaTime;
+        }
+        if (rb.gravityScale <= 0.2f)
+        {
+            flightMode = true;
+        }
+        else
+        {
+            flightMode = false;
         }
 
     }
