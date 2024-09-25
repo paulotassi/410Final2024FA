@@ -7,6 +7,8 @@ public class PlayerController: MonoBehaviour
     public float moveSpeed = 5f;
     public float topSpeed = 100f;
     public float jumpForce = 10f;
+    public float transitionThreshold = 50f;
+    public float gravityChangeRate = 0.1f;
 
     // Ground check variables
     public Transform groundCheck;
@@ -41,6 +43,14 @@ public class PlayerController: MonoBehaviour
         if (horizontalInput == 0)
         {
             moveSpeed = initialMoveSpeed;
+        }
+        if (gameObject.GetComponent<Rigidbody2D>().velocity.x >= transitionThreshold && gameObject.GetComponent<Rigidbody2D>().gravityScale >= 0|| gameObject.GetComponent<Rigidbody2D>().velocity.x <= -transitionThreshold && gameObject.GetComponent<Rigidbody2D>().gravityScale >= 0)
+        {
+            gameObject.GetComponent<Rigidbody2D>().gravityScale -= gravityChangeRate * Time.deltaTime; 
+        }
+        else if (gameObject.GetComponent<Rigidbody2D>().velocity.x <= transitionThreshold && gameObject.GetComponent<Rigidbody2D>().gravityScale <= 1 || gameObject.GetComponent<Rigidbody2D>().velocity.x >= -transitionThreshold && gameObject.GetComponent<Rigidbody2D>().gravityScale <= 1)
+        {
+            gameObject.GetComponent<Rigidbody2D>().gravityScale += gravityChangeRate * Time.deltaTime;
         }
 
     }
