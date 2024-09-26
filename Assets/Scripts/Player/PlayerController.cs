@@ -5,6 +5,7 @@ public class PlayerController: MonoBehaviour
     // Movement variables
     public float initialMoveSpeed = 1f;
     public float moveSpeed = 5f;
+    public float moveHorizontalFlightSpeed = 1f;
     public float flightSpeed = 1f;
     public float topSpeed = 100f;
     public float jumpForce = 10f;
@@ -87,14 +88,14 @@ public class PlayerController: MonoBehaviour
 
         if (flightMode == true)
         {
-            rb.velocity = new Vector2(horizontalInput * moveSpeed, verticalInput * flightSpeed);
+            rb.velocity = new Vector2(horizontalInput * moveHorizontalFlightSpeed, verticalInput * flightSpeed);
         }
     }
 
     void Jump()
     {
         // Add force to jump
-        rb.velocity = new Vector2(rb.velocity.x, jumpForce);
+        rb.AddForce(new Vector2(rb.velocity.x, jumpForce));
     }
 
     void OnDrawGizmosSelected()
