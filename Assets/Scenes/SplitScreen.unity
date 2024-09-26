@@ -513,7 +513,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 19.6, y: -2.8, z: 0}
-  m_LocalScale: {x: 119.1489, y: 1, z: 1}
+  m_LocalScale: {x: 1070.8508, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -775,9 +775,9 @@ MonoBehaviour:
   moveSpeed: 5
   flightSpeed: 1
   topSpeed: 100
-  jumpForce: 10
-  transitionThreshold: 50
-  gravityChangeRate: 0.1
+  jumpForce: 5
+  transitionThreshold: 25
+  gravityChangeRate: 1
   groundCheck: {fileID: 1857366486}
   groundLayer:
     serializedVersion: 2
@@ -1027,7 +1027,6 @@ GameObject:
   m_Component:
   - component: {fileID: 2054212781}
   - component: {fileID: 2054212783}
-  - component: {fileID: 2054212782}
   m_Layer: 0
   m_Name: p2 cam
   m_TagString: MainCamera
@@ -1050,14 +1049,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1857366486}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!81 &2054212782
-AudioListener:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2054212780}
-  m_Enabled: 1
 --- !u!20 &2054212783
 Camera:
   m_ObjectHideFlags: 0
