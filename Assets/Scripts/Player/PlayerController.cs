@@ -94,7 +94,7 @@ public class PlayerController : MonoBehaviour
         }
 
         // Toggle flight mode when gravity scale drops below 0.5
-        if (rb.gravityScale <= 0.5f)
+        if (rb.gravityScale <= 0.5f && !isGrounded)
         {
             flightMode = true;
             
