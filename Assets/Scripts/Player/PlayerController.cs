@@ -1,3 +1,4 @@
+using Cinemachine;
 using UnityEngine;
 using UnityEngine.U2D.Animation; // For sprite animation, unused in this script but necessary for Player Animation
 
@@ -29,6 +30,10 @@ public class PlayerController : MonoBehaviour
     // Animation variables
     public Animator animator; // Reference to the Animator for controlling animations
 
+    //PlayerCam Switch
+    public CinemachineVirtualCamera virtualCameraLeft;
+    public CinemachineVirtualCamera virtualCameraRight;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -54,10 +59,15 @@ public class PlayerController : MonoBehaviour
         if (horizontalInput < 0)
         {
             GetComponent<SpriteRenderer>().flipX = true; // Flip to face left
+            virtualCameraLeft.Priority = 10; //Changing Camera Priority to go left of player
+            virtualCameraRight.Priority = 9;
+    
         }
         else if (horizontalInput > 0)
         {
             GetComponent<SpriteRenderer>().flipX = false; // Flip to face right
+            virtualCameraLeft.Priority = 9; //Changing Camera Priority to go right of player
+            virtualCameraRight.Priority = 10;
         }
 
         // Toggle flight animation when airborne
