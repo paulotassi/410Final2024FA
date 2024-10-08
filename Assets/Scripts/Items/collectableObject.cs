@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class collectableObject : MonoBehaviour
 {
+    [SerializeField] public int damageValue;
     public virtual void Player1CollectItem()
     {
 
@@ -18,10 +19,13 @@ public class collectableObject : MonoBehaviour
         if (collision.gameObject.tag == "Player")
         {
             Player1CollectItem();
+            collision.gameObject.GetComponent<PlayerHealth>().TakeDamage(damageValue);
         }
         else if (collision.gameObject.tag == "Player2")
         {
             Player2CollectItem();
+            collision.gameObject.GetComponent<PlayerHealth>().TakeDamage(damageValue);
         }
+        Destroy(gameObject);
     }
 }
