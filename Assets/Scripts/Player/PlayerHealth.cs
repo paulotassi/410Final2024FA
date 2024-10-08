@@ -4,7 +4,7 @@ using UnityEngine.UI;
 public class PlayerHealth : MonoBehaviour
 {
     public int maxHealth = 100;   // Max health value
-    private int currentHealth;    // Current health value
+    public int currentHealth;    // Current health value
 
     public Image healthBar;       // Reference to the health bar UI (Image component)
 

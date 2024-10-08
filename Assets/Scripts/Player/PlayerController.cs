@@ -16,6 +16,7 @@ public class PlayerController : MonoBehaviour
     public float jumpForce = 10f; // Force applied when jumping
     public float transitionThreshold = 50f; // Speed threshold for flight mode transition
     public float gravityChangeRate = 0.1f; // Rate at which gravity changes when transitioning between flight and grounded states
+    public float fallRate = 3f; // Rate at which gravity changes when transitioning from flight to grounded states
 
     // Ground check variables
     public Transform groundCheck; // Point used to detect if the player is grounded
@@ -104,7 +105,7 @@ public class PlayerController : MonoBehaviour
         }
         else if ((Mathf.Abs(rb.velocity.x) < transitionThreshold) && rb.gravityScale <= 1)
         {
-            rb.gravityScale += gravityChangeRate * Time.deltaTime; // Increase gravity when slowing down
+            rb.gravityScale += (gravityChangeRate * fallRate)* Time.deltaTime; // Increase gravity when slowing down
         }
 
         // Toggle flight mode when gravity scale drops below 0.5
@@ -116,6 +117,11 @@ public class PlayerController : MonoBehaviour
         else 
         { 
             flightMode = false; 
+        }
+        if (rb.gravityScale <= 0)
+        {
+            rb.gravityScale = 0;
+
         }
     }
 
