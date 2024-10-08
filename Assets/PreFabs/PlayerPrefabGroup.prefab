@@ -650,12 +650,12 @@ MonoBehaviour:
   movementInput: {x: 0, y: 0}
   initialMoveSpeed: 0
   moveSpeed: 0.5
-  moveHorizontalFlightSpeed: 50
-  flightSpeed: 50
-  topSpeed: 25
+  moveHorizontalFlightSpeed: 20
+  flightSpeed: 20
+  topSpeed: 15
   jumped: 0
   jumpForce: 1
-  transitionThreshold: 15
+  transitionThreshold: 10
   gravityChangeRate: 0.2
   groundCheck: {fileID: 1216195194795179885}
   groundLayer:
@@ -1648,12 +1648,12 @@ MonoBehaviour:
   movementInput: {x: 0, y: 0}
   initialMoveSpeed: 0
   moveSpeed: 0.5
-  moveHorizontalFlightSpeed: 50
-  flightSpeed: 50
-  topSpeed: 25
+  moveHorizontalFlightSpeed: 20
+  flightSpeed: 20
+  topSpeed: 15
   jumped: 0
   jumpForce: 1
-  transitionThreshold: 15
+  transitionThreshold: 10
   gravityChangeRate: 0.2
   groundCheck: {fileID: 8331015421776359968}
   groundLayer:
