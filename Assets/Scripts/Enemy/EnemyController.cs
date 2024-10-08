@@ -2,29 +2,30 @@ using UnityEngine;
 
 public class EnemyController : MonoBehaviour
 {
-    public Transform pointA; 
-    public Transform pointB; 
-    public float patrolSpeed = 2f; 
-    public float chaseSpeed = 5f; 
-    public float detectionRange = 5f; 
-    public float attackRange = 1f; 
-    public float attackCooldown = 1f; 
+    public Transform pointA;
+    public Transform pointB;
+    public float patrolSpeed = 2f;
+    public float chaseSpeed = 5f;
+    public float detectionRange = 5f;
+    public float attackRange = 1f;
+    public float attackCooldown = 1f;
     public int attackDamage = 10;
 
     private Transform player;
+    private PlayerHealth playerHealth; // Reference to the PlayerHealth script
     private bool movingToPointB = true;
     private float lastAttackTime = 0f;
 
     private void Start()
     {
         player = GameObject.FindGameObjectWithTag("Player").transform;
+        playerHealth = player.GetComponent<PlayerHealth>(); // Get the PlayerHealth component from the player
     }
 
     private void Update()
     {
         float distanceToPlayer = Vector2.Distance(transform.position, player.position);
 
-        // Check if the player is within detection range
         if (distanceToPlayer <= detectionRange)
         {
             ChasePlayer(distanceToPlayer);
@@ -52,7 +53,7 @@ public class EnemyController : MonoBehaviour
     {
         if (distanceToPlayer <= attackRange)
         {
-            AttackPlayer();
+            AttackPlayer(); // Call the attack function if within range
         }
         else
         {
@@ -65,9 +66,13 @@ public class EnemyController : MonoBehaviour
     {
         if (Time.time >= lastAttackTime + attackCooldown)
         {
-            Debug.Log("Attacking player for " + attackDamage + " damage!");
+            if (playerHealth != null)
+            {
+                playerHealth.TakeDamage(attackDamage); // Call the TakeDamage method on the player
+                Debug.Log("Enemy attacks player for " + attackDamage + " damage!");
+            }
+
             lastAttackTime = Time.time;
-            
         }
     }
 
