@@ -18,7 +18,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &2162692351488295199
 Transform:
   m_ObjectHideFlags: 0
@@ -28,7 +28,7 @@ Transform:
   m_GameObject: {fileID: 364234091700581266}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -7.277446, y: 0.90639406, z: -6.1777973}
+  m_LocalPosition: {x: 0.6177794, y: 0.90639406, z: -6.1777973}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -145,7 +145,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &8848811412575090250
 Transform:
   m_ObjectHideFlags: 0
@@ -155,7 +155,7 @@ Transform:
   m_GameObject: {fileID: 397963086662773483}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.6177794, y: 0.90639406, z: -6.1777973}
+  m_LocalPosition: {x: 8.513004, y: 0.90639406, z: -6.1777973}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -542,10 +542,11 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1216195194795179885}
+  - component: {fileID: 1782570390411111711}
+  - component: {fileID: 3218445902191801378}
   - component: {fileID: 1241193982795318343}
   - component: {fileID: 9183079409201488965}
   - component: {fileID: 5518605515878551443}
-  - component: {fileID: 3218445902191801378}
   - component: {fileID: 337022926100955329}
   - component: {fileID: 3604515319580305619}
   m_Layer: 0
@@ -572,6 +573,103 @@ Transform:
   - {fileID: 4659300000021870749}
   m_Father: {fileID: 159619267560190127}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1782570390411111711
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2861679258412669627}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 62899f850307741f2a39c98a8b639597, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Actions: {fileID: -944628639613478452, guid: a7843b7459872b84a939b451cf375e92, type: 3}
+  m_NotificationBehavior: 2
+  m_UIInputModule: {fileID: 0}
+  m_DeviceLostEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_DeviceRegainedEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_ControlsChangedEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_ActionEvents:
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 3218445902191801378}
+        m_TargetAssemblyTypeName: PlayerController, Assembly-CSharp
+        m_MethodName: OnMove
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 7d3fc2f7-7b83-44cc-b632-1fcdff8709f6
+    m_ActionName: Player/WASD[/Keyboard/w,/Keyboard/s,/Keyboard/a,/Keyboard/delete,/XInputControllerWindows/leftStick]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 3218445902191801378}
+        m_TargetAssemblyTypeName: PlayerController, Assembly-CSharp
+        m_MethodName: OnJump
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 19d7d4cc-0541-4dca-94f4-88af7ed4d6be
+    m_ActionName: Player/Jump[/Keyboard/space,/XInputControllerWindows/buttonSouth]
+  m_NeverAutoSwitchControlSchemes: 1
+  m_DefaultControlScheme: Keyboard
+  m_DefaultActionMap: Player
+  m_SplitScreenIndex: -1
+  m_Camera: {fileID: 3853361327446792769}
+--- !u!114 &3218445902191801378
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2861679258412669627}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d7828b77f234bc14c811c0afdbbc7cf2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  movementInput: {x: 0, y: 0}
+  initialMoveSpeed: 0
+  moveSpeed: 0.5
+  moveHorizontalFlightSpeed: 50
+  flightSpeed: 50
+  topSpeed: 25
+  jumped: 0
+  jumpForce: 1
+  transitionThreshold: 15
+  gravityChangeRate: 0.2
+  groundCheck: {fileID: 1216195194795179885}
+  groundLayer:
+    serializedVersion: 2
+    m_Bits: 64
+  groundCheckRadius: 0.5
+  groundCheckYOffset: {x: 0, y: 0.7, z: 0}
+  isGrounded: 0
+  horizontalInput: 0
+  verticalInput: 0
+  flightMode: 0
+  animator: {fileID: 337022926100955329}
+  virtualCameraLeft: {fileID: 1820918663298353161}
+  virtualCameraRight: {fileID: 3593676498205312245}
 --- !u!212 &1241193982795318343
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -686,39 +784,6 @@ CapsuleCollider2D:
   m_Offset: {x: 0, y: 0.06}
   m_Size: {x: 0.75, y: 0.87}
   m_Direction: 0
---- !u!114 &3218445902191801378
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2861679258412669627}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d7828b77f234bc14c811c0afdbbc7cf2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  initialMoveSpeed: 0
-  moveSpeed: 0.5
-  moveHorizontalFlightSpeed: 50
-  flightSpeed: 50
-  topSpeed: 25
-  jumpForce: 10
-  transitionThreshold: 15
-  gravityChangeRate: 0.2
-  groundCheck: {fileID: 1216195194795179885}
-  groundLayer:
-    serializedVersion: 2
-    m_Bits: 64
-  groundCheckRadius: 0.5
-  groundCheckYOffset: {x: 0, y: 0.7, z: 0}
-  isGrounded: 0
-  horizontalInput: 0
-  verticalInput: 0
-  flightMode: 0
-  animator: {fileID: 337022926100955329}
-  virtualCameraLeft: {fileID: 1820918663298353161}
-  virtualCameraRight: {fileID: 3593676498205312245}
 --- !u!95 &337022926100955329
 Animator:
   serializedVersion: 5
@@ -824,7 +889,7 @@ Transform:
   m_GameObject: {fileID: 3835520207168462712}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -11.64, y: -1.8728199, z: -4.7718}
+  m_LocalPosition: {x: -11.639999, y: -1.8728199, z: -4.7718}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -1041,7 +1106,7 @@ GameObject:
   - component: {fileID: 5792401886189985410}
   - component: {fileID: 8744971342292421080}
   - component: {fileID: 1809937584125931787}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: p2 cam
   m_TagString: MainCamera
   m_Icon: {fileID: 0}
@@ -1091,9 +1156,9 @@ Camera:
   m_NormalizedViewPortRect:
     serializedVersion: 2
     x: 0
-    y: 0.5
+    y: 0
     width: 1
-    height: 1
+    height: 0.5
   near clip plane: 0.3
   far clip plane: 1000
   field of view: 60
@@ -1160,7 +1225,7 @@ GameObject:
   - component: {fileID: 3853361327446792769}
   - component: {fileID: 5952640152506581846}
   - component: {fileID: 6917511503269136931}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: p1 cam
   m_TagString: MainCamera
   m_Icon: {fileID: 0}
@@ -1210,7 +1275,7 @@ Camera:
   m_NormalizedViewPortRect:
     serializedVersion: 2
     x: 0
-    y: 0
+    y: 0.5
     width: 1
     height: 0.5
   near clip plane: 0.3
@@ -1332,7 +1397,7 @@ Transform:
   m_GameObject: {fileID: 6174482991042533730}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -13.64, y: -1.8728199, z: -4.7718}
+  m_LocalPosition: {x: -13.639999, y: -1.8728199, z: -4.7718}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -1475,10 +1540,11 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8331015421776359968}
+  - component: {fileID: 6346564350906822544}
+  - component: {fileID: 8869578208568761204}
   - component: {fileID: 2296281305496795627}
   - component: {fileID: 4625543159414851115}
   - component: {fileID: 7036191858119684105}
-  - component: {fileID: 8869578208568761204}
   - component: {fileID: 8086296425458238903}
   - component: {fileID: 4662522626660497977}
   m_Layer: 0
@@ -1505,6 +1571,103 @@ Transform:
   - {fileID: 672307415925427851}
   m_Father: {fileID: 159619267560190127}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &6346564350906822544
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8688231733931432845}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 62899f850307741f2a39c98a8b639597, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Actions: {fileID: -944628639613478452, guid: a7843b7459872b84a939b451cf375e92, type: 3}
+  m_NotificationBehavior: 2
+  m_UIInputModule: {fileID: 0}
+  m_DeviceLostEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_DeviceRegainedEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_ControlsChangedEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_ActionEvents:
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 8869578208568761204}
+        m_TargetAssemblyTypeName: PlayerController, Assembly-CSharp
+        m_MethodName: OnMove
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 7d3fc2f7-7b83-44cc-b632-1fcdff8709f6
+    m_ActionName: Player/WASD[/Keyboard/w,/Keyboard/s,/Keyboard/a,/Keyboard/delete,/XInputControllerWindows/leftStick]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 8869578208568761204}
+        m_TargetAssemblyTypeName: PlayerController, Assembly-CSharp
+        m_MethodName: OnJump
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 19d7d4cc-0541-4dca-94f4-88af7ed4d6be
+    m_ActionName: Player/Jump[/Keyboard/space,/XInputControllerWindows/buttonSouth]
+  m_NeverAutoSwitchControlSchemes: 0
+  m_DefaultControlScheme: 
+  m_DefaultActionMap: Player
+  m_SplitScreenIndex: -1
+  m_Camera: {fileID: 8744971342292421080}
+--- !u!114 &8869578208568761204
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8688231733931432845}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d7828b77f234bc14c811c0afdbbc7cf2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  movementInput: {x: 0, y: 0}
+  initialMoveSpeed: 0
+  moveSpeed: 0.5
+  moveHorizontalFlightSpeed: 50
+  flightSpeed: 50
+  topSpeed: 25
+  jumped: 0
+  jumpForce: 1
+  transitionThreshold: 15
+  gravityChangeRate: 0.2
+  groundCheck: {fileID: 8331015421776359968}
+  groundLayer:
+    serializedVersion: 2
+    m_Bits: 64
+  groundCheckRadius: 0.5
+  groundCheckYOffset: {x: 0, y: 0.7, z: 0}
+  isGrounded: 0
+  horizontalInput: 0
+  verticalInput: 0
+  flightMode: 0
+  animator: {fileID: 8086296425458238903}
+  virtualCameraLeft: {fileID: 5985451943682345181}
+  virtualCameraRight: {fileID: 1173560904917368322}
 --- !u!212 &2296281305496795627
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -1619,39 +1782,6 @@ CapsuleCollider2D:
   m_Offset: {x: 0, y: 0.06}
   m_Size: {x: 0.75, y: 0.87}
   m_Direction: 0
---- !u!114 &8869578208568761204
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8688231733931432845}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d7828b77f234bc14c811c0afdbbc7cf2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  initialMoveSpeed: 0
-  moveSpeed: 0.5
-  moveHorizontalFlightSpeed: 50
-  flightSpeed: 50
-  topSpeed: 25
-  jumpForce: 10
-  transitionThreshold: 15
-  gravityChangeRate: 0.2
-  groundCheck: {fileID: 8331015421776359968}
-  groundLayer:
-    serializedVersion: 2
-    m_Bits: 64
-  groundCheckRadius: 0.5
-  groundCheckYOffset: {x: 0, y: 0.7, z: 0}
-  isGrounded: 0
-  horizontalInput: 0
-  verticalInput: 0
-  flightMode: 0
-  animator: {fileID: 8086296425458238903}
-  virtualCameraLeft: {fileID: 5985451943682345181}
-  virtualCameraRight: {fileID: 1173560904917368322}
 --- !u!95 &8086296425458238903
 Animator:
   serializedVersion: 5

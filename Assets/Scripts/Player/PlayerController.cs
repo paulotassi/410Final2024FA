@@ -1,15 +1,18 @@
 using Cinemachine;
 using UnityEngine;
 using UnityEngine.U2D.Animation; // For sprite animation, unused in this script but necessary for Player Animation
+using UnityEngine.InputSystem;
 
 public class PlayerController : MonoBehaviour
 {
     // Player movement variables
+    public Vector2 movementInput = Vector2.zero; //input vector
     public float initialMoveSpeed = 1f; // Initial movement speed before any acceleration
     public float moveSpeed = 5f; // Current movement speed (changes with input)
     public float moveHorizontalFlightSpeed = 1f; // Speed when moving horizontally during flight
     public float flightSpeed = 1f; // Vertical flight speed
     public float topSpeed = 100f; // Maximum allowed speed
+    public bool jumped = false;
     public float jumpForce = 10f; // Force applied when jumping
     public float transitionThreshold = 50f; // Speed threshold for flight mode transition
     public float gravityChangeRate = 0.1f; // Rate at which gravity changes when transitioning between flight and grounded states
@@ -45,9 +48,10 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        
         // Capture player input for horizontal (A/D, Left/Right arrows) and vertical (W/S, Up/Down arrows) movement
-        horizontalInput = Input.GetAxis("Horizontal");
-        verticalInput = Input.GetAxis("Vertical");
+        horizontalInput = movementInput.x;
+        verticalInput = movementInput.y;
 
         // Ground check: checks if the player is touching the ground
         isGrounded = Physics2D.OverlapCircle(groundCheck.position - groundCheckYOffset, groundCheckRadius, groundLayer);
@@ -81,7 +85,7 @@ public class PlayerController : MonoBehaviour
         }
 
         // Handle jumping when spacebar is pressed, but only if grounded
-        if (Input.GetButtonDown("Jump") && isGrounded)
+        if (jumped && isGrounded)
         {
             Jump(); // Trigger jump
         }
@@ -158,13 +162,12 @@ public class PlayerController : MonoBehaviour
         rb.AddForce(new Vector2(rb.velocity.x, jumpForce), ForceMode2D.Impulse); // Apply jump force
     }
 
-    // Visualize the ground check area in the editor (helpful for debugging)
-    void OnDrawGizmosSelected()
+    public void OnMove(InputAction.CallbackContext context)
     {
-        if (groundCheck != null)
-        {
-            Gizmos.color = Color.red; // Set color of the Gizmo to red
-            Gizmos.DrawWireSphere(groundCheck.position - groundCheckYOffset, groundCheckRadius); // Draw the ground check sphere
-        }
+        movementInput = context.ReadValue<Vector2>();
+    }
+    public void OnJump(InputAction.CallbackContext context) 
+    {
+        jumped = context.action.triggered;
     }
 }
