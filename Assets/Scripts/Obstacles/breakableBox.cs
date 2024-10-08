@@ -5,6 +5,7 @@ using UnityEngine;
 public class breakableBox : interactableObstacle
 {
     [SerializeField] public float timeUntilDestroyed = 0f;
+
     public override void ObjectCollision()
     {
         Debug.Log("Crashed");
