@@ -551,7 +551,7 @@ GameObject:
   - component: {fileID: 3604515319580305619}
   m_Layer: 0
   m_Name: Player
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1549,7 +1549,7 @@ GameObject:
   - component: {fileID: 4662522626660497977}
   m_Layer: 0
   m_Name: Player 2
-  m_TagString: Untagged
+  m_TagString: Player2
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1628,8 +1628,8 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: 19d7d4cc-0541-4dca-94f4-88af7ed4d6be
     m_ActionName: Player/Jump[/Keyboard/space,/XInputControllerWindows/buttonSouth]
-  m_NeverAutoSwitchControlSchemes: 0
-  m_DefaultControlScheme: 
+  m_NeverAutoSwitchControlSchemes: 1
+  m_DefaultControlScheme: GamePad
   m_DefaultActionMap: Player
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 8744971342292421080}
