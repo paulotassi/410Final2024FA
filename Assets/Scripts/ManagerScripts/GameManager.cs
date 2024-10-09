@@ -9,8 +9,9 @@ public class GameManager : MonoBehaviour
     [SerializeField] private TMP_Text Player2ScoreText;
     [SerializeField] public int player1IngredientCount = 0;
     [SerializeField] public int player2IngredientCount = 0;
+   
 
-// Start is called before the first frame update
+    // Start is called before the first frame update
 
     void Update()
     {
@@ -26,4 +27,6 @@ public class GameManager : MonoBehaviour
     {
         player2IngredientCount++;
     }
+
+   
 }
