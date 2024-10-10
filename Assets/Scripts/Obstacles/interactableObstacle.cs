@@ -17,6 +17,7 @@ public class interactableObstacle : MonoBehaviour
             ObjectCollision();
             collision.gameObject.GetComponent<PlayerHealth>().TakeDamage(damageValue);
         } 
+        
     }
    
 }
