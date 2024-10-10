@@ -18,10 +18,12 @@ public class GameManager : MonoBehaviour
     [SerializeField] public int player2IngredientCount = 0; // Tracks Player 2's collected ingredients.
     private int totalScore; // Stores the combined score of both players.
 
-    [SerializeField] public float remainingTime; // Tracks the time left in the game round.
+    [SerializeField] public float remainingTime = 30; // Tracks the time left in the game round.
     private bool winStateMet = false; // Boolean to check if win conditions are met.
 
     // Update is called once per frame (every frame)
+
+
     void Update()
     {
         // Update the UI with the current number of ingredients for each player.
@@ -42,21 +44,25 @@ public class GameManager : MonoBehaviour
         gameTimerText.text = string.Format("{0:00}:{1:00}", minutes, seconds);
 
         // If the remaining time is less than or equal to 4 seconds...
-        if (remainingTime <= 4)
+        if (remainingTime <= 5)
         {
             // Display the game state (win/lose) text.
             gameStateText();
 
             // Call the gameEnd method to handle the end of the game.
-            gameEnd();
+            StartCoroutine(gameEnd());
+         
         }
     }
 
     // Coroutine to handle the game ending and transition to another scene after a delay.
     private IEnumerator gameEnd()
     {
-        // Wait for (remainingTime - 1) seconds before executing the next line.
-        yield return new WaitForSeconds(remainingTime - 1);
+        // Wait for  seconds before executing the next line.
+        
+    
+        // Wait for the valid duration
+        yield return new WaitForSeconds(4);
 
         // Load the scene named "MVPScene" when the round ends.
         SceneManager.LoadScene("MVPScene");
@@ -76,6 +82,7 @@ public class GameManager : MonoBehaviour
 
         // If enough ingredients were collected, set winStateMet to true.
         winStateMet = true;
+        remainingTime = 5; 
 
         // Display the appropriate game state text.
         gameStateText();
