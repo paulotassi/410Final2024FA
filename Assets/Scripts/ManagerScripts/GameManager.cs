@@ -21,7 +21,7 @@ public class GameManager : MonoBehaviour
 
     public void player1IncreaseIngredient()
     {
-        player2IngredientCount++;
+        player1IngredientCount++;
     }
     public void player2IncreaseIngredient()
     {
