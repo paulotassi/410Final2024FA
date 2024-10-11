@@ -48,9 +48,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   pointA: {fileID: 0}
   pointB: {fileID: 0}
-  patrolSpeed: 2
-  chaseSpeed: 5
-  detectionRange: 5
+  patrolSpeed: 5
+  chaseSpeed: 9
+  detectionRange: 8
   attackRange: 1
   attackCooldown: 1
   attackDamage: 10
@@ -58,7 +58,6 @@ MonoBehaviour:
   flipInterval: 0.5
   source: {fileID: 7244232372511834426}
   attackSound: {fileID: 8300000, guid: 1a24022cda3a86948a451df1e5e27cd9, type: 3}
-  flashDuration: 0.2
 --- !u!82 &7244232372511834426
 AudioSource:
   m_ObjectHideFlags: 0
