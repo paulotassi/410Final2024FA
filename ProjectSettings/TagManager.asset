@@ -15,8 +15,8 @@ TagManager:
   - Floor
   - P1 Cam
   - P2 Cam
-  - 
-  - 
+  - Player1CollideLayer
+  - Player2CollideLayer
   - 
   - 
   - 
