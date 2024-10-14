@@ -15,8 +15,12 @@ public class PlayerController : MonoBehaviour
     public bool jumped = false;
     public float jumpForce = 10f; // Force applied when jumping
     public float transitionThreshold = 50f; // Speed threshold for flight mode transition
-    public float gravityChangeRate = 0.1f; // Rate at which gravity changes when transitioning between flight and grounded states
+    public float liftChangeRate = 0.1f; // Rate at which gravity changes when transitioning between flight and grounded states
     public float fallRate = 3f; // Rate at which gravity changes when transitioning from flight to grounded states
+    public float liftForce = 0f;
+    public float flightThreshold = 5f;
+    public float inactivityTime = 0f; // Time player has been inactive
+    public float inactivityThreshold = 2f; // Time threshold for considering inactivity (in seconds)
 
     // Ground check variables
     public Transform groundCheck; // Point used to detect if the player is grounded
@@ -49,7 +53,7 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+
         // Capture player input for horizontal (A/D, Left/Right arrows) and vertical (W/S, Up/Down arrows) movement
         horizontalInput = movementInput.x;
         verticalInput = movementInput.y;
@@ -66,7 +70,7 @@ public class PlayerController : MonoBehaviour
             GetComponent<SpriteRenderer>().flipX = true; // Flip to face left
             virtualCameraLeft.Priority = 10; //Changing Camera Priority to go left of player
             virtualCameraRight.Priority = 9;
-    
+
         }
         else if (horizontalInput > 0)
         {
@@ -99,30 +103,35 @@ public class PlayerController : MonoBehaviour
 
         // Handle flight mode transition based on velocity and gravity scale
         // Reduce gravity when moving fast horizontally, otherwise increase gravity
-        if ((Mathf.Abs(rb.velocity.x) >= transitionThreshold) && rb.gravityScale >= 0)
+        if (!isGrounded && Mathf.Abs(rb.velocity.y) < 0.1f && !flightMode || !flightMode && Mathf.Abs(rb.velocity.x) >= transitionThreshold)
         {
-            rb.gravityScale -= gravityChangeRate; // Reduce gravity for smoother flight
+            flightMode = true; // Activate flight mode when at the peak of the jump
         }
-        else if ((Mathf.Abs(rb.velocity.x) < transitionThreshold) && rb.gravityScale <= 1)
+        else if (isGrounded)
         {
-            rb.gravityScale += (gravityChangeRate * fallRate)* Time.deltaTime; // Increase gravity when slowing down
+            flightMode = false; // Disable flight mode when grounded
         }
 
-        // Toggle flight mode when gravity scale drops below 0.5
-        if (rb.gravityScale <= 0.5f && !isGrounded)
+        // Track player inactivity time
+        if (horizontalInput == 0 && verticalInput == 0)
         {
-            flightMode = true;
-            
+            inactivityTime += Time.deltaTime; // Increment inactivity time if no input
+        }
+        else
+        {
+            inactivityTime = 0f; // Reset inactivity time when player provides input
+        }
+
+        // If inactivity exceeds threshold, reduce lift force to bring the player down
+        if (inactivityTime > inactivityThreshold && isGrounded == false)
+        {
+            fallRate += liftChangeRate / 3; // Reduce lift force slowly
         }
         else 
-        { 
-            flightMode = false; 
-        }
-        if (rb.gravityScale <= 0)
         {
-            rb.gravityScale = 0;
-
+            fallRate = 0f; 
         }
+        fallRate = Mathf.Clamp(fallRate, 0, 15f);
     }
 
     // FixedUpdate is called at fixed intervals, used for physics-based calculations
@@ -153,7 +162,7 @@ public class PlayerController : MonoBehaviour
         if (flightMode)
         {
             // In flight mode, move based on both horizontal and vertical input
-            rb.velocity = new Vector2(horizontalInput * moveHorizontalFlightSpeed, verticalInput * flightSpeed);
+            rb.velocity = new Vector2(horizontalInput * moveHorizontalFlightSpeed, verticalInput * flightSpeed - fallRate);
         }
         else
         {
@@ -166,6 +175,7 @@ public class PlayerController : MonoBehaviour
     void Jump()
     {
         rb.AddForce(new Vector2(rb.velocity.x, jumpForce), ForceMode2D.Impulse); // Apply jump force
+        
     }
 
     public void OnMove(InputAction.CallbackContext context)
