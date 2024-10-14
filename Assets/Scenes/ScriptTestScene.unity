@@ -377,6 +377,26 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 453334923156490498, guid: 181817ce13e6f634a92e2c16be981625, type: 3}
+      propertyPath: fallRate
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2087436990083818111, guid: 181817ce13e6f634a92e2c16be981625, type: 3}
+      propertyPath: m_ExcludeLayers.m_Bits
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2087436990083818111, guid: 181817ce13e6f634a92e2c16be981625, type: 3}
+      propertyPath: m_IncludeLayers.m_Bits
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3588108504516206053, guid: 181817ce13e6f634a92e2c16be981625, type: 3}
+      propertyPath: m_ExcludeLayers.m_Bits
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3588108504516206053, guid: 181817ce13e6f634a92e2c16be981625, type: 3}
+      propertyPath: m_IncludeLayers.m_Bits
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4791758663455504490, guid: 181817ce13e6f634a92e2c16be981625, type: 3}
       propertyPath: m_LocalPosition.x
       value: 106.079765
@@ -417,9 +437,21 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5152296429719158953, guid: 181817ce13e6f634a92e2c16be981625, type: 3}
+      propertyPath: remainingTime
+      value: 120
+      objectReference: {fileID: 0}
+    - target: {fileID: 5152296429719158953, guid: 181817ce13e6f634a92e2c16be981625, type: 3}
+      propertyPath: competetiveMode
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8135641734828993175, guid: 181817ce13e6f634a92e2c16be981625, type: 3}
       propertyPath: m_Name
       value: GameFoundation
+      objectReference: {fileID: 0}
+    - target: {fileID: 9181317048540029657, guid: 181817ce13e6f634a92e2c16be981625, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 35.6
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
