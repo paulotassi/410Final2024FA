@@ -44,10 +44,11 @@ public class GameManager : MonoBehaviour
         gameTimerText.text = string.Format("{0:00}:{1:00}", minutes, seconds);
 
         // If the remaining time is less than or equal to 4 seconds...
-        if (remainingTime <= 5)
+        if (remainingTime <= 0)
         {
             // Display the game state (win/lose) text.
             gameStateText();
+            gameTimerText.text = "00:00";
 
             // Call the gameEnd method to handle the end of the game.
             StartCoroutine(gameEnd());
