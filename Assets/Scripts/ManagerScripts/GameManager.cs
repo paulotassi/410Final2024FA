@@ -21,11 +21,50 @@ public class GameManager : MonoBehaviour
     [SerializeField] public float remainingTime = 30; // Tracks the time left in the game round.
     private bool winStateMet = false; // Boolean to check if win conditions are met.
 
+    [SerializeField] public bool competetiveMode = false;
+    [SerializeField] public GameObject player1GameObject;
+    [SerializeField] public GameObject player2GameObject;
+    [SerializeField] public CapsuleCollider2D playerCollider1;
+    [SerializeField] public CapsuleCollider2D playerCollider2;
+    [SerializeField] public int playerLayer1;
+    [SerializeField] public int playerLayer2;
+
     // Update is called once per frame (every frame)
 
+    private void Start()
+    {
+        player1GameObject = GameObject.FindWithTag("Player");
+        player2GameObject = GameObject.FindWithTag("Player2");
 
+        playerCollider1 = player1GameObject.GetComponent<CapsuleCollider2D>();
+        playerLayer1 = playerCollider1.gameObject.layer;
+        playerCollider2 = player2GameObject.GetComponent<CapsuleCollider2D>();
+        playerLayer2 = playerCollider2.gameObject.layer;
+
+
+    }
     void Update()
     {
+        if (Input.GetKeyUp(KeyCode.Y))
+        {
+            gameModeSwitch();
+        }
+        if (competetiveMode == false)
+        {
+            Physics2D.IgnoreLayerCollision(playerLayer1, playerLayer2, true);
+            Physics2D.IgnoreLayerCollision(playerLayer2, playerLayer1, true);
+            Physics2D.IgnoreLayerCollision(playerLayer2, playerLayer2, true);
+            Physics2D.IgnoreLayerCollision(playerLayer1, playerLayer1, true);
+        } 
+        else if (competetiveMode)
+        {
+            Physics2D.IgnoreLayerCollision(playerLayer1, playerLayer2, false);
+            Physics2D.IgnoreLayerCollision(playerLayer2, playerLayer1, false);
+            Physics2D.IgnoreLayerCollision(playerLayer2, playerLayer2, false);
+            Physics2D.IgnoreLayerCollision(playerLayer1, playerLayer1, false);
+        }
+
+    
         // Update the UI with the current number of ingredients for each player.
         Player1ScoreText.text = "Ingredients Collected: " + player1IngredientCount;
         Player2ScoreText.text = "Ingredients Collected: " + player2IngredientCount;
@@ -69,6 +108,14 @@ public class GameManager : MonoBehaviour
         SceneManager.LoadScene("MVPScene");
     }
 
+    public void gameModeSwitch()
+    {
+        competetiveMode = !competetiveMode;
+
+
+
+
+    }
     // Method to handle what happens when players enter the end zone.
     // This checks if the players have collected enough ingredients to win.
     public void EndZoneEntry(int roundRequiredScore)
@@ -88,6 +135,7 @@ public class GameManager : MonoBehaviour
         // Display the appropriate game state text.
         gameStateText();
     }
+
 
     // Method to update the round end text based on whether the win condition was met.
     public void gameStateText()
