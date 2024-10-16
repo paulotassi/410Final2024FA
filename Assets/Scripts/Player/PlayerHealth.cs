@@ -16,12 +16,19 @@ public class PlayerHealth : MonoBehaviour
     private Rigidbody2D playerRB;
     private PlayerController playerController;
 
+    private bool isInvincible = false;
+    public float invincibilityDurationSeconds;
+    public GameObject playerModel;
+    public GameObject Shield;
+   
+
     public int playerIndex; // Identifier for the player (0 for Player 1, 1 for Player 2)
     private SpriteRenderer spriteRenderer; // Reference to the SpriteRenderer component
 
     private void Awake()
     {
         playerRB = playerSprite.GetComponent<Rigidbody2D>();
+        Shield.SetActive(false);
     }
 
     private void Start()
@@ -31,11 +38,19 @@ public class PlayerHealth : MonoBehaviour
         lastPosition = transform.position; // Initialize lastPosition to the starting position
         spriteRenderer = playerSprite.GetComponent<SpriteRenderer>(); // Get the SpriteRenderer
         playerController = playerSprite.GetComponent<PlayerController>();
-        
+
+    }
+
+    private void Update()
+    {
+        ReviveShield();
     }
 
     public void TakeDamage(int damage)
     {
+        if (isInvincible) return;
+
+
         lastPosition = transform.position; // Update last position before taking damage
         currentHealth -= damage;
         currentHealth = Mathf.Clamp(currentHealth, 0, maxHealth); // Ensure health doesn't drop below 0 or exceed maxHealth
@@ -44,6 +59,7 @@ public class PlayerHealth : MonoBehaviour
 
         if (currentHealth <= 0)
         {
+
             Die();    // Call a method to handle player death
         }
     }
@@ -62,10 +78,27 @@ public class PlayerHealth : MonoBehaviour
 
         StartCoroutine(Respawn(5f));
 
-        
+
     }
 
-    IEnumerator Respawn(float duration)
+    private void ScaleModelTo(Vector3 scale)
+    {
+        playerModel.transform.localScale = scale;
+    }
+
+    private void ReviveShield()
+    {
+        if (isInvincible)
+        {
+            Shield.SetActive(true);
+        }
+        else
+        {
+            Shield.SetActive(false);
+
+        }
+    }
+    public IEnumerator Respawn(float duration)
     {
         playerController.enabled = false;
         playerRB.simulated = false;
@@ -74,6 +107,8 @@ public class PlayerHealth : MonoBehaviour
         // Determine which timer to use and enable it
         TMP_Text countdownText = (playerIndex == 0) ? P1RespawnTimer : P2RespawnTimer;
         countdownText.gameObject.SetActive(true); // Enable the countdown timer
+
+        
 
         // Countdown loop
         for (float t = duration; t > 0; t -= 1f)
@@ -89,12 +124,26 @@ public class PlayerHealth : MonoBehaviour
         playerRB.simulated = true;
         currentHealth = maxHealth;
         UpdateHealthBar();
+        
+
+        StartCoroutine(BecomeTempInvincible());
 
         // Clear and disable the countdown text after respawn
         countdownText.text = "";
         countdownText.gameObject.SetActive(false); // Disable the countdown timer
     }
 
+    IEnumerator BecomeTempInvincible()
+    {
+        Debug.Log(playerIndex + "is invincible");
+        isInvincible = true;
+
+        yield return new WaitForSeconds(invincibilityDurationSeconds);
+
+        Debug.Log("Player is no longer invincible!");
+        isInvincible = false;
+
+    }
 
 
 }
