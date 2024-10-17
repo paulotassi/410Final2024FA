@@ -7,12 +7,15 @@ public class PlayerController : MonoBehaviour
 {
     // Player movement variables
     public Vector2 movementInput = Vector2.zero; //input vector
+    public Vector2 aimInput = Vector2.zero; //input vector
+
     public float initialMoveSpeed = 1f; // Initial movement speed before any acceleration
     public float moveSpeed = 5f; // Current movement speed (changes with input)
     public float moveHorizontalFlightSpeed = 1f; // Speed when moving horizontally during flight
     public float flightSpeed = 1f; // Vertical flight speed
     public float topSpeed = 100f; // Maximum allowed speed
     public bool jumped = false;
+    public bool fired = false;
     public float jumpForce = 10f; // Force applied when jumping
     public float transitionThreshold = 50f; // Speed threshold for flight mode transition
     public float liftChangeRate = 0.1f; // Rate at which gravity changes when transitioning between flight and grounded states
@@ -185,5 +188,14 @@ public class PlayerController : MonoBehaviour
     public void OnJump(InputAction.CallbackContext context) 
     {
         jumped = context.action.triggered;
+    }
+
+    public void OnAim(InputAction.CallbackContext context)
+    {
+        aimInput = context.ReadValue<Vector2>();
+    }
+    public void OnShoot(InputAction.CallbackContext context)
+    {
+        fired = context.action.triggered;
     }
 }
