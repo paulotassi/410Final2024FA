@@ -1,13 +1,20 @@
 using Cinemachine;
 using UnityEngine;
+using System.Collections;
 using UnityEngine.U2D.Animation; // For sprite animation, unused in this script but necessary for Player Animation
 using UnityEngine.InputSystem;
+using UnityEngine.SceneManagement;
 
 public class PlayerController : MonoBehaviour
 {
     // Player movement variables
     public Vector2 movementInput = Vector2.zero; //input vector
     public Vector2 aimInput = Vector2.zero; //input vector
+    public bool canShoot = true; //Shooting bool
+    public float shootCoolDown; //How long until players can shoot again
+    public GameObject projectilePrefab; //The projectile prefab holding the motion for projectiles
+    public GameObject projectileSpawnLocation; //spawnLocation of the rotating familiar
+    public GameObject projectileSpawnRotation; //spawn rotation to follow the Familiar direction
 
     public float initialMoveSpeed = 1f; // Initial movement speed before any acceleration
     public float moveSpeed = 5f; // Current movement speed (changes with input)
@@ -98,6 +105,13 @@ public class PlayerController : MonoBehaviour
             Jump(); // Trigger jump
         }
 
+        //Handles shooting if left Mouse is clicked or right Trigger
+        if (fired & canShoot)
+        {
+            canShoot = false;
+            StartCoroutine(Shoot());
+        }
+
         // Reset move speed to initial value when no horizontal input
         if (horizontalInput == 0)
         {
@@ -180,6 +194,16 @@ public class PlayerController : MonoBehaviour
         rb.AddForce(new Vector2(rb.velocity.x, jumpForce), ForceMode2D.Impulse); // Apply jump force
         
     }
+
+
+    private IEnumerator Shoot()
+    {
+        
+        Instantiate(projectilePrefab, projectileSpawnLocation.transform.position , projectileSpawnRotation.transform.rotation);
+        yield return new WaitForSeconds(shootCoolDown);
+        canShoot = true;
+    }
+
 
     public void OnMove(InputAction.CallbackContext context)
     {
