@@ -185,7 +185,7 @@
                 {
                     "name": "",
                     "id": "dbab9600-3e1c-48a9-ac5f-3ed4f70108b4",
-                    "path": "<Gamepad>/{PrimaryTrigger}",
+                    "path": "<Gamepad>/rightTrigger",
                     "interactions": "",
                     "processors": "",
                     "groups": "GamePad",

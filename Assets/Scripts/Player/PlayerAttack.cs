@@ -29,7 +29,7 @@ public class PlayerAttack : MonoBehaviour
 
         // Remap the input from [-1, 1] to new custom ranges for different input axes
         float horizontalAimInput2 = Remap(horizontalAimInput, -1f, 1f, -250f, 1500f);
-        float verticalAimInput2 = Remap(verticalAimInput, -1f, 1f, -300f, 500f);
+        float verticalAimInput2 = Remap(verticalAimInput, -1f, 1f, -300f, 750f);
 
         // Check if the "K" key is pressed on the keyboard
         if (Input.GetKey(KeyCode.K))
