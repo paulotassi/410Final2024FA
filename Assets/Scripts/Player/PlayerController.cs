@@ -15,14 +15,11 @@ public class PlayerController : MonoBehaviour
     public GameObject projectilePrefab; //The projectile prefab holding the motion for projectiles
     public GameObject projectileSpawnLocation; //spawnLocation of the rotating familiar
     public GameObject projectileSpawnRotation; //spawn rotation to follow the Familiar direction
-
     public float initialMoveSpeed = 1f; // Initial movement speed before any acceleration
     public float moveSpeed = 5f; // Current movement speed (changes with input)
     public float moveHorizontalFlightSpeed = 1f; // Speed when moving horizontally during flight
     public float flightSpeed = 1f; // Vertical flight speed
     public float topSpeed = 100f; // Maximum allowed speed
-    public bool jumped = false;
-    public bool fired = false;
     public float jumpForce = 10f; // Force applied when jumping
     public float transitionThreshold = 50f; // Speed threshold for flight mode transition
     public float liftChangeRate = 0.1f; // Rate at which gravity changes when transitioning between flight and grounded states
@@ -31,6 +28,20 @@ public class PlayerController : MonoBehaviour
     public float flightThreshold = 5f;
     public float inactivityTime = 0f; // Time player has been inactive
     public float inactivityThreshold = 2f; // Time threshold for considering inactivity (in seconds)
+
+    //Player Dash
+    public bool isDashing = false;
+    public bool canDash = true;
+    public float dashSpeed = 20f;
+    public float dashCooldown = 3f;
+    public float dashDuration = 1.0f;
+    public TrailRenderer trailRenderer;
+
+    // Player Actions
+    public bool jumped = false;
+    public bool fired = false;
+    public bool dashed = false;
+
 
     // Ground check variables
     public Transform groundCheck; // Point used to detect if the player is grounded
@@ -112,6 +123,11 @@ public class PlayerController : MonoBehaviour
             StartCoroutine(Shoot());
         }
 
+        if (dashed & canDash)
+        {
+            StartCoroutine(Dash());
+        }
+
         // Reset move speed to initial value when no horizontal input
         if (horizontalInput == 0)
         {
@@ -154,6 +170,10 @@ public class PlayerController : MonoBehaviour
     // FixedUpdate is called at fixed intervals, used for physics-based calculations
     void FixedUpdate()
     {
+        if (isDashing)
+        {
+            return;
+        }
         // Apply movement every physics frame
         Move();
         // Reset move speed to initial value when no horizontal input
@@ -204,6 +224,20 @@ public class PlayerController : MonoBehaviour
         canShoot = true;
     }
 
+    private IEnumerator Dash()
+    {
+        canDash = false;
+        isDashing = true;
+        rb.velocity = new Vector2(horizontalInput * moveHorizontalFlightSpeed * dashSpeed, verticalInput * dashSpeed * flightSpeed - fallRate);
+        trailRenderer.emitting = true;
+        yield return new WaitForSeconds (dashDuration);
+        trailRenderer.emitting = false;
+        isDashing = false;
+        yield return new WaitForSeconds(dashCooldown);
+        canDash = true;
+
+    }
+
 
     public void OnMove(InputAction.CallbackContext context)
     {
@@ -221,5 +255,9 @@ public class PlayerController : MonoBehaviour
     public void OnShoot(InputAction.CallbackContext context)
     {
         fired = context.action.triggered;
+    }
+    public void OnDash(InputAction.CallbackContext context)
+    {
+        dashed = context.action.triggered;
     }
 }
