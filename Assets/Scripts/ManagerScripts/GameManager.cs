@@ -105,7 +105,7 @@ public class GameManager : MonoBehaviour
         yield return new WaitForSeconds(4);
 
         // Load the scene named "MVPScene" when the round ends.
-        SceneManager.LoadScene("MVPScene");
+        SceneManager.LoadScene("TitleScreen");
     }
 
     public void gameModeSwitch()
