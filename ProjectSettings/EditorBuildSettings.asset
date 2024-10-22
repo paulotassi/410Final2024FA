@@ -8,8 +8,17 @@ EditorBuildSettings:
   - enabled: 0
     path: Assets/Scenes/SampleScene.unity
     guid: 2cda990e2423bbf4892e6590ba056729
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/MVPScene.unity
     guid: 2079cc12313536d45ac257aa58d324a5
+  - enabled: 1
+    path: Assets/Scenes/TitleScreen.unity
+    guid: b2cd2746b4863c142808e26eb1a28288
+  - enabled: 1
+    path: Assets/Scenes/CooperativeScenes/CoopSceneRound1.unity
+    guid: 6065f5d2b776b6c42a7af67a97945907
+  - enabled: 1
+    path: Assets/Scenes/CompetetiveScenes/CompetetiveSceneRound1.unity
+    guid: e2d7ea938b0a60b4cb04e31484fee386
   m_configObjects:
     com.unity.input.settings: {fileID: 11400000, guid: d336a89eeba10d647994ede47fe2dd76, type: 2}
