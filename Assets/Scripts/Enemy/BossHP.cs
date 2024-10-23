@@ -9,11 +9,23 @@ public class BossHP : MonoBehaviour
     public int maxHealth = 300;  // Track the max health
     public float phaseChangeThreshold = 0.5f; // Changes phase at 50% health
     private int currentPhase = 1;
+    public GameObject PhaseChangeAni;
 
     public GameObject[] attackPatternsPhase1;
     public GameObject[] attackPatternsPhase2;
 
     private bool isPhaseChanging = false;
+    private bool isInvincible = false;
+    
+
+    public float invincibilityDurationSeconds;
+    public BossMove BossMoveScript;
+    public SpriteRenderer sprite;
+
+    public AudioSource AudioSource;
+    public AudioClip Clip;
+    public float volume;
+    
 
     // Reference to the UI image for the boss's health bar
     public Image healthBar;
@@ -22,10 +34,15 @@ public class BossHP : MonoBehaviour
     {
         // Initialize the health bar
         UpdateHealthBar();
+        PhaseChangeAni.SetActive(false);
+        SetActiveAttackPatterns(attackPatternsPhase1,true);
+        SetActiveAttackPatterns(attackPatternsPhase2,false);
     }
 
     void Update()
     {
+
+
         if (health <= 0)
         {
             Die();
@@ -39,19 +56,29 @@ public class BossHP : MonoBehaviour
     // Take damage
     public void TakeDamage(int damage)
     {
-        health -= damage;
-
-        // Clamp health to avoid negative values
-        health = Mathf.Clamp(health, 0, maxHealth);
-
-        // Update the health bar's fill amount
-        UpdateHealthBar();
-
-        if (health <= 0)
+        if (isInvincible) 
         {
-            Die();
+            return;
         }
+        else
+        {
+            health -= damage;
+
+            // Clamp health to avoid negative values
+            health = Mathf.Clamp(health, 0, maxHealth);
+
+            // Update the health bar's fill amount
+            UpdateHealthBar();
+
+            if (health <= 0)
+            {
+                Die();
+            }
+        }
+        
     }
+
+   
 
     // Update the health bar based on the current health
     void UpdateHealthBar()
@@ -64,17 +91,27 @@ public class BossHP : MonoBehaviour
     private IEnumerator ChangePhase(int newPhase)
     {
         isPhaseChanging = true;
-        // Do something like play animation or special effect here
-        yield return new WaitForSeconds(2f); // Delay for visual effect
+        BossMoveScript.enabled = false;
+        PhaseChangeAni.SetActive(true);
+        SetActiveAttackPatterns(attackPatternsPhase1, false);  // Deactivate Phase 1 attacks
+        sprite.color = Color.red;
+        AudioSource.PlayOneShot(Clip, volume);
+
+        StartCoroutine(BecomeTempInvincible());
+
+        yield return new WaitForSeconds(3f); // Delay for visual effect
 
         currentPhase = newPhase;
         Debug.Log("Boss has entered Phase " + currentPhase);
+        sprite.color = Color.white;
+        //PhaseChangeAni.SetActive(false);
+        BossMoveScript.enabled = true;
         isPhaseChanging = false;
 
         // Switch to new attack patterns or behavior
         if (newPhase == 2)
         {
-            attackPatternsPhase1 = attackPatternsPhase2;
+            SetActiveAttackPatterns(attackPatternsPhase2, true);   // Activate Phase 2 attacks
         }
     }
 
@@ -84,4 +121,25 @@ public class BossHP : MonoBehaviour
         Debug.Log("Boss Defeated");
         Destroy(gameObject);
     }
+
+    void SetActiveAttackPatterns(GameObject[] attackPatterns, bool isActive)
+    {
+        foreach (GameObject attack in attackPatterns)
+        {
+            attack.SetActive(isActive);
+        }
+    }
+
+    IEnumerator BecomeTempInvincible()
+    {
+        
+        isInvincible = true;
+
+        yield return new WaitForSeconds(invincibilityDurationSeconds);
+
+        isInvincible = false;
+
+    }
+
+
 }
