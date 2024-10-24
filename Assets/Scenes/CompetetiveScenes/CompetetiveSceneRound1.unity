@@ -2244,18 +2244,6 @@ PrefabInstance:
       propertyPath: orthographic size
       value: 6
       objectReference: {fileID: 0}
-    - target: {fileID: 453334923156490498, guid: 181817ce13e6f634a92e2c16be981625, type: 3}
-      propertyPath: dashCooldown
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 453334923156490498, guid: 181817ce13e6f634a92e2c16be981625, type: 3}
-      propertyPath: dashDuration
-      value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 453334923156490498, guid: 181817ce13e6f634a92e2c16be981625, type: 3}
-      propertyPath: screenShakeValue
-      value: 35
-      objectReference: {fileID: 0}
     - target: {fileID: 706254952039947117, guid: 181817ce13e6f634a92e2c16be981625, type: 3}
       propertyPath: Grave
       value: 
@@ -2415,10 +2403,6 @@ PrefabInstance:
     - target: {fileID: 5513195852400580227, guid: 181817ce13e6f634a92e2c16be981625, type: 3}
       propertyPath: m_Lens.OrthographicSize
       value: 6
-      objectReference: {fileID: 0}
-    - target: {fileID: 5906388070885287508, guid: 181817ce13e6f634a92e2c16be981625, type: 3}
-      propertyPath: screenShakeValue
-      value: 35
       objectReference: {fileID: 0}
     - target: {fileID: 7098663091026357149, guid: 181817ce13e6f634a92e2c16be981625, type: 3}
       propertyPath: m_Color.b
