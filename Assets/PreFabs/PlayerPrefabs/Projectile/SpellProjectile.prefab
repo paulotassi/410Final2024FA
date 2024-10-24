@@ -100,8 +100,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   projectileSpeed: 10
-  projectileDamage: 0
+  projectileDamage: 10
   rb: {fileID: 7048848087908441889}
+  gameManager: {fileID: 0}
 --- !u!50 &7048848087908441889
 Rigidbody2D:
   serializedVersion: 4
