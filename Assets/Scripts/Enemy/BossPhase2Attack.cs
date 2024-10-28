@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BossPhase1Attack : MonoBehaviour
+public class BossPhase2Attack : MonoBehaviour
 {
     public GameObject projectilePrefab; // Reference to the projectile prefab
     public float attackRange = 10f;     // Distance within which the boss can attack
@@ -10,14 +10,12 @@ public class BossPhase1Attack : MonoBehaviour
     public float attackCooldown = 2f;    // Time between attacks
     private float lastAttackTime = 0f;   // Timer for attack cooldown
     public int attackDamage = 20;
-    
+
 
     private Transform player1;            // Reference to player 1's transform
     private Transform player2;            // Reference to player 2's transform
     private PlayerHealth player1Health;
     private PlayerHealth player2Health;
-
-  
 
     void Start()
     {

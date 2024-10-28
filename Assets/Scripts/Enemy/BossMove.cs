@@ -1,6 +1,8 @@
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
-public class BossMovement : MonoBehaviour
+public class BossMove : MonoBehaviour
 {
     public float speed = 5f;
     public Transform[] movePoints;
@@ -19,7 +21,7 @@ public class BossMovement : MonoBehaviour
     void FixedUpdate()
     {
         MoveBetweenPoints();
-        
+
     }
 
     void MoveBetweenPoints()
