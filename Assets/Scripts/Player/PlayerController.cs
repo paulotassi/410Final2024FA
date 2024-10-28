@@ -59,9 +59,12 @@ public class PlayerController : MonoBehaviour
     // Animation variables
     public Animator animator; // Reference to the Animator for controlling animations
 
-    //PlayerCam Switch
+    //PlayerCam
     public CinemachineVirtualCamera virtualCameraLeft;
     public CinemachineVirtualCamera virtualCameraRight;
+    [SerializeField] protected CinemachineBasicMultiChannelPerlin rightNoise;
+    [SerializeField] protected CinemachineBasicMultiChannelPerlin leftNoise;
+    [SerializeField] private float screenShakeValue = 1;
 
     // Start is called before the first frame update
     void Start()
@@ -69,6 +72,8 @@ public class PlayerController : MonoBehaviour
         // Get components on start
         rb = GetComponent<Rigidbody2D>(); // Retrieve Rigidbody2D component for physics
         animator = GetComponent<Animator>(); // Retrieve Animator component for animations
+        leftNoise = virtualCameraLeft.GetCinemachineComponent<CinemachineBasicMultiChannelPerlin>();
+        rightNoise = virtualCameraRight.GetCinemachineComponent<CinemachineBasicMultiChannelPerlin>();
     }
 
     // Update is called once per frame
@@ -226,13 +231,29 @@ public class PlayerController : MonoBehaviour
 
     private IEnumerator Dash()
     {
+
+        float initialGravity = rb.gravityScale;
         canDash = false;
         isDashing = true;
         rb.velocity = new Vector2(horizontalInput * moveHorizontalFlightSpeed * dashSpeed, verticalInput * dashSpeed * flightSpeed - fallRate);
-        trailRenderer.emitting = true;
-        yield return new WaitForSeconds (dashDuration);
+        rb.gravityScale = 0;
+        trailRenderer.emitting = true; 
+        leftNoise.m_AmplitudeGain = 1;
+        leftNoise.m_FrequencyGain = screenShakeValue;
+        rightNoise.m_AmplitudeGain = 1;
+        rightNoise.m_FrequencyGain = screenShakeValue;
+
+
+
+        yield return new WaitForSeconds (dashDuration); 
+        leftNoise.m_AmplitudeGain = 0;
+        leftNoise.m_FrequencyGain = 0;
+        rightNoise.m_AmplitudeGain = 0;
+        rightNoise.m_FrequencyGain = 0;
         trailRenderer.emitting = false;
         isDashing = false;
+        rb.gravityScale = initialGravity;
+
         yield return new WaitForSeconds(dashCooldown);
         canDash = true;
 
