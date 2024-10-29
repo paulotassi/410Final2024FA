@@ -121,7 +121,7 @@ public class GameManager : MonoBehaviour
     public void EndZoneEntry(int roundRequiredScore)
     {
         // If the total score is less than the required score for the round...
-        if (totalScore < roundRequiredScore)
+        if (player1IngredientCount < roundRequiredScore || player2IngredientCount < roundRequiredScore)
         {
             // Display "Not Enough Ingredients" and exit the function.
             RoundEndText.text = "Not Enough Ingredients";
@@ -141,9 +141,13 @@ public class GameManager : MonoBehaviour
     public void gameStateText()
     {
         // If the win condition is met, display "Witches Win".
-        if (winStateMet == true)
+        if (winStateMet == true && player1IngredientCount > player2IngredientCount)
         {
-            RoundEndText.text = "Witches Win";
+            RoundEndText.text = "Player 1 Win";
+        }
+        else if (winStateMet == true && player2IngredientCount > player1IngredientCount)
+        {
+            RoundEndText.text = "Player 2 Win";
         }
         // If the win condition is not met, display "Witches Lose".
         else if (winStateMet == false)
