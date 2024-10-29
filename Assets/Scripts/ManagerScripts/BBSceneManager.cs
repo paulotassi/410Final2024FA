@@ -14,7 +14,7 @@ public class BBSceneManager : MonoBehaviour
 
     public void LoadCooperativePlaythrough()
     {
-        SceneManager.LoadScene("CoopSceneRound1");
+        SceneManager.LoadScene("TaylorsLevel");
     }
 
     public void LoadComboPlaythrough()
