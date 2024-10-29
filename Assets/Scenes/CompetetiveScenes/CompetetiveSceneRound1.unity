@@ -2392,6 +2392,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5086293401439004793, guid: 181817ce13e6f634a92e2c16be981625, type: 3}
+      propertyPath: aimObject
+      value: 
+      objectReference: {fileID: 1910830081}
     - target: {fileID: 5152296429719158953, guid: 181817ce13e6f634a92e2c16be981625, type: 3}
       propertyPath: remainingTime
       value: 120
@@ -2419,6 +2423,10 @@ PrefabInstance:
     - target: {fileID: 7212708551969200767, guid: 181817ce13e6f634a92e2c16be981625, type: 3}
       propertyPath: m_Lens.OrthographicSize
       value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 7341278084195794793, guid: 181817ce13e6f634a92e2c16be981625, type: 3}
+      propertyPath: m_DefaultControlScheme
+      value: GamePad
       objectReference: {fileID: 0}
     - target: {fileID: 7810394656890607153, guid: 181817ce13e6f634a92e2c16be981625, type: 3}
       propertyPath: m_Color.a
@@ -20094,6 +20102,11 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!4 &1910830081 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 2668259662931366275, guid: 181817ce13e6f634a92e2c16be981625, type: 3}
+  m_PrefabInstance: {fileID: 220987289}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1916500817
 GameObject:
   m_ObjectHideFlags: 0
