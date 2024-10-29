@@ -9,13 +9,14 @@ public class BossPhase2Attack : MonoBehaviour
     public float projectileSpeed = 10f;  // Speed of the projectile
     public float attackCooldown = 2f;    // Time between attacks
     private float lastAttackTime = 0f;   // Timer for attack cooldown
-    public int attackDamage = 20;
+    
 
 
     private Transform player1;            // Reference to player 1's transform
     private Transform player2;            // Reference to player 2's transform
     private PlayerHealth player1Health;
     private PlayerHealth player2Health;
+   
 
     void Start()
     {
