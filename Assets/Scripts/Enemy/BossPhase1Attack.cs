@@ -1,3 +1,4 @@
+using Cinemachine;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -16,6 +17,7 @@ public class BossPhase1Attack : MonoBehaviour
     private Transform player2;            // Reference to player 2's transform
     private PlayerHealth player1Health;
     private PlayerHealth player2Health;
+    
 
   
 
@@ -32,6 +34,8 @@ public class BossPhase1Attack : MonoBehaviour
 
     void Update()
     {
+        
+
         if (player1 != null && player2 != null)
         {
             // Check which player is closer
