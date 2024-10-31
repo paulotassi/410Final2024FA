@@ -28,7 +28,8 @@ public class GameManager : MonoBehaviour
     [SerializeField] public CapsuleCollider2D playerCollider2;
     [SerializeField] public int playerLayer1;
     [SerializeField] public int playerLayer2;
-
+    [SerializeField] public BossHP bossDead;
+    
     // Update is called once per frame (every frame)
 
     private void Start()
@@ -40,6 +41,8 @@ public class GameManager : MonoBehaviour
         playerLayer1 = playerCollider1.gameObject.layer;
         playerCollider2 = player2GameObject.GetComponent<CapsuleCollider2D>();
         playerLayer2 = playerCollider2.gameObject.layer;
+        bossDead = FindFirstObjectByType<BossHP>()
+           ;
 
 
     }
@@ -83,7 +86,7 @@ public class GameManager : MonoBehaviour
         gameTimerText.text = string.Format("{0:00}:{1:00}", minutes, seconds);
 
         // If the remaining time is less than or equal to 4 seconds...
-        if (remainingTime <= 0)
+        if (remainingTime <= 0 || bossDead.bossDead == true)
         {
             // Display the game state (win/lose) text.
             gameStateText();
@@ -121,7 +124,7 @@ public class GameManager : MonoBehaviour
     public void EndZoneEntry(int roundRequiredScore)
     {
         // If the total score is less than the required score for the round...
-        if (player1IngredientCount < roundRequiredScore || player2IngredientCount < roundRequiredScore)
+        if (player1IngredientCount < roundRequiredScore && player2IngredientCount < roundRequiredScore)
         {
             // Display "Not Enough Ingredients" and exit the function.
             RoundEndText.text = "Not Enough Ingredients";
@@ -148,6 +151,10 @@ public class GameManager : MonoBehaviour
         else if (winStateMet == true && player2IngredientCount > player1IngredientCount)
         {
             RoundEndText.text = "Player 2 Win";
+        }
+        else if (bossDead.bossDead == true)
+        {
+            RoundEndText.text = "You've Killed the Boss!";
         }
         // If the win condition is not met, display "Witches Lose".
         else if (winStateMet == false)

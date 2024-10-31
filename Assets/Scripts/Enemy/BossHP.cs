@@ -25,6 +25,7 @@ public class BossHP : MonoBehaviour
     public AudioSource AudioSource;
     public AudioClip Clip;
     public float volume;
+    public bool bossDead = false;
     
 
     // Reference to the UI image for the boss's health bar
@@ -45,6 +46,7 @@ public class BossHP : MonoBehaviour
 
         if (health <= 0)
         {
+            bossDead = true;
             Die();
         }
         else if (health <= phaseChangeThreshold * maxHealth && currentPhase == 1 && !isPhaseChanging)
