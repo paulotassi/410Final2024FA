@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor.AnimatedValues;
 using UnityEngine;
 using UnityEngine.InputSystem; // Required for using the Input System
 
@@ -12,6 +13,7 @@ public class PlayerAttack : MonoBehaviour
     public Vector3 targetPos; // Position on the screen where the player is aiming
     public PlayerController controller; // Reference to the PlayerController script to get input values
     public Transform aimObject;
+    public float aimAngle;
     public float controllerDeadzone = 0.1f;
 
     // Function to remap a value from one range to another
@@ -28,11 +30,12 @@ public class PlayerAttack : MonoBehaviour
         // If the current control scheme is "GamePad", use the remapped values for aiming
         if (controller.GetComponent<PlayerInput>().currentControlScheme == "GamePad")
         {
+            Vector2 aimVector = new Vector2(horizontalAimInput, verticalAimInput);
             // Set target position using the remapped aim input (for gamepad aiming)
-            if (horizontalAimInput >= controllerDeadzone || verticalAimInput >= controllerDeadzone)
+            if (aimVector.magnitude > controllerDeadzone)
             {
                 // Calculate the aim angle in radians and convert it to degrees
-                float aimAngle = Mathf.Atan2(verticalAimInput, horizontalAimInput) * Mathf.Rad2Deg;
+                aimAngle = Mathf.Atan2(verticalAimInput, horizontalAimInput) * Mathf.Rad2Deg;
 
                 // Apply the rotation to the aimObject
                 aimObject.rotation = Quaternion.Euler(0, 0, aimAngle);
@@ -42,7 +45,7 @@ public class PlayerAttack : MonoBehaviour
         {
             // For other control schemes (e.g., keyboard and mouse), use the raw input values directly
             targetPos = new Vector3(horizontalAimInput, verticalAimInput, -10); // -10 for Z-axis (camera depth)
-        
+
             // Convert the screen position (targetPos) into world position using the camera
             // This is useful for determining where the player is aiming in the game world
             Vector3 mousePos = mainCam.ScreenToWorldPoint(targetPos);
@@ -58,7 +61,7 @@ public class PlayerAttack : MonoBehaviour
             // Rotate the player towards the target position (based on the calculated angle)
             // Quaternion.Euler is used to set the rotation based on the Z-axis angle (rotZ)
 
-            transform.rotation = Quaternion.Euler(0, 0, rotZ); 
+            transform.rotation = Quaternion.Euler(0, 0, rotZ);
         }
     }
 }
