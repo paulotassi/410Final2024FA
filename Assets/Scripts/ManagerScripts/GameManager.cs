@@ -86,7 +86,7 @@ public class GameManager : MonoBehaviour
         gameTimerText.text = string.Format("{0:00}:{1:00}", minutes, seconds);
 
         // If the remaining time is less than or equal to 4 seconds...
-        if (remainingTime <= 0 || bossDead.bossDead == true)
+        if (remainingTime <= 0 || bossDead!= null && bossDead.bossDead == true)
         {
             // Display the game state (win/lose) text.
             gameStateText();
@@ -152,7 +152,7 @@ public class GameManager : MonoBehaviour
         {
             RoundEndText.text = "Player 2 Win";
         }
-        else if (bossDead.bossDead == true)
+        else if (bossDead != null && bossDead.bossDead == true)
         {
             RoundEndText.text = "You've Killed the Boss!";
         }
