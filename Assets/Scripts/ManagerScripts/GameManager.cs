@@ -164,14 +164,14 @@ public class GameManager : MonoBehaviour
     }
 
     // Method to increase Player 1's ingredient count by 1.
-    public void player1IncreaseIngredient()
+    public void player1IncreaseIngredient(int amountIncrease)
     {
-        player1IngredientCount++;
+        player1IngredientCount= player1IngredientCount + amountIncrease;
     }
 
     // Method to increase Player 2's ingredient count by 1.
-    public void player2IncreaseIngredient()
+    public void player2IncreaseIngredient(int amountIncrease)
     {
-        player2IngredientCount++;
+        player2IngredientCount= player2IngredientCount + amountIncrease;
     }
 }
