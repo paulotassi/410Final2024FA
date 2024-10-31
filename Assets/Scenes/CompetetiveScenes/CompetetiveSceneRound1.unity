@@ -1252,6 +1252,10 @@ PrefabInstance:
       propertyPath: m_Lens.OrthographicSize
       value: 6
       objectReference: {fileID: 0}
+    - target: {fileID: 7029298268747705517, guid: 181817ce13e6f634a92e2c16be981625, type: 3}
+      propertyPath: aimObject
+      value: 
+      objectReference: {fileID: 220987290}
     - target: {fileID: 7098663091026357149, guid: 181817ce13e6f634a92e2c16be981625, type: 3}
       propertyPath: m_Color.b
       value: 0.3160377
@@ -1359,6 +1363,11 @@ PrefabInstance:
       insertIndex: 4
       addedObject: {fileID: 754615812}
   m_SourcePrefab: {fileID: 100100000, guid: 181817ce13e6f634a92e2c16be981625, type: 3}
+--- !u!4 &220987290 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 224192588589450469, guid: 181817ce13e6f634a92e2c16be981625, type: 3}
+  m_PrefabInstance: {fileID: 220987289}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &226147035
 GameObject:
   m_ObjectHideFlags: 0

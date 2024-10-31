@@ -1027,6 +1027,7 @@ MonoBehaviour:
   playerCollider2: {fileID: 0}
   playerLayer1: 0
   playerLayer2: 0
+  bossDead: {fileID: 0}
 --- !u!82 &5132331360984936036
 AudioSource:
   m_ObjectHideFlags: 0
@@ -2044,10 +2045,26 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1165158660375422462, guid: 47dea2b8b1dcb834dbedf4adbeed9cfc, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -45.219994
+      objectReference: {fileID: 0}
+    - target: {fileID: 1165158660375422462, guid: 47dea2b8b1dcb834dbedf4adbeed9cfc, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -2.8380003
+      objectReference: {fileID: 0}
+    - target: {fileID: 2076324761217367771, guid: 47dea2b8b1dcb834dbedf4adbeed9cfc, type: 3}
+      propertyPath: aimObject
+      value: 
+      objectReference: {fileID: 224192588589450469}
     - target: {fileID: 3339691256927174103, guid: 47dea2b8b1dcb834dbedf4adbeed9cfc, type: 3}
       propertyPath: m_Name
       value: PlayerPrefabGroup
       objectReference: {fileID: 0}
+    - target: {fileID: 4308721296170269199, guid: 47dea2b8b1dcb834dbedf4adbeed9cfc, type: 3}
+      propertyPath: aimObject
+      value: 
+      objectReference: {fileID: 2668259662931366275}
     - target: {fileID: 5124100836800374299, guid: 47dea2b8b1dcb834dbedf4adbeed9cfc, type: 3}
       propertyPath: healthBar
       value: 
@@ -2060,6 +2077,14 @@ PrefabInstance:
       propertyPath: P2RespawnTimer
       value: 
       objectReference: {fileID: 109281087904294929}
+    - target: {fileID: 5792401886189985410, guid: 47dea2b8b1dcb834dbedf4adbeed9cfc, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -48.260002
+      objectReference: {fileID: 0}
+    - target: {fileID: 5792401886189985410, guid: 47dea2b8b1dcb834dbedf4adbeed9cfc, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -2.8780003
+      objectReference: {fileID: 0}
     - target: {fileID: 7931794942540519973, guid: 47dea2b8b1dcb834dbedf4adbeed9cfc, type: 3}
       propertyPath: healthBar
       value: 
@@ -2077,6 +2102,16 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 47dea2b8b1dcb834dbedf4adbeed9cfc, type: 3}
+--- !u!4 &224192588589450469 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 9097832197840869011, guid: 47dea2b8b1dcb834dbedf4adbeed9cfc, type: 3}
+  m_PrefabInstance: {fileID: 9033521386182464118}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &2668259662931366275 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 6366422807580754933, guid: 47dea2b8b1dcb834dbedf4adbeed9cfc, type: 3}
+  m_PrefabInstance: {fileID: 9033521386182464118}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &9181317048540029657 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 159619267560190127, guid: 47dea2b8b1dcb834dbedf4adbeed9cfc, type: 3}
