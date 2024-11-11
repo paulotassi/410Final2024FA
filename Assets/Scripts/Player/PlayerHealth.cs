@@ -16,7 +16,7 @@ public class PlayerHealth : MonoBehaviour
     private Rigidbody2D playerRB;
     private PlayerController playerController;
 
-    private bool isInvincible = false;
+    public bool isInvincible = false;
     public float invincibilityDurationSeconds;
     public GameObject playerModel;
     public GameObject Shield;
@@ -86,7 +86,7 @@ public class PlayerHealth : MonoBehaviour
         playerModel.transform.localScale = scale;
     }
 
-    private void ReviveShield()
+    public void ReviveShield()
     {
         if (isInvincible)
         {

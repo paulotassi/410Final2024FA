@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement; // Required for handling scene transitions.
+using UnityEngine.UI;
 using TMPro; // Required for using TextMeshPro (TMP) for UI text elements.
 
 public class GameManager : MonoBehaviour
@@ -11,6 +12,21 @@ public class GameManager : MonoBehaviour
     [SerializeField] private TMP_Text Player2ScoreText; // Text element to display Player 2's score.
     [SerializeField] private TMP_Text RoundEndText; // Text element to display a message when the round ends.
     [SerializeField] private TMP_Text gameTimerText; // Text element to show the remaining game time.
+    [SerializeField] public Image Player1shootCDDisplay;
+    [SerializeField] public Image Player1shieldCDDisplay;
+
+    [SerializeField] public Image Player2shootCDDisplay;
+    [SerializeField] private float Player2ShootCDMaxValue;
+    [SerializeField] private float Player2ShootCDTimer;
+    [SerializeField] private bool Player2ShootCDEnabled = false;
+
+    [SerializeField] public Image Player2shieldCDDisplay;
+    [SerializeField] private float Player2ShieldCDMaxValue;
+    [SerializeField] private float Player2ShieldCDTimer;
+    [SerializeField] private bool Player2ShieldCDEnabled = false;
+
+    [SerializeField] private float Player1ShootCDMaxValue;
+    [SerializeField] private float Player1ShieldCDMaxValue;
 
     [SerializeField] public GameObject roundEndTextObject; // GameObject used for the round end message (probably enabling/disabling visibility).
 
@@ -41,9 +57,13 @@ public class GameManager : MonoBehaviour
         playerLayer1 = playerCollider1.gameObject.layer;
         playerCollider2 = player2GameObject.GetComponent<CapsuleCollider2D>();
         playerLayer2 = playerCollider2.gameObject.layer;
-        bossDead = FindFirstObjectByType<BossHP>()
-           ;
+        bossDead = FindFirstObjectByType<BossHP>();
+        Player1ShieldCDMaxValue = player1GameObject.GetComponent<PlayerController>().shieldCooldown;
+        Player1ShootCDMaxValue = player1GameObject.GetComponent<PlayerController>().shootCoolDown;
 
+        Player2ShieldCDMaxValue = player2GameObject.GetComponent<PlayerController>().shieldCooldown;
+        Player2ShootCDMaxValue = player2GameObject.GetComponent<PlayerController>().shootCoolDown;
+        Player2ShootCDTimer = Player2ShootCDMaxValue;
 
     }
     void Update()
@@ -67,10 +87,25 @@ public class GameManager : MonoBehaviour
             Physics2D.IgnoreLayerCollision(playerLayer1, playerLayer1, false);
         }
 
-    
+        
         // Update the UI with the current number of ingredients for each player.
         Player1ScoreText.text = "Ingredients Collected: " + player1IngredientCount;
         Player2ScoreText.text = "Ingredients Collected: " + player2IngredientCount;
+
+        //Display Shoot CD for Player 2
+        if (player2GameObject.GetComponent<PlayerController>().fired && Player2ShootCDEnabled == false)
+        {
+            StartCoroutine(player2ShootCDTrigger());
+        }
+        Player2shootCDDisplay.fillAmount = Player2ShootCDTimer/Player2ShootCDMaxValue;
+        Player2ShootCDTimer += Time.deltaTime;
+
+        if (player2GameObject.GetComponent<PlayerController>().shielded && Player2ShieldCDEnabled == false)
+        {
+            StartCoroutine(player2ShieldCDTrigger());
+        }
+        Player2shieldCDDisplay.fillAmount = Player2ShieldCDTimer / Player2ShieldCDMaxValue;
+        Player2ShieldCDTimer += Time.deltaTime;
 
         // Calculate the total score (sum of both players' collected ingredients).
         totalScore = player1IngredientCount + player2IngredientCount;
@@ -98,6 +133,28 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    private IEnumerator player2ShootCDTrigger()
+    {
+        Player2ShootCDEnabled = true;
+        Player2ShootCDTimer = 0;
+        yield return new WaitForSeconds(0);
+        
+        yield return new WaitForSeconds(Player2ShootCDMaxValue);
+        Player2ShootCDEnabled = false;
+
+    }
+
+    private IEnumerator player2ShieldCDTrigger()
+    {
+        Player2ShieldCDEnabled = true;
+        Player2ShieldCDTimer = 0;
+        yield return new WaitForSeconds(0);
+
+        yield return new WaitForSeconds(Player2ShieldCDMaxValue);
+        Player2ShieldCDEnabled = false;
+
+    }
+
     // Coroutine to handle the game ending and transition to another scene after a delay.
     private IEnumerator gameEnd()
     {
@@ -114,9 +171,6 @@ public class GameManager : MonoBehaviour
     public void gameModeSwitch()
     {
         competetiveMode = !competetiveMode;
-
-
-
 
     }
     // Method to handle what happens when players enter the end zone.
