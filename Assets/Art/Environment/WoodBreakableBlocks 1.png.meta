@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 32b09ed5019fadf4eaf14344f33948f3
+guid: 2a5438c04d88e0e49a65e5b965a80ad4
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -48,7 +48,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 50
+  spritePixelsToUnits: 26
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -94,33 +94,7 @@ TextureImporter:
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
   - serializedVersion: 3
-    buildTarget: iPhone
-    maxTextureSize: 2048
-    resizeAlgorithm: 0
-    textureFormat: -1
-    textureCompression: 1
-    compressionQuality: 50
-    crunchedCompression: 0
-    allowsAlphaSplitting: 0
-    overridden: 0
-    ignorePlatformSupport: 0
-    androidETC2FallbackOverride: 0
-    forceMaximumCompressionQuality_BC6H_BC7: 0
-  - serializedVersion: 3
     buildTarget: WebGL
-    maxTextureSize: 2048
-    resizeAlgorithm: 0
-    textureFormat: -1
-    textureCompression: 1
-    compressionQuality: 50
-    crunchedCompression: 0
-    allowsAlphaSplitting: 0
-    overridden: 0
-    ignorePlatformSupport: 0
-    androidETC2FallbackOverride: 0
-    forceMaximumCompressionQuality_BC6H_BC7: 0
-  - serializedVersion: 3
-    buildTarget: Android
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
@@ -136,13 +110,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: PotionIngredients_0
+      name: WoodBreakableBlocks 1_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 45
-        height: 45
+        width: 60
+        height: 60
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -150,20 +124,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 92cb283ac56b8104fa436e81a1e99094
-      internalID: 1136976335
+      spriteID: a1d21d081e0868142a58e9547df60ad2
+      internalID: 754963174
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: PotionIngredients_1
+      name: WoodBreakableBlocks 1_1
       rect:
         serializedVersion: 2
-        x: 45
+        x: 60
         y: 0
-        width: 45
-        height: 45
+        width: 60
+        height: 60
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -171,20 +145,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: d75372cd224a7d94ea85ebc8e32c70ed
-      internalID: -840388810
+      spriteID: 89fba51d4b908bb428dc098695ccea96
+      internalID: -1013902625
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: PotionIngredients_2
+      name: WoodBreakableBlocks 1_2
       rect:
         serializedVersion: 2
-        x: 90
+        x: 120
         y: 0
-        width: 45
-        height: 45
+        width: 60
+        height: 60
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -192,41 +166,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 3eaf9a277b6efc24193337bf227b7a74
-      internalID: -1570922003
+      spriteID: d8f7d7211ec1add4a9a0bc84f51a5561
+      internalID: -797787435
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: PotionIngredients_3
-      rect:
-        serializedVersion: 2
-        x: 135
-        y: 0
-        width: 45
-        height: 45
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: ce456e030f8689a44a0f14c0f932cf7b
-      internalID: 902468629
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: PotionIngredients_4
+      name: WoodBreakableBlocks 1_3
       rect:
         serializedVersion: 2
         x: 180
         y: 0
-        width: 45
-        height: 45
+        width: 60
+        height: 60
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -234,20 +187,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 90de570b8c4bea04cb275f3d6045c50c
-      internalID: 921889409
+      spriteID: 4897aba463f837f4f8336b847f14d7c1
+      internalID: 1797148006
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: PotionIngredients_5
+      name: WoodBreakableBlocks 1_4
       rect:
         serializedVersion: 2
-        x: 225
+        x: 240
         y: 0
-        width: 45
-        height: 45
+        width: 60
+        height: 60
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -255,8 +208,29 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 04d32704f9b446a46ac75dc69f872fa2
-      internalID: -1163605959
+      spriteID: 380b55c3721d7c7408b1be31a9c6b619
+      internalID: 1052313370
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: WoodBreakableBlocks 1_5
+      rect:
+        serializedVersion: 2
+        x: 300
+        y: 0
+        width: 60
+        height: 60
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 54d033b4f401ab048a768d355c7b41da
+      internalID: 942298883
       vertices: []
       indices: 
       edges: []
@@ -272,12 +246,12 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      PotionIngredients_0: 1136976335
-      PotionIngredients_1: -840388810
-      PotionIngredients_2: -1570922003
-      PotionIngredients_3: 902468629
-      PotionIngredients_4: 921889409
-      PotionIngredients_5: -1163605959
+      WoodBreakableBlocks 1_0: 754963174
+      WoodBreakableBlocks 1_1: -1013902625
+      WoodBreakableBlocks 1_2: -797787435
+      WoodBreakableBlocks 1_3: 1797148006
+      WoodBreakableBlocks 1_4: 1052313370
+      WoodBreakableBlocks 1_5: 942298883
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
