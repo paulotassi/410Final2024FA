@@ -16579,6 +16579,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: WoodBlock
       objectReference: {fileID: 0}
+    - target: {fileID: 7672051442921515985, guid: a724e5510193e4d4daf2522e79019004, type: 3}
+      propertyPath: timeUntilDestroyed
+      value: 0.5
+      objectReference: {fileID: 0}
     - target: {fileID: 7996358285993014833, guid: a724e5510193e4d4daf2522e79019004, type: 3}
       propertyPath: m_LocalPosition.x
       value: -304.4
