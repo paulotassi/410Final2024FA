@@ -61,7 +61,7 @@ public class GameManager : MonoBehaviour
         Player1ShieldCDMaxValue = player1GameObject.GetComponent<PlayerController>().shieldCooldown;
         Player1ShootCDMaxValue = player1GameObject.GetComponent<PlayerController>().shootCoolDown;
 
-        Player2ShieldCDMaxValue = player2GameObject.GetComponent<PlayerController>().shieldCooldown;
+        Player2ShieldCDMaxValue = player2GameObject.GetComponent<PlayerController>().shieldCooldown + player2GameObject.GetComponent<PlayerController>().shieldDuration;
         Player2ShootCDMaxValue = player2GameObject.GetComponent<PlayerController>().shootCoolDown;
         Player2ShootCDTimer = Player2ShootCDMaxValue;
 
@@ -171,7 +171,6 @@ public class GameManager : MonoBehaviour
     public void gameModeSwitch()
     {
         competetiveMode = !competetiveMode;
-
     }
     // Method to handle what happens when players enter the end zone.
     // This checks if the players have collected enough ingredients to win.

@@ -83,7 +83,8 @@ public class PlayerController : MonoBehaviour
     public CinemachineVirtualCamera virtualCameraRight;
     [SerializeField] protected CinemachineBasicMultiChannelPerlin rightNoise;
     [SerializeField] protected CinemachineBasicMultiChannelPerlin leftNoise;
-    [SerializeField] private float screenShakeValue = 1;
+    [SerializeField] protected float screenShakeValue = 1f;
+    [SerializeField] protected float screenShakeDuration = 0.5f;
 
     // Start is called before the first frame update
     void Start()
@@ -262,15 +263,10 @@ public class PlayerController : MonoBehaviour
         canShield = true;
     }
 
-    /*private IEnumerator Dash()
+    public IEnumerator createScreenShake()
     {
 
-        float initialGravity = rb.gravityScale;
-        canDash = false;
-        isDashing = true;
-        rb.velocity = new Vector2(horizontalInput * moveHorizontalFlightSpeed * dashSpeed, verticalInput * dashSpeed * flightSpeed - fallRate);
-        rb.gravityScale = 0;
-        trailRenderer.emitting = true; 
+  
         leftNoise.m_AmplitudeGain = 1;
         leftNoise.m_FrequencyGain = screenShakeValue;
         rightNoise.m_AmplitudeGain = 1;
@@ -278,19 +274,15 @@ public class PlayerController : MonoBehaviour
 
 
 
-        yield return new WaitForSeconds (dashDuration); 
+        yield return new WaitForSeconds (screenShakeDuration); 
         leftNoise.m_AmplitudeGain = 0;
         leftNoise.m_FrequencyGain = 0;
         rightNoise.m_AmplitudeGain = 0;
         rightNoise.m_FrequencyGain = 0;
-        trailRenderer.emitting = false;
-        isDashing = false;
-        rb.gravityScale = initialGravity;
 
-        yield return new WaitForSeconds(dashCooldown);
-        canDash = true;
 
-    }*/
+
+    }
 
 
     public void OnMove(InputAction.CallbackContext context)
