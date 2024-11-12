@@ -145,7 +145,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   damageValue: 10
-  timeUntilDestroyed: 1
+  timeUntilDestroyed: 0.5
+  Ani: {fileID: 0}
 --- !u!95 &2152704164638464700
 Animator:
   serializedVersion: 5
