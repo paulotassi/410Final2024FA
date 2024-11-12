@@ -16,7 +16,7 @@ public class PlayerHealth : MonoBehaviour
     private Rigidbody2D playerRB;
     private PlayerController playerController;
 
-    private bool isInvincible = false;
+    public bool isInvincible = false;
     public float invincibilityDurationSeconds;
     public GameObject playerModel;
     public GameObject Shield;
@@ -29,6 +29,7 @@ public class PlayerHealth : MonoBehaviour
     {
         playerRB = playerSprite.GetComponent<Rigidbody2D>();
         Shield.SetActive(false);
+        
     }
 
     private void Start()
@@ -54,7 +55,7 @@ public class PlayerHealth : MonoBehaviour
         lastPosition = transform.position; // Update last position before taking damage
         currentHealth -= damage;
         currentHealth = Mathf.Clamp(currentHealth, 0, maxHealth); // Ensure health doesn't drop below 0 or exceed maxHealth
-
+        StartCoroutine(playerController.createScreenShake());
         UpdateHealthBar();    // Update the health bar based on new health value
 
         if (currentHealth <= 0)
@@ -86,7 +87,7 @@ public class PlayerHealth : MonoBehaviour
         playerModel.transform.localScale = scale;
     }
 
-    private void ReviveShield()
+    public void ReviveShield()
     {
         if (isInvincible)
         {

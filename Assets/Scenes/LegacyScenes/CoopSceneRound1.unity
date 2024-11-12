@@ -910,7 +910,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3260391750025661684, guid: 181817ce13e6f634a92e2c16be981625, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -2.248
+      value: -2.2480001
       objectReference: {fileID: 0}
     - target: {fileID: 3260391750025661684, guid: 181817ce13e6f634a92e2c16be981625, type: 3}
       propertyPath: m_LocalPosition.z
@@ -980,6 +980,10 @@ PrefabInstance:
       propertyPath: competetiveMode
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5152296429719158953, guid: 181817ce13e6f634a92e2c16be981625, type: 3}
+      propertyPath: Player2ShootCDTimer
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5198385838949222455, guid: 181817ce13e6f634a92e2c16be981625, type: 3}
       propertyPath: orthographic size
       value: 6
@@ -1030,7 +1034,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7887767182449932168, guid: 181817ce13e6f634a92e2c16be981625, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -2.208
+      value: -2.2080002
       objectReference: {fileID: 0}
     - target: {fileID: 7907556513642802459, guid: 181817ce13e6f634a92e2c16be981625, type: 3}
       propertyPath: m_LocalPosition.x
@@ -4669,10 +4673,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 47582b34d9ed5be4e96ac7811262cbde, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  reviveRange: 2
-  graveLayer:
-    serializedVersion: 2
-    m_Bits: 4096
 --- !u!1001 &759788831
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -8075,10 +8075,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 47582b34d9ed5be4e96ac7811262cbde, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  reviveRange: 2
-  graveLayer:
-    serializedVersion: 2
-    m_Bits: 4096
 --- !u!1 &1314440639
 GameObject:
   m_ObjectHideFlags: 0

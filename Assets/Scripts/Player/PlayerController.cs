@@ -8,13 +8,10 @@ using UnityEngine.SceneManagement;
 public class PlayerController : MonoBehaviour
 {
     // Player movement variables
+    [Header("Movement Settings" +
+        "")]
     public Vector2 movementInput = Vector2.zero; //input vector
-    public Vector2 aimInput = Vector2.zero; //input vector
-    public bool canShoot = true; //Shooting bool
-    public float shootCoolDown; //How long until players can shoot again
-    public GameObject projectilePrefab; //The projectile prefab holding the motion for projectiles
-    public GameObject projectileSpawnLocation; //spawnLocation of the rotating familiar
-    public GameObject projectileSpawnRotation; //spawn rotation to follow the Familiar direction
+
     public float initialMoveSpeed = 1f; // Initial movement speed before any acceleration
     public float moveSpeed = 5f; // Current movement speed (changes with input)
     public float moveHorizontalFlightSpeed = 1f; // Speed when moving horizontally during flight
@@ -29,18 +26,38 @@ public class PlayerController : MonoBehaviour
     public float inactivityTime = 0f; // Time player has been inactive
     public float inactivityThreshold = 2f; // Time threshold for considering inactivity (in seconds)
 
+    //Player Shoot variables
+    [Header("Shoot Settings" +
+        "")]
+    public Vector2 aimInput = Vector2.zero; //input vector
+    public bool canShoot = true; //Shooting bool
+    public float shootCoolDown; //How long until players can shoot again
+    public GameObject projectilePrefab; //The projectile prefab holding the motion for projectiles
+    public GameObject projectileSpawnLocation; //spawnLocation of the rotating familiar
+    public GameObject projectileSpawnRotation; //spawn rotation to follow the Familiar direction
+
+    /*[Header("Dash Currently Inactive")]
     //Player Dash
     public bool isDashing = false;
     public bool canDash = true;
     public float dashSpeed = 20f;
     public float dashCooldown = 3f;
     public float dashDuration = 1.0f;
-    public TrailRenderer trailRenderer;
+    public TrailRenderer trailRenderer;*/
+
+    //Player Shield
+    [Header("Shield Settings" +
+        "")]
+    public bool isShielded = false;
+    public bool canShield = true;
+    public float shieldCooldown;
+    public float shieldDuration;
 
     // Player Actions
-    public bool jumped = false;
+    private bool jumped = false;
     public bool fired = false;
-    public bool dashed = false;
+    private bool dashed = false;
+    public bool shielded = false;
 
 
     // Ground check variables
@@ -50,7 +67,7 @@ public class PlayerController : MonoBehaviour
     public Vector3 groundCheckYOffset; // Offset for ground check position
 
     // Internal state variables
-    private Rigidbody2D rb; // Reference to the player's Rigidbody2D component
+    public Rigidbody2D rb; // Reference to the player's Rigidbody2D component
     public bool isGrounded; // Whether the player is currently grounded
     public float horizontalInput; // Horizontal input from the player
     public float verticalInput; // Vertical input from the player (used in flight mode)
@@ -60,11 +77,14 @@ public class PlayerController : MonoBehaviour
     public Animator animator; // Reference to the Animator for controlling animations
 
     //PlayerCam
+    [Header("Camera Settings" +
+        "")]
     public CinemachineVirtualCamera virtualCameraLeft;
     public CinemachineVirtualCamera virtualCameraRight;
     [SerializeField] protected CinemachineBasicMultiChannelPerlin rightNoise;
     [SerializeField] protected CinemachineBasicMultiChannelPerlin leftNoise;
-    [SerializeField] private float screenShakeValue = 1;
+    [SerializeField] protected float screenShakeValue = 1f;
+    [SerializeField] protected float screenShakeDuration = 0.5f;
 
     // Start is called before the first frame update
     void Start()
@@ -128,9 +148,9 @@ public class PlayerController : MonoBehaviour
             StartCoroutine(Shoot());
         }
 
-        if (dashed & canDash)
+        if (shielded & canShield)
         {
-            StartCoroutine(Dash());
+            StartCoroutine(Shield());
         }
 
         // Reset move speed to initial value when no horizontal input
@@ -175,10 +195,10 @@ public class PlayerController : MonoBehaviour
     // FixedUpdate is called at fixed intervals, used for physics-based calculations
     void FixedUpdate()
     {
-        if (isDashing)
+        /*if (isDashing)
         {
             return;
-        }
+        }*/
         // Apply movement every physics frame
         Move();
         // Reset move speed to initial value when no horizontal input
@@ -223,21 +243,30 @@ public class PlayerController : MonoBehaviour
 
     private IEnumerator Shoot()
     {
-        
+        canShoot = false;
         Instantiate(projectilePrefab, projectileSpawnLocation.transform.position , projectileSpawnRotation.transform.rotation);
         yield return new WaitForSeconds(shootCoolDown);
         canShoot = true;
     }
 
-    private IEnumerator Dash()
+    private IEnumerator Shield()
+    {
+        canShield = false;
+        isShielded = true;
+        this.gameObject.GetComponent<PlayerHealth>().isInvincible = true;
+        
+        yield return new WaitForSeconds(shieldDuration);
+        isShielded = false;
+        this.gameObject.GetComponent<PlayerHealth>().isInvincible = false;
+
+        yield return new WaitForSeconds(shieldCooldown);
+        canShield = true;
+    }
+
+    public IEnumerator createScreenShake()
     {
 
-        float initialGravity = rb.gravityScale;
-        canDash = false;
-        isDashing = true;
-        rb.velocity = new Vector2(horizontalInput * moveHorizontalFlightSpeed * dashSpeed, verticalInput * dashSpeed * flightSpeed - fallRate);
-        rb.gravityScale = 0;
-        trailRenderer.emitting = true; 
+  
         leftNoise.m_AmplitudeGain = 1;
         leftNoise.m_FrequencyGain = screenShakeValue;
         rightNoise.m_AmplitudeGain = 1;
@@ -245,17 +274,13 @@ public class PlayerController : MonoBehaviour
 
 
 
-        yield return new WaitForSeconds (dashDuration); 
+        yield return new WaitForSeconds (screenShakeDuration); 
         leftNoise.m_AmplitudeGain = 0;
         leftNoise.m_FrequencyGain = 0;
         rightNoise.m_AmplitudeGain = 0;
         rightNoise.m_FrequencyGain = 0;
-        trailRenderer.emitting = false;
-        isDashing = false;
-        rb.gravityScale = initialGravity;
 
-        yield return new WaitForSeconds(dashCooldown);
-        canDash = true;
+
 
     }
 
@@ -279,6 +304,6 @@ public class PlayerController : MonoBehaviour
     }
     public void OnDash(InputAction.CallbackContext context)
     {
-        dashed = context.action.triggered;
+        shielded = context.action.triggered;
     }
 }
