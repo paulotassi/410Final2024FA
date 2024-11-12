@@ -267,9 +267,9 @@ public class PlayerController : MonoBehaviour
     {
 
   
-        leftNoise.m_AmplitudeGain = 1;
+        leftNoise.m_AmplitudeGain = 1.5f;
         leftNoise.m_FrequencyGain = screenShakeValue;
-        rightNoise.m_AmplitudeGain = 1;
+        rightNoise.m_AmplitudeGain = 1.5f;
         rightNoise.m_FrequencyGain = screenShakeValue;
 
 

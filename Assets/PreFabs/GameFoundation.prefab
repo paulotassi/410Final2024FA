@@ -1173,11 +1173,13 @@ MonoBehaviour:
   Player1shootCDDisplay: {fileID: 3290426592094213052}
   Player1shieldCDDisplay: {fileID: 2830069774357427740}
   Player2shootCDDisplay: {fileID: 4030619978231083748}
-  Player2shieldCDDisplay: {fileID: 8650004843567450284}
   Player2ShootCDMaxValue: 0
   Player2ShootCDTimer: 0
   Player2ShootCDEnabled: 0
+  Player2shieldCDDisplay: {fileID: 8650004843567450284}
   Player2ShieldCDMaxValue: 0
+  Player2ShieldCDTimer: 0
+  Player2ShieldCDEnabled: 0
   Player1ShootCDMaxValue: 0
   Player1ShieldCDMaxValue: 0
   roundEndTextObject: {fileID: 9168706813494758833}
@@ -2399,6 +2401,10 @@ PrefabInstance:
       propertyPath: P2RespawnTimer
       value: 
       objectReference: {fileID: 109281087904294929}
+    - target: {fileID: 5124100836800374299, guid: 47dea2b8b1dcb834dbedf4adbeed9cfc, type: 3}
+      propertyPath: ingredientPrefab
+      value: 
+      objectReference: {fileID: 8672156466262258991, guid: e37a666fd918f9b4493ccb7553190f15, type: 3}
     - target: {fileID: 5792401886189985410, guid: 47dea2b8b1dcb834dbedf4adbeed9cfc, type: 3}
       propertyPath: m_LocalPosition.x
       value: -51.86001
@@ -2431,6 +2437,10 @@ PrefabInstance:
       propertyPath: P2RespawnTimer
       value: 
       objectReference: {fileID: 109281087904294929}
+    - target: {fileID: 7931794942540519973, guid: 47dea2b8b1dcb834dbedf4adbeed9cfc, type: 3}
+      propertyPath: ingredientPrefab
+      value: 
+      objectReference: {fileID: 8672156466262258991, guid: e37a666fd918f9b4493ccb7553190f15, type: 3}
     - target: {fileID: 8869578208568761204, guid: 47dea2b8b1dcb834dbedf4adbeed9cfc, type: 3}
       propertyPath: shootCoolDown
       value: 2
