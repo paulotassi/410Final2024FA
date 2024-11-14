@@ -9,6 +9,8 @@ TagManager:
   - PlayerSpell
   - Boss
   - Floor
+  - MainLight
+  - Player 2 Spell
   layers:
   - Default
   - TransparentFX

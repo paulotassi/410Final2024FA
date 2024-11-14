@@ -139,7 +139,7 @@ public class GameManager : MonoBehaviour
         Player1shieldCDDisplay.fillAmount = Player1ShieldCDTimer / Player1ShieldCDMaxValue;
         Player1ShieldCDTimer += Time.deltaTime;
 
-        // Calculate the total score (sum of both players' collected ingredients).
+        // Calculate the total score (sum of both players' collected ingredients). THIS CAN BE REMOVED
         totalScore = player1IngredientCount + player2IngredientCount;
 
         // Decrease the remaining game time, using Time.deltaTime to account for real-time.
@@ -228,7 +228,7 @@ public class GameManager : MonoBehaviour
         competetiveMode = !competetiveMode;
     }
     // Method to handle what happens when players enter the end zone.
-    // This checks if the players have collected enough ingredients to win.
+    // This checks if the players have collected enough ingredients to win. THIS CAN BE REMOVED
     public void EndZoneEntry(int roundRequiredScore)
     {
         // If the total score is less than the required score for the round...

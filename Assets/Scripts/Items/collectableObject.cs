@@ -27,6 +27,6 @@ public class collectableObject : MonoBehaviour
             
         }
         Destroy(gameObject);
-        Debug.Log(collision.gameObject.tag);
+        
     }
 }

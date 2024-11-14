@@ -1171,7 +1171,13 @@ MonoBehaviour:
   RoundEndText: {fileID: 2106561171339290845}
   gameTimerText: {fileID: 4473425240116686718}
   Player1shootCDDisplay: {fileID: 3290426592094213052}
+  Player1ShootCDMaxValue: 0
+  Player1ShootCDTimer: 0
+  Player1ShootCDEnabled: 0
   Player1shieldCDDisplay: {fileID: 2830069774357427740}
+  Player1ShieldCDMaxValue: 0
+  Player1ShieldCDTimer: 0
+  Player1ShieldCDEnabled: 0
   Player2shootCDDisplay: {fileID: 4030619978231083748}
   Player2ShootCDMaxValue: 0
   Player2ShootCDTimer: 0
@@ -1180,8 +1186,6 @@ MonoBehaviour:
   Player2ShieldCDMaxValue: 0
   Player2ShieldCDTimer: 0
   Player2ShieldCDEnabled: 0
-  Player1ShootCDMaxValue: 0
-  Player1ShieldCDMaxValue: 0
   roundEndTextObject: {fileID: 9168706813494758833}
   player1IngredientCount: 0
   player2IngredientCount: 0
@@ -2369,6 +2373,10 @@ PrefabInstance:
       propertyPath: m_LocalPosition.y
       value: -2.8380003
       objectReference: {fileID: 0}
+    - target: {fileID: 1782570390411111711, guid: 47dea2b8b1dcb834dbedf4adbeed9cfc, type: 3}
+      propertyPath: m_DefaultControlScheme
+      value: GamePad
+      objectReference: {fileID: 0}
     - target: {fileID: 2076324761217367771, guid: 47dea2b8b1dcb834dbedf4adbeed9cfc, type: 3}
       propertyPath: aimObject
       value: 
@@ -2407,11 +2415,11 @@ PrefabInstance:
       objectReference: {fileID: 8672156466262258991, guid: e37a666fd918f9b4493ccb7553190f15, type: 3}
     - target: {fileID: 5792401886189985410, guid: 47dea2b8b1dcb834dbedf4adbeed9cfc, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -51.86001
+      value: -15.959984
       objectReference: {fileID: 0}
     - target: {fileID: 5792401886189985410, guid: 47dea2b8b1dcb834dbedf4adbeed9cfc, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -2.8780003
+      value: -2.2480001
       objectReference: {fileID: 0}
     - target: {fileID: 5792401886189985410, guid: 47dea2b8b1dcb834dbedf4adbeed9cfc, type: 3}
       propertyPath: m_LocalRotation.x
@@ -2424,6 +2432,10 @@ PrefabInstance:
     - target: {fileID: 5792401886189985410, guid: 47dea2b8b1dcb834dbedf4adbeed9cfc, type: 3}
       propertyPath: m_LocalRotation.z
       value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6346564350906822544, guid: 47dea2b8b1dcb834dbedf4adbeed9cfc, type: 3}
+      propertyPath: m_DefaultControlScheme
+      value: GamePad
       objectReference: {fileID: 0}
     - target: {fileID: 7931794942540519973, guid: 47dea2b8b1dcb834dbedf4adbeed9cfc, type: 3}
       propertyPath: healthBar
@@ -2453,6 +2465,10 @@ PrefabInstance:
       propertyPath: shieldDuration
       value: 3
       objectReference: {fileID: 0}
+    - target: {fileID: 8869578208568761204, guid: 47dea2b8b1dcb834dbedf4adbeed9cfc, type: 3}
+      propertyPath: projectilePrefab
+      value: 
+      objectReference: {fileID: 8727881279438405985, guid: dbfaf7b0432082e47a23cb3817dcf9ed, type: 3}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
