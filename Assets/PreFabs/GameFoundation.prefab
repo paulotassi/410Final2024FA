@@ -1151,7 +1151,8 @@ Transform:
   m_LocalPosition: {x: -106.079765, y: -215.64345, z: 0.8708612}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 2742757623250018621}
   m_Father: {fileID: 4791758663455504490}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &5152296429719158953
@@ -1171,7 +1172,13 @@ MonoBehaviour:
   RoundEndText: {fileID: 2106561171339290845}
   gameTimerText: {fileID: 4473425240116686718}
   Player1shootCDDisplay: {fileID: 3290426592094213052}
+  Player1ShootCDMaxValue: 0
+  Player1ShootCDTimer: 0
+  Player1ShootCDEnabled: 0
   Player1shieldCDDisplay: {fileID: 2830069774357427740}
+  Player1ShieldCDMaxValue: 0
+  Player1ShieldCDTimer: 0
+  Player1ShieldCDEnabled: 0
   Player2shootCDDisplay: {fileID: 4030619978231083748}
   Player2ShootCDMaxValue: 0
   Player2ShootCDTimer: 0
@@ -1180,8 +1187,6 @@ MonoBehaviour:
   Player2ShieldCDMaxValue: 0
   Player2ShieldCDTimer: 0
   Player2ShieldCDEnabled: 0
-  Player1ShootCDMaxValue: 0
-  Player1ShieldCDMaxValue: 0
   roundEndTextObject: {fileID: 9168706813494758833}
   player1IngredientCount: 0
   player2IngredientCount: 0
@@ -1558,6 +1563,37 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+--- !u!1 &4799013402835831175
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2742757623250018621}
+  m_Layer: 0
+  m_Name: TargetManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2742757623250018621
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4799013402835831175}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 6036250577539781735}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &5421004504250792643
 GameObject:
   m_ObjectHideFlags: 0
@@ -2363,11 +2399,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1165158660375422462, guid: 47dea2b8b1dcb834dbedf4adbeed9cfc, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -48.82
+      value: -12.920006
       objectReference: {fileID: 0}
     - target: {fileID: 1165158660375422462, guid: 47dea2b8b1dcb834dbedf4adbeed9cfc, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -2.8380003
+      value: -2.2080002
+      objectReference: {fileID: 0}
+    - target: {fileID: 1782570390411111711, guid: 47dea2b8b1dcb834dbedf4adbeed9cfc, type: 3}
+      propertyPath: m_DefaultControlScheme
+      value: GamePad
       objectReference: {fileID: 0}
     - target: {fileID: 2076324761217367771, guid: 47dea2b8b1dcb834dbedf4adbeed9cfc, type: 3}
       propertyPath: aimObject
@@ -2407,11 +2447,11 @@ PrefabInstance:
       objectReference: {fileID: 8672156466262258991, guid: e37a666fd918f9b4493ccb7553190f15, type: 3}
     - target: {fileID: 5792401886189985410, guid: 47dea2b8b1dcb834dbedf4adbeed9cfc, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -51.86001
+      value: -15.959984
       objectReference: {fileID: 0}
     - target: {fileID: 5792401886189985410, guid: 47dea2b8b1dcb834dbedf4adbeed9cfc, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -2.8780003
+      value: -2.2480001
       objectReference: {fileID: 0}
     - target: {fileID: 5792401886189985410, guid: 47dea2b8b1dcb834dbedf4adbeed9cfc, type: 3}
       propertyPath: m_LocalRotation.x
@@ -2424,6 +2464,10 @@ PrefabInstance:
     - target: {fileID: 5792401886189985410, guid: 47dea2b8b1dcb834dbedf4adbeed9cfc, type: 3}
       propertyPath: m_LocalRotation.z
       value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6346564350906822544, guid: 47dea2b8b1dcb834dbedf4adbeed9cfc, type: 3}
+      propertyPath: m_DefaultControlScheme
+      value: GamePad
       objectReference: {fileID: 0}
     - target: {fileID: 7931794942540519973, guid: 47dea2b8b1dcb834dbedf4adbeed9cfc, type: 3}
       propertyPath: healthBar
@@ -2453,6 +2497,10 @@ PrefabInstance:
       propertyPath: shieldDuration
       value: 3
       objectReference: {fileID: 0}
+    - target: {fileID: 8869578208568761204, guid: 47dea2b8b1dcb834dbedf4adbeed9cfc, type: 3}
+      propertyPath: projectilePrefab
+      value: 
+      objectReference: {fileID: 8727881279438405985, guid: dbfaf7b0432082e47a23cb3817dcf9ed, type: 3}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

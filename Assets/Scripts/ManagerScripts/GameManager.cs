@@ -12,8 +12,22 @@ public class GameManager : MonoBehaviour
     [SerializeField] private TMP_Text Player2ScoreText; // Text element to display Player 2's score.
     [SerializeField] private TMP_Text RoundEndText; // Text element to display a message when the round ends.
     [SerializeField] private TMP_Text gameTimerText; // Text element to show the remaining game time.
+
+    [Header("Player 1 CD" +
+        "")]
+
     [SerializeField] public Image Player1shootCDDisplay;
+    [SerializeField] private float Player1ShootCDMaxValue;
+    [SerializeField] private float Player1ShootCDTimer;
+    [SerializeField] private bool Player1ShootCDEnabled = false;
+
     [SerializeField] public Image Player1shieldCDDisplay;
+    [SerializeField] private float Player1ShieldCDMaxValue;
+    [SerializeField] private float Player1ShieldCDTimer;
+    [SerializeField] private bool Player1ShieldCDEnabled = false;
+
+    [Header("Player 2 CD" +
+    "")]
 
     [SerializeField] public Image Player2shootCDDisplay;
     [SerializeField] private float Player2ShootCDMaxValue;
@@ -25,8 +39,8 @@ public class GameManager : MonoBehaviour
     [SerializeField] private float Player2ShieldCDTimer;
     [SerializeField] private bool Player2ShieldCDEnabled = false;
 
-    [SerializeField] private float Player1ShootCDMaxValue;
-    [SerializeField] private float Player1ShieldCDMaxValue;
+    [Header("Score, Gamestates and Timers" +
+    "")]
 
     [SerializeField] public GameObject roundEndTextObject; // GameObject used for the round end message (probably enabling/disabling visibility).
 
@@ -36,6 +50,9 @@ public class GameManager : MonoBehaviour
 
     [SerializeField] public float remainingTime = 30; // Tracks the time left in the game round.
     private bool winStateMet = false; // Boolean to check if win conditions are met.
+
+    [Header("Generic GameObjects for Inspector Use" +
+    "")]
 
     [SerializeField] public bool competetiveMode = false;
     [SerializeField] public GameObject player1GameObject;
@@ -58,20 +75,22 @@ public class GameManager : MonoBehaviour
         playerCollider2 = player2GameObject.GetComponent<CapsuleCollider2D>();
         playerLayer2 = playerCollider2.gameObject.layer;
         bossDead = FindFirstObjectByType<BossHP>();
-        Player1ShieldCDMaxValue = player1GameObject.GetComponent<PlayerController>().shieldCooldown;
-        Player1ShootCDMaxValue = player1GameObject.GetComponent<PlayerController>().shootCoolDown;
+       
 
         Player2ShieldCDMaxValue = player2GameObject.GetComponent<PlayerController>().shieldCooldown + player2GameObject.GetComponent<PlayerController>().shieldDuration;
         Player2ShootCDMaxValue = player2GameObject.GetComponent<PlayerController>().shootCoolDown;
         Player2ShootCDTimer = Player2ShootCDMaxValue;
+        Player2ShieldCDTimer = Player2ShieldCDMaxValue;
+
+        Player1ShieldCDMaxValue = player1GameObject.GetComponent<PlayerController>().shieldCooldown + player1GameObject.GetComponent<PlayerController>().shieldDuration;
+        Player1ShootCDMaxValue = player1GameObject.GetComponent<PlayerController>().shootCoolDown;
+        Player1ShootCDTimer = Player1ShootCDMaxValue;
+        Player1ShieldCDTimer = Player1ShieldCDMaxValue;
 
     }
     void Update()
     {
-        if (Input.GetKeyUp(KeyCode.Y))
-        {
-            gameModeSwitch();
-        }
+
         if (competetiveMode == false)
         {
             Physics2D.IgnoreLayerCollision(playerLayer1, playerLayer2, true);
@@ -107,7 +126,22 @@ public class GameManager : MonoBehaviour
         Player2shieldCDDisplay.fillAmount = Player2ShieldCDTimer / Player2ShieldCDMaxValue;
         Player2ShieldCDTimer += Time.deltaTime;
 
-        // Calculate the total score (sum of both players' collected ingredients).
+        //Display Shoot CD for Player 1
+        if (player1GameObject.GetComponent<PlayerController>().fired && Player1ShootCDEnabled == false)
+        {
+            StartCoroutine(player1ShootCDTrigger());
+        }
+        Player1shootCDDisplay.fillAmount = Player1ShootCDTimer / Player1ShootCDMaxValue;
+        Player1ShootCDTimer += Time.deltaTime;
+
+        if (player1GameObject.GetComponent<PlayerController>().shielded && Player1ShieldCDEnabled == false)
+        {
+            StartCoroutine(player1ShieldCDTrigger());
+        }
+        Player1shieldCDDisplay.fillAmount = Player1ShieldCDTimer / Player1ShieldCDMaxValue;
+        Player1ShieldCDTimer += Time.deltaTime;
+
+        // Calculate the total score (sum of both players' collected ingredients). THIS CAN BE REMOVED
         totalScore = player1IngredientCount + player2IngredientCount;
 
         // Decrease the remaining game time, using Time.deltaTime to account for real-time.
@@ -131,6 +165,29 @@ public class GameManager : MonoBehaviour
             StartCoroutine(gameEnd());
          
         }
+    }
+
+    private IEnumerator player1ShootCDTrigger()
+    {
+        Player1ShootCDEnabled = true;
+        Player1ShootCDTimer = 0;
+        yield return new WaitForSeconds(0);
+
+        yield return new WaitForSeconds(Player1ShootCDMaxValue);
+        Player1ShootCDEnabled = false;
+
+    }
+
+
+    private IEnumerator player1ShieldCDTrigger()
+    {
+        Player1ShieldCDEnabled = true;
+        Player1ShieldCDTimer = 0;
+        yield return new WaitForSeconds(0);
+
+        yield return new WaitForSeconds(Player1ShieldCDMaxValue);
+        Player1ShieldCDEnabled = false;
+
     }
 
     private IEnumerator player2ShootCDTrigger()
@@ -173,7 +230,7 @@ public class GameManager : MonoBehaviour
         competetiveMode = !competetiveMode;
     }
     // Method to handle what happens when players enter the end zone.
-    // This checks if the players have collected enough ingredients to win.
+    // This checks if the players have collected enough ingredients to win. THIS CAN BE REMOVED
     public void EndZoneEntry(int roundRequiredScore)
     {
         // If the total score is less than the required score for the round...
@@ -236,5 +293,10 @@ public class GameManager : MonoBehaviour
     public void player2DecreaseIngredient(int lossIngredientAmount)
     {
         player2IngredientCount = player2IngredientCount - lossIngredientAmount;
+    }
+
+    public void increaseGameTime(float increaseAmount)
+    {
+        remainingTime = remainingTime + increaseAmount;
     }
 }
