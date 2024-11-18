@@ -19,14 +19,14 @@ public class collectableObject : MonoBehaviour
         if (collision.gameObject.tag == "Player")
         {
             Player1CollectItem();
-            
+            Destroy(gameObject);
         }
         else if (collision.gameObject.tag == "Player2")
         {
             Player2CollectItem();
-            
+            Destroy(gameObject);
         }
-        Destroy(gameObject);
+        
         
     }
 }

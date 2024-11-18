@@ -80,10 +80,12 @@ public class GameManager : MonoBehaviour
         Player2ShieldCDMaxValue = player2GameObject.GetComponent<PlayerController>().shieldCooldown + player2GameObject.GetComponent<PlayerController>().shieldDuration;
         Player2ShootCDMaxValue = player2GameObject.GetComponent<PlayerController>().shootCoolDown;
         Player2ShootCDTimer = Player2ShootCDMaxValue;
+        Player2ShieldCDTimer = Player2ShieldCDMaxValue;
 
         Player1ShieldCDMaxValue = player1GameObject.GetComponent<PlayerController>().shieldCooldown + player1GameObject.GetComponent<PlayerController>().shieldDuration;
         Player1ShootCDMaxValue = player1GameObject.GetComponent<PlayerController>().shootCoolDown;
         Player1ShootCDTimer = Player1ShootCDMaxValue;
+        Player1ShieldCDTimer = Player1ShieldCDMaxValue;
 
     }
     void Update()
@@ -291,5 +293,10 @@ public class GameManager : MonoBehaviour
     public void player2DecreaseIngredient(int lossIngredientAmount)
     {
         player2IngredientCount = player2IngredientCount - lossIngredientAmount;
+    }
+
+    public void increaseGameTime(float increaseAmount)
+    {
+        remainingTime = remainingTime + increaseAmount;
     }
 }
