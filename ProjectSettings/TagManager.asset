@@ -11,6 +11,7 @@ TagManager:
   - Floor
   - MainLight
   - Player 2 Spell
+  - Ignore
   layers:
   - Default
   - TransparentFX

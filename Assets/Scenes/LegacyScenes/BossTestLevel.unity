@@ -789,6 +789,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Boss
       objectReference: {fileID: 0}
+    - target: {fileID: 7845503872119345624, guid: b32ddd19a808dc743b21af1c83f92f89, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8647977505929405254, guid: b32ddd19a808dc743b21af1c83f92f89, type: 3}
       propertyPath: health
       value: 2000
@@ -827,6 +831,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 288761219379321774, guid: 181817ce13e6f634a92e2c16be981625, type: 3}
+      propertyPath: orthographic size
+      value: 6
+      objectReference: {fileID: 0}
     - target: {fileID: 453334923156490498, guid: 181817ce13e6f634a92e2c16be981625, type: 3}
       propertyPath: trailRenderer
       value: 
@@ -918,6 +926,10 @@ PrefabInstance:
     - target: {fileID: 4791758663455504490, guid: 181817ce13e6f634a92e2c16be981625, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5198385838949222455, guid: 181817ce13e6f634a92e2c16be981625, type: 3}
+      propertyPath: orthographic size
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 5906388070885287508, guid: 181817ce13e6f634a92e2c16be981625, type: 3}
       propertyPath: trailRenderer
