@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 4282777829539648664}
   m_Layer: 0
   m_Name: healthPickup
-  m_TagString: Untagged
+  m_TagString: Ignore
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
