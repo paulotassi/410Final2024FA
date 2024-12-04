@@ -162,7 +162,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   lifetime: 1
-  Damage: 20
+  Damage: 30
   smallerProjectilePrefab: {fileID: 8727881279438405985, guid: b22ef3af3b9ec3c4d81b6fc81ef91bb4, type: 3}
   smallerProjectileLifetime: 3
   numberOfSmallerProjectiles: 6
