@@ -117,7 +117,7 @@ public class BossHP : MonoBehaviour
         if (newPhase == 2)
         {
             SetActiveAttackPatterns(attackPatternsPhase2, true);   // Activate Phase 2 attacks
-            BossMoveScript.speed = 15;
+            BossMoveScript.speed = 20;
         }
     }
 
