@@ -12,7 +12,7 @@ public class BossCameraSettings : MonoBehaviour
     public CinemachineVirtualCamera p2CamRight;
     public Image bossHP;
 
-    private float targetOrthographicSize = 15f;
+    public float targetOrthographicSize = 15f;
     private float lerpSpeed = 1f; 
 
     // Start is called before the first frame update
