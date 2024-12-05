@@ -9,8 +9,9 @@ public class BossHP : MonoBehaviour
     public int maxHealth = 300;  // Track the max health
     public float phaseChangeThreshold = 0.5f; // Changes phase at 50% health
     private int currentPhase = 1;
-    public GameObject PhaseChangeAni;
 
+    public Animator BossAni;
+    //public GameObject PhaseChangeAni;
     public GameObject[] attackPatternsPhase1;
     public GameObject[] attackPatternsPhase2;
 
@@ -35,7 +36,7 @@ public class BossHP : MonoBehaviour
     {
         // Initialize the health bar
         UpdateHealthBar();
-        PhaseChangeAni.SetActive(false);
+        //PhaseChangeAni.SetActive(false);
         SetActiveAttackPatterns(attackPatternsPhase1,true);
         SetActiveAttackPatterns(attackPatternsPhase2,false);
     }
@@ -93,11 +94,13 @@ public class BossHP : MonoBehaviour
     private IEnumerator ChangePhase(int newPhase)
     {
         isPhaseChanging = true;
-        BossMoveScript.enabled = false;
-        PhaseChangeAni.SetActive(true);
+        //BossMoveScript.enabled = false;
+        //PhaseChangeAni.SetActive(true);
+        BossAni.SetBool("Stage2", true);
         SetActiveAttackPatterns(attackPatternsPhase1, false);  // Deactivate Phase 1 attacks
-        sprite.color = Color.red;
+        //sprite.color = Color.red;
         AudioSource.PlayOneShot(Clip, volume);
+
 
         StartCoroutine(BecomeTempInvincible());
 
@@ -105,16 +108,16 @@ public class BossHP : MonoBehaviour
 
         currentPhase = newPhase;
         Debug.Log("Boss has entered Phase " + currentPhase);
-        sprite.color = Color.white;
+        //sprite.color = Color.white;
         //PhaseChangeAni.SetActive(false);
-        BossMoveScript.enabled = true;
+        //BossMoveScript.enabled = true;
         isPhaseChanging = false;
 
         // Switch to new attack patterns or behavior
         if (newPhase == 2)
         {
             SetActiveAttackPatterns(attackPatternsPhase2, true);   // Activate Phase 2 attacks
-            BossMoveScript.speed = 15;
+            BossMoveScript.speed = 20;
         }
     }
 
