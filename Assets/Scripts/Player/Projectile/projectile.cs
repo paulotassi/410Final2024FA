@@ -9,14 +9,24 @@ public class projectile : MonoBehaviour
     public int projectileDamage;
     public float lifetime = 5f;
     public Rigidbody2D rb;
+    public GameObject playerAim;
     [SerializeField] GameManager gameManager;
+
 
     private void Start()
     {
+        if (this.gameObject.name == "SpellProjectileP2")
+        {
+            //Insert Rotation Logic
+        }
+        else
+        {
+
+        }
        rb = this.gameObject.GetComponent<Rigidbody2D>();
        rb.velocity = transform.right * projectileSpeed;
        gameManager = FindFirstObjectByType<GameManager>();
-
+       
         Destroy(gameObject, lifetime); // Destroy the projectile after a certain time
     }
     private void OnTriggerEnter2D(Collider2D collision)

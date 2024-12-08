@@ -19,6 +19,6 @@ public class BBSceneManager : MonoBehaviour
 
     public void LoadComboPlaythrough()
     {
-        SceneManager.LoadScene("MVPScene");
+        SceneManager.LoadScene("ArenaScene");
     }
 }

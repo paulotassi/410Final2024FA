@@ -1255,6 +1255,10 @@ PrefabInstance:
       propertyPath: m_Lens.OrthographicSize
       value: 6
       objectReference: {fileID: 0}
+    - target: {fileID: 3459800857366891628, guid: 181817ce13e6f634a92e2c16be981625, type: 3}
+      propertyPath: pointImage
+      value: 
+      objectReference: {fileID: 220987291}
     - target: {fileID: 4693062891717526901, guid: 181817ce13e6f634a92e2c16be981625, type: 3}
       propertyPath: m_LocalPosition.x
       value: -21.96001
@@ -1311,6 +1315,10 @@ PrefabInstance:
       propertyPath: aimObject
       value: 
       objectReference: {fileID: 1910830081}
+    - target: {fileID: 5095457012074315251, guid: 181817ce13e6f634a92e2c16be981625, type: 3}
+      propertyPath: pointImage
+      value: 
+      objectReference: {fileID: 220987292}
     - target: {fileID: 5152296429719158953, guid: 181817ce13e6f634a92e2c16be981625, type: 3}
       propertyPath: remainingTime
       value: 120
@@ -1441,6 +1449,16 @@ PrefabInstance:
 --- !u!4 &220987290 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 224192588589450469, guid: 181817ce13e6f634a92e2c16be981625, type: 3}
+  m_PrefabInstance: {fileID: 220987289}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &220987291 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4562121491358321135, guid: 181817ce13e6f634a92e2c16be981625, type: 3}
+  m_PrefabInstance: {fileID: 220987289}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &220987292 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3520179748189601452, guid: 181817ce13e6f634a92e2c16be981625, type: 3}
   m_PrefabInstance: {fileID: 220987289}
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &226147035
