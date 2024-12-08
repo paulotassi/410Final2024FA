@@ -1,7 +1,5 @@
-// Heavily commented by ChatGPT
 using System.Collections;
 using System.Collections.Generic;
-using UnityEditor;
 using UnityEngine;
 
 public class PlayerIndicator : MonoBehaviour
@@ -16,12 +14,13 @@ public class PlayerIndicator : MonoBehaviour
     [SerializeField] private RectTransform pointerRectTransform;
     // The size of the border margin within which the pointer is allowed to move
     [SerializeField] public float borderSize;
+    [SerializeField] public GameObject pointImage;
 
     // Called before the first frame update
     void Start()
     {
         // Locate the UI element named "Pointer" within the hierarchy and get its RectTransform component
-        pointerRectTransform = transform.Find("Pointer").GetComponent<RectTransform>();
+        //pointerRectTransform = transform.Find("Pointer").GetComponent<RectTransform>();
     }
 
     // Called once per frame
@@ -42,36 +41,68 @@ public class PlayerIndicator : MonoBehaviour
         // Rotate the pointer UI element to align with the calculated angle
         pointerRectTransform.localEulerAngles = new Vector3(0f, 0f, angle);
 
-        // Convert the target's world position to a screen space position
-        Vector3 targetPositionScreenpoint = camObject.WorldToScreenPoint(targetPosition.position);
+        // Convert the target's world position to the camera-specific screen space
+        Vector3 targetPositionScreenpoint = GetViewportScreenPosition(camObject, targetPosition.position);
 
-        // Determine if the target is outside the screen bounds, defined by the border size
-        bool isOffScreen = targetPositionScreenpoint.x <= borderSize
-            || targetPositionScreenpoint.x >= Screen.width - borderSize
-            || targetPositionScreenpoint.y <= borderSize
-            || targetPositionScreenpoint.y >= Screen.height - borderSize;
+        // If the position is invalid (e.g., behind the camera), skip further processing
+        if (targetPositionScreenpoint == Vector3.negativeInfinity)
+        {
+            pointerRectTransform.gameObject.SetActive(false); // Hide the pointer if the target is not visible
+            return;
+        }
+
+        pointerRectTransform.gameObject.SetActive(true); // Ensure the pointer is active
+
+        // Determine if the target is outside the camera's specific screen bounds
+        bool isOffScreen = targetPositionScreenpoint.x <= camObject.pixelRect.x + borderSize
+            || targetPositionScreenpoint.x >= camObject.pixelRect.x + camObject.pixelWidth - borderSize
+            || targetPositionScreenpoint.y <= camObject.pixelRect.y + borderSize
+            || targetPositionScreenpoint.y >= camObject.pixelRect.y + camObject.pixelHeight - borderSize;
 
         if (isOffScreen)
         {
-            // If the target is off-screen, clamp its position within the screen bounds
+            // Clamp position within the camera's specific screen bounds
             Vector3 cappedTargetScreenPosition = targetPositionScreenpoint;
-            if (cappedTargetScreenPosition.x <= borderSize)
-                cappedTargetScreenPosition.x = borderSize;
-            if (cappedTargetScreenPosition.x >= Screen.width - borderSize)
-                cappedTargetScreenPosition.x = Screen.width - borderSize;
-            if (cappedTargetScreenPosition.y <= borderSize)
-                cappedTargetScreenPosition.y = borderSize;
-            if (cappedTargetScreenPosition.y >= Screen.height - borderSize)
-                cappedTargetScreenPosition.y = Screen.height - borderSize;
+            cappedTargetScreenPosition.x = Mathf.Clamp(cappedTargetScreenPosition.x,
+                camObject.pixelRect.x + borderSize,
+                camObject.pixelRect.x + camObject.pixelWidth - borderSize);
+
+            cappedTargetScreenPosition.y = Mathf.Clamp(cappedTargetScreenPosition.y,
+                camObject.pixelRect.y + borderSize,
+                camObject.pixelRect.y + camObject.pixelHeight - borderSize);
 
             // Position the pointer UI element at the clamped screen position
             pointerRectTransform.position = cappedTargetScreenPosition;
+            pointImage.SetActive(true);
         }
         else
         {
-            // If the target is on-screen, position the pointer directly at the target's world position
-            Vector3 pointerWorldPosition = targetPosition.position;
-            pointerRectTransform.position = pointerWorldPosition;
+            // If the target is on-screen, position the pointer directly at the target's screen position
+            pointerRectTransform.position = targetPositionScreenpoint;
+            pointImage.SetActive(false);
+            
         }
+    }
+
+    /// <summary>
+    /// Converts a world position to a specific camera's screen space.
+    /// </summary>
+    private Vector3 GetViewportScreenPosition(Camera camera, Vector3 worldPosition)
+    {
+        // Convert world position to viewport space (0 to 1 in x and y for the camera's view)
+        Vector3 viewportPosition = camera.WorldToViewportPoint(worldPosition);
+
+        // Check if the object is visible in this camera
+        if (viewportPosition.z < 0)
+        {
+            // Object is behind the camera
+            return Vector3.negativeInfinity;
+        }
+
+        // Translate viewport position to actual screen coordinates
+        float screenX = viewportPosition.x * camera.pixelWidth + camera.pixelRect.x;
+        float screenY = viewportPosition.y * camera.pixelHeight + camera.pixelRect.y;
+
+        return new Vector3(screenX, screenY, viewportPosition.z);
     }
 }

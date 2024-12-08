@@ -11,6 +11,9 @@ public class BossCameraSettings : MonoBehaviour
     public CinemachineVirtualCamera p2CamLeft;
     public CinemachineVirtualCamera p2CamRight;
     public Image bossHP;
+    public GameObject player1BossIndicator; 
+    public GameObject player2BossIndicator;
+
 
     public float targetOrthographicSize = 15f;
     private float lerpSpeed = 1f; 
@@ -26,7 +29,8 @@ public class BossCameraSettings : MonoBehaviour
             StartCoroutine(LerpOrthographicSize(p1CamRight, targetOrthographicSize));
             StartCoroutine(LerpOrthographicSize(p2CamLeft, targetOrthographicSize));
             StartCoroutine(LerpOrthographicSize(p2CamRight, targetOrthographicSize));
-
+            player1BossIndicator.SetActive(true);
+            player2BossIndicator.SetActive(true);
             bossHP.gameObject.SetActive(true);
         }
     }

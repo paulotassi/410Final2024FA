@@ -1986,7 +1986,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1666366416}
         m_TargetAssemblyTypeName: BBSceneManager, Assembly-CSharp
-        m_MethodName: LoadCooperativePlaythrough
+        m_MethodName: LoadComboPlaythrough
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

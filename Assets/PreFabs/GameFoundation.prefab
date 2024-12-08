@@ -1344,6 +1344,7 @@ MonoBehaviour:
   Player2ScoreText: {fileID: 5009174538512541273}
   RoundEndText: {fileID: 2106561171339290845}
   gameTimerText: {fileID: 4473425240116686718}
+  playerStartingLifeCount: 3
   Player1shootCDDisplay: {fileID: 3290426592094213052}
   Player1ShootCDMaxValue: 0
   Player1ShootCDTimer: 0
@@ -2297,7 +2298,7 @@ MonoBehaviour:
   targetPosition: {fileID: 7907556513642802459}
   camPosition: {fileID: 3260391750025661684}
   camObject: {fileID: 288761219379321774}
-  pointerRectTransform: {fileID: 0}
+  pointerRectTransform: {fileID: 9187848513092794477}
   borderSize: 50
 --- !u!1 &6886223639816793589
 GameObject:
@@ -2435,7 +2436,7 @@ MonoBehaviour:
   targetPosition: {fileID: 1062908560327516246}
   camPosition: {fileID: 7887767182449932168}
   camObject: {fileID: 5198385838949222455}
-  pointerRectTransform: {fileID: 0}
+  pointerRectTransform: {fileID: 8019847708464764950}
   borderSize: 50
 --- !u!1 &7014692031920059258
 GameObject:
@@ -3200,11 +3201,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1165158660375422462, guid: 47dea2b8b1dcb834dbedf4adbeed9cfc, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 6.849988
+      value: -9.319999
       objectReference: {fileID: 0}
     - target: {fileID: 1165158660375422462, guid: 47dea2b8b1dcb834dbedf4adbeed9cfc, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -3.2979999
+      value: -1.5240173
       objectReference: {fileID: 0}
     - target: {fileID: 1216195194795179885, guid: 47dea2b8b1dcb834dbedf4adbeed9cfc, type: 3}
       propertyPath: m_LocalPosition.x
@@ -3240,7 +3241,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3853361327446792769, guid: 47dea2b8b1dcb834dbedf4adbeed9cfc, type: 3}
       propertyPath: orthographic size
-      value: 6
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 4308721296170269199, guid: 47dea2b8b1dcb834dbedf4adbeed9cfc, type: 3}
       propertyPath: aimObject
@@ -3272,11 +3273,11 @@ PrefabInstance:
       objectReference: {fileID: 8672156466262258991, guid: e37a666fd918f9b4493ccb7553190f15, type: 3}
     - target: {fileID: 5792401886189985410, guid: 47dea2b8b1dcb834dbedf4adbeed9cfc, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 47.630016
+      value: -12.359999
       objectReference: {fileID: 0}
     - target: {fileID: 5792401886189985410, guid: 47dea2b8b1dcb834dbedf4adbeed9cfc, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 8.5720005
+      value: -1.5639954
       objectReference: {fileID: 0}
     - target: {fileID: 5792401886189985410, guid: 47dea2b8b1dcb834dbedf4adbeed9cfc, type: 3}
       propertyPath: m_LocalRotation.x
@@ -3328,7 +3329,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8744971342292421080, guid: 47dea2b8b1dcb834dbedf4adbeed9cfc, type: 3}
       propertyPath: orthographic size
-      value: 6
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 8869578208568761204, guid: 47dea2b8b1dcb834dbedf4adbeed9cfc, type: 3}
       propertyPath: shootCoolDown

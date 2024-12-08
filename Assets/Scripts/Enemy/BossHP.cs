@@ -125,7 +125,9 @@ public class BossHP : MonoBehaviour
     void Die()
     {
         Debug.Log("Boss Defeated");
-        Destroy(gameObject);
+        //Destroy(gameObject);
+        gameObject.SetActive(false);
+        bossDead = true;
     }
 
     void SetActiveAttackPatterns(GameObject[] attackPatterns, bool isActive)
