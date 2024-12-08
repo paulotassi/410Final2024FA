@@ -12,6 +12,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] private TMP_Text Player2ScoreText; // Text element to display Player 2's score.
     [SerializeField] private TMP_Text RoundEndText; // Text element to display a message when the round ends.
     [SerializeField] private TMP_Text gameTimerText; // Text element to show the remaining game time.
+    [SerializeField] public int playerStartingLifeCount = 3;
 
     [Header("Player 1 CD" +
         "")]
@@ -96,7 +97,9 @@ public class GameManager : MonoBehaviour
             Physics2D.IgnoreLayerCollision(playerLayer1, playerLayer2, true);
             Physics2D.IgnoreLayerCollision(playerLayer2, playerLayer1, true);
             Physics2D.IgnoreLayerCollision(playerLayer2, playerLayer2, true);
-            Physics2D.IgnoreLayerCollision(playerLayer1, playerLayer1, true);
+            Physics2D.IgnoreLayerCollision(playerLayer1, playerLayer1, true);        // Update the UI with the current number of ingredients for each player.
+            Player1ScoreText.text = "Ingredients Collected: " + player1IngredientCount;
+            Player2ScoreText.text = "Ingredients Collected: " + player2IngredientCount;
         } 
         else if (competetiveMode)
         {
@@ -104,12 +107,12 @@ public class GameManager : MonoBehaviour
             Physics2D.IgnoreLayerCollision(playerLayer2, playerLayer1, false);
             Physics2D.IgnoreLayerCollision(playerLayer2, playerLayer2, false);
             Physics2D.IgnoreLayerCollision(playerLayer1, playerLayer1, false);
+            Player1ScoreText.text = "Lives Remaining: " + player1GameObject.GetComponent<PlayerHealth>().playerLifeCountRemaining;
+            Player2ScoreText.text = "Lives Remaining: " + player2GameObject.GetComponent<PlayerHealth>().playerLifeCountRemaining;
         }
 
         
-        // Update the UI with the current number of ingredients for each player.
-        Player1ScoreText.text = "Ingredients Collected: " + player1IngredientCount;
-        Player2ScoreText.text = "Ingredients Collected: " + player2IngredientCount;
+
 
         //Display Shoot CD for Player 2
         if (player2GameObject.GetComponent<PlayerController>().fired && Player2ShootCDEnabled == false)
@@ -155,7 +158,7 @@ public class GameManager : MonoBehaviour
         gameTimerText.text = string.Format("{0:00}:{1:00}", minutes, seconds);
 
         // If the remaining time is less than or equal to 4 seconds...
-        if (remainingTime <= 0 || bossDead!= null && bossDead.bossDead == true)
+        if (remainingTime <= 0 || bossDead!= null && bossDead.bossDead == true || player1GameObject.GetComponent<PlayerHealth>().playerLifeCountRemaining == 0 || player2GameObject.GetComponent<PlayerHealth>().playerLifeCountRemaining == 0)
         {
             // Display the game state (win/lose) text.
             gameStateText();
@@ -216,8 +219,8 @@ public class GameManager : MonoBehaviour
     private IEnumerator gameEnd()
     {
         // Wait for  seconds before executing the next line.
-        
-    
+
+        winStateMet = true;
         // Wait for the valid duration
         yield return new WaitForSeconds(4);
 
@@ -236,13 +239,14 @@ public class GameManager : MonoBehaviour
         // If the total score is less than the required score for the round...
         if (player1IngredientCount < roundRequiredScore && player2IngredientCount < roundRequiredScore)
         {
+            winStateMet = false;
             // Display "Not Enough Ingredients" and exit the function.
             RoundEndText.text = "Not Enough Ingredients";
             return;
         }
 
         // If enough ingredients were collected, set winStateMet to true.
-        winStateMet = true;
+        
         remainingTime = 5; 
 
         // Display the appropriate game state text.
@@ -254,11 +258,11 @@ public class GameManager : MonoBehaviour
     public void gameStateText()
     {
         // If the win condition is met, display "Witches Win".
-        if (winStateMet == true && player1IngredientCount > player2IngredientCount)
+        if (winStateMet == true && player1IngredientCount > player2IngredientCount || player1GameObject.GetComponent<PlayerHealth>().playerLifeCountRemaining > player2GameObject.GetComponent<PlayerHealth>().playerLifeCountRemaining)
         {
             RoundEndText.text = "Player 1 Win";
         }
-        else if (winStateMet == true && player2IngredientCount > player1IngredientCount)
+        else if (winStateMet == true && player2IngredientCount > player1IngredientCount || player1GameObject.GetComponent<PlayerHealth>().playerLifeCountRemaining < player2GameObject.GetComponent<PlayerHealth>().playerLifeCountRemaining)
         {
             RoundEndText.text = "Player 2 Win";
         }

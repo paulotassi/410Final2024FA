@@ -18,6 +18,7 @@ public class PlayerHealth : MonoBehaviour
     private Rigidbody2D playerRB;   // Reference to the player's Rigidbody2D component
     private PlayerController playerController; // Reference to the player's control script
     public GameManager gameManager; // Reference to the GameManager script to handle game-related data
+    public int playerLifeCountRemaining;
 
     // Additional Health and Shield Settings
     public bool isInvincible = false;             // Flag for temporary invincibility
@@ -41,6 +42,7 @@ public class PlayerHealth : MonoBehaviour
         // Set ingredient loss variables from the gameManager for each player
         player1IngredientLossOnDeath = gameManager.player1IngredientCount;
         player2IngredientLossOnDeath = gameManager.player2IngredientCount;
+        playerLifeCountRemaining = gameManager.playerStartingLifeCount;
     }
 
     private void Start()
@@ -91,6 +93,7 @@ public class PlayerHealth : MonoBehaviour
             if (this.gameObject.name == "Player")
             {
                 gameManager.player1DecreaseIngredient(Mathf.FloorToInt(gameManager.player1IngredientCount / 2)); // Reduce Player 1's ingredient count
+                playerLifeCountRemaining--;
 
                 for (int i = 0; i < gameManager.player1IngredientCount; i++)
                 {
