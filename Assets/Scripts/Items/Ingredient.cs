@@ -6,7 +6,7 @@ public class Ingredient : collectableObject
 {
     public GameManager Manager;
 
-    // Array to store possible sprites
+    // Array to store sprites
     public Sprite[] sprites;
 
     // Reference to the SpriteRenderer component
