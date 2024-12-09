@@ -134,3 +134,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Manager: {fileID: 0}
+  sprites:
+  - {fileID: -840388810, guid: 32b09ed5019fadf4eaf14344f33948f3, type: 3}
+  - {fileID: -1570922003, guid: 32b09ed5019fadf4eaf14344f33948f3, type: 3}
+  - {fileID: 921889409, guid: 32b09ed5019fadf4eaf14344f33948f3, type: 3}
+  - {fileID: -1163605959, guid: 32b09ed5019fadf4eaf14344f33948f3, type: 3}
