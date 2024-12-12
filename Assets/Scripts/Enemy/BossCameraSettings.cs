@@ -16,10 +16,14 @@ public class BossCameraSettings : MonoBehaviour
 
 
     public float targetOrthographicSize = 15f;
-    private float lerpSpeed = 1f; 
+    private float lerpSpeed = 1f;
+
+    public AudioSource audioSource; 
+    public AudioClip newMusicClip; 
+
 
     // Start is called before the first frame update
-    
+
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
@@ -32,6 +36,7 @@ public class BossCameraSettings : MonoBehaviour
             player1BossIndicator.SetActive(true);
             player2BossIndicator.SetActive(true);
             bossHP.gameObject.SetActive(true);
+            ChangeBackgroundMusic();
         }
     }
 
@@ -47,6 +52,20 @@ public class BossCameraSettings : MonoBehaviour
             yield return null;
         }
 
-        cam.m_Lens.OrthographicSize = targetSize; // Ensure exact target size
+        cam.m_Lens.OrthographicSize = targetSize; 
+    }
+
+    private void ChangeBackgroundMusic()
+    {
+        if (audioSource != null && newMusicClip != null)
+        {
+            audioSource.Stop(); 
+            audioSource.clip = newMusicClip; 
+            audioSource.Play(); 
+        }
+        else
+        {
+            Debug.LogWarning("AudioSource or newMusicClip is not set in BossCameraSettings.");
+        }
     }
 }
