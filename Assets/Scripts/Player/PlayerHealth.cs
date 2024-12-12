@@ -69,7 +69,7 @@ public class PlayerHealth : MonoBehaviour
         currentHealth -= damage; // Reduce health by the damage amount
         currentHealth = Mathf.Clamp(currentHealth, 0, maxHealth); // Ensure health stays within 0 and maxHealth
 
-        StartCoroutine(playerController.createScreenShake()); // Trigger screen shake effect on damage
+        StartCoroutine(playerController.createScreenShake(7)); // Trigger screen shake effect on damage
         UpdateHealthBar(); // Refresh the health bar UI
 
         // Check if the player's health is depleted

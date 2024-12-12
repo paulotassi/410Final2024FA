@@ -108,7 +108,8 @@ public class PlayerController : MonoBehaviour
         isGrounded = Physics2D.OverlapCircle(groundCheck.position - groundCheckYOffset, groundCheckRadius, groundLayer);
 
         // Set speed parameter in the animator for movement animations
-        animator.SetFloat("Speed", moveSpeed);
+        animator.SetFloat("WalkSpeed", moveSpeed);
+        animator.SetFloat("FlightY",verticalInput);
 
         // Flip the sprite based on movement direction (left or right)
         if (horizontalInput < 0)
@@ -128,11 +129,11 @@ public class PlayerController : MonoBehaviour
         // Toggle flight animation when airborne
         if (!isGrounded)
         {
-            animator.SetBool("FlightMode", true); // Set flight animation when not grounded
+            animator.SetBool("Flying", true); // Set flight animation when not grounded
         }
         else
         {
-            animator.SetBool("FlightMode", false); // Disable flight animation when grounded
+            animator.SetBool("Flying", false); // Disable flight animation when grounded
         }
 
         // Handle jumping when spacebar is pressed, but only if grounded
@@ -245,6 +246,7 @@ public class PlayerController : MonoBehaviour
     {
         canShoot = false;
         Instantiate(projectilePrefab, projectileSpawnLocation.transform.position , projectileSpawnRotation.transform.rotation);
+        StartCoroutine(createScreenShake(2));
         yield return new WaitForSeconds(shootCoolDown);
         canShoot = true;
     }
@@ -263,14 +265,14 @@ public class PlayerController : MonoBehaviour
         canShield = true;
     }
 
-    public IEnumerator createScreenShake()
+    public IEnumerator createScreenShake(float screenShakeIntensity)
     {
 
   
-        leftNoise.m_AmplitudeGain = 1.5f;
-        leftNoise.m_FrequencyGain = screenShakeValue;
-        rightNoise.m_AmplitudeGain = 1.5f;
-        rightNoise.m_FrequencyGain = screenShakeValue;
+        leftNoise.m_AmplitudeGain = screenShakeIntensity;
+        leftNoise.m_FrequencyGain = screenShakeIntensity;
+        rightNoise.m_AmplitudeGain = screenShakeIntensity;
+        rightNoise.m_FrequencyGain = screenShakeIntensity;
 
 
 

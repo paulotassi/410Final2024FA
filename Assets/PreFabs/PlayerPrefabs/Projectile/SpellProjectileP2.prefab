@@ -14,7 +14,6 @@ GameObject:
   - component: {fileID: 7048848087908441889}
   - component: {fileID: 3380077736045797600}
   - component: {fileID: 3967765594077133636}
-  - component: {fileID: 1192253767381915746}
   - component: {fileID: 1999067300127122727}
   - component: {fileID: 5060080530231183441}
   m_Layer: 0
@@ -33,8 +32,8 @@ Transform:
   m_GameObject: {fileID: 8727881279438405985}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 122.9749, y: 212.6811, z: 0}
-  m_LocalScale: {x: 0.5, y: 0.5, z: 1}
+  m_LocalPosition: {x: 138.496, y: 217.853, z: 0}
+  m_LocalScale: {x: 0.7187668, y: 0.6579157, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -80,15 +79,15 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 0}
+  m_Sprite: {fileID: -274380540, guid: 3a531263f23d63343b6d63758ab7bc66, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 0.32, y: 0.36}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 0
+  m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!114 &5221557971627318515
@@ -107,6 +106,7 @@ MonoBehaviour:
   projectileDamage: 20
   lifetime: 1
   rb: {fileID: 7048848087908441889}
+  playerAim: {fileID: 0}
   gameManager: {fileID: 0}
 --- !u!50 &7048848087908441889
 Rigidbody2D:
@@ -167,8 +167,8 @@ CapsuleCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0.48}
-  m_Size: {x: 1, y: 0.93}
+  m_Offset: {x: 0, y: 0.02}
+  m_Size: {x: 1, y: 0.0001}
   m_Direction: 0
 --- !u!114 &3967765594077133636
 MonoBehaviour:
@@ -183,22 +183,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ignoreTag: Ignore
---- !u!111 &1192253767381915746
-Animation:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8727881279438405985}
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Animation: {fileID: 7400000, guid: c1874ad944adda148893f11056120643, type: 2}
-  m_Animations:
-  - {fileID: 7400000, guid: c1874ad944adda148893f11056120643, type: 2}
-  m_WrapMode: 0
-  m_PlayAutomatically: 1
-  m_AnimatePhysics: 0
-  m_CullingType: 0
 --- !u!95 &1999067300127122727
 Animator:
   serializedVersion: 5
@@ -209,7 +193,7 @@ Animator:
   m_GameObject: {fileID: 8727881279438405985}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: f000cbc942d15ee47966756ecd8d9854, type: 2}
+  m_Controller: {fileID: 9100000, guid: 62ef77a8048688f44b885d2d9074b9bd, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -294,23 +278,23 @@ TrailRenderer:
     colorGradient:
       serializedVersion: 2
       key0: {r: 0.7686275, g: 0.7686275, b: 0.7686275, a: 1}
-      key1: {r: 1, g: 0.8600217, b: 0, a: 0.5019608}
-      key2: {r: 0.6513126, g: 1, b: 0, a: 0}
-      key3: {r: 0, g: 0.76862746, b: 0.39468652, a: 0}
-      key4: {r: 0.24705882, g: 0.43792838, b: 0.49411765, a: 0}
-      key5: {r: 0.42549095, g: 0.2509804, b: 0.59607846, a: 0}
+      key1: {r: 0.24705882, g: 0.43792838, b: 0.49411765, a: 0.5019608}
+      key2: {r: 1, g: 0.80392164, b: 0.8470589, a: 0}
+      key3: {r: 1, g: 0.03875816, b: 0, a: 0}
+      key4: {r: 1, g: 0.03875816, b: 0, a: 0}
+      key5: {r: 1, g: 0.03875816, b: 0, a: 0}
       key6: {r: 1, g: 0.03875816, b: 0, a: 0}
       key7: {r: 1, g: 0.03875816, b: 0, a: 0}
       ctime0: 0
-      ctime1: 12722
-      ctime2: 25636
-      ctime3: 35273
-      ctime4: 46453
-      ctime5: 55319
-      ctime6: 65535
+      ctime1: 3277
+      ctime2: 12336
+      ctime3: 22166
+      ctime4: 26792
+      ctime5: 26792
+      ctime6: 26792
       ctime7: 63415
       atime0: 0
-      atime1: 65535
+      atime1: 32960
       atime2: 0
       atime3: 0
       atime4: 0
@@ -319,7 +303,7 @@ TrailRenderer:
       atime7: 0
       m_Mode: 0
       m_ColorSpace: 0
-      m_NumColorKeys: 7
+      m_NumColorKeys: 4
       m_NumAlphaKeys: 2
     numCornerVertices: 0
     numCapVertices: 0

@@ -34,7 +34,7 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
-    filterMode: 1
+    filterMode: 0
     aniso: 1
     mipBias: 0
     wrapU: 1
@@ -43,7 +43,7 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 1
+  spriteMode: 2
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
@@ -134,7 +134,175 @@ TextureImporter:
     forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
-    sprites: []
+    sprites:
+    - serializedVersion: 2
+      name: Witch_Running_Sprite_Sheet_0
+      rect:
+        serializedVersion: 2
+        x: 4
+        y: 4
+        width: 47
+        height: 84
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 166795a1e173cde4ca20dcbce85038e0
+      internalID: -1290583631
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Witch_Running_Sprite_Sheet_1
+      rect:
+        serializedVersion: 2
+        x: 54
+        y: 7
+        width: 51
+        height: 84
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ace5749ba53cd28449c3f8af9770c63c
+      internalID: 290665669
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Witch_Running_Sprite_Sheet_2
+      rect:
+        serializedVersion: 2
+        x: 112
+        y: 4
+        width: 47
+        height: 84
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: cd50a5d5f9686454a93ec79e8470f256
+      internalID: 1776280929
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Witch_Running_Sprite_Sheet_3
+      rect:
+        serializedVersion: 2
+        x: 172
+        y: 1
+        width: 42
+        height: 85
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e37dc6247abc41a4191be0025e33aab7
+      internalID: 422421769
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Witch_Running_Sprite_Sheet_4
+      rect:
+        serializedVersion: 2
+        x: 220
+        y: 4
+        width: 47
+        height: 84
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b1db86cc9bc641e4091da14a607ab4c6
+      internalID: -1393352544
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Witch_Running_Sprite_Sheet_5
+      rect:
+        serializedVersion: 2
+        x: 270
+        y: 7
+        width: 53
+        height: 84
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ec29840175d419e4f8a3bcb68bfb9841
+      internalID: -886510718
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Witch_Running_Sprite_Sheet_6
+      rect:
+        serializedVersion: 2
+        x: 328
+        y: 4
+        width: 47
+        height: 84
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6cccaf68a043da347a15bebd5a9cb71f
+      internalID: 215346770
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Witch_Running_Sprite_Sheet_7
+      rect:
+        serializedVersion: 2
+        x: 388
+        y: 1
+        width: 42
+        height: 85
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1240a96a88a8b054cb9b00ecb36c58e8
+      internalID: -457028862
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     physicsShape: []
     bones: []
@@ -145,7 +313,15 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      Witch_Running_Sprite_Sheet_0: -1290583631
+      Witch_Running_Sprite_Sheet_1: 290665669
+      Witch_Running_Sprite_Sheet_2: 1776280929
+      Witch_Running_Sprite_Sheet_3: 422421769
+      Witch_Running_Sprite_Sheet_4: -1393352544
+      Witch_Running_Sprite_Sheet_5: -886510718
+      Witch_Running_Sprite_Sheet_6: 215346770
+      Witch_Running_Sprite_Sheet_7: -457028862
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
