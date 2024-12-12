@@ -121,6 +121,7 @@ public class PlayerHealth : MonoBehaviour
             else if (this.gameObject.name == "Player 2")
             {
                 gameManager.player2DecreaseIngredient(Mathf.FloorToInt(gameManager.player2IngredientCount / 2)); // Reduce Player 2's ingredient count
+                playerLifeCountRemaining--;
 
                 for (int i = 0; i < gameManager.player2IngredientCount; i++)
                 {
