@@ -688,12 +688,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   movementInput: {x: 0, y: 0}
-  aimInput: {x: 0, y: 0}
-  canShoot: 1
-  shootCoolDown: 1
-  projectilePrefab: {fileID: 8727881279438405985, guid: 721a10e55ec95194db00931a6a3f8548, type: 3}
-  projectileSpawnLocation: {fileID: 4481076683304747995}
-  projectileSpawnRotation: {fileID: 7600873227343816681}
   initialMoveSpeed: 0
   moveSpeed: 0.5
   moveHorizontalFlightSpeed: 20
@@ -707,21 +701,25 @@ MonoBehaviour:
   flightThreshold: 5
   inactivityTime: 0
   inactivityThreshold: 2
-  isDashing: 0
-  canDash: 1
-  dashSpeed: 2
-  dashCooldown: 3
-  dashDuration: 1
-  trailRenderer: {fileID: 7817375400827155662}
-  jumped: 0
+  aimInput: {x: 0, y: 0}
+  canShoot: 1
+  shootCoolDown: 1
+  projectilePrefab: {fileID: 8727881279438405985, guid: 721a10e55ec95194db00931a6a3f8548, type: 3}
+  projectileSpawnLocation: {fileID: 4481076683304747995}
+  projectileSpawnRotation: {fileID: 7600873227343816681}
+  isShielded: 0
+  canShield: 1
+  shieldCooldown: 0
+  shieldDuration: 0
   fired: 0
-  dashed: 0
+  shielded: 0
   groundCheck: {fileID: 1216195194795179885}
   groundLayer:
     serializedVersion: 2
     m_Bits: 64
   groundCheckRadius: 0.5
   groundCheckYOffset: {x: 0, y: 0.7, z: 0}
+  rb: {fileID: 0}
   isGrounded: 0
   horizontalInput: 0
   verticalInput: 0
@@ -731,7 +729,8 @@ MonoBehaviour:
   virtualCameraRight: {fileID: 3593676498205312245}
   rightNoise: {fileID: 0}
   leftNoise: {fileID: 0}
-  screenShakeValue: 35
+  screenShakeValue: 5
+  screenShakeDuration: 0.3
 --- !u!114 &5124100836800374299
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -750,9 +749,15 @@ MonoBehaviour:
   P1RespawnTimer: {fileID: 0}
   P2RespawnTimer: {fileID: 0}
   playerSprite: {fileID: 2861679258412669627}
+  gameManager: {fileID: 0}
+  playerLifeCountRemaining: 0
+  isInvincible: 0
   invincibilityDurationSeconds: 2
   playerModel: {fileID: 2861679258412669627}
   Shield: {fileID: 7359262266053282987}
+  player1IngredientLossOnDeath: 0
+  player2IngredientLossOnDeath: 0
+  ingredientPrefab: {fileID: 0}
   playerIndex: 0
 --- !u!212 &1241193982795318343
 SpriteRenderer:
@@ -1504,7 +1509,7 @@ Transform:
   m_GameObject: {fileID: 5109670534862012840}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -48.260002, y: -2.8780003, z: -9.139335}
+  m_LocalPosition: {x: -15.960004, y: -2.2480001, z: -9.139335}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1623,7 +1628,7 @@ Transform:
   m_GameObject: {fileID: 5495657024639112019}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -45.219994, y: -2.8380003, z: -4.7718}
+  m_LocalPosition: {x: -12.919995, y: -2.2080002, z: -4.7718}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1804,6 +1809,7 @@ MonoBehaviour:
   targetPos: {x: 0, y: 0, z: 0}
   controller: {fileID: 8869578208568761204}
   aimObject: {fileID: 0}
+  aimAngle: 0
   controllerDeadzone: 0.1
 --- !u!1 &6174482991042533730
 GameObject:
@@ -2320,6 +2326,7 @@ MonoBehaviour:
   targetPos: {x: 0, y: 0, z: 0}
   controller: {fileID: 3218445902191801378}
   aimObject: {fileID: 0}
+  aimAngle: 0
   controllerDeadzone: 0.1
 --- !u!1 &8688231733931432845
 GameObject:
@@ -2491,12 +2498,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   movementInput: {x: 0, y: 0}
-  aimInput: {x: 0, y: 0}
-  canShoot: 1
-  shootCoolDown: 1
-  projectilePrefab: {fileID: 8727881279438405985, guid: 721a10e55ec95194db00931a6a3f8548, type: 3}
-  projectileSpawnLocation: {fileID: 7490702984431832782}
-  projectileSpawnRotation: {fileID: 6090638370014223387}
   initialMoveSpeed: 0
   moveSpeed: 0.5
   moveHorizontalFlightSpeed: 20
@@ -2510,21 +2511,25 @@ MonoBehaviour:
   flightThreshold: 5
   inactivityTime: 0
   inactivityThreshold: 2
-  isDashing: 0
-  canDash: 1
-  dashSpeed: 2
-  dashCooldown: 2
-  dashDuration: 0.5
-  trailRenderer: {fileID: 7200713835723596878}
-  jumped: 0
+  aimInput: {x: 0, y: 0}
+  canShoot: 1
+  shootCoolDown: 1
+  projectilePrefab: {fileID: 8727881279438405985, guid: 721a10e55ec95194db00931a6a3f8548, type: 3}
+  projectileSpawnLocation: {fileID: 7490702984431832782}
+  projectileSpawnRotation: {fileID: 6090638370014223387}
+  isShielded: 0
+  canShield: 1
+  shieldCooldown: 0
+  shieldDuration: 0
   fired: 0
-  dashed: 0
+  shielded: 0
   groundCheck: {fileID: 8331015421776359968}
   groundLayer:
     serializedVersion: 2
     m_Bits: 64
   groundCheckRadius: 0.5
   groundCheckYOffset: {x: 0, y: 0.7, z: 0}
+  rb: {fileID: 0}
   isGrounded: 0
   horizontalInput: 0
   verticalInput: 0
@@ -2534,7 +2539,8 @@ MonoBehaviour:
   virtualCameraRight: {fileID: 1173560904917368322}
   rightNoise: {fileID: 0}
   leftNoise: {fileID: 0}
-  screenShakeValue: 35
+  screenShakeValue: 5
+  screenShakeDuration: 0.3
 --- !u!114 &7931794942540519973
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2553,9 +2559,15 @@ MonoBehaviour:
   P1RespawnTimer: {fileID: 0}
   P2RespawnTimer: {fileID: 0}
   playerSprite: {fileID: 8688231733931432845}
+  gameManager: {fileID: 0}
+  playerLifeCountRemaining: 0
+  isInvincible: 0
   invincibilityDurationSeconds: 2
   playerModel: {fileID: 8688231733931432845}
   Shield: {fileID: 6216715623023809076}
+  player1IngredientLossOnDeath: 0
+  player2IngredientLossOnDeath: 0
+  ingredientPrefab: {fileID: 0}
   playerIndex: 1
 --- !u!212 &2296281305496795627
 SpriteRenderer:

@@ -17,5 +17,8 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/CompetetiveScenes/CompetetiveSceneRound1.unity
     guid: e2d7ea938b0a60b4cb04e31484fee386
+  - enabled: 1
+    path: Assets/Scenes/CompetetiveScenes/ArenaScene.unity
+    guid: 376a65f2a5ce0594ea8e3f7a493d33f3
   m_configObjects:
     com.unity.input.settings: {fileID: 11400000, guid: d336a89eeba10d647994ede47fe2dd76, type: 2}
