@@ -77,7 +77,7 @@ public class BossPhase1Attack : MonoBehaviour
         Rigidbody2D rb = projectile.GetComponent<Rigidbody2D>();
 
         // Set the projectile's velocity toward the target player
-        rb.velocity = direction * projectileSpeed;
+        rb.linearVelocity = direction * projectileSpeed;
     }
 
     bool IsPlayerAlive(Transform targetPlayer)

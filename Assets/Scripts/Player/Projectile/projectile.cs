@@ -24,7 +24,7 @@ public class projectile : MonoBehaviour
 
         }
        rb = this.gameObject.GetComponent<Rigidbody2D>();
-       rb.velocity = transform.right * projectileSpeed;
+       rb.linearVelocity = transform.right * projectileSpeed;
        gameManager = FindFirstObjectByType<GameManager>();
        
         Destroy(gameObject, lifetime); // Destroy the projectile after a certain time

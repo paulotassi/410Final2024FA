@@ -162,7 +162,7 @@ public class PlayerController : MonoBehaviour
 
         // Handle flight mode transition based on velocity and gravity scale
         // Reduce gravity when moving fast horizontally, otherwise increase gravity
-        if (!isGrounded && Mathf.Abs(rb.velocity.y) < 0.1f && !flightMode || !flightMode && Mathf.Abs(rb.velocity.x) >= transitionThreshold)
+        if (!isGrounded && Mathf.Abs(rb.linearVelocity.y) < 0.1f && !flightMode || !flightMode && Mathf.Abs(rb.linearVelocity.x) >= transitionThreshold)
         {
             flightMode = true; // Activate flight mode when at the peak of the jump
         }
@@ -225,19 +225,19 @@ public class PlayerController : MonoBehaviour
         if (flightMode)
         {
             // In flight mode, move based on both horizontal and vertical input
-            rb.velocity = new Vector2(horizontalInput * moveHorizontalFlightSpeed, verticalInput * flightSpeed - fallRate);
+            rb.linearVelocity = new Vector2(horizontalInput * moveHorizontalFlightSpeed, verticalInput * flightSpeed - fallRate);
         }
         else
         {
             // On the ground, move only horizontally
-            rb.velocity = new Vector2(horizontalInput * moveSpeed, rb.velocity.y);
+            rb.linearVelocity = new Vector2(horizontalInput * moveSpeed, rb.linearVelocity.y);
         }
     }
 
     // Handle the jump action by applying a vertical force
     void Jump()
     {
-        rb.AddForce(new Vector2(rb.velocity.x, jumpForce), ForceMode2D.Impulse); // Apply jump force
+        rb.AddForce(new Vector2(rb.linearVelocity.x, jumpForce), ForceMode2D.Impulse); // Apply jump force
         
     }
 
