@@ -13,10 +13,11 @@ public class EnemyController : MonoBehaviour
     public int attackDamage = 10;
     public float searchDuration = 2f; // Time spent in search state
     public float flipInterval = 0.5f; // Time between flips in search state
+    public float stunDuration = 1f;
     public AudioSource source;
     public AudioClip attackSound;
 
-    private enum State { Patrolling, Chasing, Searching }
+    private enum State { Patrolling, Chasing, Searching, Stunned }
     private State currentState = State.Patrolling;
 
     private Transform player1;
@@ -92,7 +93,11 @@ public class EnemyController : MonoBehaviour
                 break;
 
             case State.Chasing:
-                ChasePlayer();
+                ChasePlayer();  
+                break;
+
+            case State.Stunned:
+                StartCoroutine(Stunned(stunDuration));                
                 break;
 
             case State.Searching:
@@ -119,6 +124,11 @@ public class EnemyController : MonoBehaviour
         {
             movingToPointB = !movingToPointB; // Switch direction
         }
+    }
+
+    public IEnumerator Stunned(float stunDuration)
+    {
+        yield return new WaitForSeconds(stunDuration);
     }
 
     private void ChasePlayer()

@@ -7,6 +7,9 @@ using UnityEngine.SceneManagement;
 
 public class PlayerController : MonoBehaviour
 {
+    [SerializeField] private enum State { Idle, Walking, Flying, Stunned }
+    private State currentState = State.Idle;
+
     // Player movement variables
     [Header("Movement Settings" +
         "")]
@@ -35,15 +38,6 @@ public class PlayerController : MonoBehaviour
     public GameObject projectilePrefab; //The projectile prefab holding the motion for projectiles
     public GameObject projectileSpawnLocation; //spawnLocation of the rotating familiar
     public GameObject projectileSpawnRotation; //spawn rotation to follow the Familiar direction
-
-    /*[Header("Dash Currently Inactive")]
-    //Player Dash
-    public bool isDashing = false;
-    public bool canDash = true;
-    public float dashSpeed = 20f;
-    public float dashCooldown = 3f;
-    public float dashDuration = 1.0f;
-    public TrailRenderer trailRenderer;*/
 
     //Player Shield
     [Header("Shield Settings" +
@@ -86,6 +80,8 @@ public class PlayerController : MonoBehaviour
     [SerializeField] protected float screenShakeValue = 1f;
     [SerializeField] protected float screenShakeDuration = 0.5f;
 
+    
+
     // Start is called before the first frame update
     void Start()
     {
@@ -99,109 +95,90 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
-        // Capture player input for horizontal (A/D, Left/Right arrows) and vertical (W/S, Up/Down arrows) movement
+        // Capture player input
         horizontalInput = movementInput.x;
         verticalInput = movementInput.y;
 
-        // Ground check: checks if the player is touching the ground
+        // Check if player is grounded
         isGrounded = Physics2D.OverlapCircle(groundCheck.position - groundCheckYOffset, groundCheckRadius, groundLayer);
 
-        // Set speed parameter in the animator for movement animations
+        // Update animator parameters
         animator.SetFloat("WalkSpeed", moveSpeed);
-        animator.SetFloat("FlightY",verticalInput);
+        animator.SetFloat("FlightY", verticalInput);
+        animator.SetBool("Flying", !isGrounded);
 
-        // Flip the sprite based on movement direction (left or right)
+        // Handle sprite flipping and camera priority
+        HandleSpriteFlipAndCamera();
+
+        // Handle player actions
+        if (jumped && isGrounded) Jump();
+        if (fired && canShoot) StartCoroutine(Shoot());
+        if (shielded && canShield) StartCoroutine(Shield());
+
+        // Reset move speed if no horizontal input
+        moveSpeed = (horizontalInput == 0) ? initialMoveSpeed : moveSpeed;
+
+        // Handle state transitions
+        UpdatePlayerState();
+
+        // Track player inactivity
+        TrackInactivity();
+    }
+
+    void HandleSpriteFlipAndCamera()
+    {
         if (horizontalInput < 0)
         {
-            GetComponent<SpriteRenderer>().flipX = true; // Flip to face left
-            virtualCameraLeft.Priority = 10; //Changing Camera Priority to go left of player
+            GetComponent<SpriteRenderer>().flipX = true;
+            virtualCameraLeft.Priority = 10;
             virtualCameraRight.Priority = 9;
-
         }
         else if (horizontalInput > 0)
         {
-            GetComponent<SpriteRenderer>().flipX = false; // Flip to face right
-            virtualCameraLeft.Priority = 9; //Changing Camera Priority to go right of player
+            GetComponent<SpriteRenderer>().flipX = false;
+            virtualCameraLeft.Priority = 9;
             virtualCameraRight.Priority = 10;
         }
+    }
 
-        // Toggle flight animation when airborne
-        if (!isGrounded)
-        {
-            animator.SetBool("Flying", true); // Set flight animation when not grounded
-        }
-        else
-        {
-            animator.SetBool("Flying", false); // Disable flight animation when grounded
-        }
+    void UpdatePlayerState()
+    {
+        bool isFalling = Mathf.Abs(rb.linearVelocity.y) < 0.1f;
+        bool isMovingFast = Mathf.Abs(rb.linearVelocity.x) >= transitionThreshold;
 
-        // Handle jumping when spacebar is pressed, but only if grounded
-        if (jumped && isGrounded)
+        if (!isGrounded && (isFalling || isMovingFast))
         {
-            Jump(); // Trigger jump
-        }
-
-        //Handles shooting if left Mouse is clicked or right Trigger
-        if (fired & canShoot)
-        {
-            canShoot = false;
-            StartCoroutine(Shoot());
-        }
-
-        if (shielded & canShield)
-        {
-            StartCoroutine(Shield());
-        }
-
-        // Reset move speed to initial value when no horizontal input
-        if (horizontalInput == 0)
-        {
-            moveSpeed = initialMoveSpeed;
-        }
-
-        // Handle flight mode transition based on velocity and gravity scale
-        // Reduce gravity when moving fast horizontally, otherwise increase gravity
-        if (!isGrounded && Mathf.Abs(rb.linearVelocity.y) < 0.1f && !flightMode || !flightMode && Mathf.Abs(rb.linearVelocity.x) >= transitionThreshold)
-        {
-            flightMode = true; // Activate flight mode when at the peak of the jump
+            flightMode = true;
+            currentState = State.Flying;
         }
         else if (isGrounded)
         {
-            flightMode = false; // Disable flight mode when grounded
+            flightMode = false;
+            currentState = (horizontalInput != 0) ? State.Walking : State.Idle;
         }
+    }
 
-        // Track player inactivity time
-        if (horizontalInput == 0 && verticalInput == 0)
+    void TrackInactivity()
+    {
+        inactivityTime = (horizontalInput == 0 && verticalInput == 0) ? inactivityTime + Time.deltaTime : 0f;
+
+        if (inactivityTime > inactivityThreshold && currentState == State.Flying)
         {
-            inactivityTime += Time.deltaTime; // Increment inactivity time if no input
+            fallRate = Mathf.Clamp(fallRate + (liftChangeRate / 3), 0, 15f);
         }
         else
         {
-            inactivityTime = 0f; // Reset inactivity time when player provides input
+            fallRate = 0f;
         }
-
-        // If inactivity exceeds threshold, reduce lift force to bring the player down
-        if (inactivityTime > inactivityThreshold && isGrounded == false)
-        {
-            fallRate += liftChangeRate / 3; // Reduce lift force slowly
-        }
-        else 
-        {
-            fallRate = 0f; 
-        }
-        fallRate = Mathf.Clamp(fallRate, 0, 15f);
     }
+
 
     // FixedUpdate is called at fixed intervals, used for physics-based calculations
     void FixedUpdate()
     {
-        /*if (isDashing)
-        {
-            return;
-        }*/
-        // Apply movement every physics frame
+
         Move();
+
         // Reset move speed to initial value when no horizontal input
         if (horizontalInput == 0)
         {
@@ -222,7 +199,7 @@ public class PlayerController : MonoBehaviour
     void Move()
     {
 
-        if (flightMode)
+        if (currentState == State.Flying)
         {
             // In flight mode, move based on both horizontal and vertical input
             rb.linearVelocity = new Vector2(horizontalInput * moveHorizontalFlightSpeed, verticalInput * flightSpeed - fallRate);
