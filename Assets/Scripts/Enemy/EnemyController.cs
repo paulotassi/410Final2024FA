@@ -96,16 +96,16 @@ public class EnemyController : MonoBehaviour
                 ChasePlayer();  
                 break;
 
-            case State.Stunned:
-                StartCoroutine(Stunned(stunDuration));                
-                break;
-
             case State.Searching:
                 Search();
                 if (searchTimer <= 0)
                 {
                     currentState = State.Patrolling; // Return to patrolling after search
                 }
+                break;
+            
+            case State.Stunned:
+                StartCoroutine(Stunned(stunDuration));                
                 break;
         }
     }

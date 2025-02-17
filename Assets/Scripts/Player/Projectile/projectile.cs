@@ -7,6 +7,8 @@ public class projectile : MonoBehaviour
 
     public float projectileSpeed;
     public int projectileDamage;
+    public bool projectileStun = false;
+    public float projectileStunDuration = 1f;
     public float lifetime = 5f;
     public Rigidbody2D rb;
     public GameObject playerAim;
