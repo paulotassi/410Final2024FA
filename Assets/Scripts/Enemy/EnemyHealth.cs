@@ -13,8 +13,13 @@ public class EnemyHealth : MonoBehaviour
         // Check if the object we collided with is tagged as "Playerspell"
         if (other.CompareTag("PlayerSpell"))
         {
+            damageAmount = other.GetComponent<projectile>().projectileDamage;
             // Apply damage
             TakeDamage(damageAmount);
+            if (other.gameObject.GetComponent<projectile>().projectileStun == true)
+            { 
+                this.gameObject.GetComponentInParent<EnemyController>().Stunned(other.gameObject.GetComponent<projectile>().projectileStunDuration);
+            }
 
             // Optionally, destroy the Playerspell GameObject after collision
             // Destroy(other.gameObject);

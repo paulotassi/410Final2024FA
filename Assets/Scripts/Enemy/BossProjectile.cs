@@ -58,7 +58,7 @@ public class BossProjectile : MonoBehaviour
             Rigidbody2D rb = newProjectile.GetComponent<Rigidbody2D>();
             if (rb != null)
             {
-                rb.velocity = direction * splitRadius; // Adjust speed if needed
+                rb.linearVelocity = direction * splitRadius; // Adjust speed if needed
             }
 
             // Set the smaller projectile to destroy itself after its lifetime

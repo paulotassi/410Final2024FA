@@ -7,6 +7,8 @@ public class projectile : MonoBehaviour
 
     public float projectileSpeed;
     public int projectileDamage;
+    public bool projectileStun = false;
+    public float projectileStunDuration = 1f;
     public float lifetime = 5f;
     public Rigidbody2D rb;
     public GameObject playerAim;
@@ -24,7 +26,7 @@ public class projectile : MonoBehaviour
 
         }
        rb = this.gameObject.GetComponent<Rigidbody2D>();
-       rb.velocity = transform.right * projectileSpeed;
+       rb.linearVelocity = transform.right * projectileSpeed;
        gameManager = FindFirstObjectByType<GameManager>();
        
         Destroy(gameObject, lifetime); // Destroy the projectile after a certain time
