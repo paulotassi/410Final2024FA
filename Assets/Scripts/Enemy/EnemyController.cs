@@ -1,5 +1,6 @@
 using UnityEngine;
-using System.Collections;  // Add this line
+using System.Collections;
+using System;  // Add this line
 
 public class EnemyController : MonoBehaviour
 {
@@ -14,10 +15,11 @@ public class EnemyController : MonoBehaviour
     public float searchDuration = 2f; // Time spent in search state
     public float flipInterval = 0.5f; // Time between flips in search state
     public float stunDuration = 1f;
+    public bool isStunned = false;
     public AudioSource source;
     public AudioClip attackSound;
 
-    private enum State { Patrolling, Chasing, Searching, Stunned }
+    private enum State { Patrolling, Chasing, Searching }
     private State currentState = State.Patrolling;
 
     private Transform player1;
@@ -104,9 +106,6 @@ public class EnemyController : MonoBehaviour
                 }
                 break;
             
-            case State.Stunned:
-                StartCoroutine(Stunned(stunDuration));                
-                break;
         }
     }
 
@@ -128,7 +127,13 @@ public class EnemyController : MonoBehaviour
 
     public IEnumerator Stunned(float stunDuration)
     {
+        isStunned = true;
+        this.gameObject.GetComponent<SpriteRenderer>().color = Color.red;
+
         yield return new WaitForSeconds(stunDuration);
+        
+        isStunned = false;
+        this.gameObject.GetComponent<SpriteRenderer>().color = Color.white;
     }
 
     private void ChasePlayer()
@@ -140,14 +145,17 @@ public class EnemyController : MonoBehaviour
         // Flip the sprite to face the target player
         FlipSprite(targetPlayer.position.x);
 
-        if (distanceToTargetPlayer <= attackRange)
+        if (distanceToTargetPlayer <= attackRange && isStunned == false)
         {
             AttackPlayer(); // Call the attack function if within range
         }
         else
         {
             float step = chaseSpeed * Time.deltaTime;
-            transform.position = Vector2.MoveTowards(transform.position, targetPlayer.position, step);
+            if (isStunned == false)
+            {
+                transform.position = Vector2.MoveTowards(transform.position, targetPlayer.position, step);
+            }
         }
     }
 
@@ -168,7 +176,7 @@ public class EnemyController : MonoBehaviour
     {
         PlayerHealth targetPlayerHealth = (targetPlayer == player1) ? player1Health : player2Health;
 
-        if (Time.time >= lastAttackTime + attackCooldown && targetPlayerHealth != null)
+        if (Time.time >= lastAttackTime + attackCooldown && targetPlayerHealth != null && isStunned == false)
         {
             targetPlayerHealth.TakeDamage(attackDamage); // Call the TakeDamage method on the player
             source.PlayOneShot(attackSound);

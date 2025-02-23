@@ -17,8 +17,10 @@ public class EnemyHealth : MonoBehaviour
             // Apply damage
             TakeDamage(damageAmount);
             if (other.gameObject.GetComponent<projectile>().projectileStun == true)
-            { 
-                this.gameObject.GetComponentInParent<EnemyController>().Stunned(other.gameObject.GetComponent<projectile>().projectileStunDuration);
+            {
+                StartCoroutine(this.gameObject.GetComponentInParent<EnemyController>().Stunned(other.gameObject.GetComponent<projectile>().projectileStunDuration));
+                TakeDamage(damageAmount);
+                Debug.Log("Trying to change Stun State");
             }
 
             // Optionally, destroy the Playerspell GameObject after collision

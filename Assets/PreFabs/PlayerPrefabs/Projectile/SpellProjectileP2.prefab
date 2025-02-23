@@ -108,7 +108,7 @@ MonoBehaviour:
   projectileSpeed: 40
   projectileDamage: 0
   projectileStun: 1
-  projectileStunDuration: 10
+  projectileStunDuration: 5
   lifetime: 1
   rb: {fileID: 7048848087908441889}
   playerAim: {fileID: 0}
