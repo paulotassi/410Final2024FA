@@ -162,7 +162,7 @@ public class PlayerController : MonoBehaviour
     {
         inactivityTime = (horizontalInput == 0 && verticalInput == 0) ? inactivityTime + Time.deltaTime : 0f;
 
-        if (inactivityTime > inactivityThreshold && currentState == State.Flying)
+        if (inactivityTime > inactivityThreshold && currentState == State.Flying || currentState == State.Stunned)
         {
             fallRate = Mathf.Clamp(fallRate + (liftChangeRate / 3), 0, 15f);
         }
