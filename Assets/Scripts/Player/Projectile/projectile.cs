@@ -17,18 +17,12 @@ public class projectile : MonoBehaviour
 
     private void Start()
     {
-        if (this.gameObject.name == "SpellProjectileP2")
-        {
-            //Insert Rotation Logic
-        }
-        else
-        {
 
-        }
-       rb = this.gameObject.GetComponent<Rigidbody2D>();
-       rb.linearVelocity = transform.right * projectileSpeed;
-       gameManager = FindFirstObjectByType<GameManager>();
-       
+        rb = this.gameObject.GetComponent<Rigidbody2D>();
+        //rb.linearVelocity = transform.InverseTransformDirection(transform.right * projectileSpeed);
+        rb.linearVelocity = transform.right * projectileSpeed;
+        gameManager = FindFirstObjectByType<GameManager>();
+        Debug.Log(this.gameObject.transform.rotation.z);
         Destroy(gameObject, lifetime); // Destroy the projectile after a certain time
     }
     private void OnTriggerEnter2D(Collider2D collision)
@@ -37,7 +31,7 @@ public class projectile : MonoBehaviour
         {
             Destroy(this.gameObject);
         }
-        else if (collision.gameObject.GetComponent<PlayerController>() != null && gameManager.competetiveMode)
+        else if (collision.gameObject.GetComponent<PlayerController>() != null)
         {
             collision.gameObject.GetComponent<PlayerHealth>().TakeDamage(projectileDamage);
             //Debug.Log("Hit a Player");

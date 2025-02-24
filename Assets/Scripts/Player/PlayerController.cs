@@ -4,8 +4,12 @@ using System.Collections;
 using UnityEngine.U2D.Animation; // For sprite animation, unused in this script but necessary for Player Animation
 using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
+using System.Globalization;
+using Unity.Netcode;
+using UnityEngine.InputSystem.Users;
 
-public class PlayerController : MonoBehaviour
+
+public class PlayerController : NetworkBehaviour
 {
     [SerializeField] private enum State { Idle, Walking, Flying, Stunned }
     private State currentState = State.Idle;
@@ -80,22 +84,47 @@ public class PlayerController : MonoBehaviour
     [SerializeField] protected float screenShakeValue = 1f;
     [SerializeField] protected float screenShakeDuration = 0.5f;
 
-    
+    private PlayerInput playerInput;
 
-    // Start is called before the first frame update
-    void Start()
+// Start is called before the first frame update
+void Start()
     {
+        if (!IsOwner || !IsSpawned) return;
         // Get components on start
-        rb = GetComponent<Rigidbody2D>(); // Retrieve Rigidbody2D component for physics
+        rb = this.gameObject.GetComponent<Rigidbody2D>(); // Retrieve Rigidbody2D component for physics
         animator = GetComponent<Animator>(); // Retrieve Animator component for animations
         leftNoise = virtualCameraLeft.GetCinemachineComponent<CinemachineBasicMultiChannelPerlin>();
         rightNoise = virtualCameraRight.GetCinemachineComponent<CinemachineBasicMultiChannelPerlin>();
     }
 
+    private void Awake()
+    {
+        if (!IsOwner || !IsSpawned) return;
+
+        rb = this.gameObject.GetComponent<Rigidbody2D>(); // Retrieve Rigidbody2D component for physics
+        animator = GetComponent<Animator>(); // Retrieve Animator component for animations
+        leftNoise = virtualCameraLeft.GetCinemachineComponent<CinemachineBasicMultiChannelPerlin>();
+        rightNoise = virtualCameraRight.GetCinemachineComponent<CinemachineBasicMultiChannelPerlin>();
+
+        playerInput = GetComponent<PlayerInput>();
+
+        if (playerInput != null)
+        {
+            var currentUser = InputUser.PerformPairingWithDevice(Keyboard.current, playerInput.user);
+         
+        }
+    }
+
     // Update is called once per frame
     void Update()
     {
+        if (!IsOwner || !IsSpawned) return;
         // Capture player input
+        if (playerInput != null)
+        {
+            movementInput = playerInput.actions["Move"].ReadValue<Vector2>();
+        }
+
         horizontalInput = movementInput.x;
         verticalInput = movementInput.y;
 

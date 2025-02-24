@@ -20,5 +20,13 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/CompetetiveScenes/ArenaScene.unity
     guid: 376a65f2a5ce0594ea8e3f7a493d33f3
+  - enabled: 1
+    path: Assets/NGO_Minimal_Setup/NGO_Setup.unity
+    guid: 9ddf8e51980559344a12e65d517a0dc8
+  - enabled: 1
+    path: Assets/Scenes/MultiplayerTestingScene.unity
+    guid: ca5e42efbd052aa48888bc4009420a09
   m_configObjects:
     com.unity.input.settings: {fileID: 11400000, guid: d336a89eeba10d647994ede47fe2dd76, type: 2}
+    com.unity.input.settings.actions: {fileID: -944628639613478452, guid: a7843b7459872b84a939b451cf375e92, type: 3}
+  m_UseUCBPForAssetBundles: 0

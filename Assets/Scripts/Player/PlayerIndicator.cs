@@ -26,6 +26,7 @@ public class PlayerIndicator : MonoBehaviour
     // Called once per frame
     void Update()
     {
+        if (targetPosition == null) return;
         // Get the position of the target in world space
         Vector3 toPosition = targetPosition.position;
         // Get the position of the camera in world space and ignore its Z component

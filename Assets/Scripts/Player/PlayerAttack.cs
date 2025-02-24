@@ -19,6 +19,10 @@ public class PlayerAttack : MonoBehaviour
     // Function to remap a value from one range to another
     // Example: Remaps a value from [-1, 1] to [-250, 1500] or [-300, 500]
 
+    private void Awake()
+    {
+        mainCam = Camera.main;
+    }
 
     // Called every frame
     void Update()
