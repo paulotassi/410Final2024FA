@@ -110,7 +110,7 @@ void Start()
 
         if (playerInput != null)
         {
-            var currentUser = InputUser.PerformPairingWithDevice(Keyboard.current, playerInput.user);
+           
          
         }
     }
@@ -122,6 +122,7 @@ void Start()
         // Capture player input
         if (playerInput != null)
         {
+            aimInput = playerInput.actions["Aim"].ReadValue<Vector2>();
             movementInput = playerInput.actions["Move"].ReadValue<Vector2>();
         }
 
