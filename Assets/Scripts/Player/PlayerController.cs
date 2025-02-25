@@ -253,6 +253,7 @@ void Start()
     {
         canShoot = false;
         Instantiate(projectilePrefab, projectileSpawnLocation.transform.position , projectileSpawnRotation.transform.rotation);
+
         StartCoroutine(createScreenShake(2));
         yield return new WaitForSeconds(shootCoolDown);
         canShoot = true;
@@ -288,8 +289,6 @@ void Start()
         leftNoise.m_FrequencyGain = 0;
         rightNoise.m_AmplitudeGain = 0;
         rightNoise.m_FrequencyGain = 0;
-
-
 
     }
 

@@ -1,8 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.Netcode;
 using UnityEngine;
 
-public class projectile : MonoBehaviour
+public class projectile : NetworkBehaviour
 {
 
     public float projectileSpeed;
@@ -17,12 +18,12 @@ public class projectile : MonoBehaviour
 
     private void Start()
     {
+        Debug.Log(" I have Spawned");
 
         rb = this.gameObject.GetComponent<Rigidbody2D>();
-        //rb.linearVelocity = transform.InverseTransformDirection(transform.right * projectileSpeed);
+
         rb.linearVelocity = transform.right * projectileSpeed;
-        gameManager = FindFirstObjectByType<GameManager>();
-        Debug.Log(this.gameObject.transform.rotation.z);
+
         Destroy(gameObject, lifetime); // Destroy the projectile after a certain time
     }
     private void OnTriggerEnter2D(Collider2D collision)
@@ -33,8 +34,11 @@ public class projectile : MonoBehaviour
         }
         else if (collision.gameObject.GetComponent<PlayerController>() != null)
         {
-            collision.gameObject.GetComponent<PlayerHealth>().TakeDamage(projectileDamage);
-            //Debug.Log("Hit a Player");
+            if (collision.gameObject.GetComponent<MultiPlayerHealth>() != null) 
+            {
+             collision.gameObject.GetComponent<MultiPlayerHealth>().TakeDamage(projectileDamage);
+            }
+
             Destroy(this.gameObject);
         }
     }

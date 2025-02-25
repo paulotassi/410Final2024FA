@@ -40,9 +40,9 @@ public class PlayerHealth : MonoBehaviour
         gameManager = FindFirstObjectByType<GameManager>(); // Find the GameManager instance in the scene
 
         // Set ingredient loss variables from the gameManager for each player
-        //player1IngredientLossOnDeath = gameManager.player1IngredientCount;
-        //player2IngredientLossOnDeath = gameManager.player2IngredientCount;
-        //playerLifeCountRemaining = gameManager.playerStartingLifeCount;
+        player1IngredientLossOnDeath = gameManager.player1IngredientCount;
+        player2IngredientLossOnDeath = gameManager.player2IngredientCount;
+        playerLifeCountRemaining = gameManager.playerStartingLifeCount;
     }
 
     private void Start()
