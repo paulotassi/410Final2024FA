@@ -63,7 +63,12 @@ public class GameManager : MonoBehaviour
     [SerializeField] public int playerLayer1;
     [SerializeField] public int playerLayer2;
     [SerializeField] public BossHP bossDead;
-    
+
+
+    private Dictionary<IngredientType, int> player1Ingredients = new Dictionary<IngredientType, int>();
+    private Dictionary<IngredientType, int> player2Ingredients = new Dictionary<IngredientType, int>();
+
+
     // Update is called once per frame (every frame)
 
     private void Start()
@@ -182,6 +187,7 @@ public class GameManager : MonoBehaviour
     }
 
 
+
     private IEnumerator player1ShieldCDTrigger()
     {
         Player1ShieldCDEnabled = true;
@@ -278,25 +284,68 @@ public class GameManager : MonoBehaviour
     }
 
     // Method to increase Player 1's ingredient count by 1.
-    public void player1IncreaseIngredient(int amountIncrease)
+     public void player1IncreaseIngredient(IngredientType type)
     {
-        player1IngredientCount= player1IngredientCount + amountIncrease;
-    }
+        if (!player1Ingredients.ContainsKey(type))
+            player1Ingredients[type] = 0;
 
-    public void player1DecreaseIngredient(int lossIngredientAmount)
+        player1Ingredients[type]++;
+
+        if (player1Ingredients[type] >= 5)
+        {
+
+        }
+            
+    }
+    public void player1DecreaseIngredient()
     {
-        player1IngredientCount = player1IngredientCount - lossIngredientAmount;
+        if (player1Ingredients.Count > 0)
+            RemoveRandomIngredient(player1Ingredients);
     }
 
     // Method to increase Player 2's ingredient count by 1.
-    public void player2IncreaseIngredient(int amountIncrease)
+    
+    public void player2IncreaseIngredient(IngredientType type)
     {
-        player2IngredientCount = player2IngredientCount + amountIncrease;
+        if (!player2Ingredients.ContainsKey(type))
+            player2Ingredients[type] = 0;
+
+        player2Ingredients[type]++;
+
+        if (player2Ingredients[type] >= 5)
+        { 
+
+        }
     }
 
-    public void player2DecreaseIngredient(int lossIngredientAmount)
+    public void player2DecreaseIngredient()
     {
-        player2IngredientCount = player2IngredientCount - lossIngredientAmount;
+        if (player2Ingredients.Count > 0)
+            RemoveRandomIngredient(player2Ingredients);
+    }
+
+    private void RemoveRandomIngredient(Dictionary<IngredientType, int> playerIngredients)
+    {
+        List<IngredientType> ingredientKeys = new List<IngredientType>(playerIngredients.Keys);
+        IngredientType randomType = ingredientKeys[Random.Range(0, ingredientKeys.Count)];
+
+        playerIngredients[randomType]-=ingredientKeys.Count/2;
+
+        if (playerIngredients[randomType] <= 0)
+            playerIngredients.Remove(randomType); // Remove if count reaches zero
+
+    }
+
+    private void ApplyBuff(GameObject player, IngredientType type)
+    {
+        Debug.Log($"{player.name} received a buff for collecting 5 {type}!");
+
+        PlayerController playerController = player.GetComponent<PlayerController>();
+
+        if (playerController != null)
+        {
+            Debug.Log("buff logic here?");
+        }
     }
 
     public void increaseGameTime(float increaseAmount)
