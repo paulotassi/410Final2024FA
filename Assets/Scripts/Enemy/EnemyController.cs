@@ -32,27 +32,27 @@ public class EnemyController : MonoBehaviour
     public AudioClip attackSound;
 
     // Enemy states
-    private enum State { Patrolling, Chasing, Searching }
-    private State currentState = State.Patrolling;
+    public enum State { Patrolling, Chasing, Searching }
+    public State currentState = State.Patrolling;
 
     // Player references
     private Transform player1;
     private Transform player2;
     private PlayerHealth player1Health;
     private PlayerHealth player2Health;
-    private Transform targetPlayer; // Closest player target
+    public Transform targetPlayer; // Closest player target
 
     // Movement tracking
     private bool movingToPointB = true;
     private float lastAttackTime = 0f;
     private float searchTimer = 0f;
     private float flipTimer = 0f;
-    private bool facingRight = true;
+    public bool facingRight = true;
 
     // Sprite rendering
     public SpriteRenderer spriteRenderer;
 
-    private void Start()
+    protected virtual void Start()
     {
         // Find players in the scene
         player1 = GameObject.FindGameObjectWithTag("Player").transform;
@@ -63,7 +63,7 @@ public class EnemyController : MonoBehaviour
         player2Health = player2.GetComponent<PlayerHealth>();
     }
 
-    private void Update()
+    public void Update()
     {
         // Check if either player is dead and reset to patrolling
         if (player1Health.currentHealth <= 0 || player2Health.currentHealth <= 0)
@@ -208,7 +208,7 @@ public class EnemyController : MonoBehaviour
     }
 
     // Flips the sprite to face the target direction
-    private void FlipSprite(float targetX)
+    public virtual void FlipSprite(float targetX)
     {
         if ((targetX > transform.position.x && !facingRight) || (targetX < transform.position.x && facingRight))
         {
