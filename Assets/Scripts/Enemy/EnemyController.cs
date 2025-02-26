@@ -1,68 +1,78 @@
 using UnityEngine;
-using System.Collections;  // Add this line
+using System.Collections;
 
 public class EnemyController : MonoBehaviour
 {
+    // Patrol and chase points
     public Transform pointA;
     public Transform pointB;
+
+    // Movement speeds
     public float patrolSpeed = 2f;
     public float chaseSpeed = 5f;
+
+    // Detection and attack parameters
     public float detectionRange = 5f;
     public float attackRange = 1f;
     public float attackCooldown = 1f;
     public int attackDamage = 10;
-    public float searchDuration = 2f; // Time spent in search state
-    public float flipInterval = 0.5f; // Time between flips in search state
+
+    // Search state parameters
+    public float searchDuration = 2f;
+    public float flipInterval = 0.5f; // Time between flipping directions in search mode
+
+    // Stun parameters
     public float stunDuration = 1f;
+    public bool isStunned = false;
+    public bool stunnable = true;
+    public float stunDiminishingReturn = 1.5f;
+
+    // Audio variables
     public AudioSource source;
     public AudioClip attackSound;
 
-    private enum State { Patrolling, Chasing, Searching, Stunned }
-    private State currentState = State.Patrolling;
+    // Enemy states
+    public enum State { Patrolling, Chasing, Searching }
+    public State currentState = State.Patrolling;
 
+    // Player references
     private Transform player1;
     private Transform player2;
     private PlayerHealth player1Health;
     private PlayerHealth player2Health;
-    private Transform targetPlayer; // The closest player
+    public Transform targetPlayer; // Closest player target
+
+    // Movement tracking
     private bool movingToPointB = true;
     private float lastAttackTime = 0f;
     private float searchTimer = 0f;
     private float flipTimer = 0f;
-    private bool facingRight = true;
+    public bool facingRight = true;
 
-    private SpriteRenderer spriteRenderer;
-   
+    // Sprite rendering
+    public SpriteRenderer spriteRenderer;
 
-    private void Start()
+    protected virtual void Start()
     {
-        // Find both players by their tags
+        // Find players in the scene
         player1 = GameObject.FindGameObjectWithTag("Player").transform;
         player2 = GameObject.FindGameObjectWithTag("Player2").transform;
 
-        // Get PlayerHealth components for both players
+        // Get health components of both players
         player1Health = player1.GetComponent<PlayerHealth>();
         player2Health = player2.GetComponent<PlayerHealth>();
-
-        // Get the SpriteRenderer and store the original color
-        spriteRenderer = GetComponent<SpriteRenderer>();
     }
 
-    private void Update()
+    public void Update()
     {
-        // Check if either player is dead and return to patrolling
-        if (player1Health.currentHealth <= 0)
+        // Check if either player is dead and reset to patrolling
+        if (player1Health.currentHealth <= 0 || player2Health.currentHealth <= 0)
         {
-            targetPlayer = null; // Reset target player
-            currentState = State.Patrolling; // Switch back to patrolling if player 1 is dead
-        }
-        else if (player2Health.currentHealth <= 0)
-        {
-            targetPlayer = null; // Reset target player
-            currentState = State.Patrolling; // Switch back to patrolling if player 2 is dead
+            targetPlayer = null;
+            currentState = State.Patrolling;
         }
 
-        // Determine which player is closer and alive
+        // Determine closest player within detection range
         if (player1Health.currentHealth > 0 && Vector2.Distance(transform.position, player1.position) <= detectionRange)
         {
             targetPlayer = player1;
@@ -73,76 +83,94 @@ public class EnemyController : MonoBehaviour
             targetPlayer = player2;
             currentState = State.Chasing;
         }
-        else if (currentState == State.Chasing && (targetPlayer == player1 && player1Health.currentHealth <= 0 ||
-                                                    targetPlayer == player2 && player2Health.currentHealth <= 0))
+        else if (currentState == State.Chasing && targetPlayer == null)
         {
-            targetPlayer = null; // Reset target if the current target dies
-            currentState = State.Patrolling; // Switch back to patrolling if target is dead
-        }
-        else if (currentState == State.Chasing && (Vector2.Distance(transform.position, player1.position) > detectionRange &&
-                                                     Vector2.Distance(transform.position, player2.position) > detectionRange))
-        {
+            // If the target dies or escapes, start searching
             currentState = State.Searching;
-            searchTimer = searchDuration; // Start search timer
+            searchTimer = searchDuration;
         }
 
+        // Execute behavior based on current state
         switch (currentState)
         {
             case State.Patrolling:
                 Patrol();
                 break;
-
             case State.Chasing:
-                ChasePlayer();  
+                ChasePlayer();
                 break;
-
             case State.Searching:
                 Search();
                 if (searchTimer <= 0)
                 {
-                    currentState = State.Patrolling; // Return to patrolling after search
+                    currentState = State.Patrolling;
                 }
                 break;
-            
-            case State.Stunned:
-                StartCoroutine(Stunned(stunDuration));                
-                break;
         }
     }
 
-    private void Patrol()
+    // Patrol between two points
+    public virtual void Patrol()
     {
+        if (isStunned) return;
+
         Transform targetPoint = movingToPointB ? pointB : pointA;
         float step = patrolSpeed * Time.deltaTime;
-
-        // Flip the sprite to face the target point
         FlipSprite(targetPoint.position.x);
-
         transform.position = Vector2.MoveTowards(transform.position, targetPoint.position, step);
 
-        if (Vector2.Distance(transform.position, targetPoint.position) < 0.1f)
+        if (Vector2.Distance(transform.position, targetPoint.position) < 0.1f && !isStunned)
         {
-            movingToPointB = !movingToPointB; // Switch direction
+            movingToPointB = !movingToPointB;
         }
     }
 
-    public IEnumerator Stunned(float stunDuration)
+    // Handles enemy getting stunned
+    public virtual IEnumerator Stunned(float stunDuration)
     {
-        yield return new WaitForSeconds(stunDuration);
+        isStunned = true;
+        stunnable = false;
+        Debug.Log(gameObject.name + " is Stunned for " + stunDuration);
+
+        if (spriteRenderer == null)
+        {
+            Debug.LogError("No SpriteRenderer found!");
+            yield break;
+        }
+
+        // Flash red effect during stun
+        Color originalColor = spriteRenderer.color;
+        Color flashColor = Color.red;
+        float flashInterval = 0.1f;
+        bool isFlashing = false;
+
+        float elapsed = 0f;
+        while (elapsed < stunDuration)
+        {
+            spriteRenderer.color = isFlashing ? originalColor : flashColor;
+            isFlashing = !isFlashing;
+            yield return new WaitForSeconds(flashInterval);
+            elapsed += flashInterval;
+        }
+        spriteRenderer.color = originalColor;
+
+        isStunned = false;
+        Debug.Log(gameObject.name + " no longer Stunned.");
+        yield return new WaitForSeconds(stunDuration * stunDiminishingReturn);
+        stunnable = true;
     }
 
-    private void ChasePlayer()
+    // Chase the closest player
+    public virtual void ChasePlayer()
     {
-        if (targetPlayer == null) return;
+        if (targetPlayer == null || isStunned) return;
 
-        float distanceToTargetPlayer = Vector2.Distance(transform.position, targetPlayer.position);
-
-        // Flip the sprite to face the target player
+        float distanceToTarget = Vector2.Distance(transform.position, targetPlayer.position);
         FlipSprite(targetPlayer.position.x);
 
-        if (distanceToTargetPlayer <= attackRange)
+        if (distanceToTarget <= attackRange)
         {
-            AttackPlayer(); // Call the attack function if within range
+            AttackPlayer();
         }
         else
         {
@@ -151,54 +179,41 @@ public class EnemyController : MonoBehaviour
         }
     }
 
-    private void Search()
+    // Search for a player after losing sight
+    public virtual void Search()
     {
         searchTimer -= Time.deltaTime;
         flipTimer -= Time.deltaTime;
 
-        // Flip the sprite repeatedly while searching
         if (flipTimer <= 0f)
         {
-            FlipSprite(transform.position.x + (facingRight ? -1 : 1)); // Flip back and forth
-            flipTimer = flipInterval; // Reset the flip timer
+            FlipSprite(transform.position.x + (facingRight ? -1 : 1));
+            flipTimer = flipInterval;
         }
     }
 
-    private void AttackPlayer()
+    // Attack the targeted player
+    public virtual void AttackPlayer()
     {
-        PlayerHealth targetPlayerHealth = (targetPlayer == player1) ? player1Health : player2Health;
+        if (isStunned || Time.time < lastAttackTime + attackCooldown) return;
 
-        if (Time.time >= lastAttackTime + attackCooldown && targetPlayerHealth != null)
+        PlayerHealth targetHealth = (targetPlayer == player1) ? player1Health : player2Health;
+        if (targetHealth != null)
         {
-            targetPlayerHealth.TakeDamage(attackDamage); // Call the TakeDamage method on the player
+            targetHealth.TakeDamage(attackDamage);
             source.PlayOneShot(attackSound);
             Debug.Log("Enemy attacks " + targetPlayer.tag + " for " + attackDamage + " damage!");
             lastAttackTime = Time.time;
         }
     }
 
-    private void FlipSprite(float targetX)
+    // Flips the sprite to face the target direction
+    public virtual void FlipSprite(float targetX)
     {
-        // Flip the sprite to face the target's position based on the X axis
         if ((targetX > transform.position.x && !facingRight) || (targetX < transform.position.x && facingRight))
         {
             facingRight = !facingRight;
-            Vector3 scale = transform.localScale;
-            scale.x *= -1;
-            transform.localScale = scale;
+            transform.localScale = new Vector3(-transform.localScale.x, transform.localScale.y, transform.localScale.z);
         }
-    }
-
-    private void OnDrawGizmos()
-    {
-        Gizmos.color = Color.yellow;
-        Gizmos.DrawWireSphere(transform.position, detectionRange); // Draw detection range
-
-        Gizmos.color = Color.red;
-        Gizmos.DrawWireSphere(transform.position, attackRange); // Draw attack range
-
-        Gizmos.color = Color.green;
-        if (pointA != null) Gizmos.DrawLine(transform.position, pointA.position); // Draw line to point A
-        if (pointB != null) Gizmos.DrawLine(transform.position, pointB.position); // Draw line to point B
     }
 }

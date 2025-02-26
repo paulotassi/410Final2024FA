@@ -7,7 +7,7 @@ using UnityEngine.SceneManagement;
 
 public class PlayerController : MonoBehaviour
 {
-    [SerializeField] private enum State { Idle, Walking, Flying, Stunned }
+    [SerializeField] private enum State { Idle, Walking, Flying }
     private State currentState = State.Idle;
 
     // Player movement variables
@@ -28,6 +28,9 @@ public class PlayerController : MonoBehaviour
     public float flightThreshold = 5f;
     public float inactivityTime = 0f; // Time player has been inactive
     public float inactivityThreshold = 2f; // Time threshold for considering inactivity (in seconds)
+    private bool isStunned = false;
+    public bool stunnable = true;
+    public float stunDR = 3.5f;
 
     //Player Shoot variables
     [Header("Shoot Settings" +
@@ -111,9 +114,9 @@ public class PlayerController : MonoBehaviour
         HandleSpriteFlipAndCamera();
 
         // Handle player actions
-        if (jumped && isGrounded) Jump();
-        if (fired && canShoot) StartCoroutine(Shoot());
-        if (shielded && canShield) StartCoroutine(Shield());
+        if (jumped && isGrounded && !isStunned) Jump();
+        if (fired && canShoot && !isStunned) StartCoroutine(Shoot());
+        if (shielded && canShield && !isStunned) StartCoroutine(Shield());
 
         // Reset move speed if no horizontal input
         moveSpeed = (horizontalInput == 0) ? initialMoveSpeed : moveSpeed;
@@ -162,7 +165,7 @@ public class PlayerController : MonoBehaviour
     {
         inactivityTime = (horizontalInput == 0 && verticalInput == 0) ? inactivityTime + Time.deltaTime : 0f;
 
-        if (inactivityTime > inactivityThreshold && currentState == State.Flying)
+        if (inactivityTime > inactivityThreshold && currentState == State.Flying || isStunned)
         {
             fallRate = Mathf.Clamp(fallRate + (liftChangeRate / 3), 0, 15f);
         }
@@ -176,7 +179,7 @@ public class PlayerController : MonoBehaviour
     // FixedUpdate is called at fixed intervals, used for physics-based calculations
     void FixedUpdate()
     {
-
+        if (isStunned) return;
         Move();
 
         // Reset move speed to initial value when no horizontal input
@@ -240,6 +243,18 @@ public class PlayerController : MonoBehaviour
 
         yield return new WaitForSeconds(shieldCooldown);
         canShield = true;
+    }
+
+    public virtual IEnumerator Stunned(float stunDuration)
+    {
+        isStunned = true;
+        stunnable = false;
+        Debug.Log(this.gameObject.name + " is Stunned for " + stunDuration);
+        yield return new WaitForSeconds(stunDuration);
+        isStunned = false;
+        Debug.Log(this.gameObject.name + "no longer Stunned. Cannot be stunned for " + (stunDuration * stunDR));
+        yield return new WaitForSeconds(stunDuration * stunDR);
+        stunnable = true;
     }
 
     public IEnumerator createScreenShake(float screenShakeIntensity)

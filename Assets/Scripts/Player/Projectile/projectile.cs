@@ -33,14 +33,26 @@ public class projectile : MonoBehaviour
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (!collision.gameObject.GetComponent<PlayerController>())
+        if (!collision.gameObject.GetComponent<PlayerController>() && !collision.gameObject.GetComponent<EnemyHealth>())
         {
             Destroy(this.gameObject);
         }
-        else if (collision.gameObject.GetComponent<PlayerController>() != null && gameManager.competetiveMode)
+        else if (collision.gameObject.GetComponent<PlayerController>() != null)
         {
             collision.gameObject.GetComponent<PlayerHealth>().TakeDamage(projectileDamage);
-            //Debug.Log("Hit a Player");
+            if (projectileStun)
+            {
+                collision.gameObject.GetComponent<PlayerController>().StartCoroutine(collision.gameObject.GetComponent<PlayerController>().Stunned(projectileStunDuration));
+            }
+            Destroy(this.gameObject);
+        }
+        else if (collision.gameObject.GetComponent<EnemyController>() != null)
+        {
+            collision.gameObject.GetComponent<EnemyHealth>().TakeDamage(projectileDamage);
+            if (projectileStun)
+            {
+                collision.gameObject.GetComponent<EnemyController>().StartCoroutine(collision.gameObject.GetComponent<EnemyController>().Stunned(projectileStunDuration));
+            }
             Destroy(this.gameObject);
         }
     }
