@@ -290,6 +290,7 @@ public class GameManager : MonoBehaviour
             player1Ingredients[type] = 0;
 
         player1Ingredients[type]++;
+        player1IngredientCount++;
 
         if (player1Ingredients[type] >= 5)
         {
@@ -311,9 +312,11 @@ public class GameManager : MonoBehaviour
             player2Ingredients[type] = 0;
 
         player2Ingredients[type]++;
+        player2IngredientCount++;
 
         if (player2Ingredients[type] >= 5)
-        { 
+        {
+            Debug.Log("Collected Enough " + type + " for a buff!");
 
         }
     }

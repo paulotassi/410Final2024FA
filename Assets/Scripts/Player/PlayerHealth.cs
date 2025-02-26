@@ -92,7 +92,7 @@ public class PlayerHealth : MonoBehaviour
         // Player-specific ingredient loss and ingredient spawning logic
             if (this.gameObject.name == "Player")
             {
-                gameManager.player1DecreaseIngredient(Mathf.FloorToInt(gameManager.player1IngredientCount / 2)); // Reduce Player 1's ingredient count
+                gameManager.player1DecreaseIngredient(); // Reduce Player 1's ingredient count
                 playerLifeCountRemaining--;
 
                 for (int i = 0; i < gameManager.player1IngredientCount; i++)
@@ -120,7 +120,7 @@ public class PlayerHealth : MonoBehaviour
             }
             else if (this.gameObject.name == "Player 2")
             {
-                gameManager.player2DecreaseIngredient(Mathf.FloorToInt(gameManager.player2IngredientCount / 2)); // Reduce Player 2's ingredient count
+                gameManager.player2DecreaseIngredient(); // Reduce Player 2's ingredient count
                 playerLifeCountRemaining--;
 
                 for (int i = 0; i < gameManager.player2IngredientCount; i++)
