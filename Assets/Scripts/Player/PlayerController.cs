@@ -69,6 +69,7 @@ public class PlayerController : MonoBehaviour
     public float horizontalInput; // Horizontal input from the player
     public float verticalInput; // Vertical input from the player (used in flight mode)
     public bool flightMode = false; // Tracks if the player is in flight mode
+    private bool isFalling = false;
 
     // Animation variables
     public Animator animator; // Reference to the Animator for controlling animations
@@ -110,7 +111,9 @@ public class PlayerController : MonoBehaviour
         // Update animator parameters
         animator.SetFloat("WalkSpeed", moveSpeed);
         animator.SetFloat("FlightY", verticalInput);
-        animator.SetBool("Flying", !isGrounded);
+        animator.SetBool("Flying", flightMode);
+        animator.SetBool("Falling", isFalling);
+        animator.SetBool("Grounded", isGrounded);
 
         // Handle sprite flipping and camera priority
         HandleSpriteFlipAndCamera();
@@ -123,11 +126,24 @@ public class PlayerController : MonoBehaviour
         // Reset move speed if no horizontal input
         moveSpeed = (horizontalInput == 0) ? initialMoveSpeed : moveSpeed;
 
+        //swaps flightmode
+        if (!isFalling && rb.linearVelocity.y <= 0 && verticalInput != 0)
+        {
+            EnterFlightMode();
+        }
+
         // Handle state transitions
         UpdatePlayerState();
 
         // Track player inactivity
         TrackInactivity();
+    }
+
+    void EnterFlightMode()
+    {
+        flightMode = true;
+        currentState = State.Flying;
+        isFalling = false; // Reset falling state
     }
 
     void HandleSpriteFlipAndCamera()
@@ -148,10 +164,9 @@ public class PlayerController : MonoBehaviour
 
     void UpdatePlayerState()
     {
-        bool isFalling = Mathf.Abs(rb.linearVelocity.y) < 0.1f;
         bool isMovingFast = Mathf.Abs(rb.linearVelocity.x) >= transitionThreshold;
 
-        if (!isGrounded && (isFalling || isMovingFast))
+        if (!isGrounded && isMovingFast)
         {
             flightMode = true;
             currentState = State.Flying;
@@ -191,10 +206,14 @@ public class PlayerController : MonoBehaviour
         if (inactivityTime > inactivityThreshold && currentState == State.Flying || isStunned)
         {
             fallRate = Mathf.Clamp(fallRate + (liftChangeRate / 3), 0, 15f);
+            isFalling = true;
+            flightMode = false ;
         }
         else
         {
             fallRate = 0f;
+            isFalling = false;
+
         }
     }
 
@@ -240,6 +259,7 @@ public class PlayerController : MonoBehaviour
     // Handle the jump action by applying a vertical force
     void Jump()
     {
+        isFalling = true;
         rb.AddForce(new Vector2(rb.linearVelocity.x, jumpForce), ForceMode2D.Impulse); // Apply jump force
         
     }
@@ -272,9 +292,11 @@ public class PlayerController : MonoBehaviour
     {
         isStunned = true;
         stunnable = false;
+        isFalling = true;
         Debug.Log(this.gameObject.name + " is Stunned for " + stunDuration);
         yield return new WaitForSeconds(stunDuration);
         isStunned = false;
+        isFalling = false;
         Debug.Log(this.gameObject.name + "no longer Stunned. Cannot be stunned for " + (stunDuration * stunDR));
         yield return new WaitForSeconds(stunDuration * stunDR);
         stunnable = true;
