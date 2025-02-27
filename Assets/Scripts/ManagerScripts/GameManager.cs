@@ -81,8 +81,14 @@ public class GameManager : MonoBehaviour
         playerCollider2 = player2GameObject.GetComponent<CapsuleCollider2D>();
         playerLayer2 = playerCollider2.gameObject.layer;
         bossDead = FindFirstObjectByType<BossHP>();
-       
 
+        GetPlayerCDTimers();
+
+
+    }
+
+    public void GetPlayerCDTimers()
+    {
         Player2ShieldCDMaxValue = player2GameObject.GetComponent<PlayerController>().shieldCooldown + player2GameObject.GetComponent<PlayerController>().shieldDuration;
         Player2ShootCDMaxValue = player2GameObject.GetComponent<PlayerController>().shootCoolDown;
         Player2ShootCDTimer = Player2ShootCDMaxValue;
@@ -92,8 +98,10 @@ public class GameManager : MonoBehaviour
         Player1ShootCDMaxValue = player1GameObject.GetComponent<PlayerController>().shootCoolDown;
         Player1ShootCDTimer = Player1ShootCDMaxValue;
         Player1ShieldCDTimer = Player1ShieldCDMaxValue;
-
+        Debug.Log("P2 Shoot CD Max = " + Player2ShootCDMaxValue);
     }
+
+
     void Update()
     {
 
@@ -284,7 +292,7 @@ public class GameManager : MonoBehaviour
     }
 
     // Method to increase Player 1's ingredient count by 1.
-     public void player1IncreaseIngredient(IngredientType type)
+     public void player1IncreaseIngredient(IngredientType type, GameObject player)
     {
         if (!player1Ingredients.ContainsKey(type))
             player1Ingredients[type] = 0;
@@ -294,7 +302,8 @@ public class GameManager : MonoBehaviour
 
         if (player1Ingredients[type] >= 5)
         {
-
+            ApplyBuff(player, type);
+            player1Ingredients[type] = 0; // Reset count after buff is applied
         }
             
     }
@@ -306,7 +315,7 @@ public class GameManager : MonoBehaviour
 
     // Method to increase Player 2's ingredient count by 1.
     
-    public void player2IncreaseIngredient(IngredientType type)
+    public void player2IncreaseIngredient(IngredientType type, GameObject player)
     {
         if (!player2Ingredients.ContainsKey(type))
             player2Ingredients[type] = 0;
@@ -317,7 +326,8 @@ public class GameManager : MonoBehaviour
         if (player2Ingredients[type] >= 5)
         {
             Debug.Log("Collected Enough " + type + " for a buff!");
-
+            ApplyBuff(player, type);
+            player1Ingredients[type] = 0; // Reset count after buff is applied
         }
     }
 
@@ -341,14 +351,29 @@ public class GameManager : MonoBehaviour
 
     private void ApplyBuff(GameObject player, IngredientType type)
     {
-        Debug.Log($"{player.name} received a buff for collecting 5 {type}!");
 
         PlayerController playerController = player.GetComponent<PlayerController>();
+        if (playerController == null) return;
 
-        if (playerController != null)
+        BuffType buffToApply;
+
+        switch (type)
         {
-            Debug.Log("buff logic here?");
+            case IngredientType.Herb:
+                buffToApply = BuffType.SpeedBoost;
+                break;
+            case IngredientType.Finger:
+                buffToApply = BuffType.FireRateIncrease;
+                break;
+            case IngredientType.Spider:
+                buffToApply = BuffType.ShieldExtension;
+                break;
+            default:
+                return; // No buff for this type
         }
+
+        playerController.ApplyBuff(buffToApply);
+        GetPlayerCDTimers();
     }
 
     public void increaseGameTime(float increaseAmount)

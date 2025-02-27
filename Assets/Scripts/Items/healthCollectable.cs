@@ -13,18 +13,16 @@ public class healthCollectable : collectableObject
 
 
     }
-    public override void Player1CollectItem()
+    public override void Player1CollectItem(Collider2D playerCollided)
     {
 
-        base.Player1CollectItem();
-        //Manager.player1IncreaseIngredient();
+        base.Player1CollectItem(playerCollided);
         Manager.player1GameObject.GetComponent<PlayerHealth>().TakeDamage(-healthIncrease);
     }
 
-    public override void Player2CollectItem()
+    public override void Player2CollectItem(Collider2D playerCollided)
     {
-        base.Player2CollectItem();
-        //Manager.player2IncreaseIngredient();
+        base.Player2CollectItem(playerCollided);
         Manager.player2GameObject.GetComponent<PlayerHealth>().TakeDamage(-healthIncrease);
     }
 }

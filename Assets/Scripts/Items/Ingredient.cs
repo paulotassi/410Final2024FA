@@ -27,15 +27,15 @@ public class Ingredient : collectableObject
         }
     }
 
-    public override void Player1CollectItem()
+    public override void Player1CollectItem(Collider2D playerCollided)
     {
-        base.Player1CollectItem();
-        Manager.player1IncreaseIngredient(ingredientType);
+        base.Player1CollectItem(playerCollided);
+        Manager.player1IncreaseIngredient(ingredientType, playerCollided.gameObject);
     }
 
-    public override void Player2CollectItem()
+    public override void Player2CollectItem(Collider2D playerCollided)
     {
-        base.Player2CollectItem();
-        Manager.player2IncreaseIngredient(ingredientType);
+        base.Player2CollectItem(playerCollided);
+        Manager.player2IncreaseIngredient(ingredientType, playerCollided.gameObject);
     }
 }
