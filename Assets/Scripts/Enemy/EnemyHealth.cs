@@ -5,34 +5,49 @@ using UnityEngine;
 public class EnemyHealth : MonoBehaviour
 {
     public int health = 100;
-    public int damageAmount = 10;
+    public AdvancedEnemyController advancedEnemyController;
+    public GameObject spiderlingPrefab;
 
-    // This function gets called when another collider enters the trigger collider attached to this GameObject
-    private void OnTriggerEnter2D(Collider2D other)
+    public void Start()
     {
-        // Check if the object we collided with is tagged as "Playerspell"
-        if (other.CompareTag("PlayerSpell"))
-        {
-            // Apply damage
-            TakeDamage(damageAmount);
-
-            // Optionally, destroy the Playerspell GameObject after collision
-            // Destroy(other.gameObject);
-        }
+        advancedEnemyController = GetComponent<AdvancedEnemyController>();
     }
 
     // Function to handle taking damage
-    void TakeDamage(int damage)
+    public void TakeDamage(int damage)
     {
         health -= damage;
-        Debug.Log("Health: " + health);
-
-        // Check if health is 0 or below
+        Debug.Log("Enemy DAMAGED!");
         if (health <= 0)
         {
             // Handle death, like destroying the object
-            Destroy(transform.parent.gameObject);
-            Debug.Log("Object destroyed!");
+            Destroy(transform.gameObject);
+            if (advancedEnemyController != null)
+            {
+                for (int i = 0; i < advancedEnemyController.spiderlingAmount; i++)
+                {
+                    Vector3[] spawnlocation = new Vector3[i]; // Create an array to hold spawn positions for ingredients
+
+                    for (int j = 0; j < spawnlocation.Length; j++)
+                    {
+                        // Generate a random position near the player
+                        spawnlocation[j] = new Vector3(
+                            this.gameObject.transform.position.x + Random.Range(-3, 3),
+                            this.gameObject.transform.position.y + Random.Range(-3, 3),
+                            this.gameObject.transform.position.z
+                        );
+                    }
+
+                    GameObject[] totalSpawnedSpiderlings = new GameObject[i]; // Array to hold ingredient GameObjects
+
+                    for (int j = 0; j < totalSpawnedSpiderlings.Length; j++)
+                    {
+                        // Instantiate each ingredient at its calculated spawn location
+                        totalSpawnedSpiderlings[j] = Instantiate(spiderlingPrefab, spawnlocation[j], Quaternion.identity);
+                    }
+                }
+            }
+            
         }
     }
 }

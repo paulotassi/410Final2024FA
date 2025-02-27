@@ -111,7 +111,7 @@ public class BossPhase2Attack : MonoBehaviour
             Rigidbody2D rb = projectile.GetComponent<Rigidbody2D>();
 
             // Set the projectile's velocity toward the target player
-            rb.velocity = direction * projectileSpeed;
+            rb.linearVelocity = direction * projectileSpeed;
 
             yield return new WaitForSeconds(0.1f); // Small delay between projectiles
         }
@@ -125,7 +125,7 @@ public class BossPhase2Attack : MonoBehaviour
         Vector2 direction = (targetPlayer.position - transform.position).normalized;
         Rigidbody2D rb = projectile.GetComponent<Rigidbody2D>();
 
-        rb.velocity = direction * projectileSpeed;
+        rb.linearVelocity = direction * projectileSpeed;
 
         yield return null; // No additional delay needed
     }
