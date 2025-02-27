@@ -10,15 +10,15 @@ public class timeIncreaseItem : collectableObject
     {
         Manager = FindFirstObjectByType<GameManager>();
     }
-    public override void Player1CollectItem()
+    public override void Player1CollectItem(Collider2D playerCollided)
     {
-        base.Player1CollectItem();
+        base.Player1CollectItem(playerCollided);
         Manager.increaseGameTime(15);
     }
 
-    public override void Player2CollectItem()
+    public override void Player2CollectItem(Collider2D playerCollided)
     {
-        base.Player2CollectItem();
+        base.Player2CollectItem(playerCollided);
         Manager.increaseGameTime(15);
     }
 }

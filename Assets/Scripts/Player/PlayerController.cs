@@ -83,7 +83,9 @@ public class PlayerController : MonoBehaviour
     [SerializeField] protected float screenShakeValue = 1f;
     [SerializeField] protected float screenShakeDuration = 0.5f;
 
-    
+
+
+
 
     // Start is called before the first frame update
     void Start()
@@ -158,6 +160,27 @@ public class PlayerController : MonoBehaviour
         {
             flightMode = false;
             currentState = (horizontalInput != 0) ? State.Walking : State.Idle;
+        }
+    }
+
+    public void ApplyBuff(BuffType buffType)
+    {
+        switch (buffType)
+        {
+            case BuffType.SpeedBoost:
+                topSpeed *= 3f; // Increase speed by 50%
+                Debug.Log("Speed Boost Applied!");
+                break;
+
+            case BuffType.FireRateIncrease:
+                shootCoolDown /= 2; // Decrease fire rate cooldown by 25% (higher fire rate)
+                Debug.Log("Fire Rate Increased!");
+                break;
+
+            case BuffType.ShieldExtension:
+                shieldDuration += 2f; // Extend shield duration by 2 seconds
+                Debug.Log("Shield Duration Extended!");
+                break;
         }
     }
 

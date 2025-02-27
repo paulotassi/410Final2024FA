@@ -63,7 +63,12 @@ public class GameManager : MonoBehaviour
     [SerializeField] public int playerLayer1;
     [SerializeField] public int playerLayer2;
     [SerializeField] public BossHP bossDead;
-    
+
+
+    private Dictionary<IngredientType, int> player1Ingredients = new Dictionary<IngredientType, int>();
+    private Dictionary<IngredientType, int> player2Ingredients = new Dictionary<IngredientType, int>();
+
+
     // Update is called once per frame (every frame)
 
     private void Start()
@@ -76,8 +81,14 @@ public class GameManager : MonoBehaviour
         playerCollider2 = player2GameObject.GetComponent<CapsuleCollider2D>();
         playerLayer2 = playerCollider2.gameObject.layer;
         bossDead = FindFirstObjectByType<BossHP>();
-       
 
+        GetPlayerCDTimers();
+
+
+    }
+
+    public void GetPlayerCDTimers()
+    {
         Player2ShieldCDMaxValue = player2GameObject.GetComponent<PlayerController>().shieldCooldown + player2GameObject.GetComponent<PlayerController>().shieldDuration;
         Player2ShootCDMaxValue = player2GameObject.GetComponent<PlayerController>().shootCoolDown;
         Player2ShootCDTimer = Player2ShootCDMaxValue;
@@ -87,8 +98,10 @@ public class GameManager : MonoBehaviour
         Player1ShootCDMaxValue = player1GameObject.GetComponent<PlayerController>().shootCoolDown;
         Player1ShootCDTimer = Player1ShootCDMaxValue;
         Player1ShieldCDTimer = Player1ShieldCDMaxValue;
-
+        Debug.Log("P2 Shoot CD Max = " + Player2ShootCDMaxValue);
     }
+
+
     void Update()
     {
 
@@ -180,6 +193,7 @@ public class GameManager : MonoBehaviour
         Player1ShootCDEnabled = false;
 
     }
+
 
 
     private IEnumerator player1ShieldCDTrigger()
@@ -278,25 +292,88 @@ public class GameManager : MonoBehaviour
     }
 
     // Method to increase Player 1's ingredient count by 1.
-    public void player1IncreaseIngredient(int amountIncrease)
+     public void player1IncreaseIngredient(IngredientType type, GameObject player)
     {
-        player1IngredientCount= player1IngredientCount + amountIncrease;
-    }
+        if (!player1Ingredients.ContainsKey(type))
+            player1Ingredients[type] = 0;
 
-    public void player1DecreaseIngredient(int lossIngredientAmount)
+        player1Ingredients[type]++;
+        player1IngredientCount++;
+
+        if (player1Ingredients[type] >= 5)
+        {
+            ApplyBuff(player, type);
+            player1Ingredients[type] = 0; // Reset count after buff is applied
+        }
+            
+    }
+    public void player1DecreaseIngredient()
     {
-        player1IngredientCount = player1IngredientCount - lossIngredientAmount;
+        if (player1Ingredients.Count > 0)
+            RemoveRandomIngredient(player1Ingredients);
     }
 
     // Method to increase Player 2's ingredient count by 1.
-    public void player2IncreaseIngredient(int amountIncrease)
+    
+    public void player2IncreaseIngredient(IngredientType type, GameObject player)
     {
-        player2IngredientCount = player2IngredientCount + amountIncrease;
+        if (!player2Ingredients.ContainsKey(type))
+            player2Ingredients[type] = 0;
+
+        player2Ingredients[type]++;
+        player2IngredientCount++;
+
+        if (player2Ingredients[type] >= 5)
+        {
+            Debug.Log("Collected Enough " + type + " for a buff!");
+            ApplyBuff(player, type);
+            player1Ingredients[type] = 0; // Reset count after buff is applied
+        }
     }
 
-    public void player2DecreaseIngredient(int lossIngredientAmount)
+    public void player2DecreaseIngredient()
     {
-        player2IngredientCount = player2IngredientCount - lossIngredientAmount;
+        if (player2Ingredients.Count > 0)
+            RemoveRandomIngredient(player2Ingredients);
+    }
+
+    private void RemoveRandomIngredient(Dictionary<IngredientType, int> playerIngredients)
+    {
+        List<IngredientType> ingredientKeys = new List<IngredientType>(playerIngredients.Keys);
+        IngredientType randomType = ingredientKeys[Random.Range(0, ingredientKeys.Count)];
+
+        playerIngredients[randomType]-=ingredientKeys.Count/2;
+
+        if (playerIngredients[randomType] <= 0)
+            playerIngredients.Remove(randomType); // Remove if count reaches zero
+
+    }
+
+    private void ApplyBuff(GameObject player, IngredientType type)
+    {
+
+        PlayerController playerController = player.GetComponent<PlayerController>();
+        if (playerController == null) return;
+
+        BuffType buffToApply;
+
+        switch (type)
+        {
+            case IngredientType.Herb:
+                buffToApply = BuffType.SpeedBoost;
+                break;
+            case IngredientType.Finger:
+                buffToApply = BuffType.FireRateIncrease;
+                break;
+            case IngredientType.Spider:
+                buffToApply = BuffType.ShieldExtension;
+                break;
+            default:
+                return; // No buff for this type
+        }
+
+        playerController.ApplyBuff(buffToApply);
+        GetPlayerCDTimers();
     }
 
     public void increaseGameTime(float increaseAmount)
