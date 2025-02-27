@@ -9,7 +9,7 @@ public class BBSceneManager : MonoBehaviour
     //A state will exist that will continue guiding players through their playthrough. an additional button will appear that will say to reset coop run or reset comp run to bring player game states back to first level.
     public void LoadCompetetivePlaythrough()
     {
-        SceneManager.LoadScene("CompetetiveSceneRound1");
+        SceneManager.LoadScene("CompetitiveLevel2");
     }
 
     public void LoadCooperativePlaythrough()
