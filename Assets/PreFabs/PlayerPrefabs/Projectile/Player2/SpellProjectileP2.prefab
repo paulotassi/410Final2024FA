@@ -33,7 +33,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 138.496, y: 217.853, z: 0}
-  m_LocalScale: {x: 0.7187668, y: 0.6579157, z: 1}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -106,9 +106,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   projectileSpeed: 40
-  projectileDamage: 25
-  projectileStun: 1
-  projectileStunDuration: 5
+  projectileDamage: 20
+  projectileStun: 0
+  projectileStunDuration: 0
   lifetime: 1
   rb: {fileID: 0}
   playerAim: {fileID: 0}
@@ -174,8 +174,8 @@ CapsuleCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: 0, y: 0.02}
-  m_Size: {x: 1, y: 0.0001}
+  m_Offset: {x: 0.0026536405, y: -0.0061808336}
+  m_Size: {x: 0.37711415, y: 0.4468522}
   m_Direction: 0
 --- !u!114 &3967765594077133636
 MonoBehaviour:

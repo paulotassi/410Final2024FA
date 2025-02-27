@@ -105,9 +105,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   projectileSpeed: 40
-  projectileDamage: 50
-  projectileStun: 1
-  projectileStunDuration: 3
+  projectileDamage: 20
+  projectileStun: 0
+  projectileStunDuration: 0
   lifetime: 1
   rb: {fileID: 0}
   playerAim: {fileID: 0}

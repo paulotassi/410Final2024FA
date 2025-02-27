@@ -37,8 +37,11 @@ public class PlayerController : MonoBehaviour
         "")]
     public Vector2 aimInput = Vector2.zero; //input vector
     public bool canShoot = true; //Shooting bool
+    public bool canAltShoot = true; //Shooting bool
     public float shootCoolDown; //How long until players can shoot again
+    public float altShootCoolDown; //How long until players can shoot again
     public GameObject projectilePrefab; //The projectile prefab holding the motion for projectiles
+    public GameObject altProjectilePrefab; //The projectile prefab holding the motion for projectiles
     public GameObject projectileSpawnLocation; //spawnLocation of the rotating familiar
     public GameObject projectileSpawnRotation; //spawn rotation to follow the Familiar direction
 
@@ -55,6 +58,7 @@ public class PlayerController : MonoBehaviour
     public bool fired = false;
     private bool dashed = false;
     public bool shielded = false;
+    public bool altFired = false;
 
 
     // Ground check variables
@@ -121,6 +125,7 @@ public class PlayerController : MonoBehaviour
         // Handle player actions
         if (jumped && isGrounded && !isStunned) Jump();
         if (fired && canShoot && !isStunned) StartCoroutine(Shoot());
+        if (altFired && canAltShoot && !isStunned) StartCoroutine(AltShoot());
         if (shielded && canShield && !isStunned) StartCoroutine(Shield());
 
         // Reset move speed if no horizontal input
@@ -274,6 +279,15 @@ public class PlayerController : MonoBehaviour
         canShoot = true;
     }
 
+    private IEnumerator AltShoot()
+    {
+        canAltShoot = false;
+        Instantiate(altProjectilePrefab, projectileSpawnLocation.transform.position, projectileSpawnRotation.transform.rotation);
+        StartCoroutine(createScreenShake(2));
+        yield return new WaitForSeconds(altShootCoolDown);
+        canAltShoot = true;
+    }
+
     private IEnumerator Shield()
     {
         canShield = false;
@@ -344,5 +358,10 @@ public class PlayerController : MonoBehaviour
     public void OnDash(InputAction.CallbackContext context)
     {
         shielded = context.action.triggered;
+    }
+
+    public void OnAltShoot(InputAction.CallbackContext context)
+    {
+        altFired = context.action.triggered;
     }
 }
