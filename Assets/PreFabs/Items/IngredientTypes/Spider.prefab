@@ -139,5 +139,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Manager: {fileID: 0}
   ingredientType: 2
-  ingredients:
-  - {fileID: 8672156466262258991}
+  ingredients: []

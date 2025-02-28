@@ -50,6 +50,7 @@ public class AdvancedEnemyController : EnemyController
         // If the enemy reaches the patrol point, pick a new one
         if (Vector2.Distance(transform.position, currentPatrolTarget.position) < 0.1f)
         {
+            Destroy(currentPatrolTarget.gameObject);
             PickNewPatrolPoint();
         }
     }
@@ -95,5 +96,6 @@ public class AdvancedEnemyController : EnemyController
         GameObject tempPoint = new GameObject("PatrolPoint");
         tempPoint.transform.position = randomPoint;
         currentPatrolTarget = tempPoint.transform;
+        
     }
 }
