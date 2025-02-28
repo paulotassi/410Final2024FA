@@ -87,71 +87,72 @@ public class PlayerHealth : MonoBehaviour
 
     private void Die()
     {
-        Debug.Log("Player " + playerIndex + " died!"); // Log the player's death
+        // Log the player's death (Disabled for now)
+        // Debug.Log("Player " + playerIndex + " died!");
 
-        // Player-specific ingredient loss and ingredient spawning logic
-            if (this.gameObject.name == "Player")
+        // Handle ingredient loss and spawning based on the player
+        if (this.gameObject.name == "Player")
+        {
+            gameManager.player1DecreaseIngredient(); // Reduce Player 1's ingredient count
+            playerLifeCountRemaining--;
+
+            // Create arrays for spawn positions and ingredient objects
+            Vector3[] spawnLocations = new Vector3[gameManager.player1IngredientCount];
+            GameObject[] totalCoinDrops = new GameObject[gameManager.player1IngredientCount];
+
+            Debug.Log("TOTAL COINS DROP ARRAY= " + spawnLocations.Length);
+            Debug.Log("TOTAL COINS DROP ARRAY= " + totalCoinDrops.Length);
+
+            // Generate random spawn positions near the player
+            for (int j = 0; j < spawnLocations.Length; j++)
             {
-                gameManager.player1DecreaseIngredient(); // Reduce Player 1's ingredient count
-                playerLifeCountRemaining--;
-
-                for (int i = 0; i < gameManager.player1IngredientCount; i++)
-                {
-                    Vector3[] spawnlocation = new Vector3[i]; // Create an array to hold spawn positions for ingredients
-
-                    for (int j = 0; j < spawnlocation.Length; j++)
-                    {
-                        // Generate a random position near the player
-                        spawnlocation[j] = new Vector3(
-                            this.gameObject.transform.position.x + Random.Range(-3, 3),
-                            this.gameObject.transform.position.y + Random.Range(-3, 3),
-                            this.gameObject.transform.position.z
-                        );
-                    }
-
-                    GameObject[] totalCoinDrops = new GameObject[i]; // Array to hold ingredient GameObjects
-
-                    for (int j = 0; j < totalCoinDrops.Length; j++)
-                    {
-                        // Instantiate each ingredient at its calculated spawn location
-                        totalCoinDrops[j] = Instantiate(ingredientPrefab, spawnlocation[j], Quaternion.identity);
-                    }
-                }
+                spawnLocations[j] = new Vector3(
+                    this.gameObject.transform.position.x + Random.Range(-3, 3),
+                    this.gameObject.transform.position.y + Random.Range(-3, 3),
+                    this.gameObject.transform.position.z
+                );
             }
-            else if (this.gameObject.name == "Player 2")
+
+            // Instantiate ingredient objects at calculated positions
+            for (int j = 0; j < totalCoinDrops.Length; j++)
             {
-                gameManager.player2DecreaseIngredient(); // Reduce Player 2's ingredient count
-                playerLifeCountRemaining--;
-
-                for (int i = 0; i < gameManager.player2IngredientCount; i++)
-                {
-                    Vector3[] spawnlocation = new Vector3[i]; // Create array for ingredient spawn positions
-
-                    for (int j = 0; j < spawnlocation.Length; j++)
-                    {
-                        spawnlocation[j] = new Vector3(
-                            this.gameObject.transform.position.x + Random.Range(-3, 3),
-                            this.gameObject.transform.position.y + Random.Range(-3, 3),
-                            this.gameObject.transform.position.z
-                        );
-                    }
-
-                    GameObject[] totalCoinDrops = new GameObject[i]; // Array for instantiated ingredients
-
-                    for (int j = 0; j < totalCoinDrops.Length; j++)
-                    {
-                        totalCoinDrops[j] = Instantiate(ingredientPrefab, spawnlocation[j], Quaternion.identity);
-                    }
-                }
+                totalCoinDrops[j] = Instantiate(ingredientPrefab, spawnLocations[j], Quaternion.identity);
+                gameManager.player1IngredientCount--;
             }
+        }
+        else if (this.gameObject.name == "Player 2")
+        {
+            gameManager.player2DecreaseIngredient(); // Reduce Player 2's ingredient count
+            playerLifeCountRemaining--;
+
+            // Create arrays for spawn positions and ingredient objects
+            Vector3[] spawnLocations = new Vector3[gameManager.player2IngredientCount];
+            GameObject[] totalCoinDrops = new GameObject[gameManager.player2IngredientCount];
+
+            Debug.Log("TOTAL COINS DROP ARRAY= " + spawnLocations.Length);
+            Debug.Log("TOTAL COINS DROP ARRAY= " + totalCoinDrops.Length);
+
+            // Generate random spawn positions near the player
+            for (int j = 0; j < spawnLocations.Length; j++)
+            {
+                spawnLocations[j] = new Vector3(
+                    this.gameObject.transform.position.x + Random.Range(-3, 3),
+                    this.gameObject.transform.position.y + Random.Range(-3, 3),
+                    this.gameObject.transform.position.z
+                );
+            }
+
+            // Instantiate ingredient objects at calculated positions
+            for (int j = 0; j < totalCoinDrops.Length; j++)
+            {
+                totalCoinDrops[j] = Instantiate(ingredientPrefab, spawnLocations[j], Quaternion.identity);
+                gameManager.player2IngredientCount--;
+            }
+        }
+
         StartCoroutine(Respawn(5f)); // Start the respawn process with a delay
     }
 
-    private void ScaleModelTo(Vector3 scale)
-    {
-        // Scale the player's model to the specified scale
-        playerModel.transform.localScale = scale;
-    }
 
     public void ReviveShield()
     {
