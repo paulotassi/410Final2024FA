@@ -124,6 +124,7 @@ public class PlayerController : MonoBehaviour
 
         // Handle player actions
         if (jumped && isGrounded && !isStunned) Jump();
+        //Move this back to Fixed
         if (fired && canShoot && !isStunned) StartCoroutine(Shoot());
         if (altFired && canAltShoot && !isStunned) StartCoroutine(AltShoot());
         if (shielded && canShield && !isStunned) StartCoroutine(Shield());
@@ -265,6 +266,7 @@ public class PlayerController : MonoBehaviour
     void Jump()
     {
         isFalling = true;
+        isGrounded = false;
         rb.AddForce(new Vector2(rb.linearVelocity.x, jumpForce), ForceMode2D.Impulse); // Apply jump force
         
     }
