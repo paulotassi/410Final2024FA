@@ -36,7 +36,16 @@
                     "name": "Shoot",
                     "type": "Button",
                     "id": "617b3231-0b52-464d-a845-accacc0ab861",
-                    "expectedControlType": "Button",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "AltShoot",
+                    "type": "Button",
+                    "id": "c80841ad-8277-4a66-86fb-976b636663f4",
+                    "expectedControlType": "",
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
@@ -190,6 +199,28 @@
                     "processors": "",
                     "groups": "GamePad",
                     "action": "Shoot",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "b59bc3e5-3ecf-4d77-a6d4-584d1d40ade6",
+                    "path": "<Mouse>/rightButton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Keyboard",
+                    "action": "AltShoot",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "555c4e09-5073-474e-96d8-6abcb1c038ce",
+                    "path": "<Gamepad>/rightShoulder",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "GamePad",
+                    "action": "AltShoot",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },

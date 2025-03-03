@@ -202,7 +202,7 @@ public class EnemyController : MonoBehaviour
         {
             targetHealth.TakeDamage(attackDamage);
             source.PlayOneShot(attackSound);
-            Debug.Log("Enemy attacks " + targetPlayer.tag + " for " + attackDamage + " damage!");
+            //Debug.Log("Enemy attacks " + targetPlayer.tag + " for " + attackDamage + " damage!");
             lastAttackTime = Time.time;
         }
     }

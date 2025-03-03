@@ -1,19 +1,19 @@
 fileFormatVersion: 2
-guid: 0fbba300d28f0d04997989a62699c09b
+guid: c767a6c7dcff21748a6768be2074810d
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -557003528377651417
-    second: SpiderEnemySprites_0
+      213: 1752919447748746525
+    second: Witch_Falling_Sprite_Sheet_0
   - first:
-      213: 5510836881361268229
-    second: SpiderEnemySprites_1
+      213: -4440682047016640070
+    second: Witch_Falling_Sprite_Sheet_1
   - first:
-      213: 7885152299661651202
-    second: SpiderEnemySprites_2
+      213: 5927361760045310796
+    second: Witch_Falling_Sprite_Sheet_2
   - first:
-      213: 3203029590117025221
-    second: SpiderEnemySprites_3
+      213: 927687394396014104
+    second: Witch_Falling_Sprite_Sheet_3
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -60,7 +60,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 60
+  spritePixelsToUnits: 100
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -84,7 +84,7 @@ TextureImporter:
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 0
+    textureCompression: 1
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -161,13 +161,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: SpiderEnemySprites_0
+      name: Witch_Falling_Sprite_Sheet_0
       rect:
         serializedVersion: 2
-        x: 8
-        y: 10
-        width: 77
-        height: 77
+        x: 35
+        y: 7
+        width: 46
+        height: 88
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -176,20 +176,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 72f2968fd302548f0800000000000000
-      internalID: -557003528377651417
+      spriteID: d1d10fa43fe935810800000000000000
+      internalID: 1752919447748746525
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: SpiderEnemySprites_1
+      name: Witch_Falling_Sprite_Sheet_1
       rect:
         serializedVersion: 2
-        x: 95
-        y: 10
-        width: 80
-        height: 77
+        x: 128
+        y: 8
+        width: 47
+        height: 88
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -198,20 +198,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 50ee8a822fc6a7c40800000000000000
-      internalID: 5510836881361268229
+      spriteID: ab16e1bb4378f52c0800000000000000
+      internalID: -4440682047016640070
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: SpiderEnemySprites_2
+      name: Witch_Falling_Sprite_Sheet_2
       rect:
         serializedVersion: 2
-        x: 185
-        y: 10
-        width: 77
-        height: 77
+        x: 222
+        y: 11
+        width: 46
+        height: 86
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -220,20 +220,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 20def2d3d30bd6d60800000000000000
-      internalID: 7885152299661651202
+      spriteID: c432cb2cd18324250800000000000000
+      internalID: 5927361760045310796
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: SpiderEnemySprites_3
+      name: Witch_Falling_Sprite_Sheet_3
       rect:
         serializedVersion: 2
-        x: 275
-        y: 10
-        width: 80
-        height: 77
+        x: 316
+        y: 8
+        width: 47
+        height: 88
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -242,8 +242,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 5c58dfb1172737c20800000000000000
-      internalID: 3203029590117025221
+      spriteID: 816059525cecfdc00800000000000000
+      internalID: 927687394396014104
       vertices: []
       indices: 
       edges: []
@@ -262,10 +262,10 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      SpiderEnemySprites_0: -557003528377651417
-      SpiderEnemySprites_1: 5510836881361268229
-      SpiderEnemySprites_2: 7885152299661651202
-      SpiderEnemySprites_3: 3203029590117025221
+      Witch_Falling_Sprite_Sheet_0: 1752919447748746525
+      Witch_Falling_Sprite_Sheet_1: -4440682047016640070
+      Witch_Falling_Sprite_Sheet_2: 5927361760045310796
+      Witch_Falling_Sprite_Sheet_3: 927687394396014104
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

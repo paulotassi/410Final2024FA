@@ -325,6 +325,14 @@ PrefabInstance:
       propertyPath: pointB
       value: 
       objectReference: {fileID: 982273811566698961}
+    - target: {fileID: 2319218109280929244, guid: 102cc32b66296114b96d51c2e49ec504, type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: e62261adb73819a4c9fde6bcbf7542f6, type: 2}
+    - target: {fileID: 4113069030059670772, guid: 102cc32b66296114b96d51c2e49ec504, type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: e62261adb73819a4c9fde6bcbf7542f6, type: 2}
     - target: {fileID: 6420415074727657375, guid: 102cc32b66296114b96d51c2e49ec504, type: 3}
       propertyPath: m_Name
       value: Spiderlings
