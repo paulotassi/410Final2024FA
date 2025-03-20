@@ -33,6 +33,7 @@ public class projectile : MonoBehaviour
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
+        Debug.Log("Collided with: " + collision.gameObject.name);
         if (!collision.gameObject.GetComponent<PlayerController>() && !collision.gameObject.GetComponent<EnemyHealth>())
         {
             Destroy(this.gameObject);

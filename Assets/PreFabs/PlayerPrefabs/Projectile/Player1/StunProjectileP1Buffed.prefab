@@ -17,7 +17,7 @@ GameObject:
   - component: {fileID: 3443139828351849421}
   - component: {fileID: 8023962630324575995}
   m_Layer: 0
-  m_Name: StunProjectileP1
+  m_Name: StunProjectileP1Buffed
   m_TagString: PlayerSpell
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -33,7 +33,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 122.9749, y: 212.6811, z: 0}
-  m_LocalScale: {x: 4, y: 4, z: 0.83206}
+  m_LocalScale: {x: 11, y: 11, z: 0.83206}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -156,7 +156,7 @@ CapsuleCollider2D:
     m_Bits: 0
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 512
   m_LayerOverridePriority: 0
   m_ForceSendLayers:
     serializedVersion: 2
@@ -174,8 +174,8 @@ CapsuleCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: -0.0029209682, y: -0.0021906921}
-  m_Size: {x: 0.13567244, y: 0.14881687}
+  m_Offset: {x: -0.00705719, y: -0.0007540385}
+  m_Size: {x: 0.1192983, y: 0.11930084}
   m_Direction: 0
 --- !u!114 &1427484717381021508
 MonoBehaviour:

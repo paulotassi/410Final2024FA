@@ -13,11 +13,11 @@ GameObject:
   - component: {fileID: 5221557971627318515}
   - component: {fileID: 7048848087908441889}
   - component: {fileID: 3380077736045797600}
-  - component: {fileID: 1427484717381021508}
-  - component: {fileID: 3443139828351849421}
-  - component: {fileID: 8023962630324575995}
+  - component: {fileID: 3967765594077133636}
+  - component: {fileID: 1999067300127122727}
+  - component: {fileID: 5060080530231183441}
   m_Layer: 0
-  m_Name: StunProjectileP1
+  m_Name: StunProjectileP2Buffed
   m_TagString: PlayerSpell
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -32,8 +32,8 @@ Transform:
   m_GameObject: {fileID: 8727881279438405985}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 122.9749, y: 212.6811, z: 0}
-  m_LocalScale: {x: 4, y: 4, z: 0.83206}
+  m_LocalPosition: {x: 138.496, y: 217.853, z: 0}
+  m_LocalScale: {x: 11, y: 11, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -82,12 +82,12 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: a8a7141849b504fdf918e543db616a5d, type: 3}
+  m_Sprite: {fileID: 21300000, guid: b03dabad999f440ab90c1ec5656b17c3, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 0.32, y: 0.36}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -105,7 +105,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 397969ba418a3a54da5ea04dc98260dc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  projectileSpeed: 35
+  projectileSpeed: 30
   projectileDamage: 5
   projectileStun: 1
   projectileStunDuration: 5
@@ -139,7 +139,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 4
+  m_Constraints: 0
 --- !u!70 &3380077736045797600
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
@@ -156,7 +156,7 @@ CapsuleCollider2D:
     m_Bits: 0
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 1024
   m_LayerOverridePriority: 0
   m_ForceSendLayers:
     serializedVersion: 2
@@ -174,10 +174,10 @@ CapsuleCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: -0.0029209682, y: -0.0021906921}
-  m_Size: {x: 0.13567244, y: 0.14881687}
+  m_Offset: {x: -0.00705719, y: -0.0007540385}
+  m_Size: {x: 0.1192983, y: 0.11930084}
   m_Direction: 0
---- !u!114 &1427484717381021508
+--- !u!114 &3967765594077133636
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -190,7 +190,29 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ignoreTag: Ignore
---- !u!96 &3443139828351849421
+--- !u!95 &1999067300127122727
+Animator:
+  serializedVersion: 7
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8727881279438405985}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 8dd67b5d1f62cc4419cec8d06890ba2f, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
+--- !u!96 &5060080530231183441
 TrailRenderer:
   serializedVersion: 3
   m_ObjectHideFlags: 0
@@ -267,9 +289,9 @@ TrailRenderer:
     colorGradient:
       serializedVersion: 2
       key0: {r: 0.7686275, g: 0.7686275, b: 0.7686275, a: 1}
-      key1: {r: 0.40784317, g: 0.9333334, b: 0.9490197, a: 0.5019608}
+      key1: {r: 0.31764707, g: 0.7254902, b: 0.8588236, a: 0.5019608}
       key2: {r: 1, g: 0.80392164, b: 0.8470589, a: 0}
-      key3: {r: 0.7411765, g: 0.023529414, b: 0.48235297, a: 0}
+      key3: {r: 0.909804, g: 0.10980393, b: 0.6117647, a: 0}
       key4: {r: 1, g: 0.03875816, b: 0, a: 0}
       key5: {r: 1, g: 0.03875816, b: 0, a: 0}
       key6: {r: 1, g: 0.03875816, b: 0, a: 0}
@@ -306,25 +328,3 @@ TrailRenderer:
   m_Autodestruct: 0
   m_Emitting: 1
   m_ApplyActiveColorSpace: 1
---- !u!95 &8023962630324575995
-Animator:
-  serializedVersion: 7
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8727881279438405985}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 8dd67b5d1f62cc4419cec8d06890ba2f, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_StabilizeFeet: 0
-  m_AnimatePhysics: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorStateOnDisable: 0
-  m_WriteDefaultValuesOnDisable: 0

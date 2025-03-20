@@ -17,6 +17,9 @@ public class GameManager : MonoBehaviour
     [SerializeField] private TMP_Text RoundEndText;          // Text element to display a message when the round ends.
     [SerializeField] private TMP_Text gameTimerText;         // Text element to show the remaining game time.
     [SerializeField] public int playerStartingLifeCount = 3; // Starting life count for players.
+    [SerializeField] public bool isPaused = false;
+    [SerializeField] public GameObject pauseMenuUI;
+
 
     //======================================================
     // Player 1 Cooldown Variables
@@ -36,6 +39,8 @@ public class GameManager : MonoBehaviour
     [SerializeField] private float Player1ShieldCDMaxValue;    // Maximum value for Player 1 shield cooldown.
     [SerializeField] private float Player1ShieldCDTimer;       // Timer tracking Player 1 shield cooldown.
     [SerializeField] private bool Player1ShieldCDEnabled = false;// Flag for whether Player 1 shield cooldown is active.
+
+
 
     //======================================================
     // Player 2 Cooldown Variables
@@ -358,7 +363,6 @@ public class GameManager : MonoBehaviour
 
         if (player2Ingredients[type] >= 5)
         {
-            Debug.Log("Collected Enough " + type + " for a buff!");
             ApplyBuff(player, type);
             player1Ingredients[type] = 0; // Note: Resets Player1's count as per original logic.
         }
@@ -388,19 +392,77 @@ public class GameManager : MonoBehaviour
         switch (type)
         {
             case IngredientType.Herb:
+                
+                if (playerController.SpeedBuff) return;
+                Debug.LogWarning("Speedbuff applied to:" + playerController.name);
                 buffToApply = BuffType.SpeedBoost;
+                playerController.SpeedBuff = true;
                 break;
             case IngredientType.Finger:
+                
+                if (playerController.ShootBuff) return;
+                Debug.LogWarning("Shootbuff applied to:" + playerController.name);
                 buffToApply = BuffType.FireRateIncrease;
+                playerController.ShootBuff = true;
+                break;
+
+            case IngredientType.FrogLeg:
+
+                if (playerController.StunBuff) return;
+                Debug.LogWarning("Shootbuff applied to:" + playerController.name);
+                buffToApply = BuffType.StunMultiplier;
+                playerController.StunBuff = true;
                 break;
             case IngredientType.Spider:
+                
+                if (playerController.ShieldBuff) return;
+                Debug.LogWarning("Shieldbuff applied to:" + playerController.name);
                 buffToApply = BuffType.ShieldExtension;
+                playerController.ShieldBuff = true;
                 break;
             default:
                 return;
         }
         playerController.ApplyBuff(buffToApply);
         GetPlayerCDTimers();
+    }
+
+    public void TogglePause()
+    {
+        isPaused = !isPaused; // Flip pause state
+
+        if (isPaused)
+        {
+            // Pause the game
+            Time.timeScale = 0f; // Stop time-based updates
+            if (pauseMenuUI != null)
+            {
+                pauseMenuUI.SetActive(true); // Show pause menu if assigned
+            }
+        }
+        else
+        {
+            // Unpause the game
+            Time.timeScale = 1f; // Resume normal time
+            if (pauseMenuUI != null)
+            {
+                pauseMenuUI.SetActive(false); // Hide pause menu if assigned
+            }
+        }
+    }
+    public void ResumeGame()
+    {
+        isPaused = false;
+        Time.timeScale = 1f;
+        if (pauseMenuUI != null)
+        {
+            pauseMenuUI.SetActive(false);
+        }
+    }
+
+    public void ExitGame()
+    {
+        SceneManager.LoadScene("TitleScreen");
     }
 
     public void increaseGameTime(float increaseAmount)
