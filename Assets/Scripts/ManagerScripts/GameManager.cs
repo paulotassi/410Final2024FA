@@ -1,3 +1,5 @@
+//THIS SCRIPT WAS HEAVILY COMMENTED WITH CHATGPT AS WELL AS SOME EFFECIENCY USING TERTIARY OPERATORS
+
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
