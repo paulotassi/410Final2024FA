@@ -334,7 +334,7 @@ public class PlayerController : MonoBehaviour
 
     public void TogglePause()
     {
-        isPaused = !isPaused; // Flip pause state
+        isPaused = FindFirstObjectByType<GameManager>().isPaused; // Flip pause state
 
         if (isPaused)
         {

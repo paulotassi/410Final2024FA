@@ -17,6 +17,9 @@ public class GameManager : MonoBehaviour
     [SerializeField] private TMP_Text RoundEndText;          // Text element to display a message when the round ends.
     [SerializeField] private TMP_Text gameTimerText;         // Text element to show the remaining game time.
     [SerializeField] public int playerStartingLifeCount = 3; // Starting life count for players.
+    [SerializeField] public bool isPaused = false;
+    [SerializeField] public GameObject pauseMenuUI;
+
 
     //======================================================
     // Player 1 Cooldown Variables
@@ -422,6 +425,21 @@ public class GameManager : MonoBehaviour
         }
         playerController.ApplyBuff(buffToApply);
         GetPlayerCDTimers();
+    }
+
+    public void ResumeGame()
+    {
+        isPaused = false;
+        Time.timeScale = 1f;
+        if (pauseMenuUI != null)
+        {
+            pauseMenuUI.SetActive(false);
+        }
+    }
+
+    public void ExitGame()
+    {
+        SceneManager.LoadScene("TitleScreen");
     }
 
     public void increaseGameTime(float increaseAmount)
