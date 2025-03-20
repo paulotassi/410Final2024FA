@@ -79,7 +79,7 @@ public class PlayerController : MonoBehaviour
     public bool flightMode = false; // Tracks if the player is in flight mode
     private bool isFalling = false;
     public bool isPaused = false;
-    public GameObject pauseMenuUI;
+    public GameManager gameManager;
     [SerializeField] public bool StunBuff = false;
     [SerializeField] public bool ShootBuff = false;
     [SerializeField] public bool ShieldBuff = false;
@@ -111,6 +111,7 @@ public class PlayerController : MonoBehaviour
         animator = GetComponent<Animator>(); // Retrieve Animator component for animations
         leftNoise = virtualCameraLeft.GetCinemachineComponent<CinemachineBasicMultiChannelPerlin>();
         rightNoise = virtualCameraRight.GetCinemachineComponent<CinemachineBasicMultiChannelPerlin>();
+        gameManager = FindFirstObjectByType<GameManager>();
     }
 
     // Update is called once per frame
@@ -138,7 +139,7 @@ public class PlayerController : MonoBehaviour
         if (fired && canShoot && !isStunned) StartCoroutine(Shoot());
         if (altFired && canAltShoot && !isStunned) StartCoroutine(AltShoot());
         if (shielded && canShield && !isStunned) StartCoroutine(Shield());
-        if (paused) TogglePause();
+        if (paused) gameManager.TogglePause();
 
         // Reset move speed if no horizontal input
         moveSpeed = (horizontalInput == 0) ? initialMoveSpeed : moveSpeed;
@@ -330,30 +331,6 @@ public class PlayerController : MonoBehaviour
         Debug.Log(this.gameObject.name + "no longer Stunned. Cannot be stunned for " + (stunDuration * stunDR));
         yield return new WaitForSeconds(stunDuration * stunDR);
         stunnable = true;
-    }
-
-    public void TogglePause()
-    {
-        isPaused = FindFirstObjectByType<GameManager>().isPaused; // Flip pause state
-
-        if (isPaused)
-        {
-            // Pause the game
-            Time.timeScale = 0f; // Stop time-based updates
-            if (pauseMenuUI != null)
-            {
-                pauseMenuUI.SetActive(true); // Show pause menu if assigned
-            }
-        }
-        else
-        {
-            // Unpause the game
-            Time.timeScale = 1f; // Resume normal time
-            if (pauseMenuUI != null)
-            {
-                pauseMenuUI.SetActive(false); // Hide pause menu if assigned
-            }
-        }
     }
 
     public IEnumerator createScreenShake(float screenShakeIntensity)

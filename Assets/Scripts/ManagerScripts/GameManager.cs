@@ -427,6 +427,29 @@ public class GameManager : MonoBehaviour
         GetPlayerCDTimers();
     }
 
+    public void TogglePause()
+    {
+        isPaused = !isPaused; // Flip pause state
+
+        if (isPaused)
+        {
+            // Pause the game
+            Time.timeScale = 0f; // Stop time-based updates
+            if (pauseMenuUI != null)
+            {
+                pauseMenuUI.SetActive(true); // Show pause menu if assigned
+            }
+        }
+        else
+        {
+            // Unpause the game
+            Time.timeScale = 1f; // Resume normal time
+            if (pauseMenuUI != null)
+            {
+                pauseMenuUI.SetActive(false); // Hide pause menu if assigned
+            }
+        }
+    }
     public void ResumeGame()
     {
         isPaused = false;
