@@ -1761,6 +1761,8 @@ MonoBehaviour:
   RoundEndText: {fileID: 2106561171339290845}
   gameTimerText: {fileID: 4473425240116686718}
   playerStartingLifeCount: 3
+  isPaused: 0
+  pauseMenuUI: {fileID: 5182572621553786281}
   Player1shootCDDisplay: {fileID: 3290426592094213052}
   Player1ShootCDMaxValue: 0
   Player1ShootCDTimer: 0
@@ -2300,7 +2302,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 5976209381015857428}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 5152296429719158953}
+        m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
+        m_MethodName: ExitGame
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &4163156574785345809
 GameObject:
   m_ObjectHideFlags: 0
@@ -3655,7 +3669,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1724909778615314540}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 5152296429719158953}
+        m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
+        m_MethodName: ResumeGame
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &8692537110694553683
 GameObject:
   m_ObjectHideFlags: 0
