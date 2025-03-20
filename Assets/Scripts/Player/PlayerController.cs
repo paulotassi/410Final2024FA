@@ -48,6 +48,7 @@ public class PlayerController : MonoBehaviour
     public GameObject altProjectileBuffPrefab;
     public GameObject projectileSpawnLocation; //spawnLocation of the rotating familiar
     public GameObject projectileSpawnRotation; //spawn rotation to follow the Familiar direction
+    public GameObject flightParticles;
 
     //Player Shield
     [Header("Shield Settings" +
@@ -100,9 +101,6 @@ public class PlayerController : MonoBehaviour
     [SerializeField] protected float screenShakeDuration = 0.5f;
 
 
-
-
-
     // Start is called before the first frame update
     void Start()
     {
@@ -112,11 +110,13 @@ public class PlayerController : MonoBehaviour
         leftNoise = virtualCameraLeft.GetCinemachineComponent<CinemachineBasicMultiChannelPerlin>();
         rightNoise = virtualCameraRight.GetCinemachineComponent<CinemachineBasicMultiChannelPerlin>();
         gameManager = FindFirstObjectByType<GameManager>();
+
     }
 
     // Update is called once per frame
     void Update()
     {
+ 
         // Capture player input
         horizontalInput = movementInput.x;
         verticalInput = movementInput.y;
@@ -152,6 +152,9 @@ public class PlayerController : MonoBehaviour
 
         // Handle state transitions
         UpdatePlayerState();
+        ParticleSystem flightParticleSystem = flightParticles.GetComponent<ParticleSystem>();
+        var emission = flightParticleSystem.emission; // Get the emission module
+        emission.enabled = flightMode; // Set emission based on flightMode
 
         // Track player inactivity
         TrackInactivity();
@@ -162,19 +165,22 @@ public class PlayerController : MonoBehaviour
         flightMode = true;
         currentState = State.Flying;
         isFalling = false; // Reset falling state
+        
     }
 
     void HandleSpriteFlipAndCamera()
     {
         if (horizontalInput < 0)
         {
-            GetComponent<SpriteRenderer>().flipX = true;
+            //GetComponent<SpriteRenderer>().flipX = true;
+            transform.eulerAngles = new Vector3(0, 180, 0);
             virtualCameraLeft.Priority = 10;
             virtualCameraRight.Priority = 9;
         }
         else if (horizontalInput > 0)
         {
-            GetComponent<SpriteRenderer>().flipX = false;
+            //GetComponent<SpriteRenderer>().flipX = false;
+            transform.eulerAngles = new Vector3(0, 0, 0);
             virtualCameraLeft.Priority = 9;
             virtualCameraRight.Priority = 10;
         }
