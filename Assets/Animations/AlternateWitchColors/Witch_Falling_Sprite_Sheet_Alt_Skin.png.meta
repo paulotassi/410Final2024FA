@@ -1,163 +1,19 @@
 fileFormatVersion: 2
-guid: de1dd628d5b363d49a55a3add06aa7b2
+guid: 6edb34927875e724c9901bd0d6956038
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 5360466276867236320
-    second: TimerBook (1)_0
+      213: -5711385838120061178
+    second: Witch_Falling_Sprite_Sheet_Alt_Skin_0
   - first:
-      213: 5081467220716325554
-    second: TimerBook (1)_1
+      213: 7282471828484200556
+    second: Witch_Falling_Sprite_Sheet_Alt_Skin_1
   - first:
-      213: 5060209452571819824
-    second: TimerBook (1)_2
+      213: -254108582253399163
+    second: Witch_Falling_Sprite_Sheet_Alt_Skin_2
   - first:
-      213: 211151134814534794
-    second: TimerBook (1)_3
-  - first:
-      213: -5173037771925034132
-    second: TimerBook (1)_4
-  - first:
-      213: -6543235955612485081
-    second: TimerBook (1)_5
-  - first:
-      213: -5382749542918777406
-    second: TimerBook (1)_6
-  - first:
-      213: 3351034765581262864
-    second: TimerBook (1)_7
-  - first:
-      213: -6048267917058721192
-    second: TimerBook (1)_8
-  - first:
-      213: -1920093206316754208
-    second: TimerBook (1)_9
-  - first:
-      213: 3290663546973002098
-    second: TimerBook (1)_10
-  - first:
-      213: -4802623895058122386
-    second: TimerBook (1)_11
-  - first:
-      213: -5579219825532348831
-    second: TimerBook (1)_12
-  - first:
-      213: 2483766393645331628
-    second: TimerBook (1)_13
-  - first:
-      213: -6323424053485025302
-    second: TimerBook (1)_14
-  - first:
-      213: -5397056725732575878
-    second: TimerBook (1)_15
-  - first:
-      213: 9013773717084842240
-    second: TimerBook (1)_16
-  - first:
-      213: 2445533830998220714
-    second: TimerBook (1)_17
-  - first:
-      213: 2334126857872506201
-    second: TimerBook (1)_18
-  - first:
-      213: 8487362388280383939
-    second: TimerBook (1)_19
-  - first:
-      213: -4633465696394613056
-    second: TimerBook (1)_20
-  - first:
-      213: 1423410924029184118
-    second: TimerBook (1)_21
-  - first:
-      213: 1834640603277809031
-    second: TimerBook (1)_22
-  - first:
-      213: 3064162237260774912
-    second: TimerBook (1)_23
-  - first:
-      213: -8217052868715841729
-    second: TimerBook (1)_24
-  - first:
-      213: 1918275458316145267
-    second: TimerBook (1)_25
-  - first:
-      213: -4437885642204569552
-    second: TimerBook (1)_26
-  - first:
-      213: -2639019992298284759
-    second: TimerBook (1)_27
-  - first:
-      213: -3276819216438862262
-    second: TimerBook (1)_28
-  - first:
-      213: 61084621881699337
-    second: TimerBook (1)_29
-  - first:
-      213: -4895934403430450416
-    second: TimerBook (1)_30
-  - first:
-      213: 3855759945557213458
-    second: TimerBook (1)_31
-  - first:
-      213: -8482497134170579897
-    second: TimerBook (1)_32
-  - first:
-      213: 5805985754571630218
-    second: TimerBook (1)_33
-  - first:
-      213: -4877382737736698070
-    second: TimerBook (1)_34
-  - first:
-      213: 1488328062350027474
-    second: TimerBook (1)_35
-  - first:
-      213: -1068562731052189578
-    second: TimerBook (1)_36
-  - first:
-      213: -2902519539947824968
-    second: TimerBook (1)_37
-  - first:
-      213: -3932727215988575084
-    second: TimerBook (1)_38
-  - first:
-      213: 7590525267952579157
-    second: TimerBook (1)_39
-  - first:
-      213: -8415208698570926506
-    second: TimerBook (1)_40
-  - first:
-      213: 2456502516615451001
-    second: TimerBook (1)_41
-  - first:
-      213: 9145728177729679677
-    second: TimerBook (1)_42
-  - first:
-      213: -5214453914111860825
-    second: TimerBook (1)_43
-  - first:
-      213: -716540443771201089
-    second: TimerBook (1)_44
-  - first:
-      213: 5698075987974178701
-    second: TimerBook (1)_45
-  - first:
-      213: 6315396250201375977
-    second: TimerBook (1)_46
-  - first:
-      213: -2718924870522790283
-    second: TimerBook (1)_47
-  - first:
-      213: 8271581229446015044
-    second: TimerBook (1)_48
-  - first:
-      213: -8294320803279646178
-    second: TimerBook (1)_49
-  - first:
-      213: -470078974909738510
-    second: TimerBook (1)_50
-  - first:
-      213: 3072789339583191306
-    second: TimerBook (1)_51
+      213: -7002472423410605060
+    second: Witch_Falling_Sprite_Sheet_Alt_Skin_3
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -227,7 +83,33 @@ TextureImporter:
     buildTarget: DefaultTexturePlatform
     maxTextureSize: 2048
     resizeAlgorithm: 0
-    textureFormat: 4
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: iOS
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
     textureCompression: 1
     compressionQuality: 50
     crunchedCompression: 0
@@ -263,36 +145,10 @@ TextureImporter:
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
   - serializedVersion: 4
-    buildTarget: iOS
-    maxTextureSize: 2048
-    resizeAlgorithm: 0
-    textureFormat: 4
-    textureCompression: 1
-    compressionQuality: 50
-    crunchedCompression: 0
-    allowsAlphaSplitting: 0
-    overridden: 0
-    ignorePlatformSupport: 0
-    androidETC2FallbackOverride: 0
-    forceMaximumCompressionQuality_BC6H_BC7: 0
-  - serializedVersion: 4
-    buildTarget: Android
-    maxTextureSize: 2048
-    resizeAlgorithm: 0
-    textureFormat: 4
-    textureCompression: 1
-    compressionQuality: 50
-    crunchedCompression: 0
-    allowsAlphaSplitting: 0
-    overridden: 0
-    ignorePlatformSupport: 0
-    androidETC2FallbackOverride: 0
-    forceMaximumCompressionQuality_BC6H_BC7: 0
-  - serializedVersion: 4
     buildTarget: WindowsStoreApps
     maxTextureSize: 2048
     resizeAlgorithm: 0
-    textureFormat: 4
+    textureFormat: -1
     textureCompression: 1
     compressionQuality: 50
     crunchedCompression: 0
@@ -305,13 +161,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: TimerBook (1)_0
+      name: Witch_Falling_Sprite_Sheet_Alt_Skin_0
       rect:
         serializedVersion: 2
-        x: 0
-        y: 0
-        width: 672
-        height: 512
+        x: 35
+        y: 7
+        width: 46
+        height: 88
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -320,20 +176,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 0e1e1278da3346a40800000000000000
-      internalID: 5360466276867236320
+      spriteID: 60738a727d41db0b0800000000000000
+      internalID: -5711385838120061178
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: TimerBook (1)_1
+      name: Witch_Falling_Sprite_Sheet_Alt_Skin_1
       rect:
         serializedVersion: 2
-        x: 672
-        y: 0
-        width: 672
-        height: 512
+        x: 128
+        y: 8
+        width: 47
+        height: 88
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -342,20 +198,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 2ba8694b38ff48640800000000000000
-      internalID: 5081467220716325554
+      spriteID: c6817973b89801560800000000000000
+      internalID: 7282471828484200556
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: TimerBook (1)_2
+      name: Witch_Falling_Sprite_Sheet_Alt_Skin_2
       rect:
         serializedVersion: 2
-        x: 1344
-        y: 0
-        width: 672
-        height: 512
+        x: 222
+        y: 11
+        width: 46
+        height: 86
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -364,20 +220,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 03ffd9ddfa9793640800000000000000
-      internalID: 5060209452571819824
+      spriteID: 583786c3799397cf0800000000000000
+      internalID: -254108582253399163
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: TimerBook (1)_3
+      name: Witch_Falling_Sprite_Sheet_Alt_Skin_3
       rect:
         serializedVersion: 2
-        x: 2016
-        y: 0
-        width: 672
-        height: 512
+        x: 316
+        y: 8
+        width: 47
+        height: 88
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -386,8 +242,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: a8c7a80a6d82ee200800000000000000
-      internalID: 211151134814534794
+      spriteID: cf3642d7e6832de90800000000000000
+      internalID: -7002472423410605060
       vertices: []
       indices: 
       edges: []
@@ -396,7 +252,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: c99bd6af121a69d4bb95753bbac574a1
+    spriteID: 
     internalID: 0
     vertices: []
     indices: 
@@ -406,10 +262,10 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      TimerBook (1)_0: 5360466276867236320
-      TimerBook (1)_1: 5081467220716325554
-      TimerBook (1)_2: 5060209452571819824
-      TimerBook (1)_3: 211151134814534794
+      Witch_Falling_Sprite_Sheet_Alt_Skin_0: -5711385838120061178
+      Witch_Falling_Sprite_Sheet_Alt_Skin_1: 7282471828484200556
+      Witch_Falling_Sprite_Sheet_Alt_Skin_2: -254108582253399163
+      Witch_Falling_Sprite_Sheet_Alt_Skin_3: -7002472423410605060
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

@@ -30,7 +30,10 @@ public class PlayerController : MonoBehaviour
     public float inactivityThreshold = 2f; // Time threshold for considering inactivity (in seconds)
     private bool isStunned = false;
     public bool stunnable = true;
+    
+    //Player Stun Variables
     public float stunDR = 3.5f;
+ 
 
     //Player Shoot variables
     [Header("Shoot Settings" +
@@ -59,6 +62,7 @@ public class PlayerController : MonoBehaviour
     private bool dashed = false;
     public bool shielded = false;
     public bool altFired = false;
+    public bool paused = false;
 
 
     // Ground check variables
@@ -74,6 +78,8 @@ public class PlayerController : MonoBehaviour
     public float verticalInput; // Vertical input from the player (used in flight mode)
     public bool flightMode = false; // Tracks if the player is in flight mode
     private bool isFalling = false;
+    public bool isPaused = false;
+    public GameObject pauseMenuUI;
 
     // Animation variables
     public Animator animator; // Reference to the Animator for controlling animations
@@ -127,6 +133,7 @@ public class PlayerController : MonoBehaviour
         if (fired && canShoot && !isStunned) StartCoroutine(Shoot());
         if (altFired && canAltShoot && !isStunned) StartCoroutine(AltShoot());
         if (shielded && canShield && !isStunned) StartCoroutine(Shield());
+        if (paused) TogglePause();
 
         // Reset move speed if no horizontal input
         moveSpeed = (horizontalInput == 0) ? initialMoveSpeed : moveSpeed;
@@ -316,6 +323,30 @@ public class PlayerController : MonoBehaviour
         stunnable = true;
     }
 
+    public void TogglePause()
+    {
+        isPaused = !isPaused; // Flip pause state
+
+        if (isPaused)
+        {
+            // Pause the game
+            Time.timeScale = 0f; // Stop time-based updates
+            if (pauseMenuUI != null)
+            {
+                pauseMenuUI.SetActive(true); // Show pause menu if assigned
+            }
+        }
+        else
+        {
+            // Unpause the game
+            Time.timeScale = 1f; // Resume normal time
+            if (pauseMenuUI != null)
+            {
+                pauseMenuUI.SetActive(false); // Hide pause menu if assigned
+            }
+        }
+    }
+
     public IEnumerator createScreenShake(float screenShakeIntensity)
     {
 
@@ -355,7 +386,7 @@ public class PlayerController : MonoBehaviour
     {
         fired = context.action.triggered;
     }
-    public void OnDash(InputAction.CallbackContext context)
+    public void OnShield(InputAction.CallbackContext context)
     {
         shielded = context.action.triggered;
     }
@@ -363,5 +394,10 @@ public class PlayerController : MonoBehaviour
     public void OnAltShoot(InputAction.CallbackContext context)
     {
         altFired = context.action.triggered;
+    }
+
+    public void OnPaused(InputAction.CallbackContext context)
+    {
+        paused = context.action.triggered;
     }
 }
