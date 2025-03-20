@@ -55,11 +55,18 @@ public class EnemyController : MonoBehaviour
     protected virtual void Start()
     {
         // Find players in the scene
-        player1 = GameObject.FindGameObjectWithTag("Player").transform;
+        if (GameObject.FindGameObjectWithTag("Player").transform != null)
+        {
+            player1 = GameObject.FindGameObjectWithTag("Player").transform;
+        }
+        
         player2 = GameObject.FindGameObjectWithTag("Player2").transform;
 
         // Get health components of both players
-        player1Health = player1.GetComponent<PlayerHealth>();
+        if (player1 != null)
+        {
+            player1Health = player1.GetComponent<PlayerHealth>();
+        }
         player2Health = player2.GetComponent<PlayerHealth>();
     }
 
@@ -73,7 +80,7 @@ public class EnemyController : MonoBehaviour
         }
 
         // Determine closest player within detection range
-        if (player1Health.currentHealth > 0 && Vector2.Distance(transform.position, player1.position) <= detectionRange)
+        if (player1 != null && player1Health.currentHealth > 0 && Vector2.Distance(transform.position, player1.position) <= detectionRange)
         {
             targetPlayer = player1;
             currentState = State.Chasing;
