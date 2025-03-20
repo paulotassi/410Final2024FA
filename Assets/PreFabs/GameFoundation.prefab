@@ -4244,23 +4244,39 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1782570390411111711, guid: 47dea2b8b1dcb834dbedf4adbeed9cfc, type: 3}
       propertyPath: m_ActionEvents.Array.size
-      value: 7
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 1782570390411111711, guid: 47dea2b8b1dcb834dbedf4adbeed9cfc, type: 3}
       propertyPath: m_ActionEvents.Array.data[6].m_ActionId
       value: c80841ad-8277-4a66-86fb-976b636663f4
       objectReference: {fileID: 0}
     - target: {fileID: 1782570390411111711, guid: 47dea2b8b1dcb834dbedf4adbeed9cfc, type: 3}
+      propertyPath: m_ActionEvents.Array.data[7].m_ActionId
+      value: 3b436354-3d60-4851-819f-082653671c9a
+      objectReference: {fileID: 0}
+    - target: {fileID: 1782570390411111711, guid: 47dea2b8b1dcb834dbedf4adbeed9cfc, type: 3}
       propertyPath: m_ActionEvents.Array.data[6].m_ActionName
       value: 'Player/AltShoot[/Mouse/rightButton]'
+      objectReference: {fileID: 0}
+    - target: {fileID: 1782570390411111711, guid: 47dea2b8b1dcb834dbedf4adbeed9cfc, type: 3}
+      propertyPath: m_ActionEvents.Array.data[7].m_ActionName
+      value: 'Player/Pause[/Keyboard/enter]'
       objectReference: {fileID: 0}
     - target: {fileID: 1782570390411111711, guid: 47dea2b8b1dcb834dbedf4adbeed9cfc, type: 3}
       propertyPath: m_ActionEvents.Array.data[6].m_PersistentCalls.m_Calls.Array.size
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1782570390411111711, guid: 47dea2b8b1dcb834dbedf4adbeed9cfc, type: 3}
+      propertyPath: m_ActionEvents.Array.data[7].m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1782570390411111711, guid: 47dea2b8b1dcb834dbedf4adbeed9cfc, type: 3}
       propertyPath: m_ActionEvents.Array.data[6].m_PersistentCalls.m_Calls.Array.data[0].m_Mode
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1782570390411111711, guid: 47dea2b8b1dcb834dbedf4adbeed9cfc, type: 3}
+      propertyPath: m_ActionEvents.Array.data[7].m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1782570390411111711, guid: 47dea2b8b1dcb834dbedf4adbeed9cfc, type: 3}
       propertyPath: m_ActionEvents.Array.data[6].m_PersistentCalls.m_Calls.Array.data[0].m_Target
@@ -4269,6 +4285,14 @@ PrefabInstance:
     - target: {fileID: 1782570390411111711, guid: 47dea2b8b1dcb834dbedf4adbeed9cfc, type: 3}
       propertyPath: m_ActionEvents.Array.data[6].m_PersistentCalls.m_Calls.Array.data[0].m_CallState
       value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1782570390411111711, guid: 47dea2b8b1dcb834dbedf4adbeed9cfc, type: 3}
+      propertyPath: m_ActionEvents.Array.data[7].m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1782570390411111711, guid: 47dea2b8b1dcb834dbedf4adbeed9cfc, type: 3}
+      propertyPath: m_ActionEvents.Array.data[5].m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: OnShield
       objectReference: {fileID: 0}
     - target: {fileID: 1782570390411111711, guid: 47dea2b8b1dcb834dbedf4adbeed9cfc, type: 3}
       propertyPath: m_ActionEvents.Array.data[6].m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
@@ -4326,6 +4350,10 @@ PrefabInstance:
       propertyPath: altProjectilePrefab
       value: 
       objectReference: {fileID: 8727881279438405985, guid: c3152c1631eb0bc45b030137b4131111, type: 3}
+    - target: {fileID: 3218445902191801378, guid: 47dea2b8b1dcb834dbedf4adbeed9cfc, type: 3}
+      propertyPath: altProjectileBuffPrefab
+      value: 
+      objectReference: {fileID: 8727881279438405985, guid: c91c31c189cb8aa4cad0a882570c1010, type: 3}
     - target: {fileID: 3339691256927174103, guid: 47dea2b8b1dcb834dbedf4adbeed9cfc, type: 3}
       propertyPath: m_Name
       value: PlayerPrefabGroup
@@ -4420,15 +4448,23 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6346564350906822544, guid: 47dea2b8b1dcb834dbedf4adbeed9cfc, type: 3}
       propertyPath: m_ActionEvents.Array.size
-      value: 7
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 6346564350906822544, guid: 47dea2b8b1dcb834dbedf4adbeed9cfc, type: 3}
       propertyPath: m_ActionEvents.Array.data[6].m_ActionId
       value: c80841ad-8277-4a66-86fb-976b636663f4
       objectReference: {fileID: 0}
     - target: {fileID: 6346564350906822544, guid: 47dea2b8b1dcb834dbedf4adbeed9cfc, type: 3}
+      propertyPath: m_ActionEvents.Array.data[7].m_ActionId
+      value: 3b436354-3d60-4851-819f-082653671c9a
+      objectReference: {fileID: 0}
+    - target: {fileID: 6346564350906822544, guid: 47dea2b8b1dcb834dbedf4adbeed9cfc, type: 3}
       propertyPath: m_ActionEvents.Array.data[6].m_ActionName
       value: 'Player/AltShoot[/Mouse/rightButton]'
+      objectReference: {fileID: 0}
+    - target: {fileID: 6346564350906822544, guid: 47dea2b8b1dcb834dbedf4adbeed9cfc, type: 3}
+      propertyPath: m_ActionEvents.Array.data[7].m_ActionName
+      value: 'Player/Pause[/Keyboard/enter]'
       objectReference: {fileID: 0}
     - target: {fileID: 6346564350906822544, guid: 47dea2b8b1dcb834dbedf4adbeed9cfc, type: 3}
       propertyPath: m_ActionEvents.Array.data[6].m_PersistentCalls.m_Calls.Array.size
@@ -4445,6 +4481,10 @@ PrefabInstance:
     - target: {fileID: 6346564350906822544, guid: 47dea2b8b1dcb834dbedf4adbeed9cfc, type: 3}
       propertyPath: m_ActionEvents.Array.data[6].m_PersistentCalls.m_Calls.Array.data[0].m_CallState
       value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6346564350906822544, guid: 47dea2b8b1dcb834dbedf4adbeed9cfc, type: 3}
+      propertyPath: m_ActionEvents.Array.data[5].m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: OnShield
       objectReference: {fileID: 0}
     - target: {fileID: 6346564350906822544, guid: 47dea2b8b1dcb834dbedf4adbeed9cfc, type: 3}
       propertyPath: m_ActionEvents.Array.data[6].m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
@@ -4547,6 +4587,10 @@ PrefabInstance:
       value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 8869578208568761204, guid: 47dea2b8b1dcb834dbedf4adbeed9cfc, type: 3}
+      propertyPath: stunDR
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8869578208568761204, guid: 47dea2b8b1dcb834dbedf4adbeed9cfc, type: 3}
       propertyPath: topSpeed
       value: 10
       objectReference: {fileID: 0}
@@ -4574,6 +4618,10 @@ PrefabInstance:
       propertyPath: altProjectilePrefab
       value: 
       objectReference: {fileID: 8727881279438405985, guid: c7657625e84729f4bbc83f8eae068b2e, type: 3}
+    - target: {fileID: 8869578208568761204, guid: 47dea2b8b1dcb834dbedf4adbeed9cfc, type: 3}
+      propertyPath: altProjectileBuffPrefab
+      value: 
+      objectReference: {fileID: 8727881279438405985, guid: 500d6e02a9a9f3149992ab2a8c6d6ed9, type: 3}
     - target: {fileID: 9072578895938096368, guid: 47dea2b8b1dcb834dbedf4adbeed9cfc, type: 3}
       propertyPath: m_LocalPosition.x
       value: 6.8000007

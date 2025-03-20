@@ -45,6 +45,7 @@ public class PlayerController : MonoBehaviour
     public float altShootCoolDown; //How long until players can shoot again
     public GameObject projectilePrefab; //The projectile prefab holding the motion for projectiles
     public GameObject altProjectilePrefab; //The projectile prefab holding the motion for projectiles
+    public GameObject altProjectileBuffPrefab;
     public GameObject projectileSpawnLocation; //spawnLocation of the rotating familiar
     public GameObject projectileSpawnRotation; //spawn rotation to follow the Familiar direction
 
@@ -59,7 +60,6 @@ public class PlayerController : MonoBehaviour
     // Player Actions
     private bool jumped = false;
     public bool fired = false;
-    private bool dashed = false;
     public bool shielded = false;
     public bool altFired = false;
     public bool paused = false;
@@ -80,6 +80,11 @@ public class PlayerController : MonoBehaviour
     private bool isFalling = false;
     public bool isPaused = false;
     public GameObject pauseMenuUI;
+    [SerializeField] public bool StunBuff = false;
+    [SerializeField] public bool ShootBuff = false;
+    [SerializeField] public bool ShieldBuff = false;
+    [SerializeField] public bool SpeedBuff = false;
+
 
     // Animation variables
     public Animator animator; // Reference to the Animator for controlling animations
@@ -207,6 +212,10 @@ public class PlayerController : MonoBehaviour
             case BuffType.ShieldExtension:
                 shieldDuration += 2f; // Extend shield duration by 2 seconds
                 Debug.Log("Shield Duration Extended!");
+                break;
+            case BuffType.StunMultiplier:
+                altProjectilePrefab = altProjectileBuffPrefab; // Extend shield duration by 2 seconds
+                Debug.Log("Stun size increased!!");
                 break;
         }
     }

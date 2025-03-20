@@ -3,5 +3,6 @@ public enum BuffType
 {
     SpeedBoost,
     FireRateIncrease,
-    ShieldExtension
+    ShieldExtension,
+    StunMultiplier
 }
