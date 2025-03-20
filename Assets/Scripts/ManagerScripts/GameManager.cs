@@ -20,6 +20,21 @@ public class GameManager : MonoBehaviour
     [SerializeField] public bool isPaused = false;
     [SerializeField] public GameObject pauseMenuUI;
 
+    //======================================================
+    // SinglePlayer Co-Op Test Variables
+    //======================================================
+
+    public bool singlePlayerMode = false;
+    public GameObject p1HealthObject;
+    public GameObject p2HealthObject;
+    public RectTransform sourceUI;
+    public RectTransform targetUI;
+    public GameObject p1Indicator;
+    public GameObject p2Indicator;
+    public GameObject SplitBarObject;
+    public GameObject p1Camera;
+    public Camera p2Camera;
+
 
     //======================================================
     // Player 1 Cooldown Variables
@@ -99,15 +114,45 @@ public class GameManager : MonoBehaviour
     private PlayerHealth player1Health;
     private PlayerHealth player2Health;
 
+
+    void CopyRectTransform(RectTransform source, RectTransform target)
+    {
+        target.position = source.position; // World position
+        target.rotation = source.rotation; // Rotation
+        target.localScale = source.localScale; // Scale
+
+        target.anchorMin = source.anchorMin; // Anchors
+        target.anchorMax = source.anchorMax;
+        target.anchoredPosition = source.anchoredPosition; // Local position relative to parent
+        target.sizeDelta = source.sizeDelta; // Width & Height
+        target.pivot = source.pivot; // Pivot point
+    }
+
     //======================================================
     // Start: Initialization of players, components, and cooldown timers.
     //======================================================
     private void Start()
     {
+
         // Find player GameObjects by tag.
         player1GameObject = GameObject.FindWithTag("Player");
+        
         player2GameObject = GameObject.FindWithTag("Player2");
 
+        if (singlePlayerMode)
+        {
+            CopyRectTransform(sourceUI, targetUI);
+            Debug.Log("Single Player Mode Active");
+            player1GameObject.SetActive(false);
+            p1Indicator.SetActive(false);
+            p2Indicator.SetActive(false);
+            SplitBarObject.SetActive(false);
+            p1HealthObject.SetActive(false);
+            p1Camera.SetActive(false);
+            p2Camera.rect = new Rect(0f, 0f, 1f, 1f);
+           
+    
+        }
         // Cache PlayerController and PlayerHealth components.
         player1Controller = player1GameObject.GetComponent<PlayerController>();
         player2Controller = player2GameObject.GetComponent<PlayerController>();
