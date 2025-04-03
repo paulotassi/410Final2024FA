@@ -1162,7 +1162,7 @@ MonoBehaviour:
   m_SpriteState:
     m_HighlightedSprite: {fileID: 7664807735657788756, guid: 8d5821c069cf2e3438b524a6a0f73839, type: 3}
     m_PressedSprite: {fileID: -5402412272178277761, guid: 8d5821c069cf2e3438b524a6a0f73839, type: 3}
-    m_SelectedSprite: {fileID: 0}
+    m_SelectedSprite: {fileID: 7664807735657788756, guid: 8d5821c069cf2e3438b524a6a0f73839, type: 3}
     m_DisabledSprite: {fileID: 0}
   m_AnimationTriggers:
     m_NormalTrigger: Normal
@@ -1885,7 +1885,7 @@ MonoBehaviour:
   m_SpriteState:
     m_HighlightedSprite: {fileID: 7664807735657788756, guid: 8d5821c069cf2e3438b524a6a0f73839, type: 3}
     m_PressedSprite: {fileID: -5402412272178277761, guid: 8d5821c069cf2e3438b524a6a0f73839, type: 3}
-    m_SelectedSprite: {fileID: 0}
+    m_SelectedSprite: {fileID: 7664807735657788756, guid: 8d5821c069cf2e3438b524a6a0f73839, type: 3}
     m_DisabledSprite: {fileID: 0}
   m_AnimationTriggers:
     m_NormalTrigger: Normal
@@ -3284,7 +3284,7 @@ MonoBehaviour:
   m_SpriteState:
     m_HighlightedSprite: {fileID: 7664807735657788756, guid: 8d5821c069cf2e3438b524a6a0f73839, type: 3}
     m_PressedSprite: {fileID: -5402412272178277761, guid: 8d5821c069cf2e3438b524a6a0f73839, type: 3}
-    m_SelectedSprite: {fileID: 0}
+    m_SelectedSprite: {fileID: 7664807735657788756, guid: 8d5821c069cf2e3438b524a6a0f73839, type: 3}
     m_DisabledSprite: {fileID: 0}
   m_AnimationTriggers:
     m_NormalTrigger: Normal
@@ -3299,7 +3299,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 5152296429719158953}
         m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
-        m_MethodName: ResumeGame
+        m_MethodName: TogglePause
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -4095,6 +4095,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1165158660375422462, guid: 47dea2b8b1dcb834dbedf4adbeed9cfc, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -12.920001
+      objectReference: {fileID: 0}
+    - target: {fileID: 1165158660375422462, guid: 47dea2b8b1dcb834dbedf4adbeed9cfc, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -2.2079926
+      objectReference: {fileID: 0}
     - target: {fileID: 1241193982795318343, guid: 47dea2b8b1dcb834dbedf4adbeed9cfc, type: 3}
       propertyPath: m_Sprite
       value: 
@@ -4135,6 +4143,14 @@ PrefabInstance:
       propertyPath: P2RespawnTimer
       value: 
       objectReference: {fileID: 109281087904294929}
+    - target: {fileID: 5792401886189985410, guid: 47dea2b8b1dcb834dbedf4adbeed9cfc, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -15.960002
+      objectReference: {fileID: 0}
+    - target: {fileID: 5792401886189985410, guid: 47dea2b8b1dcb834dbedf4adbeed9cfc, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -2.248001
+      objectReference: {fileID: 0}
     - target: {fileID: 6346564350906822544, guid: 47dea2b8b1dcb834dbedf4adbeed9cfc, type: 3}
       propertyPath: m_ActionEvents.Array.data[7].m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
