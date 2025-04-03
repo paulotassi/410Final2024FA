@@ -4498,9 +4498,17 @@ PrefabInstance:
       propertyPath: m_ActiveFontFeatures.Array.size
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5132331360984936036, guid: 181817ce13e6f634a92e2c16be981625, type: 3}
+      propertyPath: m_Resource
+      value: 
+      objectReference: {fileID: 8300000, guid: e826eab956d87f545814d1d013661955, type: 3}
+    - target: {fileID: 5132331360984936036, guid: 181817ce13e6f634a92e2c16be981625, type: 3}
+      propertyPath: m_audioClip
+      value: 
+      objectReference: {fileID: 8300000, guid: e826eab956d87f545814d1d013661955, type: 3}
     - target: {fileID: 5152296429719158953, guid: 181817ce13e6f634a92e2c16be981625, type: 3}
       propertyPath: competetiveMode
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7887767182449932168, guid: 181817ce13e6f634a92e2c16be981625, type: 3}
       propertyPath: m_LocalPosition.x
