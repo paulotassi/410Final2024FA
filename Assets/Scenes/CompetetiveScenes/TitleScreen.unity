@@ -889,7 +889,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 293070581}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1666366416}
+        m_TargetAssemblyTypeName: BBSceneManager, Assembly-CSharp
+        m_MethodName: LoadComboPlaythrough
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &293070581
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1282,7 +1294,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 339755951}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1666366416}
+        m_TargetAssemblyTypeName: BBSceneManager, Assembly-CSharp
+        m_MethodName: LoadCompetetivePlaythrough1
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &339755951
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1857,7 +1881,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 915549161}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1666366416}
+        m_TargetAssemblyTypeName: BBSceneManager, Assembly-CSharp
+        m_MethodName: LoadCompetetivePlaythrough2
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &915549161
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3610,7 +3646,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1470379841}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1666366416}
+        m_TargetAssemblyTypeName: BBSceneManager, Assembly-CSharp
+        m_MethodName: ExitApplication
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1470379841
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4255,7 +4303,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1750969793}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1666366416}
+        m_TargetAssemblyTypeName: BBSceneManager, Assembly-CSharp
+        m_MethodName: LoadCooperativePlaythrough
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1750969793
 MonoBehaviour:
   m_ObjectHideFlags: 0

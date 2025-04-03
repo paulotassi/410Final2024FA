@@ -25,10 +25,33 @@ public class ButtonSlider : MonoBehaviour
         canvasGroup.alpha = 0f;
         canvasGroup.interactable = false;
         canvasGroup.blocksRaycasts = false;
+
+        isVisible = false; // Ensure correct state on start
     }
 
+    private void OnEnable()
+    {
+        // Get or add a CanvasGroup for fading
+        canvasGroup = panel.GetComponent<CanvasGroup>();
+        if (canvasGroup == null)
+            canvasGroup = panel.gameObject.AddComponent<CanvasGroup>();
+
+        // Set panel to start hidden
+        panel.anchoredPosition = hiddenPosition;
+        canvasGroup.alpha = 0f;
+        canvasGroup.interactable = false;
+        canvasGroup.blocksRaycasts = false;
+
+        isVisible = false; // Ensure correct state on start
+    }
     public void TogglePanel()
     {
+        if (panel == null)
+        {
+            Debug.LogError("Panel reference is null!");
+            return;
+        }
+
         StopAllCoroutines();
         StartCoroutine(SlidePanel(isVisible ? hiddenPosition : visiblePosition, isVisible ? 0f : 1f));
         isVisible = !isVisible;
