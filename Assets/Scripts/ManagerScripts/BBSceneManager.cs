@@ -7,23 +7,28 @@ public class BBSceneManager : MonoBehaviour
 {
     //Eventual intent is to make the play to go as follows. Player hits initial button choice bringing you to either coop gamestate. when players finish a round they returnt to titlescreen and the button changes from coopmode to continue coop
     //A state will exist that will continue guiding players through their playthrough. an additional button will appear that will say to reset coop run or reset comp run to bring player game states back to first level.
-    public void LoadPlaythrough1()
+    public void LoadCoopPlaythrough1()
     {
-        SceneManager.LoadScene("CompetetiveSceneRound1");
+        SceneManager.LoadScene("CompetetiveLevel1");
     }
 
-    public void LoadCompetetivePlaythrough()
+    public void LoadCoopPlaythrough2()
     {
         SceneManager.LoadScene("CompetitiveLevel2");
     }
 
-    public void LoadCooperativePlaythrough()
+    public void LoadCooperativeBossPlaythrough()
     {
         SceneManager.LoadScene("BossLevel");
     }
 
-    public void LoadComboPlaythrough()
+    public void LoadVersusPlaythrough()
     {
         SceneManager.LoadScene("ArenaScene");
+    }
+
+    public void ExitApplication()
+    {
+        Application.Quit();
     }
 }

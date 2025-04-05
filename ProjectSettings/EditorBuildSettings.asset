@@ -12,17 +12,17 @@ EditorBuildSettings:
     path: Assets/Scenes/CompetetiveScenes/TitleScreen.unity
     guid: b2cd2746b4863c142808e26eb1a28288
   - enabled: 1
-    path: Assets/Scenes/CompetetiveScenes/BossLevel.unity
-    guid: 1e9f9ecd916361847aa7a9da26903bf9
-  - enabled: 1
-    path: Assets/Scenes/CompetetiveScenes/CompetetiveSceneRound1.unity
-    guid: e2d7ea938b0a60b4cb04e31484fee386
-  - enabled: 1
     path: Assets/Scenes/CompetetiveScenes/CompetitiveLevel2.unity
     guid: efd2405dc87b5b54e96c5e6c155a58b5
   - enabled: 1
+    path: Assets/Scenes/CompetetiveScenes/BossLevel.unity
+    guid: 1e9f9ecd916361847aa7a9da26903bf9
+  - enabled: 1
     path: Assets/Scenes/CompetetiveScenes/ArenaScene.unity
     guid: 376a65f2a5ce0594ea8e3f7a493d33f3
+  - enabled: 1
+    path: Assets/Scenes/CompetetiveScenes/CompetetiveLevel1.unity
+    guid: e2d7ea938b0a60b4cb04e31484fee386
   m_configObjects:
     com.unity.input.settings: {fileID: 11400000, guid: d336a89eeba10d647994ede47fe2dd76, type: 2}
   m_UseUCBPForAssetBundles: 0
