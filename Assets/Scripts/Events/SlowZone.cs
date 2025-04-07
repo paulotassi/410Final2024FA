@@ -6,12 +6,18 @@ public class SlowZone : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     private void OnTriggerEnter2D(Collider2D collision)
     {
+        var playV = collision.GetComponent<PlayerController>();
+        
         if (collision.gameObject.tag == "Player" || collision.gameObject.tag == "Player2")
-        {
-            Debug.Log(collision.name + " Slowed");
-            collision.GetComponent<PlayerController>().topSpeed /= slowAmount;
-            collision.GetComponent<PlayerController>().flightSpeed /= slowAmount;
-            collision.GetComponent<PlayerController>().moveHorizontalFlightSpeed /= slowAmount;
+        {   
+            float limitedSlow = playV.topSpeed/slowAmount;
+            if (playV.topSpeed > limitedSlow)
+            {
+                Debug.Log(collision.name + " Slowed");
+                playV.topSpeed /= slowAmount;
+                playV.flightSpeed /= slowAmount;
+                playV.moveHorizontalFlightSpeed /= slowAmount;
+            }
 
         }
     }
@@ -20,10 +26,10 @@ public class SlowZone : MonoBehaviour
     {
         if (collision.gameObject.tag == "Player" || collision.gameObject.tag == "Player2")
         {
-
-            collision.GetComponent<PlayerController>().topSpeed *= slowAmount;
-            collision.GetComponent<PlayerController>().flightSpeed *= slowAmount;
-            collision.GetComponent<PlayerController>().moveHorizontalFlightSpeed *= slowAmount;
+            var playV = collision.GetComponent<PlayerController>();
+            playV.topSpeed *= slowAmount;
+            playV.flightSpeed *= slowAmount;
+            playV.moveHorizontalFlightSpeed *= slowAmount;
 
         }
     }

@@ -30,12 +30,12 @@ public class Ingredient : collectableObject
     public override void Player1CollectItem(Collider2D playerCollided)
     {
         base.Player1CollectItem(playerCollided);
-        Manager.player1IncreaseIngredient(ingredientType, playerCollided.gameObject);
+        Manager.Player1IncreaseIngredient(ingredientType, playerCollided.gameObject);
     }
 
     public override void Player2CollectItem(Collider2D playerCollided)
     {
         base.Player2CollectItem(playerCollided);
-        Manager.player2IncreaseIngredient(ingredientType, playerCollided.gameObject);
+        Manager.Player2IncreaseIngredient(ingredientType, playerCollided.gameObject);
     }
 }
