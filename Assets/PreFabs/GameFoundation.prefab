@@ -3842,6 +3842,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1007016485713019625}
     - target: {fileID: 6476817448315748389, guid: 5679bbdf17f618c48ad838081dc8fd8c, type: 3}
+      propertyPath: uiManager
+      value: 
+      objectReference: {fileID: 3465999199109083179}
+    - target: {fileID: 6476817448315748389, guid: 5679bbdf17f618c48ad838081dc8fd8c, type: 3}
       propertyPath: p1Indicator
       value: 
       objectReference: {fileID: 6983340373773227421}
@@ -3879,7 +3883,7 @@ PrefabInstance:
       objectReference: {fileID: 5009174538512541273}
     - target: {fileID: 6476817448315748389, guid: 5679bbdf17f618c48ad838081dc8fd8c, type: 3}
       propertyPath: singlePlayerMode
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6476817448315748389, guid: 5679bbdf17f618c48ad838081dc8fd8c, type: 3}
       propertyPath: roundEndTextObject

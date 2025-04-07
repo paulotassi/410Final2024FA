@@ -253,7 +253,7 @@ public class GameManager : MonoBehaviour
         {
             return "Some Bad Witches Killed the Boss!";
         }
-        else if (!competetiveMode)
+        else if (!competetiveMode && winStateMet)
         {
             return "Witches have collected " + (player1IngredientCount + player2IngredientCount) + " Ingredients for the brews.";
         }
