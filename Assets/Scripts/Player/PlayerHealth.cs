@@ -93,7 +93,7 @@ public class PlayerHealth : MonoBehaviour
         // Handle ingredient loss and spawning based on the player
         if (this.gameObject.name == "Player")
         {
-            gameManager.player1DecreaseIngredient(); // Reduce Player 1's ingredient count
+            gameManager.Player1DecreaseIngredient(); // Reduce Player 1's ingredient count
             playerLifeCountRemaining--;
 
             // Create arrays for spawn positions and ingredient objects
@@ -122,7 +122,7 @@ public class PlayerHealth : MonoBehaviour
         }
         else if (this.gameObject.name == "Player 2")
         {
-            gameManager.player2DecreaseIngredient(); // Reduce Player 2's ingredient count
+            gameManager.Player2DecreaseIngredient(); // Reduce Player 2's ingredient count
             playerLifeCountRemaining--;
 
             // Create arrays for spawn positions and ingredient objects

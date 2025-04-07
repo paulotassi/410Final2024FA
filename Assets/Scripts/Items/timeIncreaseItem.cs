@@ -13,12 +13,12 @@ public class timeIncreaseItem : collectableObject
     public override void Player1CollectItem(Collider2D playerCollided)
     {
         base.Player1CollectItem(playerCollided);
-        Manager.increaseGameTime(15);
+        Manager.IncreaseGameTime(15);
     }
 
     public override void Player2CollectItem(Collider2D playerCollided)
     {
         base.Player2CollectItem(playerCollided);
-        Manager.increaseGameTime(15);
+        Manager.IncreaseGameTime(15);
     }
 }

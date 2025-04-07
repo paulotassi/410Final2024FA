@@ -1,144 +1,91 @@
-//THIS SCRIPT WAS HEAVILY COMMENTED WITH CHATGPT AS WELL AS SOME EFFECIENCY USING TERTIARY OPERATORS
-
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.SceneManagement; // Required for handling scene transitions.
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
-using TMPro; // Required for using TextMeshPro (TMP) for UI text elements.
 
 public class GameManager : MonoBehaviour
 {
-    //======================================================
-    // UI Elements and Game Settings
-    //======================================================
-    [SerializeField] private TMP_Text Player1ScoreText;      // Text element to display Player 1's score.
-    [SerializeField] private TMP_Text Player2ScoreText;      // Text element to display Player 2's score.
-    [SerializeField] private TMP_Text RoundEndText;          // Text element to display a message when the round ends.
-    [SerializeField] private TMP_Text gameTimerText;         // Text element to show the remaining game time.
-    [SerializeField] public int playerStartingLifeCount = 3; // Starting life count for players.
+    [Header("References")]
+    [SerializeField] private UIManager uiManager;            // Handles every text/image update
+
+    [Header("General Settings")]
+    [SerializeField] public int playerStartingLifeCount = 3;
     [SerializeField] public bool isPaused = false;
-    [SerializeField] public GameObject pauseMenuUI;
+    [SerializeField] public bool singlePlayerMode = false;
+    [SerializeField] public bool competetiveMode = false;
+
+    [Header("Single‑Player UI Tweaks")]
+    [SerializeField] public RectTransform sourceUI;
+    [SerializeField] public RectTransform targetUI;
+    [SerializeField] public GameObject p1HealthObject;
+    [SerializeField] public GameObject p2HealthObject;
+    [SerializeField] public GameObject p1Indicator;
+    [SerializeField] public GameObject p2Indicator;
+    [SerializeField] public GameObject splitBarObject;
+    [SerializeField] public GameObject p1Camera;
+    [SerializeField] public Camera p2Camera;
 
     //======================================================
-    // SinglePlayer Co-Op Test Variables
+    // Core Game State
     //======================================================
-
-    public bool singlePlayerMode = false;
-    public GameObject p1HealthObject;
-    public GameObject p2HealthObject;
-    public RectTransform sourceUI;
-    public RectTransform targetUI;
-    public GameObject p1Indicator;
-    public GameObject p2Indicator;
-    public GameObject SplitBarObject;
-    public GameObject p1Camera;
-    public Camera p2Camera;
-
+    [Header("Score, GameState & Timer")]
+    [SerializeField] public int player1IngredientCount = 0;
+    [SerializeField] public int player2IngredientCount = 0;
+    private int totalScore;
+    [SerializeField] public float remainingTime = 30f;
+    private bool winStateMet = false;
 
     //======================================================
-    // Player 1 Cooldown Variables
+    // Player & Boss References
     //======================================================
-    [Header("Player 1 CD")]
-    [SerializeField] public Image Player1shootCDDisplay;      // UI image for Player 1 shoot cooldown.
-    [SerializeField] private float Player1ShootCDMaxValue;     // Maximum value for Player 1 shoot cooldown.
-    [SerializeField] private float Player1ShootCDTimer;        // Timer tracking Player 1 shoot cooldown.
-    [SerializeField] private bool Player1ShootCDEnabled = false;// Flag for whether Player 1 shoot cooldown is active.
+    [Header("Player & Boss References")]
+    [SerializeField] public GameObject player1GameObject;
+    [SerializeField] public GameObject player2GameObject;
+    private CapsuleCollider2D playerCollider1;
+    private CapsuleCollider2D playerCollider2;
+    private int playerLayer1;
+    private int playerLayer2;
+    private BossHP bossHp;
 
-    [SerializeField] public Image Player1StunCDDisplay;       // UI image for Player 1 stun cooldown.
-    [SerializeField] private float Player1StunCDMaxValue;      // Maximum value for Player 1 stun cooldown.
-    [SerializeField] private float Player1StunCDTimer;         // Timer tracking Player 1 stun cooldown.
-    [SerializeField] private bool Player1StunCDEnabled = false; // Flag for whether Player 1 stun cooldown is active.
-
-    [SerializeField] public Image Player1shieldCDDisplay;     // UI image for Player 1 shield cooldown.
-    [SerializeField] private float Player1ShieldCDMaxValue;    // Maximum value for Player 1 shield cooldown.
-    [SerializeField] private float Player1ShieldCDTimer;       // Timer tracking Player 1 shield cooldown.
-    [SerializeField] private bool Player1ShieldCDEnabled = false;// Flag for whether Player 1 shield cooldown is active.
-
-
-
-    //======================================================
-    // Player 2 Cooldown Variables
-    //======================================================
-    [Header("Player 2 CD")]
-    [SerializeField] public Image Player2shootCDDisplay;      // UI image for Player 2 shoot cooldown.
-    [SerializeField] private float Player2ShootCDMaxValue;     // Maximum value for Player 2 shoot cooldown.
-    [SerializeField] private float Player2ShootCDTimer;        // Timer tracking Player 2 shoot cooldown.
-    [SerializeField] private bool Player2ShootCDEnabled = false;// Flag for whether Player 2 shoot cooldown is active.
-
-    [SerializeField] public Image Player2StunCDDisplay;       // UI image for Player 2 stun cooldown.
-    [SerializeField] private float Player2StunCDMaxValue;      // Maximum value for Player 2 stun cooldown.
-    [SerializeField] private float Player2StunCDTimer;         // Timer tracking Player 2 stun cooldown.
-    [SerializeField] private bool Player2StunCDEnabled = false; // Flag for whether Player 2 stun cooldown is active.
-
-    [SerializeField] public Image Player2shieldCDDisplay;     // UI image for Player 2 shield cooldown.
-    [SerializeField] private float Player2ShieldCDMaxValue;    // Maximum value for Player 2 shield cooldown.
-    [SerializeField] private float Player2ShieldCDTimer;       // Timer tracking Player 2 shield cooldown.
-    [SerializeField] private bool Player2ShieldCDEnabled = false;// Flag for whether Player 2 shield cooldown is active.
-
-    //======================================================
-    // Game State Variables
-    //======================================================
-    [Header("Score, Gamestates and Timers")]
-    [SerializeField] public GameObject roundEndTextObject;   // GameObject for round end message.
-    [SerializeField] public int player1IngredientCount = 0;    // Tracks Player 1's collected ingredients.
-    [SerializeField] public int player2IngredientCount = 0;    // Tracks Player 2's collected ingredients.
-    private int totalScore;                                  // Stores the combined score of both players.
-    [SerializeField] public float remainingTime = 30;         // Tracks the remaining time in the game round.
-    private bool winStateMet = false;                        // Boolean to check if win conditions are met.
-
-    //======================================================
-    // Generic GameObjects for Inspector Use
-    //======================================================
-    [Header("Generic GameObjects for Inspector Use")]
-    [SerializeField] public bool competetiveMode = false;      // Flag for competitive mode.
-    [SerializeField] public GameObject player1GameObject;      // Reference to Player 1 GameObject.
-    [SerializeField] public GameObject player2GameObject;      // Reference to Player 2 GameObject.
-    [SerializeField] public CapsuleCollider2D playerCollider1; // Player 1 collider.
-    [SerializeField] public CapsuleCollider2D playerCollider2; // Player 2 collider.
-    [SerializeField] public int playerLayer1;                  // Layer for Player 1.
-    [SerializeField] public int playerLayer2;                  // Layer for Player 2.
-    [SerializeField] public BossHP bossDead;                   // Reference to the BossHP script.
-
-    //======================================================
-    // Ingredient Tracking Dictionaries
-    //======================================================
-    private Dictionary<IngredientType, int> player1Ingredients = new Dictionary<IngredientType, int>(); // Tracks Player 1 ingredients.
-    private Dictionary<IngredientType, int> player2Ingredients = new Dictionary<IngredientType, int>(); // Tracks Player 2 ingredients.
-
-    //======================================================
-    // Cached Components (for efficiency)
-    //======================================================
     private PlayerController player1Controller;
     private PlayerController player2Controller;
     private PlayerHealth player1Health;
     private PlayerHealth player2Health;
 
-
-    void CopyRectTransform(RectTransform source, RectTransform target)
-    {
-        target.position = source.position; // World position
-        target.rotation = source.rotation; // Rotation
-        target.localScale = source.localScale; // Scale
-
-        target.anchorMin = source.anchorMin; // Anchors
-        target.anchorMax = source.anchorMax;
-        target.anchoredPosition = source.anchoredPosition; // Local position relative to parent
-        target.sizeDelta = source.sizeDelta; // Width & Height
-        target.pivot = source.pivot; // Pivot point
-    }
+    //======================================================
+    // Ingredient Tracking
+    //======================================================
+    private Dictionary<IngredientType, int> player1Ingredients = new Dictionary<IngredientType, int>();
+    private Dictionary<IngredientType, int> player2Ingredients = new Dictionary<IngredientType, int>();
 
     //======================================================
-    // Start: Initialization of players, components, and cooldown timers.
+    // Cooldown Timers
+    //======================================================
+    private float p1ShootCdMax, p1ShootCdTimer;
+    private bool p1ShootCdEnabled;
+    private float p1ShieldCdMax, p1ShieldCdTimer;
+    private bool p1ShieldCdEnabled;
+    private float p1StunCdMax, p1StunCdTimer;
+    private bool p1StunCdEnabled;
+
+    private float p2ShootCdMax, p2ShootCdTimer;
+    private bool p2ShootCdEnabled;
+    private float p2ShieldCdMax, p2ShieldCdTimer;
+    private bool p2ShieldCdEnabled;
+    private float p2StunCdMax, p2StunCdTimer;
+    private bool p2StunCdEnabled;
+
+    //======================================================
+    // Initialization
     //======================================================
     private void Start()
     {
-
-        // Find player GameObjects by tag.
+        // Find players by tag
         player1GameObject = GameObject.FindWithTag("Player");
-        
         player2GameObject = GameObject.FindWithTag("Player2");
 
+        // Single‑player layout adjustments
         if (singlePlayerMode)
         {
             CopyRectTransform(sourceUI, targetUI);
@@ -146,60 +93,73 @@ public class GameManager : MonoBehaviour
             player1GameObject.SetActive(false);
             p1Indicator.SetActive(false);
             p2Indicator.SetActive(false);
-            SplitBarObject.SetActive(false);
+            splitBarObject.SetActive(false);
             p1HealthObject.SetActive(false);
             p1Camera.SetActive(false);
             p2Camera.rect = new Rect(0f, 0f, 1f, 1f);
-           
-    
         }
-        // Cache PlayerController and PlayerHealth components.
+
+        // Cache components
         player1Controller = player1GameObject.GetComponent<PlayerController>();
         player2Controller = player2GameObject.GetComponent<PlayerController>();
         player1Health = player1GameObject.GetComponent<PlayerHealth>();
         player2Health = player2GameObject.GetComponent<PlayerHealth>();
 
-        // Get colliders and their layers.
         playerCollider1 = player1GameObject.GetComponent<CapsuleCollider2D>();
         playerLayer1 = playerCollider1.gameObject.layer;
         playerCollider2 = player2GameObject.GetComponent<CapsuleCollider2D>();
         playerLayer2 = playerCollider2.gameObject.layer;
 
-        // Get reference to boss object.
-        bossDead = FindFirstObjectByType<BossHP>();
+        bossHp = FindFirstObjectByType<BossHP>();
 
-        // Initialize cooldown timers from PlayerController settings.
-        GetPlayerCDTimers();
+        InitializeCooldowns();
+    }
+
+    // Copy all RectTransform properties
+    private void CopyRectTransform(RectTransform source, RectTransform target)
+    {
+        target.position = source.position;
+        target.rotation = source.rotation;
+        target.localScale = source.localScale;
+        target.anchorMin = source.anchorMin;
+        target.anchorMax = source.anchorMax;
+        target.anchoredPosition = source.anchoredPosition;
+        target.sizeDelta = source.sizeDelta;
+        target.pivot = source.pivot;
+    }
+
+    // Set initial cooldown values from PlayerController
+    private void InitializeCooldowns()
+    {
+        p1ShootCdMax = player1Controller.shootCoolDown;
+        p1ShootCdTimer = p1ShootCdMax;
+        p1ShieldCdMax = player1Controller.shieldCooldown + player1Controller.shieldDuration;
+        p1ShieldCdTimer = p1ShieldCdMax;
+        p1StunCdMax = player1Controller.altShootCoolDown;
+        p1StunCdTimer = p1StunCdMax;
+
+        p2ShootCdMax = player2Controller.shootCoolDown;
+        p2ShootCdTimer = p2ShootCdMax;
+        p2ShieldCdMax = player2Controller.shieldCooldown + player2Controller.shieldDuration;
+        p2ShieldCdTimer = p2ShieldCdMax;
+        p2StunCdMax = player2Controller.altShootCoolDown;
+        p2StunCdTimer = p2StunCdMax;
     }
 
     //======================================================
-    // GetPlayerCDTimers: Retrieve and set the cooldown timers from PlayerController.
+    // Main Loop
     //======================================================
-    public void GetPlayerCDTimers()
+    private void Update()
     {
-        // For Player 2:
-        Player2ShootCDMaxValue = player2Controller.shootCoolDown;
-        Player2ShootCDTimer = Player2ShootCDMaxValue;
-        Player2ShieldCDMaxValue = player2Controller.shieldCooldown + player2Controller.shieldDuration;
-        Player2ShieldCDTimer = Player2ShieldCDMaxValue;
-        Player2StunCDMaxValue = player2Controller.altShootCoolDown;
-        Player2StunCDTimer = Player2StunCDMaxValue;
-
-        // For Player 1:
-        Player1ShootCDMaxValue = player1Controller.shootCoolDown;
-        Player1ShootCDTimer = Player1ShootCDMaxValue;
-        Player1ShieldCDMaxValue = player1Controller.shieldCooldown + player1Controller.shieldDuration;
-        Player1ShieldCDTimer = Player1ShieldCDMaxValue;
-        Player1StunCDMaxValue = player1Controller.altShootCoolDown;
-        Player1StunCDTimer = Player1StunCDMaxValue;
+        HandleModeAndScores();
+        HandleCooldowns();
+        HandleTimer();
+        CheckEndConditions();
     }
 
-    //======================================================
-    // Update: Called once per frame to update game state, UI, cooldowns, and timers.
-    //======================================================
-    void Update()
+    // Toggle physics layers and update score/lives text
+    private void HandleModeAndScores()
     {
-        // Handle collision layers based on competitive mode.
         if (!competetiveMode)
         {
             Physics2D.IgnoreLayerCollision(playerLayer1, playerLayer2, true);
@@ -207,9 +167,7 @@ public class GameManager : MonoBehaviour
             Physics2D.IgnoreLayerCollision(playerLayer1, playerLayer1, true);
             Physics2D.IgnoreLayerCollision(playerLayer2, playerLayer2, true);
 
-            // Update UI with ingredient counts.
-            Player1ScoreText.text = "Ingredients Collected: " + player1IngredientCount;
-            Player2ScoreText.text = "Ingredients Collected: " + player2IngredientCount;
+            uiManager.SetScores(player1IngredientCount, player2IngredientCount, false);
         }
         else
         {
@@ -218,171 +176,202 @@ public class GameManager : MonoBehaviour
             Physics2D.IgnoreLayerCollision(playerLayer1, playerLayer1, false);
             Physics2D.IgnoreLayerCollision(playerLayer2, playerLayer2, false);
 
-            // Update UI with remaining lives.
-            Player1ScoreText.text = "Lives Remaining: " + player1Health.playerLifeCountRemaining;
-            Player2ScoreText.text = "Lives Remaining: " + player2Health.playerLifeCountRemaining;
-        }
-
-        // Update cooldowns for Player 2.
-        UpdateCooldown(ref Player2ShootCDTimer, Player2ShootCDMaxValue, Player2shootCDDisplay, player2Controller.fired, ref Player2ShootCDEnabled, player2ShootCDTrigger);
-        UpdateCooldown(ref Player2ShieldCDTimer, Player2ShieldCDMaxValue, Player2shieldCDDisplay, player2Controller.shielded, ref Player2ShieldCDEnabled, player2ShieldCDTrigger);
-        UpdateCooldown(ref Player2StunCDTimer, Player2StunCDMaxValue, Player2StunCDDisplay, player2Controller.altFired, ref Player2StunCDEnabled, player2StunCDTrigger);
-
-        // Update cooldowns for Player 1.
-        UpdateCooldown(ref Player1ShootCDTimer, Player1ShootCDMaxValue, Player1shootCDDisplay, player1Controller.fired, ref Player1ShootCDEnabled, player1ShootCDTrigger);
-        UpdateCooldown(ref Player1ShieldCDTimer, Player1ShieldCDMaxValue, Player1shieldCDDisplay, player1Controller.shielded, ref Player1ShieldCDEnabled, player1ShieldCDTrigger);
-        UpdateCooldown(ref Player1StunCDTimer, Player1StunCDMaxValue, Player1StunCDDisplay, player1Controller.altFired, ref Player1StunCDEnabled, player1StunCDTrigger);
-
-        // Update total score (if needed).
-        totalScore = player1IngredientCount + player2IngredientCount;
-
-        // Update game timer.
-        remainingTime -= Time.deltaTime;
-        int minutes = Mathf.FloorToInt(remainingTime / 60);
-        int seconds = Mathf.FloorToInt(remainingTime % 60);
-        gameTimerText.text = string.Format("{0:00}:{1:00}", minutes, seconds);
-
-        // Check end-of-round conditions.
-        if (remainingTime <= 0 || (bossDead != null && bossDead.bossDead) ||
-            player1Health.playerLifeCountRemaining == 0 || player2Health.playerLifeCountRemaining == 0)
-        {
-            gameStateText();
-            gameTimerText.text = "00:00";
-            StartCoroutine(gameEnd());
+            uiManager.SetScores(player1Health.playerLifeCountRemaining,
+                                player2Health.playerLifeCountRemaining,
+                                true);
         }
     }
 
-    /// <summary>
-    /// UpdateCooldown: Updates a cooldown timer and UI display.
-    /// If the ability is triggered and not already on cooldown, starts the cooldown coroutine.
-    /// </summary>
-    private void UpdateCooldown(ref float timer, float maxValue, Image display, bool triggered, ref bool cooldownEnabled, System.Func<IEnumerator> coroutineFunction)
+    // Advance each player’s cooldown and notify UIManager
+    private void HandleCooldowns()
+    {
+        UpdateCooldown(ref p1ShootCdTimer, p1ShootCdMax, player1Controller.fired, ref p1ShootCdEnabled, player1ShootCdTrigger, uiManager.Player1shootCDDisplay);
+        UpdateCooldown(ref p1ShieldCdTimer, p1ShieldCdMax, player1Controller.shielded, ref p1ShieldCdEnabled, player1ShieldCdTrigger, uiManager.Player1shieldCDDisplay);
+        UpdateCooldown(ref p1StunCdTimer, p1StunCdMax, player1Controller.altFired, ref p1StunCdEnabled, player1StunCdTrigger, uiManager.Player1StunCDDisplay);
+
+        UpdateCooldown(ref p2ShootCdTimer, p2ShootCdMax, player2Controller.fired, ref p2ShootCdEnabled, player2ShootCdTrigger, uiManager.Player2shootCDDisplay);
+        UpdateCooldown(ref p2ShieldCdTimer, p2ShieldCdMax, player2Controller.shielded, ref p2ShieldCdEnabled, player2ShieldCdTrigger, uiManager.Player2shieldCDDisplay);
+        UpdateCooldown(ref p2StunCdTimer, p2StunCdMax, player2Controller.altFired, ref p2StunCdEnabled, player2StunCdTrigger, uiManager.Player2StunCDDisplay);
+    }
+
+    // Generic cooldown helper
+    private void UpdateCooldown(ref float timer,
+                                float maxValue,
+                                bool triggered,
+                                ref bool cooldownEnabled,
+                                System.Func<IEnumerator> coroutineFunction,
+                                Image display)
     {
         if (triggered && !cooldownEnabled)
         {
             StartCoroutine(coroutineFunction());
         }
-        display.fillAmount = timer / maxValue;
+
+        float fillAmount = timer / maxValue;   // compute fill
+        uiManager.UpdateCooldown(display, fillAmount);
         timer += Time.deltaTime;
     }
 
-    //======================================================
-    // Cooldown Coroutines for Player Abilities
-    //======================================================
-    private IEnumerator player1ShootCDTrigger()
+    // Decrement game timer and update UI
+    private void HandleTimer()
     {
-        Player1ShootCDEnabled = true;
-        Player1ShootCDTimer = 0;
-        yield return new WaitForSeconds(Player1ShootCDMaxValue);
-        Player1ShootCDEnabled = false;
+        remainingTime -= Time.deltaTime;
+
+        int minutes = Mathf.FloorToInt(remainingTime / 60);   // local var
+        int seconds = Mathf.FloorToInt(remainingTime % 60);   // local var
+
+        uiManager.SetTimer(string.Format("{0:00}:{1:00}", minutes, seconds));
     }
 
-    private IEnumerator player1ShieldCDTrigger()
+    // Check for end‑of‑round and trigger sequence
+    private void CheckEndConditions()
     {
-        Player1ShieldCDEnabled = true;
-        Player1ShieldCDTimer = 0;
-        yield return new WaitForSeconds(Player1ShieldCDMaxValue);
-        Player1ShieldCDEnabled = false;
+        if (remainingTime <= 0 ||
+            (bossHp != null && bossHp.bossDead) ||
+            player1Health.playerLifeCountRemaining == 0 ||
+            player2Health.playerLifeCountRemaining == 0)
+        {
+            uiManager.SetTimer("00:00");
+            string msg = ComputeGameStateMessage();
+            uiManager.ShowRoundEnd(msg);
+            StartCoroutine(GameEnd());
+        }
     }
 
-    private IEnumerator player1StunCDTrigger()
+    // Decide which win/lose message to show
+    private string ComputeGameStateMessage()
     {
-        Player1StunCDEnabled = true;
-        Player1StunCDTimer = 0;
-        yield return new WaitForSeconds(Player1StunCDMaxValue);
-        Player1StunCDEnabled = false;
+        if ( competetiveMode && (player1Health.playerLifeCountRemaining > player2Health.playerLifeCountRemaining))
+        {
+            return "Player 1 Win";
+        }
+        else if (competetiveMode && (player1Health.playerLifeCountRemaining < player2Health.playerLifeCountRemaining))
+        {
+            return "Player 2 Win";
+        }
+        else if (bossHp != null && bossHp.bossDead)
+        {
+            return "Some Bad Witches Killed the Boss!";
+        }
+        else if (!competetiveMode)
+        {
+            return "Witches have collected " + (player1IngredientCount + player2IngredientCount) + " Ingredients for the brews.";
+        }
+        else
+        {
+            return "Weak Witches";
+        }
     }
 
-    private IEnumerator player2ShootCDTrigger()
+    // Called by trigger when players enter the end zone
+    public void EndZoneEntry(int roundRequiredScore)
     {
-        Player2ShootCDEnabled = true;
-        Player2ShootCDTimer = 0;
-        yield return new WaitForSeconds(Player2ShootCDMaxValue);
-        Player2ShootCDEnabled = false;
-    }
+        if (player1IngredientCount + player2IngredientCount < roundRequiredScore)
+        {
+            winStateMet = false;
+            uiManager.ShowRoundEnd("Not Enough Ingredients");
+            return;
+        }
 
-    private IEnumerator player2ShieldCDTrigger()
-    {
-        Player2ShieldCDEnabled = true;
-        Player2ShieldCDTimer = 0;
-        yield return new WaitForSeconds(Player2ShieldCDMaxValue);
-        Player2ShieldCDEnabled = false;
-    }
-
-    private IEnumerator player2StunCDTrigger()
-    {
-        Player2StunCDEnabled = true;
-        Player2StunCDTimer = 0;
-        yield return new WaitForSeconds(Player2StunCDMaxValue);
-        Player2StunCDEnabled = false;
-    }
-
-
-    //======================================================
-    // gameEnd: Handles the end-of-game sequence and scene transition.
-    //======================================================
-    private IEnumerator gameEnd()
-    {
+        remainingTime = 5f;
         winStateMet = true;
-        yield return new WaitForSeconds(4);
+
+        string msg = ComputeGameStateMessage();
+        uiManager.ShowRoundEnd(msg);
+    }
+
+    //======================================================
+    // Cooldown Coroutines
+    //======================================================
+    private IEnumerator player1ShootCdTrigger()
+    {
+        p1ShootCdEnabled = true;
+        p1ShootCdTimer = 0f;
+        yield return new WaitForSeconds(p1ShootCdMax);
+        p1ShootCdEnabled = false;
+    }
+
+    private IEnumerator player1ShieldCdTrigger()
+    {
+        p1ShieldCdEnabled = true;
+        p1ShieldCdTimer = 0f;
+        yield return new WaitForSeconds(p1ShieldCdMax);
+        p1ShieldCdEnabled = false;
+    }
+
+    private IEnumerator player1StunCdTrigger()
+    {
+        p1StunCdEnabled = true;
+        p1StunCdTimer = 0f;
+        yield return new WaitForSeconds(p1StunCdMax);
+        p1StunCdEnabled = false;
+    }
+
+    private IEnumerator player2ShootCdTrigger()
+    {
+        p2ShootCdEnabled = true;
+        p2ShootCdTimer = 0f;
+        yield return new WaitForSeconds(p2ShootCdMax);
+        p2ShootCdEnabled = false;
+    }
+
+    private IEnumerator player2ShieldCdTrigger()
+    {
+        p2ShieldCdEnabled = true;
+        p2ShieldCdTimer = 0f;
+        yield return new WaitForSeconds(p2ShieldCdMax);
+        p2ShieldCdEnabled = false;
+    }
+
+    private IEnumerator player2StunCdTrigger()
+    {
+        p2StunCdEnabled = true;
+        p2StunCdTimer = 0f;
+        yield return new WaitForSeconds(p2StunCdMax);
+        p2StunCdEnabled = false;
+    }
+
+    //======================================================
+    // End‑Game & Scene Management
+    //======================================================
+    private IEnumerator GameEnd()
+    {
+        yield return new WaitForSeconds(4f);
         SceneManager.LoadScene("TitleScreen");
     }
 
-    //======================================================
-    // gameModeSwitch: Toggles between competitive and non-competitive modes.
-    //======================================================
-    public void gameModeSwitch()
+    public void TogglePause()
     {
-        competetiveMode = !competetiveMode;
+        isPaused = !isPaused;
+        Time.timeScale = isPaused ? 0f : 1f;
+        uiManager.TogglePauseMenu(isPaused);
+    }
+
+    public void ResumeGame()
+    {
+        isPaused = false;
+        Time.timeScale = 1f;
+        uiManager.TogglePauseMenu(false);
+    }
+
+    public void ExitGame()
+    {
+        SceneManager.LoadScene("TitleScreen");
+    }
+
+    public void IncreaseGameTime(float increaseAmount)
+    {
+        remainingTime += increaseAmount;
     }
 
     //======================================================
-    // EndZoneEntry: Called when players enter the end zone; checks if ingredient threshold is met.
+    // Ingredient Handling & Buffs
     //======================================================
-    public void EndZoneEntry(int roundRequiredScore)
-    {
-        if (player1IngredientCount < roundRequiredScore && player2IngredientCount < roundRequiredScore)
-        {
-            winStateMet = false;
-            RoundEndText.text = "Not Enough Ingredients";
-            return;
-        }
-        remainingTime = 5;
-        gameStateText();
-    }
-
-    //======================================================
-    // gameStateText: Updates the round end text based on win conditions.
-    //======================================================
-    public void gameStateText()
-    {
-        if ((winStateMet && player1IngredientCount > player2IngredientCount) ||
-            (player1Health.playerLifeCountRemaining > player2Health.playerLifeCountRemaining))
-        {
-            RoundEndText.text = "Player 1 Win";
-        }
-        else if ((winStateMet && player2IngredientCount > player1IngredientCount) ||
-                 (player1Health.playerLifeCountRemaining < player2Health.playerLifeCountRemaining))
-        {
-            RoundEndText.text = "Player 2 Win";
-        }
-        else if (bossDead != null && bossDead.bossDead)
-        {
-            RoundEndText.text = "You've Killed the Boss!";
-        }
-        else if (!winStateMet)
-        {
-            RoundEndText.text = "Witches Lose";
-        }
-    }
-
-    //======================================================
-    // Ingredient Handling Methods
-    //======================================================
-    public void player1IncreaseIngredient(IngredientType type, GameObject player)
+    public void Player1IncreaseIngredient(IngredientType type, GameObject player)
     {
         if (!player1Ingredients.ContainsKey(type))
             player1Ingredients[type] = 0;
+
         player1Ingredients[type]++;
         player1IngredientCount++;
 
@@ -393,125 +382,83 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    public void player1DecreaseIngredient()
+    public void Player1DecreaseIngredient()
     {
         if (player1Ingredients.Count > 0)
             RemoveRandomIngredient(player1Ingredients);
     }
 
-    public void player2IncreaseIngredient(IngredientType type, GameObject player)
+    public void Player2IncreaseIngredient(IngredientType type, GameObject player)
     {
         if (!player2Ingredients.ContainsKey(type))
             player2Ingredients[type] = 0;
+
         player2Ingredients[type]++;
         player2IngredientCount++;
 
         if (player2Ingredients[type] >= 5)
         {
             ApplyBuff(player, type);
-            player1Ingredients[type] = 0; // Note: Resets Player1's count as per original logic.
+            player2Ingredients[type] = 0;
         }
     }
 
-    public void player2DecreaseIngredient()
+    public void Player2DecreaseIngredient()
     {
         if (player2Ingredients.Count > 0)
             RemoveRandomIngredient(player2Ingredients);
     }
 
-    private void RemoveRandomIngredient(Dictionary<IngredientType, int> playerIngredients)
+    private void RemoveRandomIngredient(Dictionary<IngredientType, int> ingredients)
     {
-        List<IngredientType> ingredientKeys = new List<IngredientType>(playerIngredients.Keys);
-        IngredientType randomType = ingredientKeys[Random.Range(0, ingredientKeys.Count)];
-        playerIngredients[randomType] -= ingredientKeys.Count / 2;
-        if (playerIngredients[randomType] <= 0)
-            playerIngredients.Remove(randomType);
+        List<IngredientType> keys = new List<IngredientType>(ingredients.Keys);
+        IngredientType randomType = keys[Random.Range(0, keys.Count)];
+        ingredients[randomType] -= keys.Count / 2;
+
+        if (ingredients[randomType] <= 0)
+            ingredients.Remove(randomType);
     }
 
     private void ApplyBuff(GameObject player, IngredientType type)
     {
-        PlayerController playerController = player.GetComponent<PlayerController>();
-        if (playerController == null) return;
+        PlayerController controller = player.GetComponent<PlayerController>();
+
+        if (controller == null)
+            return;
 
         BuffType buffToApply;
+
         switch (type)
         {
             case IngredientType.Herb:
-                
-                if (playerController.SpeedBuff) return;
-                Debug.LogWarning("Speedbuff applied to:" + playerController.name);
+                if (controller.SpeedBuff) return;
                 buffToApply = BuffType.SpeedBoost;
-                playerController.SpeedBuff = true;
+                controller.SpeedBuff = true;
                 break;
+
             case IngredientType.Finger:
-                
-                if (playerController.ShootBuff) return;
-                Debug.LogWarning("Shootbuff applied to:" + playerController.name);
+                if (controller.ShootBuff) return;
                 buffToApply = BuffType.FireRateIncrease;
-                playerController.ShootBuff = true;
+                controller.ShootBuff = true;
                 break;
 
             case IngredientType.FrogLeg:
-
-                if (playerController.StunBuff) return;
-                Debug.LogWarning("Shootbuff applied to:" + playerController.name);
+                if (controller.StunBuff) return;
                 buffToApply = BuffType.StunMultiplier;
-                playerController.StunBuff = true;
+                controller.StunBuff = true;
                 break;
+
             case IngredientType.Spider:
-                
-                if (playerController.ShieldBuff) return;
-                Debug.LogWarning("Shieldbuff applied to:" + playerController.name);
+                if (controller.ShieldBuff) return;
                 buffToApply = BuffType.ShieldExtension;
-                playerController.ShieldBuff = true;
+                controller.ShieldBuff = true;
                 break;
+
             default:
                 return;
         }
-        playerController.ApplyBuff(buffToApply);
-        GetPlayerCDTimers();
-    }
 
-    public void TogglePause()
-    {
-        isPaused = !isPaused; // Flip pause state
-
-        if (isPaused)
-        {
-            // Pause the game
-            Time.timeScale = 0f; // Stop time-based updates
-            if (pauseMenuUI != null)
-            {
-                pauseMenuUI.SetActive(true); // Show pause menu if assigned
-            }
-        }
-        else
-        {
-            // Unpause the game
-            Time.timeScale = 1f; // Resume normal time
-            if (pauseMenuUI != null)
-            {
-                pauseMenuUI.SetActive(false); // Hide pause menu if assigned
-            }
-        }
-    }
-    public void ResumeGame()
-    {
-        isPaused = false;
-        Time.timeScale = 1f;
-        if (pauseMenuUI != null)
-        {
-            pauseMenuUI.SetActive(false);
-        }
-    }
-
-    public void ExitGame()
-    {
-        SceneManager.LoadScene("TitleScreen");
-    }
-
-    public void increaseGameTime(float increaseAmount)
-    {
-        remainingTime += increaseAmount;
+        controller.ApplyBuff(buffToApply);
+        InitializeCooldowns();
     }
 }
