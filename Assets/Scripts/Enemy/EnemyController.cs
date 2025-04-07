@@ -55,32 +55,29 @@ public class EnemyController : MonoBehaviour
     protected virtual void Start()
     {
         // Find players in the scene
-        if (GameObject.FindGameObjectWithTag("Player").transform != null)
+        GameObject obj1 = GameObject.FindGameObjectWithTag("Player");
+        if (obj1 != null && obj1.activeInHierarchy)
         {
-            player1 = GameObject.FindGameObjectWithTag("Player").transform;
-        }
-        
-        player2 = GameObject.FindGameObjectWithTag("Player2").transform;
-
-        // Get health components of both players
-        if (player1 != null)
-        {
+            player1 = obj1.transform;
             player1Health = player1.GetComponent<PlayerHealth>();
         }
+
+        player2 = GameObject.FindGameObjectWithTag("Player2").transform;
         player2Health = player2.GetComponent<PlayerHealth>();
     }
 
     public void Update()
     {
         // Check if either player is dead and reset to patrolling
-        if (player1Health.currentHealth <= 0 || player2Health.currentHealth <= 0)
+        if ((player1 != null && player1Health != null && player1Health.currentHealth <= 0) || player2Health.currentHealth <= 0)
         {
             targetPlayer = null;
             currentState = State.Patrolling;
         }
 
         // Determine closest player within detection range
-        if (player1 != null && player1Health.currentHealth > 0 && Vector2.Distance(transform.position, player1.position) <= detectionRange)
+        if (player1 != null && player1Health != null && player1Health.currentHealth > 0 &&
+    Vector2.Distance(transform.position, player1.position) <= detectionRange)
         {
             targetPlayer = player1;
             currentState = State.Chasing;
@@ -204,7 +201,7 @@ public class EnemyController : MonoBehaviour
     {
         if (isStunned || Time.time < lastAttackTime + attackCooldown) return;
 
-        PlayerHealth targetHealth = (targetPlayer == player1) ? player1Health : player2Health;
+        PlayerHealth targetHealth = (targetPlayer == player1 && player1 != null) ? player1Health : player2Health;
         if (targetHealth != null)
         {
             targetHealth.TakeDamage(attackDamage);

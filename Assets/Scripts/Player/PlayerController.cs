@@ -30,6 +30,7 @@ public class PlayerController : MonoBehaviour
     public float inactivityThreshold = 2f; // Time threshold for considering inactivity (in seconds)
     private bool isStunned = false;
     public bool stunnable = true;
+    private bool slowed = false;
     
     //Player Stun Variables
     public float stunDR = 3.5f;
@@ -356,10 +357,27 @@ public class PlayerController : MonoBehaviour
         rightNoise.m_AmplitudeGain = 0;
         rightNoise.m_FrequencyGain = 0;
 
-
-
     }
 
+    public void playerSlowed(float slowAmount)
+    {
+        if (slowed) return;
+        slowed = true;
+        topSpeed /= slowAmount;
+        flightSpeed /= slowAmount;
+        moveHorizontalFlightSpeed /= slowAmount;
+    }
+
+    public void playerUnslowed(float slowAmount)
+    {
+        if (slowed)
+        {
+            slowed = false;
+            topSpeed *= slowAmount;
+            flightSpeed *= slowAmount;
+            moveHorizontalFlightSpeed *= slowAmount;
+        }
+    }
 
     public void OnMove(InputAction.CallbackContext context)
     {
