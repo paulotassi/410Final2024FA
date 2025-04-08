@@ -4,12 +4,12 @@ using System.Collections;
 
 public class ButtonSlider : MonoBehaviour
 {
-    public RectTransform panel; // Assign in Inspector
+    public RectTransform panel; 
     private CanvasGroup canvasGroup;
     public float slideSpeed = 5f;
 
-    public Vector2 hiddenPosition;  // Now editable in Inspector
-    public Vector2 visiblePosition; // Now editable in Inspector
+    public Vector2 hiddenPosition;  
+    public Vector2 visiblePosition; 
 
     private bool isVisible = false;
 
@@ -26,7 +26,7 @@ public class ButtonSlider : MonoBehaviour
         canvasGroup.interactable = false;
         canvasGroup.blocksRaycasts = false;
 
-        isVisible = false; // Ensure correct state on start
+        isVisible = false; 
     }
 
     private void OnEnable()
@@ -42,7 +42,7 @@ public class ButtonSlider : MonoBehaviour
         canvasGroup.interactable = false;
         canvasGroup.blocksRaycasts = false;
 
-        isVisible = false; // Ensure correct state on start
+        isVisible = false; 
     }
     public void TogglePanel()
     {

@@ -11,19 +11,23 @@ public class BossCameraSettings : MonoBehaviour
     public CinemachineVirtualCamera p2CamLeft;
     public CinemachineVirtualCamera p2CamRight;
     public Image bossHP;
-    public GameObject player1BossIndicator; 
+    public GameObject player1BossIndicator;
     public GameObject player2BossIndicator;
+    public GameManager gameManager;
 
 
     public float targetOrthographicSize = 15f;
     private float lerpSpeed = 1f;
 
-    public AudioSource audioSource; 
-    public AudioClip newMusicClip; 
+    public AudioSource audioSource;
+    public AudioClip newMusicClip;
 
 
     // Start is called before the first frame update
-
+    private void Start()
+    {
+        gameManager = FindFirstObjectByType<GameManager>();
+    }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
@@ -33,7 +37,10 @@ public class BossCameraSettings : MonoBehaviour
             StartCoroutine(LerpOrthographicSize(p1CamRight, targetOrthographicSize));
             StartCoroutine(LerpOrthographicSize(p2CamLeft, targetOrthographicSize));
             StartCoroutine(LerpOrthographicSize(p2CamRight, targetOrthographicSize));
-            player1BossIndicator.SetActive(true);
+            if (gameManager.singlePlayerMode != true)
+            {
+                player1BossIndicator.SetActive(true);
+            }
             player2BossIndicator.SetActive(true);
             bossHP.gameObject.SetActive(true);
             ChangeBackgroundMusic();
@@ -52,16 +59,16 @@ public class BossCameraSettings : MonoBehaviour
             yield return null;
         }
 
-        cam.m_Lens.OrthographicSize = targetSize; 
+        cam.m_Lens.OrthographicSize = targetSize;
     }
 
     private void ChangeBackgroundMusic()
     {
         if (audioSource != null && newMusicClip != null)
         {
-            audioSource.Stop(); 
-            audioSource.clip = newMusicClip; 
-            audioSource.Play(); 
+            audioSource.Stop();
+            audioSource.clip = newMusicClip;
+            audioSource.Play();
         }
         else
         {
