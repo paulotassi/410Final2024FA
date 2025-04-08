@@ -14,6 +14,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] public bool isPaused = false;
     [SerializeField] public bool singlePlayerMode = false;
     [SerializeField] public bool competetiveMode = false;
+    [SerializeField] public bool arcadeMode = false;
 
     [Header("Single‑Player UI Tweaks")]
     [SerializeField] public RectTransform sourceUI;
@@ -25,6 +26,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] public GameObject splitBarObject;
     [SerializeField] public GameObject p1Camera;
     [SerializeField] public Camera p2Camera;
+    [SerializeField] public GameObject p1BossIndicator;
 
     //======================================================
     // Core Game State
@@ -35,7 +37,7 @@ public class GameManager : MonoBehaviour
     private int totalScore;
     [SerializeField] public float remainingTime = 30f;
     private bool winStateMet = false;
-    [SerializeField] public bool arcadeMode = false;
+
 
     //======================================================
     // Player & Boss References
@@ -85,7 +87,7 @@ public class GameManager : MonoBehaviour
         // Find players by tag
         player1GameObject = GameObject.FindWithTag("Player");
         player2GameObject = GameObject.FindWithTag("Player2");
-    
+
         // Single‑player layout adjustments
         if (singlePlayerMode)
         {
@@ -96,6 +98,7 @@ public class GameManager : MonoBehaviour
             p2Indicator.SetActive(false);
             splitBarObject.SetActive(false);
             p1HealthObject.SetActive(false);
+            p1BossIndicator.SetActive(false);
             p1Camera.SetActive(false);
             p2Camera.rect = new Rect(0f, 0f, 1f, 1f);
         }
@@ -242,7 +245,7 @@ public class GameManager : MonoBehaviour
     // Decide which win/lose message to show
     private string ComputeGameStateMessage()
     {
-        if ( competetiveMode && (player1Health.playerLifeCountRemaining > player2Health.playerLifeCountRemaining))
+        if (competetiveMode && (player1Health.playerLifeCountRemaining > player2Health.playerLifeCountRemaining))
         {
             return "Player 1 Win";
         }
@@ -357,6 +360,7 @@ public class GameManager : MonoBehaviour
 
     public void ExitGame()
     {
+        ResumeGame();
         SceneManager.LoadScene("TitleScreen");
     }
 
