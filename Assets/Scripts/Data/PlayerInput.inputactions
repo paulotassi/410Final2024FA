@@ -18,7 +18,7 @@
                     "name": "Jump",
                     "type": "Button",
                     "id": "19d7d4cc-0541-4dca-94f4-88af7ed4d6be",
-                    "expectedControlType": "Button",
+                    "expectedControlType": "",
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
@@ -27,7 +27,7 @@
                     "name": "Revive",
                     "type": "Button",
                     "id": "b42a35b6-0dba-4d47-a2a9-6c95e1f992c1",
-                    "expectedControlType": "Button",
+                    "expectedControlType": "",
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
@@ -96,7 +96,7 @@
                     "path": "<Keyboard>/w",
                     "interactions": "",
                     "processors": "",
-                    "groups": "Keyboard",
+                    "groups": "Arcade;Keyboard",
                     "action": "WASD",
                     "isComposite": false,
                     "isPartOfComposite": true
@@ -107,7 +107,7 @@
                     "path": "<Keyboard>/s",
                     "interactions": "",
                     "processors": "",
-                    "groups": "Keyboard",
+                    "groups": "Arcade;Keyboard",
                     "action": "WASD",
                     "isComposite": false,
                     "isPartOfComposite": true
@@ -118,7 +118,7 @@
                     "path": "<Keyboard>/a",
                     "interactions": "",
                     "processors": "",
-                    "groups": "Keyboard",
+                    "groups": "Arcade;Keyboard",
                     "action": "WASD",
                     "isComposite": false,
                     "isPartOfComposite": true
@@ -129,7 +129,7 @@
                     "path": "<Keyboard>/d",
                     "interactions": "",
                     "processors": "",
-                    "groups": "Keyboard",
+                    "groups": "Arcade;Keyboard",
                     "action": "WASD",
                     "isComposite": false,
                     "isPartOfComposite": true
@@ -144,6 +144,61 @@
                     "action": "WASD",
                     "isComposite": false,
                     "isPartOfComposite": false
+                },
+                {
+                    "name": "2D Vector",
+                    "id": "2f82602f-12b3-4a8f-91c3-bc840145a32d",
+                    "path": "2DVector",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "WASD",
+                    "isComposite": true,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "up",
+                    "id": "9353c4fd-c941-4ff5-a933-8a184ba7a0fe",
+                    "path": "<Keyboard>/i",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": ";P2Arcade",
+                    "action": "WASD",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "down",
+                    "id": "55ed48f7-0a99-4759-80bb-4a9f51aefca0",
+                    "path": "<Keyboard>/k",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": ";P2Arcade",
+                    "action": "WASD",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "left",
+                    "id": "4ebf3d26-df47-4a1a-815e-0b1022b264e0",
+                    "path": "<Keyboard>/j",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": ";P2Arcade",
+                    "action": "WASD",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "right",
+                    "id": "95212d54-9ab9-46be-a3f2-8fadc743ebf9",
+                    "path": "<Keyboard>/l",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": ";P2Arcade",
+                    "action": "WASD",
+                    "isComposite": false,
+                    "isPartOfComposite": true
                 },
                 {
                     "name": "",
@@ -163,6 +218,28 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "GamePad",
+                    "action": "Jump",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "4c161561-f474-4ee7-99b5-f436d0172b62",
+                    "path": "<Keyboard>/9",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": ";P2Arcade",
+                    "action": "Jump",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "ff4be307-e524-410a-b0a3-832d7b4288c9",
+                    "path": "<Keyboard>/3",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": ";Arcade",
                     "action": "Jump",
                     "isComposite": false,
                     "isPartOfComposite": false
@@ -213,6 +290,28 @@
                 },
                 {
                     "name": "",
+                    "id": "8350149a-1516-4f9a-b2f9-bf8e0eabc7b4",
+                    "path": "<Keyboard>/1",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": ";Arcade",
+                    "action": "Shoot",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "8025a21d-94f5-4807-ae8d-74bd45c3daf9",
+                    "path": "<Keyboard>/7",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": ";P2Arcade",
+                    "action": "Shoot",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
                     "id": "b59bc3e5-3ecf-4d77-a6d4-584d1d40ade6",
                     "path": "<Mouse>/rightButton",
                     "interactions": "",
@@ -229,6 +328,28 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "GamePad",
+                    "action": "AltShoot",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "c6e5c841-32ea-4e3a-a52d-652da4a8685a",
+                    "path": "<Keyboard>/2",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": ";Arcade",
+                    "action": "AltShoot",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "d8ae85bc-1071-4f7f-9425-dfa99f09e2fe",
+                    "path": "<Keyboard>/8",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": ";P2Arcade",
                     "action": "AltShoot",
                     "isComposite": false,
                     "isPartOfComposite": false
@@ -276,6 +397,72 @@
                     "action": "Shield",
                     "isComposite": false,
                     "isPartOfComposite": false
+                },
+                {
+                    "name": "One Modifier",
+                    "id": "321a50ca-12c2-4eeb-b74b-cc9a431f81c9",
+                    "path": "OneModifier",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Shield",
+                    "isComposite": true,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "Modifier",
+                    "id": "dbca2ca0-599e-4a49-80a7-a9d832d43019",
+                    "path": "<Keyboard>/9",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": ";P2Arcade",
+                    "action": "Shield",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "binding",
+                    "id": "4f94c267-b97c-4d66-b8cf-b3095f1a1970",
+                    "path": "<Keyboard>/8",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": ";P2Arcade",
+                    "action": "Shield",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "One Modifier",
+                    "id": "12894bd6-6805-457d-ad04-f4ce1e782ee6",
+                    "path": "OneModifier",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Shield",
+                    "isComposite": true,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "modifier",
+                    "id": "4db10fb0-8610-4975-bd13-7ba99fa51a35",
+                    "path": "<Keyboard>/3",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": ";Arcade",
+                    "action": "Shield",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "binding",
+                    "id": "f29e8870-81b6-4894-9482-f60b29ec980d",
+                    "path": "<Keyboard>/2",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": ";Arcade",
+                    "action": "Shield",
+                    "isComposite": false,
+                    "isPartOfComposite": true
                 },
                 {
                     "name": "",
@@ -329,6 +516,16 @@
                     "isOR": false
                 }
             ]
+        },
+        {
+            "name": "Arcade",
+            "bindingGroup": "Arcade",
+            "devices": []
+        },
+        {
+            "name": "P2Arcade",
+            "bindingGroup": "P2Arcade",
+            "devices": []
         }
     ]
 }

@@ -35,6 +35,7 @@ public class GameManager : MonoBehaviour
     private int totalScore;
     [SerializeField] public float remainingTime = 30f;
     private bool winStateMet = false;
+    [SerializeField] public bool arcadeMode = false;
 
     //======================================================
     // Player & Boss References
@@ -84,7 +85,7 @@ public class GameManager : MonoBehaviour
         // Find players by tag
         player1GameObject = GameObject.FindWithTag("Player");
         player2GameObject = GameObject.FindWithTag("Player2");
-
+    
         // Single‑player layout adjustments
         if (singlePlayerMode)
         {
