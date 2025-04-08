@@ -111,7 +111,17 @@ public class PlayerController : MonoBehaviour
         leftNoise = virtualCameraLeft.GetCinemachineComponent<CinemachineBasicMultiChannelPerlin>();
         rightNoise = virtualCameraRight.GetCinemachineComponent<CinemachineBasicMultiChannelPerlin>();
         gameManager = FindFirstObjectByType<GameManager>();
-
+       if (gameManager.arcadeMode)
+        {
+            if (this.gameObject.CompareTag("Player2"))
+            {
+                gameObject.GetComponent<PlayerInput>().SwitchCurrentControlScheme("Arcade", Keyboard.current);
+            }
+            else
+            {
+                gameObject.GetComponent<PlayerInput>().SwitchCurrentControlScheme("P2Arcade", Keyboard.current);
+            }
+        }
     }
 
     // Update is called once per frame
@@ -382,6 +392,7 @@ public class PlayerController : MonoBehaviour
     public void OnMove(InputAction.CallbackContext context)
     {
         movementInput = context.ReadValue<Vector2>();
+        Debug.Log("Trying to move");
     }
     public void OnJump(InputAction.CallbackContext context) 
     {

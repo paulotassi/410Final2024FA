@@ -15,6 +15,7 @@ public class PlayerAttack : MonoBehaviour
     public Transform aimObject;
     public float aimAngle;
     public float controllerDeadzone = 0.1f;
+    private Vector2 lastAimDir = Vector2.right;
 
     // Function to remap a value from one range to another
     // Example: Remaps a value from [-1, 1] to [-250, 1500] or [-300, 500]
@@ -26,6 +27,8 @@ public class PlayerAttack : MonoBehaviour
         // Get horizontal and vertical aim input from the controller (e.g., joystick or mouse input)
         horizontalAimInput = controller.aimInput.x; // X-axis aim input, range [-1, 1]
         verticalAimInput = controller.aimInput.y; // Y-axis aim input, range [-1, 1]
+
+
 
         // If the current control scheme is "GamePad", use the remapped values for aiming
         if (controller.GetComponent<PlayerInput>().currentControlScheme == "GamePad")
@@ -41,7 +44,7 @@ public class PlayerAttack : MonoBehaviour
                 aimObject.rotation = Quaternion.Euler(0, 0, aimAngle);
             }
         }
-        else
+        else if (controller.GetComponent<PlayerInput>().currentControlScheme == "Keyboard")
         {
             // For other control schemes (e.g., keyboard and mouse), use the raw input values directly
             targetPos = new Vector3(horizontalAimInput, verticalAimInput, -10); // -10 for Z-axis (camera depth)
@@ -63,5 +66,20 @@ public class PlayerAttack : MonoBehaviour
 
             transform.rotation = Quaternion.Euler(0, 0, rotZ);
         }
+        else
+        {
+
+            Vector2 moveDir = controller.movementInput;
+
+            if (moveDir.magnitude > 0.1f)
+            {
+                lastAimDir = moveDir.normalized;
+            }
+
+            aimAngle = Mathf.Atan2(lastAimDir.y, lastAimDir.x) * Mathf.Rad2Deg;
+            aimObject.rotation = Quaternion.Euler(0, 0, aimAngle);
+
+        }
+
     }
 }
