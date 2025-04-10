@@ -82,8 +82,15 @@ public class GameManager : MonoBehaviour
     //======================================================
     // Initialization
     //======================================================
+    
+
+
     private void Start()
     {
+        singlePlayerMode = GameSettings.singlePlayerMode;
+        competetiveMode = GameSettings.competetiveMode;
+        arcadeMode = GameSettings.arcadeMode;
+
         // Find players by tag
         player1GameObject = GameObject.FindWithTag("Player");
         player2GameObject = GameObject.FindWithTag("Player2");
@@ -93,14 +100,14 @@ public class GameManager : MonoBehaviour
         {
             CopyRectTransform(sourceUI, targetUI);
             Debug.Log("Single Player Mode Active");
+            p1Camera.SetActive(false);
+            p2Camera.rect = new Rect(0f, 0f, 1f, 1f);
             player1GameObject.SetActive(false);
             p1Indicator.SetActive(false);
             p2Indicator.SetActive(false);
             splitBarObject.SetActive(false);
             p1HealthObject.SetActive(false);
             p1BossIndicator.SetActive(false);
-            p1Camera.SetActive(false);
-            p2Camera.rect = new Rect(0f, 0f, 1f, 1f);
         }
 
         // Cache components
@@ -118,6 +125,8 @@ public class GameManager : MonoBehaviour
 
         InitializeCooldowns();
     }
+
+
 
     // Copy all RectTransform properties
     private void CopyRectTransform(RectTransform source, RectTransform target)
