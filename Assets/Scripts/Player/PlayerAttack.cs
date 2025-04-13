@@ -68,16 +68,16 @@ public class PlayerAttack : MonoBehaviour
         }
         else
         {
-
-            Vector2 moveDir = controller.movementInput;
+            //This sectiuon exists for the single directional input of the Arcade Cabinet
+            Vector2 moveDir = controller.movementInput; //Takes the Movement Inpout here as a new Vector 2
 
             if (moveDir.magnitude > 0.1f)
             {
-                lastAimDir = moveDir.normalized;
+                lastAimDir = moveDir.normalized;  //Takes the last known input and stores it as a normalized value
             }
 
-            aimAngle = Mathf.Atan2(lastAimDir.y, lastAimDir.x) * Mathf.Rad2Deg;
-            aimObject.rotation = Quaternion.Euler(0, 0, aimAngle);
+            aimAngle = Mathf.Atan2(lastAimDir.y, lastAimDir.x) * Mathf.Rad2Deg; //Using CHATGPT Math it creates the equivilant angle of the lastAimDir
+            aimObject.rotation = Quaternion.Euler(0, 0, aimAngle); //rotates the rotate object based on the angle on the line above
 
         }
 
