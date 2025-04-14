@@ -1,0 +1,1469 @@
+fileFormatVersion: 2
+guid: 6bf8469c85fc3c149bbaa59a09715528
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 2438922880794031263
+    second: TimerBook_(1)_0
+  - first:
+      213: -7257583373552800982
+    second: TimerBook_(1)_1
+  - first:
+      213: 3669574223420999438
+    second: TimerBook_(1)_2
+  - first:
+      213: 8243694895491785858
+    second: TimerBook_(1)_3
+  - first:
+      213: 8592384121850918996
+    second: TimerBook_(1)_4
+  - first:
+      213: 999605627730089899
+    second: TimerBook_(1)_5
+  - first:
+      213: 4011650879513550121
+    second: TimerBook_(1)_6
+  - first:
+      213: -8451472404133415089
+    second: TimerBook_(1)_7
+  - first:
+      213: -1610014766284181616
+    second: TimerBook_(1)_8
+  - first:
+      213: -4673098590102417364
+    second: TimerBook_(1)_9
+  - first:
+      213: -3675979756749096098
+    second: TimerBook_(1)_10
+  - first:
+      213: -3952532833400112470
+    second: TimerBook_(1)_11
+  - first:
+      213: -6972203110742049031
+    second: TimerBook_(1)_12
+  - first:
+      213: -6364978991293758179
+    second: TimerBook_(1)_13
+  - first:
+      213: 5998516081607171270
+    second: TimerBook_(1)_14
+  - first:
+      213: 4228317755124049523
+    second: TimerBook_(1)_15
+  - first:
+      213: -8541615906669764661
+    second: TimerBook_(1)_16
+  - first:
+      213: -3735292111040588159
+    second: TimerBook_(1)_17
+  - first:
+      213: -3185064513298937185
+    second: TimerBook_(1)_18
+  - first:
+      213: -6237952360556345669
+    second: TimerBook_(1)_19
+  - first:
+      213: -5975458281230654331
+    second: TimerBook_(1)_20
+  - first:
+      213: 3592734700711364727
+    second: TimerBook_(1)_21
+  - first:
+      213: -6619946816478894954
+    second: TimerBook_(1)_22
+  - first:
+      213: -5901777052964628389
+    second: TimerBook_(1)_23
+  - first:
+      213: -4399147560043389115
+    second: TimerBook_(1)_24
+  - first:
+      213: 1554710009474012943
+    second: TimerBook_(1)_25
+  - first:
+      213: 6323271937395719732
+    second: TimerBook_(1)_26
+  - first:
+      213: 7610364036157846906
+    second: TimerBook_(1)_27
+  - first:
+      213: -6663293343941115587
+    second: TimerBook_(1)_28
+  - first:
+      213: -516433105024199333
+    second: TimerBook_(1)_29
+  - first:
+      213: -4954146017291743913
+    second: TimerBook_(1)_30
+  - first:
+      213: -3298515595964080124
+    second: TimerBook_(1)_31
+  - first:
+      213: -3994185767288251343
+    second: TimerBook_(1)_32
+  - first:
+      213: 4263010404422394100
+    second: TimerBook_(1)_33
+  - first:
+      213: -535368438882213042
+    second: TimerBook_(1)_34
+  - first:
+      213: -8381608706280810828
+    second: TimerBook_(1)_35
+  - first:
+      213: 1221974049593970073
+    second: TimerBook_(1)_36
+  - first:
+      213: 7707383498247961463
+    second: TimerBook_(1)_37
+  - first:
+      213: -1906711069529017620
+    second: TimerBook_(1)_38
+  - first:
+      213: 8886809753362981240
+    second: TimerBook_(1)_39
+  - first:
+      213: -874670153572454313
+    second: TimerBook_(1)_40
+  - first:
+      213: 6862352750476831519
+    second: TimerBook_(1)_41
+  - first:
+      213: 7898535163187000770
+    second: TimerBook_(1)_42
+  - first:
+      213: -4674815295621222755
+    second: TimerBook_(1)_43
+  - first:
+      213: -4925804557136052456
+    second: TimerBook_(1)_44
+  - first:
+      213: 1507188307484822101
+    second: TimerBook_(1)_45
+  - first:
+      213: 2128517468056032703
+    second: TimerBook_(1)_46
+  - first:
+      213: 1590561407543662455
+    second: TimerBook_(1)_47
+  - first:
+      213: 8794052790748701600
+    second: TimerBook_(1)_48
+  - first:
+      213: -9221826906571259446
+    second: TimerBook_(1)_49
+  - first:
+      213: -1762772551995025605
+    second: TimerBook_(1)_50
+  - first:
+      213: 2238192676252770389
+    second: TimerBook_(1)_51
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: iOS
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: WindowsStoreApps
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: TimerBook_(1)_0
+      rect:
+        serializedVersion: 2
+        x: 67
+        y: 463
+        width: 26
+        height: 26
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f94fc48207bc8d120800000000000000
+      internalID: 2438922880794031263
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TimerBook_(1)_1
+      rect:
+        serializedVersion: 2
+        x: 227
+        y: 459
+        width: 42
+        height: 42
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a2baa93cf52e74b90800000000000000
+      internalID: -7257583373552800982
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TimerBook_(1)_2
+      rect:
+        serializedVersion: 2
+        x: 587
+        y: 467
+        width: 26
+        height: 42
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e0740ff5052fce230800000000000000
+      internalID: 3669574223420999438
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TimerBook_(1)_3
+      rect:
+        serializedVersion: 2
+        x: 747
+        y: 467
+        width: 10
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2842d7a94dc776270800000000000000
+      internalID: 8243694895491785858
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TimerBook_(1)_4
+      rect:
+        serializedVersion: 2
+        x: 907
+        y: 463
+        width: 26
+        height: 26
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 45871ac95d74e3770800000000000000
+      internalID: 8592384121850918996
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TimerBook_(1)_5
+      rect:
+        serializedVersion: 2
+        x: 1259
+        y: 471
+        width: 26
+        height: 26
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ba75554b5005fdd00800000000000000
+      internalID: 999605627730089899
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TimerBook_(1)_6
+      rect:
+        serializedVersion: 2
+        x: 1587
+        y: 467
+        width: 10
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 92dd944683f3ca730800000000000000
+      internalID: 4011650879513550121
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TimerBook_(1)_7
+      rect:
+        serializedVersion: 2
+        x: 1939
+        y: 475
+        width: 10
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f477c9250a656ba80800000000000000
+      internalID: -8451472404133415089
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TimerBook_(1)_8
+      rect:
+        serializedVersion: 2
+        x: 2091
+        y: 467
+        width: 10
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 09f6f7ca91418a9e0800000000000000
+      internalID: -1610014766284181616
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TimerBook_(1)_9
+      rect:
+        serializedVersion: 2
+        x: 2251
+        y: 463
+        width: 26
+        height: 26
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c2011986791d52fb0800000000000000
+      internalID: -4673098590102417364
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TimerBook_(1)_10
+      rect:
+        serializedVersion: 2
+        x: 2603
+        y: 471
+        width: 26
+        height: 26
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e5b717d23eb4cfcc0800000000000000
+      internalID: -3675979756749096098
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TimerBook_(1)_11
+      rect:
+        serializedVersion: 2
+        x: 531
+        y: 459
+        width: 10
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: aaa3e165458c529c0800000000000000
+      internalID: -3952532833400112470
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TimerBook_(1)_12
+      rect:
+        serializedVersion: 2
+        x: 1195
+        y: 447
+        width: 26
+        height: 26
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9feb85a0632cd3f90800000000000000
+      internalID: -6972203110742049031
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TimerBook_(1)_13
+      rect:
+        serializedVersion: 2
+        x: 1419
+        y: 463
+        width: 10
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d158c1d945d0ba7a0800000000000000
+      internalID: -6364978991293758179
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TimerBook_(1)_14
+      rect:
+        serializedVersion: 2
+        x: 1859
+        y: 443
+        width: 42
+        height: 26
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6ccd9af38920f3350800000000000000
+      internalID: 5998516081607171270
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TimerBook_(1)_15
+      rect:
+        serializedVersion: 2
+        x: 2539
+        y: 447
+        width: 26
+        height: 26
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 37665af78900eaa30800000000000000
+      internalID: 4228317755124049523
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TimerBook_(1)_16
+      rect:
+        serializedVersion: 2
+        x: 35
+        y: 443
+        width: 10
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: bcf5f1b9695167980800000000000000
+      internalID: -8541615906669764661
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TimerBook_(1)_17
+      rect:
+        serializedVersion: 2
+        x: 55
+        y: 59
+        width: 562
+        height: 394
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1865b1d8d93992cc0800000000000000
+      internalID: -3735292111040588159
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TimerBook_(1)_18
+      rect:
+        serializedVersion: 2
+        x: 111
+        y: 451
+        width: 10
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f9a4d1a43b06cc3d0800000000000000
+      internalID: -3185064513298937185
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TimerBook_(1)_19
+      rect:
+        serializedVersion: 2
+        x: 699
+        y: 431
+        width: 26
+        height: 26
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: bb6ca3fc0675e69a0800000000000000
+      internalID: -6237952360556345669
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TimerBook_(1)_20
+      rect:
+        serializedVersion: 2
+        x: 783
+        y: 447
+        width: 10
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 584a4114a58e21da0800000000000000
+      internalID: -5975458281230654331
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TimerBook_(1)_21
+      rect:
+        serializedVersion: 2
+        x: 1447
+        y: 435
+        width: 26
+        height: 26
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 778ce18dc25fbd130800000000000000
+      internalID: 3592734700711364727
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TimerBook_(1)_22
+      rect:
+        serializedVersion: 2
+        x: 2043
+        y: 431
+        width: 26
+        height: 26
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6942cc3c1793124a0800000000000000
+      internalID: -6619946816478894954
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TimerBook_(1)_23
+      rect:
+        serializedVersion: 2
+        x: 2127
+        y: 447
+        width: 10
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b58dd7e0a0da81ea0800000000000000
+      internalID: -5901777052964628389
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TimerBook_(1)_24
+      rect:
+        serializedVersion: 2
+        x: 727
+        y: 55
+        width: 562
+        height: 394
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 54f56111a9613f2c0800000000000000
+      internalID: -4399147560043389115
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TimerBook_(1)_25
+      rect:
+        serializedVersion: 2
+        x: 1379
+        y: 435
+        width: 10
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f0751733480739510800000000000000
+      internalID: 1554710009474012943
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TimerBook_(1)_26
+      rect:
+        serializedVersion: 2
+        x: 1399
+        y: 51
+        width: 562
+        height: 394
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 43efaae2356c0c750800000000000000
+      internalID: 6323271937395719732
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TimerBook_(1)_27
+      rect:
+        serializedVersion: 2
+        x: 2071
+        y: 55
+        width: 562
+        height: 394
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a75b89af4c17d9960800000000000000
+      internalID: 7610364036157846906
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TimerBook_(1)_28
+      rect:
+        serializedVersion: 2
+        x: 35
+        y: 71
+        width: 10
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d314a20e10a3783a0800000000000000
+      internalID: -6663293343941115587
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TimerBook_(1)_29
+      rect:
+        serializedVersion: 2
+        x: 623
+        y: 63
+        width: 10
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b55d7c0c3d245d8f0800000000000000
+      internalID: -516433105024199333
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TimerBook_(1)_30
+      rect:
+        serializedVersion: 2
+        x: 707
+        y: 67
+        width: 10
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 75dc8e902765f3bb0800000000000000
+      internalID: -4954146017291743913
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TimerBook_(1)_31
+      rect:
+        serializedVersion: 2
+        x: 1287
+        y: 51
+        width: 26
+        height: 26
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 400a970ba815932d0800000000000000
+      internalID: -3298515595964080124
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TimerBook_(1)_32
+      rect:
+        serializedVersion: 2
+        x: 1371
+        y: 55
+        width: 26
+        height: 26
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 13cdcdde43dc198c0800000000000000
+      internalID: -3994185767288251343
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TimerBook_(1)_33
+      rect:
+        serializedVersion: 2
+        x: 1951
+        y: 39
+        width: 42
+        height: 42
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4f0246d5061492b30800000000000000
+      internalID: 4263010404422394100
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TimerBook_(1)_34
+      rect:
+        serializedVersion: 2
+        x: 2051
+        y: 67
+        width: 10
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e436878cd3df198f0800000000000000
+      internalID: -535368438882213042
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TimerBook_(1)_35
+      rect:
+        serializedVersion: 2
+        x: 2631
+        y: 51
+        width: 26
+        height: 26
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4b69fcf0a4b8eab80800000000000000
+      internalID: -8381608706280810828
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TimerBook_(1)_36
+      rect:
+        serializedVersion: 2
+        x: 59
+        y: 35
+        width: 26
+        height: 26
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 99d4bce7ce255f010800000000000000
+      internalID: 1221974049593970073
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TimerBook_(1)_37
+      rect:
+        serializedVersion: 2
+        x: 127
+        y: 51
+        width: 10
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 77bf6c8c47026fa60800000000000000
+      internalID: 7707383498247961463
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TimerBook_(1)_38
+      rect:
+        serializedVersion: 2
+        x: 491
+        y: 51
+        width: 10
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ce2fa6b62600a85e0800000000000000
+      internalID: -1906711069529017620
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TimerBook_(1)_39
+      rect:
+        serializedVersion: 2
+        x: 535
+        y: 3
+        width: 58
+        height: 58
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8716da7e26a445b70800000000000000
+      internalID: 8886809753362981240
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TimerBook_(1)_40
+      rect:
+        serializedVersion: 2
+        x: 791
+        y: 39
+        width: 26
+        height: 26
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7507da8212c8cd3f0800000000000000
+      internalID: -874670153572454313
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TimerBook_(1)_41
+      rect:
+        serializedVersion: 2
+        x: 1155
+        y: 39
+        width: 26
+        height: 26
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f1ba89fd779fb3f50800000000000000
+      internalID: 6862352750476831519
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TimerBook_(1)_42
+      rect:
+        serializedVersion: 2
+        x: 1471
+        y: 43
+        width: 10
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2c571b7f1eb3d9d60800000000000000
+      internalID: 7898535163187000770
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TimerBook_(1)_43
+      rect:
+        serializedVersion: 2
+        x: 1819
+        y: 27
+        width: 42
+        height: 42
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d9e2fe1c148bf1fb0800000000000000
+      internalID: -4674815295621222755
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TimerBook_(1)_44
+      rect:
+        serializedVersion: 2
+        x: 2135
+        y: 39
+        width: 26
+        height: 26
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 81fb7e27ad604abb0800000000000000
+      internalID: -4925804557136052456
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TimerBook_(1)_45
+      rect:
+        serializedVersion: 2
+        x: 2499
+        y: 39
+        width: 26
+        height: 26
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 55a414db7cb9ae410800000000000000
+      internalID: 1507188307484822101
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TimerBook_(1)_46
+      rect:
+        serializedVersion: 2
+        x: 739
+        y: 39
+        width: 10
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: fb591bd1c530a8d10800000000000000
+      internalID: 2128517468056032703
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TimerBook_(1)_47
+      rect:
+        serializedVersion: 2
+        x: 1215
+        y: 7
+        width: 42
+        height: 42
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 777d51a4c2fc21610800000000000000
+      internalID: 1590561407543662455
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TimerBook_(1)_48
+      rect:
+        serializedVersion: 2
+        x: 1411
+        y: 35
+        width: 10
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0a3eb989b60ca0a70800000000000000
+      internalID: 8794052790748701600
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TimerBook_(1)_49
+      rect:
+        serializedVersion: 2
+        x: 2083
+        y: 39
+        width: 10
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ac14eada94d750080800000000000000
+      internalID: -9221826906571259446
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TimerBook_(1)_50
+      rect:
+        serializedVersion: 2
+        x: 2559
+        y: 7
+        width: 42
+        height: 42
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b37178a14bf5987e0800000000000000
+      internalID: -1762772551995025605
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TimerBook_(1)_51
+      rect:
+        serializedVersion: 2
+        x: 1895
+        y: 11
+        width: 26
+        height: 26
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5506dee6168af0f10800000000000000
+      internalID: 2238192676252770389
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable: {}
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
