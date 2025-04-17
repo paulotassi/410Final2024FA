@@ -54,7 +54,7 @@ AudioSource:
   m_audioClip: {fileID: 0}
   m_Resource: {fileID: 0}
   m_PlayOnAwake: 1
-  m_Volume: 1
+  m_Volume: 0.1
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -322,6 +322,7 @@ MonoBehaviour:
   stunDiminishingReturn: 1.5
   source: {fileID: 7244232372511834426}
   attackSound: {fileID: 8300000, guid: 1a24022cda3a86948a451df1e5e27cd9, type: 3}
+  stunSFX: {fileID: 0}
   currentState: 0
   targetPlayer: {fileID: 0}
   facingRight: 1
