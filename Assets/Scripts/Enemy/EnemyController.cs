@@ -1,5 +1,6 @@
 using UnityEngine;
 using System.Collections;
+using UnityEngine.Audio;
 
 public class EnemyController : MonoBehaviour
 {
@@ -30,6 +31,7 @@ public class EnemyController : MonoBehaviour
     // Audio variables
     public AudioSource source;
     public AudioClip attackSound;
+    [SerializeField] private AudioClip stunSFX;
 
     // Enemy states
     public enum State { Patrolling, Chasing, Searching }
@@ -129,11 +131,20 @@ public class EnemyController : MonoBehaviour
         }
     }
 
+    private void PlaySound(AudioClip clip, bool randomizePitch = false)
+    {
+        if (source == null || clip == null) return;
+
+        source.pitch = randomizePitch ? Random.Range(0.9f, 1.2f) : 1f;
+        source.PlayOneShot(clip);
+    }
+
     // Handles enemy getting stunned
     public virtual IEnumerator Stunned(float stunDuration)
     {
         isStunned = true;
         stunnable = false;
+        PlaySound(stunSFX, true);
         Debug.Log(gameObject.name + " is Stunned for " + stunDuration);
 
         if (spriteRenderer == null)
