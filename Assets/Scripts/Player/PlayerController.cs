@@ -34,7 +34,15 @@ public class PlayerController : MonoBehaviour
     
     //Player Stun Variables
     public float stunDR = 3.5f;
- 
+
+    [Header("Audio Settings")]
+    [SerializeField] private AudioClip shootSFX;
+    [SerializeField] private AudioClip altShootSFX;
+    [SerializeField] private AudioClip shieldSFX;
+    [SerializeField] private AudioClip stunSFX;
+    [SerializeField] private AudioClip jumpSFX;
+    private AudioSource audioSource;
+
 
     //Player Shoot variables
     [Header("Shoot Settings" +
@@ -106,6 +114,7 @@ public class PlayerController : MonoBehaviour
     void Start()
     {
         // Get components on start
+        audioSource = GetComponent<AudioSource>();
         rb = GetComponent<Rigidbody2D>(); // Retrieve Rigidbody2D component for physics
         animator = GetComponent<Animator>(); // Retrieve Animator component for animations
         leftNoise = virtualCameraLeft.GetCinemachineComponent<CinemachineBasicMultiChannelPerlin>();
@@ -299,8 +308,17 @@ public class PlayerController : MonoBehaviour
     void Jump()
     {
         isFalling = true;
+        
         rb.AddForce(new Vector2(rb.linearVelocity.x, jumpForce), ForceMode2D.Impulse); // Apply jump force
         
+    }
+
+    private void PlaySound(AudioClip clip, bool randomizePitch = false)
+    {
+        if (audioSource == null || clip == null) return;
+
+        audioSource.pitch = randomizePitch ? Random.Range(0.9f, 1.2f) : 1f;
+        audioSource.PlayOneShot(clip);
     }
 
 
@@ -308,6 +326,8 @@ public class PlayerController : MonoBehaviour
     {
         canShoot = false;
         Instantiate(projectilePrefab, projectileSpawnLocation.transform.position , projectileSpawnRotation.transform.rotation);
+        PlaySound(shootSFX, true); // Random pitch for shoot
+
         StartCoroutine(createScreenShake(2));
         yield return new WaitForSeconds(shootCoolDown);
         canShoot = true;
@@ -317,6 +337,7 @@ public class PlayerController : MonoBehaviour
     {
         canAltShoot = false;
         Instantiate(altProjectilePrefab, projectileSpawnLocation.transform.position, projectileSpawnRotation.transform.rotation);
+        PlaySound(altShootSFX, true);
         StartCoroutine(createScreenShake(2));
         yield return new WaitForSeconds(altShootCoolDown);
         canAltShoot = true;
@@ -327,7 +348,8 @@ public class PlayerController : MonoBehaviour
         canShield = false;
         isShielded = true;
         this.gameObject.GetComponent<PlayerHealth>().isInvincible = true;
-        
+        PlaySound(shieldSFX, true);
+
         yield return new WaitForSeconds(shieldDuration);
         isShielded = false;
         this.gameObject.GetComponent<PlayerHealth>().isInvincible = false;
@@ -341,6 +363,7 @@ public class PlayerController : MonoBehaviour
         isStunned = true;
         stunnable = false;
         isFalling = true;
+        PlaySound(stunSFX, true);
         Debug.Log(this.gameObject.name + " is Stunned for " + stunDuration);
         yield return new WaitForSeconds(stunDuration);
         isStunned = false;
