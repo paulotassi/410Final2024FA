@@ -4698,7 +4698,7 @@ PrefabInstance:
     - target: {fileID: 3218445902191801378, guid: 47dea2b8b1dcb834dbedf4adbeed9cfc, type: 3}
       propertyPath: shootSFX
       value: 
-      objectReference: {fileID: 8300000, guid: 9ac7cc1579ca5a44e888c934ac24636f, type: 3}
+      objectReference: {fileID: 8300000, guid: 446f6b721c2258e488cd2e969de91197, type: 3}
     - target: {fileID: 3218445902191801378, guid: 47dea2b8b1dcb834dbedf4adbeed9cfc, type: 3}
       propertyPath: shieldSFX
       value: 
@@ -4786,7 +4786,7 @@ PrefabInstance:
     - target: {fileID: 8869578208568761204, guid: 47dea2b8b1dcb834dbedf4adbeed9cfc, type: 3}
       propertyPath: shootSFX
       value: 
-      objectReference: {fileID: 8300000, guid: 9ac7cc1579ca5a44e888c934ac24636f, type: 3}
+      objectReference: {fileID: 8300000, guid: 446f6b721c2258e488cd2e969de91197, type: 3}
     - target: {fileID: 8869578208568761204, guid: 47dea2b8b1dcb834dbedf4adbeed9cfc, type: 3}
       propertyPath: shieldSFX
       value: 
