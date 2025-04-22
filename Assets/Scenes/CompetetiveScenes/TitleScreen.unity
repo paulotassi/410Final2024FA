@@ -4105,6 +4105,13 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0.000061035156
       objectReference: {fileID: 0}
+    - target: {fileID: 1398161794068460135, guid: 30c36e55939341f48ac0dc6bd21fda14, type: 3}
+      propertyPath: m_text
+      value: "PLACE HOLDER UNTIL MY TEAM TELLS ME WHO THEY WANT TO ADD HERE!!!!!!!!!!!!!!!!
+        GRW#EROIJEQFONMEQWrtujgh#qewbRTJFERSGKLOJN\n\nThis message was brought to
+        you from THE GROUCH\n\n\n\n\n\n\n\nTassi: Special Thanks to my other half
+        Nadia Ayad, \nmy cat companion Louis Ayad, \nand Coco Ayad, the Wolf Whistler"
+      objectReference: {fileID: 0}
     - target: {fileID: 2272781120366470602, guid: 30c36e55939341f48ac0dc6bd21fda14, type: 3}
       propertyPath: m_AnchoredPosition.y
       value: 0
@@ -4212,6 +4219,18 @@ PrefabInstance:
     - target: {fileID: 5813396089369742000, guid: 30c36e55939341f48ac0dc6bd21fda14, type: 3}
       propertyPath: m_AnchoredPosition.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6334744836122524070, guid: 30c36e55939341f48ac0dc6bd21fda14, type: 3}
+      propertyPath: m_Color.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6334744836122524070, guid: 30c36e55939341f48ac0dc6bd21fda14, type: 3}
+      propertyPath: m_Color.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6334744836122524070, guid: 30c36e55939341f48ac0dc6bd21fda14, type: 3}
+      propertyPath: m_Color.r
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6370901210306146788, guid: 30c36e55939341f48ac0dc6bd21fda14, type: 3}
       propertyPath: m_AnchoredPosition.y
