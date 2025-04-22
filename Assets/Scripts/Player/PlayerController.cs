@@ -252,8 +252,9 @@ void Start()
     private IEnumerator Shoot()
     {
         canShoot = false;
-        Instantiate(projectilePrefab, projectileSpawnLocation.transform.position , projectileSpawnRotation.transform.rotation);
-
+        var instance = Instantiate(projectilePrefab, projectileSpawnLocation.transform.position, projectileSpawnRotation.transform.rotation);
+        var instanceNetworkObject = instance.GetComponent<NetworkObject>();
+        instanceNetworkObject.Spawn();
         StartCoroutine(createScreenShake(2));
         yield return new WaitForSeconds(shootCoolDown);
         canShoot = true;

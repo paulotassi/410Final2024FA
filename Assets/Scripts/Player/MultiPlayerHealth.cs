@@ -17,7 +17,7 @@ public class MultiPlayerHealth : NetworkBehaviour
 
 
 
-    void Start()
+    void Awake()
     {
         currentHealth = maxHealth; // Set current health to maximum at the start
         playerRB = GetComponent<Rigidbody2D>();
@@ -31,6 +31,7 @@ public class MultiPlayerHealth : NetworkBehaviour
         lastPosition = transform.position; // Update the last position before taking damage
         currentHealth -= damage; // Reduce health by the damage amount
         currentHealth = Mathf.Clamp(currentHealth, 0, maxHealth); // Ensure health stays within 0 and maxHealth
+
 
         //StartCoroutine(playerController.createScreenShake(7f)); // Trigger screen shake effect on damage
        
@@ -50,7 +51,7 @@ public class MultiPlayerHealth : NetworkBehaviour
     {
         playerController.enabled = false; // Disable player controls during respawn
         playerRB.simulated = false;       // Disable Rigidbody to prevent movement
-        transform.localScale = Vector3.zero; // Set scale to zero to "hide" player
+        transform.localScale = Vector3.zero; // Set scale to zero to "hide" p1layer
 
 
             yield return new WaitForSeconds(1f);   // Wait for one second
