@@ -186,7 +186,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      ReaperEnemy_0: -4463312941420365958
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

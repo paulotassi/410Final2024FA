@@ -186,7 +186,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      Outfit_Progress_0: 93075147906614935
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

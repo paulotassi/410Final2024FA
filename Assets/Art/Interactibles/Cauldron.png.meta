@@ -1,25 +1,70 @@
 fileFormatVersion: 2
-guid: b95cc2144a3bb874eba32aba4304b3ac
+guid: 5e18596a7116aef419b190761fc3a408
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -3682116446546204375
-    second: Shield_Icon_0
+      213: -5734888567148846429
+    second: Cauldron_0
   - first:
-      213: -1147620282649723470
-    second: Shield_Icon_1
+      213: 6442685787483345789
+    second: Cauldron_1
   - first:
-      213: -4111151164147513314
-    second: Shield_Icon_2
+      213: 3951699593749594473
+    second: Cauldron_2
   - first:
-      213: -7327194841681330848
-    second: Shield_Icon_3
+      213: 9101191058906655149
+    second: Cauldron_3
   - first:
-      213: 3599746263467935843
-    second: Shield_Icon_4
+      213: -8417778383946691058
+    second: Cauldron_4
   - first:
-      213: -7143877902674359017
-    second: Shield_Icon_5
+      213: 8826417575303049200
+    second: Cauldron_5
+  - first:
+      213: 25824725931470919
+    second: Cauldron_6
+  - first:
+      213: 4771722570685813392
+    second: Cauldron_7
+  - first:
+      213: 911673315082338186
+    second: Cauldron_8
+  - first:
+      213: 6467228865548187311
+    second: Cauldron_9
+  - first:
+      213: -9114586952687794964
+    second: Cauldron_10
+  - first:
+      213: -688715168378311976
+    second: Cauldron_11
+  - first:
+      213: 5250969652922867143
+    second: Cauldron_12
+  - first:
+      213: -5977901536441460568
+    second: Cauldron_13
+  - first:
+      213: -2680639105447243493
+    second: Cauldron_14
+  - first:
+      213: -2666029378307341424
+    second: Cauldron_15
+  - first:
+      213: 4756691215923834970
+    second: Cauldron_16
+  - first:
+      213: -3072846198397213901
+    second: Cauldron_17
+  - first:
+      213: -1752011210870384522
+    second: Cauldron_18
+  - first:
+      213: -4265348302381519615
+    second: Cauldron_19
+  - first:
+      213: -5587771688479206200
+    second: Cauldron_20
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -52,7 +97,7 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
-    filterMode: 1
+    filterMode: 0
     aniso: 1
     mipBias: 0
     wrapU: 1
@@ -66,7 +111,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 100
+  spritePixelsToUnits: 20
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -90,33 +135,7 @@ TextureImporter:
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 1
-    compressionQuality: 50
-    crunchedCompression: 0
-    allowsAlphaSplitting: 0
-    overridden: 0
-    ignorePlatformSupport: 0
-    androidETC2FallbackOverride: 0
-    forceMaximumCompressionQuality_BC6H_BC7: 0
-  - serializedVersion: 4
-    buildTarget: iOS
-    maxTextureSize: 2048
-    resizeAlgorithm: 0
-    textureFormat: -1
-    textureCompression: 1
-    compressionQuality: 50
-    crunchedCompression: 0
-    allowsAlphaSplitting: 0
-    overridden: 0
-    ignorePlatformSupport: 0
-    androidETC2FallbackOverride: 0
-    forceMaximumCompressionQuality_BC6H_BC7: 0
-  - serializedVersion: 4
-    buildTarget: Android
-    maxTextureSize: 2048
-    resizeAlgorithm: 0
-    textureFormat: -1
-    textureCompression: 1
+    textureCompression: 0
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -150,30 +169,17 @@ TextureImporter:
     ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
-  - serializedVersion: 4
-    buildTarget: WindowsStoreApps
-    maxTextureSize: 2048
-    resizeAlgorithm: 0
-    textureFormat: -1
-    textureCompression: 1
-    compressionQuality: 50
-    crunchedCompression: 0
-    allowsAlphaSplitting: 0
-    overridden: 0
-    ignorePlatformSupport: 0
-    androidETC2FallbackOverride: 0
-    forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Shield_Icon_0
+      name: Cauldron_0
       rect:
         serializedVersion: 2
-        x: 39
-        y: 115
-        width: 86
-        height: 134
+        x: 0
+        y: 100
+        width: 100
+        height: 100
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -182,20 +188,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 9296dfdb99e76ecc0800000000000000
-      internalID: -3682116446546204375
+      spriteID: 3a2e4a0ab359960b0800000000000000
+      internalID: -5734888567148846429
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Shield_Icon_1
+      name: Cauldron_1
       rect:
         serializedVersion: 2
-        x: 67
-        y: 143
-        width: 122
-        height: 82
+        x: 100
+        y: 100
+        width: 100
+        height: 100
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -204,20 +210,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 2bd31abee65d210f0800000000000000
-      internalID: -1147620282649723470
+      spriteID: d731762c694096950800000000000000
+      internalID: 6442685787483345789
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Shield_Icon_2
+      name: Cauldron_2
       rect:
         serializedVersion: 2
-        x: 87
-        y: 103
-        width: 82
-        height: 74
+        x: 200
+        y: 100
+        width: 100
+        height: 100
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -226,20 +232,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: e18cd0b4cc142f6c0800000000000000
-      internalID: -4111151164147513314
+      spriteID: 9610080f7d147d630800000000000000
+      internalID: 3951699593749594473
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Shield_Icon_3
+      name: Cauldron_3
       rect:
         serializedVersion: 2
-        x: 131
-        y: 115
-        width: 86
-        height: 134
+        x: 300
+        y: 100
+        width: 100
+        height: 100
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -248,20 +254,42 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 06d7285dc13905a90800000000000000
-      internalID: -7327194841681330848
+      spriteID: da9a7134c0ded4e70800000000000000
+      internalID: 9101191058906655149
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Shield_Icon_4
+      name: Cauldron_4
       rect:
         serializedVersion: 2
-        x: 39
+        x: 400
+        y: 100
+        width: 100
+        height: 100
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e0e45eab82b0e2b80800000000000000
+      internalID: -8417778383946691058
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Cauldron_5
+      rect:
+        serializedVersion: 2
+        x: 0
         y: 0
-        width: 178
-        height: 113
+        width: 100
+        height: 100
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -270,20 +298,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 368cb83872ed4f130800000000000000
-      internalID: 3599746263467935843
+      spriteID: 0ffe337350cbd7a70800000000000000
+      internalID: 8826417575303049200
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Shield_Icon_5
+      name: Cauldron_6
       rect:
         serializedVersion: 2
-        x: 67
-        y: 55
-        width: 122
-        height: 82
+        x: 100
+        y: 0
+        width: 100
+        height: 100
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -292,8 +320,52 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 71d055cb5e8dbdc90800000000000000
-      internalID: -7143877902674359017
+      spriteID: 740319f837fbb5000800000000000000
+      internalID: 25824725931470919
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Cauldron_7
+      rect:
+        serializedVersion: 2
+        x: 200
+        y: 0
+        width: 100
+        height: 100
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 09211787560983240800000000000000
+      internalID: 4771722570685813392
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Cauldron_8
+      rect:
+        serializedVersion: 2
+        x: 300
+        y: 0
+        width: 100
+        height: 100
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a8f7fa0cc0ae6ac00800000000000000
+      internalID: 911673315082338186
       vertices: []
       indices: 
       edges: []
@@ -302,7 +374,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: 3c4756feea7add84387b3b6f58258779
     internalID: 0
     vertices: []
     indices: 
@@ -312,12 +384,15 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      Shield_Icon_0: -3682116446546204375
-      Shield_Icon_1: -1147620282649723470
-      Shield_Icon_2: -4111151164147513314
-      Shield_Icon_3: -7327194841681330848
-      Shield_Icon_4: 3599746263467935843
-      Shield_Icon_5: -7143877902674359017
+      Cauldron_0: -5734888567148846429
+      Cauldron_1: 6442685787483345789
+      Cauldron_2: 3951699593749594473
+      Cauldron_3: 9101191058906655149
+      Cauldron_4: -8417778383946691058
+      Cauldron_5: 8826417575303049200
+      Cauldron_6: 25824725931470919
+      Cauldron_7: 4771722570685813392
+      Cauldron_8: 911673315082338186
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

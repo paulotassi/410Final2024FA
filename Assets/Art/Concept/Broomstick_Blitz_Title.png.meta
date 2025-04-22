@@ -636,7 +636,26 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      Broomstick_Blitz_Title_0: 7539092432926748996
+      Broomstick_Blitz_Title_1: 7634203117314856335
+      Broomstick_Blitz_Title_10: -3211401243929282253
+      Broomstick_Blitz_Title_11: 6965029842125922361
+      Broomstick_Blitz_Title_12: 7129488204333785531
+      Broomstick_Blitz_Title_13: -3283574801018603572
+      Broomstick_Blitz_Title_14: 5396319064735357879
+      Broomstick_Blitz_Title_15: 1020177428262951615
+      Broomstick_Blitz_Title_16: 5648444216132084670
+      Broomstick_Blitz_Title_17: 6246412822297680768
+      Broomstick_Blitz_Title_18: -4233328516366538433
+      Broomstick_Blitz_Title_2: -6032343861921372563
+      Broomstick_Blitz_Title_3: -3702954126274414247
+      Broomstick_Blitz_Title_4: -1343520489901228268
+      Broomstick_Blitz_Title_5: -3185836482779678382
+      Broomstick_Blitz_Title_6: -2303914660718661043
+      Broomstick_Blitz_Title_7: -3163546650803164585
+      Broomstick_Blitz_Title_8: -1877162728699337666
+      Broomstick_Blitz_Title_9: -5119892777453639296
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

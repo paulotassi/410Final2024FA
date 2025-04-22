@@ -186,7 +186,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      Bat_Witch_Progress_0: 8445593876320710651
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
