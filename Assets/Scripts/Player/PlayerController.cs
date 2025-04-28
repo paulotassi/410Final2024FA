@@ -73,6 +73,7 @@ public class PlayerController : NetworkBehaviour
 
     // Animation variables
     public Animator animator; // Reference to the Animator for controlling animations
+    public GameObject spriteObject;
 
     //PlayerCam
     [Header("Camera Settings" +
@@ -92,7 +93,7 @@ void Start()
         if (!IsOwner || !IsSpawned) return;
         // Get components on start
         rb = this.gameObject.GetComponent<Rigidbody2D>(); // Retrieve Rigidbody2D component for physics
-        animator = GetComponent<Animator>(); // Retrieve Animator component for animations
+        animator = GetComponentInChildren<Animator>(); // Retrieve Animator component for animations
         leftNoise = virtualCameraLeft.GetCinemachineComponent<CinemachineBasicMultiChannelPerlin>();
         rightNoise = virtualCameraRight.GetCinemachineComponent<CinemachineBasicMultiChannelPerlin>();
     }
@@ -102,7 +103,7 @@ void Start()
         if (!IsOwner || !IsSpawned) return;
 
         rb = this.gameObject.GetComponent<Rigidbody2D>(); // Retrieve Rigidbody2D component for physics
-        animator = GetComponent<Animator>(); // Retrieve Animator component for animations
+        animator = GetComponentInChildren<Animator>(); // Retrieve Animator component for animations
         leftNoise = virtualCameraLeft.GetCinemachineComponent<CinemachineBasicMultiChannelPerlin>();
         rightNoise = virtualCameraRight.GetCinemachineComponent<CinemachineBasicMultiChannelPerlin>();
 
@@ -159,13 +160,15 @@ void Start()
     {
         if (horizontalInput < 0)
         {
-            GetComponent<SpriteRenderer>().flipX = true;
+            //spriteObject.transform.rotation = Quaternion.Euler(new Vector3(0,180,0));
+            spriteObject.transform.localScale = new Vector3(-1, 1, 1);
             virtualCameraLeft.Priority = 10;
             virtualCameraRight.Priority = 9;
         }
         else if (horizontalInput > 0)
         {
-            GetComponent<SpriteRenderer>().flipX = false;
+            //spriteObject.transform.rotation = Quaternion.Euler(new Vector3(0, 0, 0));
+            spriteObject.transform.localScale = new Vector3(1, 1, 1);
             virtualCameraLeft.Priority = 9;
             virtualCameraRight.Priority = 10;
         }

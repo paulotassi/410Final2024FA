@@ -4,65 +4,68 @@ using Unity.Netcode;
 
 public class MultiPlayerHealth : NetworkBehaviour
 {
-    // Public Variables
-    public int maxHealth = 100;                     // Maximum health value for the player
-    public int currentHealth;                       // Variable to track the player's current health
-    private Vector2 lastPosition;                   // Variable to store the last known position of the player
-    public PlayerController playerController;      // Reference to the player's control script
-    public bool isInvincible = false;               // Flag for temporary invincibility
-    public float invincibilityDurationSeconds;      // Duration of invincibility after respawn
-    public GameObject playerModel;                  // Reference to the player's model GameObject
-    public GameObject Shield;                       // Shield GameObject to visually indicate invincibility
-    private Rigidbody2D playerRB;                   // Reference to the player's Rigidbody2D component
+    public int maxHealth = 100;
+
+    // Make currentHealth a NetworkVariable so it syncs across clients
+    public NetworkVariable<int> currentHealth = new NetworkVariable<int>(100, NetworkVariableReadPermission.Everyone, NetworkVariableWritePermission.Owner);
+    private Vector2 lastPosition;
+    public PlayerController playerController;
+    public NetworkVariable<bool> isInvincible = new NetworkVariable<bool>(false, NetworkVariableReadPermission.Everyone, NetworkVariableWritePermission.Owner);
+    public float invincibilityDurationSeconds;
+    public GameObject playerModel;
+    public GameObject Shield;
+    private Rigidbody2D playerRB;
 
 
 
-    void Awake()
+    public override void OnNetworkSpawn()
     {
-        currentHealth = maxHealth; // Set current health to maximum at the start
+        base.OnNetworkSpawn();
+        if (IsOwner)
+        {
+            currentHealth.Value = maxHealth;
+            isInvincible.Value = false;
+        }
         playerRB = GetComponent<Rigidbody2D>();
     }
 
-    public void TakeDamage(int damage)
+
+    [ServerRpc (RequireOwnership = false)]
+    public void TakeDamageServerRpc(int damage)
     {
-        // Prevent taking damage if invincibility is active
-        if (isInvincible) return;
-        Debug.LogWarning(this.gameObject.name + " Current Health:  " + currentHealth);
-        lastPosition = transform.position; // Update the last position before taking damage
-        currentHealth -= damage; // Reduce health by the damage amount
-        currentHealth = Mathf.Clamp(currentHealth, 0, maxHealth); // Ensure health stays within 0 and maxHealth
+        //if (isInvincible.Value) return;
 
+        Debug.LogWarning(this.gameObject.name + " Current Health:  " + currentHealth.Value);
 
-        //StartCoroutine(playerController.createScreenShake(7f)); // Trigger screen shake effect on damage
-       
-
-        // Check if the player's health is depleted
-        if (currentHealth <= 0)
+        if (IsOwner) // Ensure only the owner can modify health.
         {
-            Die(); // Trigger death logic
+            currentHealth.Value -= damage;  // Reduce health by the damage.
+            currentHealth.Value = Mathf.Clamp(currentHealth.Value, 0, maxHealth);  // Clamp health between 0 and maxHealth.
+
+            if (currentHealth.Value <= 0)
+            {
+                Die();  // Call die method if health is 0.
+            }
         }
     }
+
     private void Die()
     {
-        StartCoroutine(Respawn(5f)); // Start the respawn process with a delay
+        StartCoroutine(Respawn(5f));
     }
 
     public IEnumerator Respawn(float duration)
     {
-        playerController.enabled = false; // Disable player controls during respawn
-        playerRB.simulated = false;       // Disable Rigidbody to prevent movement
-        transform.localScale = Vector3.zero; // Set scale to zero to "hide" p1layer
+        playerController.enabled = false;
+        playerRB.simulated = false;
+        transform.localScale = Vector3.zero;
 
+        yield return new WaitForSeconds(duration);
 
-            yield return new WaitForSeconds(1f);   // Wait for one second
- 
-
-        // Reset player settings after countdown
         transform.position = lastPosition;
-        transform.localScale = new Vector3(1.6187f, 1.6187f, 1.6187f); // Reset scale
-        playerController.enabled = true;   // Re-enable player controls
-        playerRB.simulated = true;         // Reactivate Rigidbody
-        currentHealth = maxHealth;         // Reset health
-
+        transform.localScale = new Vector3(1,1,1);
+        playerController.enabled = true;
+        playerRB.simulated = true;
+        currentHealth.Value = maxHealth;
     }
 }

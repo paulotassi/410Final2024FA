@@ -34,9 +34,10 @@ public class projectile : NetworkBehaviour
         }
         else if (collision.gameObject.GetComponent<PlayerController>() != null)
         {
-            if (collision.gameObject.GetComponent<MultiPlayerHealth>() != null) 
+            MultiPlayerHealth health = collision.gameObject.GetComponent<MultiPlayerHealth>();
+            if (health != null)
             {
-             collision.gameObject.GetComponent<MultiPlayerHealth>().TakeDamage(projectileDamage);
+                health.TakeDamageServerRpc(projectileDamage); // ServerRpc now
             }
 
             Destroy(this.gameObject);
