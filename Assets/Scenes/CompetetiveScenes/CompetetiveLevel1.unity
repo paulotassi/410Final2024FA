@@ -1780,7 +1780,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2688092006210190822, guid: 181817ce13e6f634a92e2c16be981625, type: 3}
       propertyPath: m_DefaultControlScheme
-      value: GamePad
+      value: Arcade
       objectReference: {fileID: 0}
     - target: {fileID: 2859636110789621390, guid: 181817ce13e6f634a92e2c16be981625, type: 3}
       propertyPath: Grave
@@ -1834,6 +1834,10 @@ PrefabInstance:
       propertyPath: pointImage
       value: 
       objectReference: {fileID: 220987291}
+    - target: {fileID: 3465999199109083179, guid: 181817ce13e6f634a92e2c16be981625, type: 3}
+      propertyPath: resumeButtonObject
+      value: 
+      objectReference: {fileID: 739064228}
     - target: {fileID: 4693062891717526901, guid: 181817ce13e6f634a92e2c16be981625, type: 3}
       propertyPath: m_LocalPosition.x
       value: -21.96001
@@ -1910,6 +1914,10 @@ PrefabInstance:
       propertyPath: competetiveMode
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5182572621553786281, guid: 181817ce13e6f634a92e2c16be981625, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5198385838949222455, guid: 181817ce13e6f634a92e2c16be981625, type: 3}
       propertyPath: orthographic size
       value: 6
@@ -1944,7 +1952,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7341278084195794793, guid: 181817ce13e6f634a92e2c16be981625, type: 3}
       propertyPath: m_DefaultControlScheme
-      value: GamePad
+      value: P2Arcade
       objectReference: {fileID: 0}
     - target: {fileID: 7436512901791669050, guid: 181817ce13e6f634a92e2c16be981625, type: 3}
       propertyPath: m_AnchoredPosition.x
@@ -7633,6 +7641,11 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!1 &739064228 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8573581630713499364, guid: 181817ce13e6f634a92e2c16be981625, type: 3}
+  m_PrefabInstance: {fileID: 220987289}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &740888391
 GameObject:
   m_ObjectHideFlags: 0

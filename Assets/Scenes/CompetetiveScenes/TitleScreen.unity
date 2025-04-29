@@ -4158,7 +4158,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5214887596719050901, guid: 30c36e55939341f48ac0dc6bd21fda14, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5250865675183778671, guid: 30c36e55939341f48ac0dc6bd21fda14, type: 3}
       propertyPath: m_AnchoredPosition.y
@@ -4735,6 +4735,18 @@ MonoBehaviour:
       - m_Target: {fileID: 2004185985}
         m_TargetAssemblyTypeName: ButtonSlider, Assembly-CSharp
         m_MethodName: TogglePanel
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1666366416}
+        m_TargetAssemblyTypeName: BBSceneManager, Assembly-CSharp
+        m_MethodName: coopPanelSelector
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -6144,6 +6156,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   SinglePlayer: {fileID: 13378469}
   TwoPlayer: {fileID: 1493291978}
+  Level1Object: {fileID: 339755948}
+  versusObject: {fileID: 293070578}
   LevelSelect: {fileID: 953571666}
   LevelSelectButton: {fileID: 1413598943}
   Versus: {fileID: 622305410}
@@ -6386,6 +6400,18 @@ MonoBehaviour:
       - m_Target: {fileID: 1367324619}
         m_TargetAssemblyTypeName: ButtonSlider, Assembly-CSharp
         m_MethodName: TogglePanel
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1666366416}
+        m_TargetAssemblyTypeName: BBSceneManager, Assembly-CSharp
+        m_MethodName: versusPanelSelector
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

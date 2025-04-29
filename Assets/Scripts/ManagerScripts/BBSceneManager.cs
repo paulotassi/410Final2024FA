@@ -9,7 +9,8 @@ public class BBSceneManager : MonoBehaviour
 {
     [SerializeField] public GameObject SinglePlayer;
     [SerializeField] public GameObject TwoPlayer;
-
+    [SerializeField] public GameObject Level1Object;
+    [SerializeField] public GameObject versusObject;
     [SerializeField] public GameObject LevelSelect;
     [SerializeField] public GameObject LevelSelectButton;
     [SerializeField] public GameObject Versus;
@@ -23,11 +24,17 @@ public class BBSceneManager : MonoBehaviour
     //A state will exist that will continue guiding players through their playthrough. an additional button will appear that will say to reset coop run or reset comp run to bring player game states back to first level.
     private void Start()
     {
+        
         LevelSelect.SetActive(false);
         Versus.SetActive(false);
         Credits.SetActive(false);
         Exit.SetActive(false);
         BackButton.SetActive(false);
+    }
+
+    private void Awake()
+    {
+        StartCoroutine(SelectDefault(SinglePlayer));
     }
 
     void Update()
@@ -72,7 +79,7 @@ public class BBSceneManager : MonoBehaviour
     {
         GameSettings.singlePlayerMode = true;
         GameSettings.competetiveMode = false;
-        GameSettings.arcadeMode = false;
+        
 
         LevelSelect.SetActive(true);
         StartCoroutine(SelectDefault(LevelSelectButton));
@@ -90,7 +97,7 @@ public class BBSceneManager : MonoBehaviour
     {
         GameSettings.singlePlayerMode = false;
         GameSettings.competetiveMode = true;
-        GameSettings.arcadeMode = false;
+        
 
         LevelSelect.SetActive(true);
         StartCoroutine(SelectDefault(LevelSelectButton));
@@ -107,7 +114,7 @@ public class BBSceneManager : MonoBehaviour
     {
         GameSettings.singlePlayerMode = false;
         GameSettings.competetiveMode = false;
-        GameSettings.arcadeMode = false;
+        
 
         StartCoroutine(SelectDefault(SinglePlayer));
 
@@ -118,6 +125,16 @@ public class BBSceneManager : MonoBehaviour
         BackButton.SetActive(false);
         SinglePlayer.SetActive(true);
         TwoPlayer.SetActive(true);
+    }
+
+    public void coopPanelSelector()
+    {
+        StartCoroutine(SelectDefault(Level1Object));
+    }
+
+    public void versusPanelSelector()
+    {
+        StartCoroutine(SelectDefault(versusObject));
     }
     private System.Collections.IEnumerator SelectDefault(GameObject target)
     {
