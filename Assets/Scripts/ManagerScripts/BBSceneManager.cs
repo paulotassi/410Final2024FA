@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
+using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
 
 public class BBSceneManager : MonoBehaviour
@@ -9,10 +11,12 @@ public class BBSceneManager : MonoBehaviour
     [SerializeField] public GameObject TwoPlayer;
 
     [SerializeField] public GameObject LevelSelect;
+    [SerializeField] public GameObject LevelSelectButton;
     [SerializeField] public GameObject Versus;
     [SerializeField] public GameObject Credits;
     [SerializeField] public GameObject Exit;
     [SerializeField] public GameObject BackButton;
+    [SerializeField] public CreditManager CM;
 
 
     //Eventual intent is to make the play to go as follows. Player hits initial button choice bringing you to either coop gamestate. when players finish a round they returnt to titlescreen and the button changes from coopmode to continue coop
@@ -25,6 +29,16 @@ public class BBSceneManager : MonoBehaviour
         Exit.SetActive(false);
         BackButton.SetActive(false);
     }
+
+    void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.V))
+        {
+            var selected = EventSystem.current.currentSelectedGameObject;
+            Debug.Log("Selected object: " + (selected ? selected.name : "null"));
+        }
+    }
+
     public void LoadCoopPlaythrough1()
     {
         SceneManager.LoadScene("CompetetiveLevel1");
@@ -49,6 +63,11 @@ public class BBSceneManager : MonoBehaviour
     {
         Application.Quit();
     }
+
+    public void StartCredit()
+    {
+        CM.StartCredits();
+    }
     public void StartSinglePlayerMode()
     {
         GameSettings.singlePlayerMode = true;
@@ -56,6 +75,8 @@ public class BBSceneManager : MonoBehaviour
         GameSettings.arcadeMode = false;
 
         LevelSelect.SetActive(true);
+        StartCoroutine(SelectDefault(LevelSelectButton));
+        
         Versus.SetActive(false);
         Credits.SetActive(true);
         Exit.SetActive(true);
@@ -72,6 +93,8 @@ public class BBSceneManager : MonoBehaviour
         GameSettings.arcadeMode = false;
 
         LevelSelect.SetActive(true);
+        StartCoroutine(SelectDefault(LevelSelectButton));
+
         Versus.SetActive(true);
         Credits.SetActive(true);
         Exit.SetActive(true);
@@ -86,6 +109,8 @@ public class BBSceneManager : MonoBehaviour
         GameSettings.competetiveMode = false;
         GameSettings.arcadeMode = false;
 
+        StartCoroutine(SelectDefault(SinglePlayer));
+
         LevelSelect.SetActive(false);
         Versus.SetActive(false);
         Credits.SetActive(false);
@@ -93,6 +118,13 @@ public class BBSceneManager : MonoBehaviour
         BackButton.SetActive(false);
         SinglePlayer.SetActive(true);
         TwoPlayer.SetActive(true);
+    }
+    private System.Collections.IEnumerator SelectDefault(GameObject target)
+    {
+        Debug.Log("running the button");
+        yield return null; // Wait 1 frame
+        EventSystem.current.SetSelectedGameObject(null); // Clear selection
+        EventSystem.current.SetSelectedGameObject(target); // Select the new one
     }
 
 }
