@@ -4685,13 +4685,49 @@ PrefabInstance:
       value: Keyboard
       objectReference: {fileID: 0}
     - target: {fileID: 1782570390411111711, guid: 47dea2b8b1dcb834dbedf4adbeed9cfc, type: 3}
+      propertyPath: m_ActionEvents.Array.size
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 1782570390411111711, guid: 47dea2b8b1dcb834dbedf4adbeed9cfc, type: 3}
       propertyPath: m_NeverAutoSwitchControlSchemes
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1782570390411111711, guid: 47dea2b8b1dcb834dbedf4adbeed9cfc, type: 3}
+      propertyPath: m_ActionEvents.Array.data[8].m_ActionId
+      value: 4f1e8300-a99e-487f-b6c0-3c0380dcca70
+      objectReference: {fileID: 0}
+    - target: {fileID: 1782570390411111711, guid: 47dea2b8b1dcb834dbedf4adbeed9cfc, type: 3}
+      propertyPath: m_ActionEvents.Array.data[8].m_ActionName
+      value: 'Player/BackShoot[/Keyboard/b,/Keyboard/4]'
+      objectReference: {fileID: 0}
+    - target: {fileID: 1782570390411111711, guid: 47dea2b8b1dcb834dbedf4adbeed9cfc, type: 3}
+      propertyPath: m_ActionEvents.Array.data[8].m_PersistentCalls.m_Calls.Array.size
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1782570390411111711, guid: 47dea2b8b1dcb834dbedf4adbeed9cfc, type: 3}
       propertyPath: m_ActionEvents.Array.data[7].m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 5152296429719158953}
+    - target: {fileID: 1782570390411111711, guid: 47dea2b8b1dcb834dbedf4adbeed9cfc, type: 3}
+      propertyPath: m_ActionEvents.Array.data[8].m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 5906388070885287508}
+    - target: {fileID: 1782570390411111711, guid: 47dea2b8b1dcb834dbedf4adbeed9cfc, type: 3}
+      propertyPath: m_ActionEvents.Array.data[8].m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1782570390411111711, guid: 47dea2b8b1dcb834dbedf4adbeed9cfc, type: 3}
+      propertyPath: m_ActionEvents.Array.data[8].m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: OnBackShoot
+      objectReference: {fileID: 0}
+    - target: {fileID: 1782570390411111711, guid: 47dea2b8b1dcb834dbedf4adbeed9cfc, type: 3}
+      propertyPath: m_ActionEvents.Array.data[8].m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: PlayerController, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 1782570390411111711, guid: 47dea2b8b1dcb834dbedf4adbeed9cfc, type: 3}
+      propertyPath: m_ActionEvents.Array.data[8].m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
     - target: {fileID: 2378622585695572126, guid: 47dea2b8b1dcb834dbedf4adbeed9cfc, type: 3}
       propertyPath: m_LocalPosition.x
       value: -0.517
@@ -4761,13 +4797,49 @@ PrefabInstance:
       value: P2Arcade
       objectReference: {fileID: 0}
     - target: {fileID: 6346564350906822544, guid: 47dea2b8b1dcb834dbedf4adbeed9cfc, type: 3}
+      propertyPath: m_ActionEvents.Array.size
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 6346564350906822544, guid: 47dea2b8b1dcb834dbedf4adbeed9cfc, type: 3}
       propertyPath: m_NeverAutoSwitchControlSchemes
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6346564350906822544, guid: 47dea2b8b1dcb834dbedf4adbeed9cfc, type: 3}
+      propertyPath: m_ActionEvents.Array.data[8].m_ActionId
+      value: 4f1e8300-a99e-487f-b6c0-3c0380dcca70
+      objectReference: {fileID: 0}
+    - target: {fileID: 6346564350906822544, guid: 47dea2b8b1dcb834dbedf4adbeed9cfc, type: 3}
+      propertyPath: m_ActionEvents.Array.data[8].m_ActionName
+      value: 'Player/BackShoot[/Keyboard/b,/Keyboard/4]'
+      objectReference: {fileID: 0}
+    - target: {fileID: 6346564350906822544, guid: 47dea2b8b1dcb834dbedf4adbeed9cfc, type: 3}
+      propertyPath: m_ActionEvents.Array.data[8].m_PersistentCalls.m_Calls.Array.size
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6346564350906822544, guid: 47dea2b8b1dcb834dbedf4adbeed9cfc, type: 3}
       propertyPath: m_ActionEvents.Array.data[7].m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 5152296429719158953}
+    - target: {fileID: 6346564350906822544, guid: 47dea2b8b1dcb834dbedf4adbeed9cfc, type: 3}
+      propertyPath: m_ActionEvents.Array.data[8].m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 453334923156490498}
+    - target: {fileID: 6346564350906822544, guid: 47dea2b8b1dcb834dbedf4adbeed9cfc, type: 3}
+      propertyPath: m_ActionEvents.Array.data[8].m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6346564350906822544, guid: 47dea2b8b1dcb834dbedf4adbeed9cfc, type: 3}
+      propertyPath: m_ActionEvents.Array.data[8].m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: OnBackShoot
+      objectReference: {fileID: 0}
+    - target: {fileID: 6346564350906822544, guid: 47dea2b8b1dcb834dbedf4adbeed9cfc, type: 3}
+      propertyPath: m_ActionEvents.Array.data[8].m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: PlayerController, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 6346564350906822544, guid: 47dea2b8b1dcb834dbedf4adbeed9cfc, type: 3}
+      propertyPath: m_ActionEvents.Array.data[8].m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
     - target: {fileID: 7873139307714524694, guid: 47dea2b8b1dcb834dbedf4adbeed9cfc, type: 3}
       propertyPath: InitialModule.startColor.maxColor.b
       value: 0.89019614
@@ -4945,6 +5017,17 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &453334923156490498 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8869578208568761204, guid: 47dea2b8b1dcb834dbedf4adbeed9cfc, type: 3}
+  m_PrefabInstance: {fileID: 9033521386182464118}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 418640616131299835}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d7828b77f234bc14c811c0afdbbc7cf2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!4 &1062908560327516246 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8331015421776359968, guid: 47dea2b8b1dcb834dbedf4adbeed9cfc, type: 3}
@@ -4978,6 +5061,17 @@ Camera:
   m_CorrespondingSourceObject: {fileID: 3853361327446792769, guid: 47dea2b8b1dcb834dbedf4adbeed9cfc, type: 3}
   m_PrefabInstance: {fileID: 9033521386182464118}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &5906388070885287508 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3218445902191801378, guid: 47dea2b8b1dcb834dbedf4adbeed9cfc, type: 3}
+  m_PrefabInstance: {fileID: 9033521386182464118}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6551393620078266573}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d7828b77f234bc14c811c0afdbbc7cf2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &6551393620078266573 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 2861679258412669627, guid: 47dea2b8b1dcb834dbedf4adbeed9cfc, type: 3}
