@@ -76,6 +76,15 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
+                },
+                {
+                    "name": "BackShoot",
+                    "type": "Button",
+                    "id": "4f1e8300-a99e-487f-b6c0-3c0380dcca70",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -280,7 +289,7 @@
                 {
                     "name": "",
                     "id": "4c161561-f474-4ee7-99b5-f436d0172b62",
-                    "path": "<Keyboard>/4",
+                    "path": "<Keyboard>/t",
                     "interactions": "",
                     "processors": "",
                     "groups": ";P2Arcade",
@@ -291,7 +300,7 @@
                 {
                     "name": "",
                     "id": "ff4be307-e524-410a-b0a3-832d7b4288c9",
-                    "path": "<Keyboard>/b",
+                    "path": "<Keyboard>/upArrow",
                     "interactions": "",
                     "processors": "",
                     "groups": ";Arcade",
@@ -584,6 +593,28 @@
                     "action": "Pause",
                     "isComposite": false,
                     "isPartOfComposite": true
+                },
+                {
+                    "name": "",
+                    "id": "be4be0c7-ca3a-4827-b153-38b7523f40a5",
+                    "path": "<Keyboard>/b",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": ";Arcade",
+                    "action": "BackShoot",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "f4b4fb1e-a9db-413c-9960-67f95cc76058",
+                    "path": "<Keyboard>/4",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": ";P2Arcade",
+                    "action": "BackShoot",
+                    "isComposite": false,
+                    "isPartOfComposite": false
                 }
             ]
         }

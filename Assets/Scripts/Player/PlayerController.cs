@@ -59,6 +59,7 @@ public class PlayerController : MonoBehaviour
     public GameObject projectileSpawnRotation; //spawn rotation to follow the Familiar direction
     public GameObject flightParticles;
 
+
     //Player Shield
     [Header("Shield Settings" +
         "")]
@@ -73,6 +74,7 @@ public class PlayerController : MonoBehaviour
     public bool shielded = false;
     public bool altFired = false;
     public bool paused = false;
+    public bool backShoot = false;
 
 
     // Ground check variables
@@ -157,6 +159,7 @@ public class PlayerController : MonoBehaviour
         // Handle player actions
         if (jumped && isGrounded && !isStunned) Jump();
         if (fired && canShoot && !isStunned) StartCoroutine(Shoot());
+        if (backShoot && canShoot && !isStunned) StartCoroutine(BackShoot());
         if (altFired && canAltShoot && !isStunned) StartCoroutine(AltShoot());
         if (shielded && canShield && !isStunned) StartCoroutine(Shield());
         if (paused) gameManager.TogglePause();
@@ -333,6 +336,17 @@ public class PlayerController : MonoBehaviour
         canShoot = true;
     }
 
+    private IEnumerator BackShoot()
+    {
+        canShoot = false;
+        Instantiate(projectilePrefab, projectileSpawnLocation.transform.position, projectileSpawnRotation.transform.rotation);
+        PlaySound(shootSFX, true); // Random pitch for shoot
+
+        StartCoroutine(createScreenShake(2));
+        yield return new WaitForSeconds(shootCoolDown);
+        canShoot = true;
+    }
+
     private IEnumerator AltShoot()
     {
         canAltShoot = false;
@@ -438,6 +452,11 @@ public class PlayerController : MonoBehaviour
     public void OnAltShoot(InputAction.CallbackContext context)
     {
         altFired = context.action.triggered;
+    }
+
+    public void OnBackShoot(InputAction.CallbackContext context)
+    {
+        backShoot = context.action.triggered;
     }
 
     public void OnPaused(InputAction.CallbackContext context)

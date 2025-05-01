@@ -2037,6 +2037,7 @@ MonoBehaviour:
   gameTimerText: {fileID: 4473425240116686718}
   roundEndText: {fileID: 2106561171339290845}
   pauseMenuUI: {fileID: 5182572621553786281}
+  resumeButtonObject: {fileID: 0}
   Player1shootCDDisplay: {fileID: 3290426592094213052}
   Player1shieldCDDisplay: {fileID: 2830069774357427740}
   Player1StunCDDisplay: {fileID: 5343324834069694886}
@@ -4302,6 +4303,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 3465999199109083179}
     - target: {fileID: 6476817448315748389, guid: 5679bbdf17f618c48ad838081dc8fd8c, type: 3}
+      propertyPath: arcadeMode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6476817448315748389, guid: 5679bbdf17f618c48ad838081dc8fd8c, type: 3}
       propertyPath: p1Indicator
       value: 
       objectReference: {fileID: 6983340373773227421}
@@ -4343,7 +4348,7 @@ PrefabInstance:
       objectReference: {fileID: 5009174538512541273}
     - target: {fileID: 6476817448315748389, guid: 5679bbdf17f618c48ad838081dc8fd8c, type: 3}
       propertyPath: singlePlayerMode
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6476817448315748389, guid: 5679bbdf17f618c48ad838081dc8fd8c, type: 3}
       propertyPath: roundEndTextObject
@@ -4665,16 +4670,24 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1165158660375422462, guid: 47dea2b8b1dcb834dbedf4adbeed9cfc, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -443.9109
+      value: -12.92
       objectReference: {fileID: 0}
     - target: {fileID: 1165158660375422462, guid: 47dea2b8b1dcb834dbedf4adbeed9cfc, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -214.10144
+      value: -2.2080002
       objectReference: {fileID: 0}
     - target: {fileID: 1241193982795318343, guid: 47dea2b8b1dcb834dbedf4adbeed9cfc, type: 3}
       propertyPath: m_Sprite
       value: 
       objectReference: {fileID: -2136903515, guid: ec74cf39536a4474f91590768c3e1ff5, type: 3}
+    - target: {fileID: 1782570390411111711, guid: 47dea2b8b1dcb834dbedf4adbeed9cfc, type: 3}
+      propertyPath: m_DefaultControlScheme
+      value: Keyboard
+      objectReference: {fileID: 0}
+    - target: {fileID: 1782570390411111711, guid: 47dea2b8b1dcb834dbedf4adbeed9cfc, type: 3}
+      propertyPath: m_NeverAutoSwitchControlSchemes
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1782570390411111711, guid: 47dea2b8b1dcb834dbedf4adbeed9cfc, type: 3}
       propertyPath: m_ActionEvents.Array.data[7].m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
@@ -4737,11 +4750,19 @@ PrefabInstance:
       objectReference: {fileID: 109281087904294929}
     - target: {fileID: 5792401886189985410, guid: 47dea2b8b1dcb834dbedf4adbeed9cfc, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -446.9509
+      value: -15.959998
       objectReference: {fileID: 0}
     - target: {fileID: 5792401886189985410, guid: 47dea2b8b1dcb834dbedf4adbeed9cfc, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -214.14145
+      value: -2.2480001
+      objectReference: {fileID: 0}
+    - target: {fileID: 6346564350906822544, guid: 47dea2b8b1dcb834dbedf4adbeed9cfc, type: 3}
+      propertyPath: m_DefaultControlScheme
+      value: P2Arcade
+      objectReference: {fileID: 0}
+    - target: {fileID: 6346564350906822544, guid: 47dea2b8b1dcb834dbedf4adbeed9cfc, type: 3}
+      propertyPath: m_NeverAutoSwitchControlSchemes
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6346564350906822544, guid: 47dea2b8b1dcb834dbedf4adbeed9cfc, type: 3}
       propertyPath: m_ActionEvents.Array.data[7].m_PersistentCalls.m_Calls.Array.data[0].m_Target
