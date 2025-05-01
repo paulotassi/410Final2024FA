@@ -63,6 +63,7 @@ public class BBSceneManager : MonoBehaviour
 
     public void LoadVersusPlaythrough()
     {
+        GameSettings.competetiveMode = true;
         SceneManager.LoadScene("ArenaScene");
     }
 
@@ -96,7 +97,7 @@ public class BBSceneManager : MonoBehaviour
     public void StartTwoPlayerMode()
     {
         GameSettings.singlePlayerMode = false;
-        GameSettings.competetiveMode = true;
+        GameSettings.competetiveMode = false;
         
 
         LevelSelect.SetActive(true);

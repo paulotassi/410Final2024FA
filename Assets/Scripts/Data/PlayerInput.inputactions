@@ -551,48 +551,15 @@
                     "isPartOfComposite": false
                 },
                 {
-                    "name": "Two Modifiers",
-                    "id": "5e4a6947-c3b5-4231-8cd3-8c86f243c4c2",
-                    "path": "TwoModifiers",
+                    "name": "",
+                    "id": "4b2c08c2-b59a-44c4-8483-49ff5a4c0109",
+                    "path": "<Keyboard>/space",
                     "interactions": "",
                     "processors": "",
-                    "groups": "",
+                    "groups": ";Arcade;P2Arcade",
                     "action": "Pause",
-                    "isComposite": true,
+                    "isComposite": false,
                     "isPartOfComposite": false
-                },
-                {
-                    "name": "modifier1",
-                    "id": "8d61603f-682b-45d3-8ba1-3862c0542d28",
-                    "path": "<Keyboard>/b",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": ";Arcade",
-                    "action": "Pause",
-                    "isComposite": false,
-                    "isPartOfComposite": true
-                },
-                {
-                    "name": "modifier2",
-                    "id": "c784369b-6424-4e47-94b6-3898a6dcb9dd",
-                    "path": "<Keyboard>/n",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": ";Arcade",
-                    "action": "Pause",
-                    "isComposite": false,
-                    "isPartOfComposite": true
-                },
-                {
-                    "name": "binding",
-                    "id": "c1c887a0-ecfa-4005-a951-ed8d8e64f28b",
-                    "path": "<Keyboard>/m",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": ";Arcade",
-                    "action": "Pause",
-                    "isComposite": false,
-                    "isPartOfComposite": true
                 },
                 {
                     "name": "",

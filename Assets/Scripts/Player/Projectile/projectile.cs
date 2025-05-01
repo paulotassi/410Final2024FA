@@ -49,10 +49,14 @@ public class projectile : MonoBehaviour
         }
         else if (collision.gameObject.GetComponent<EnemyController>() != null)
         {
-            collision.gameObject.GetComponent<EnemyHealth>().TakeDamage(projectileDamage);
+
             if (projectileStun)
             {
                 collision.gameObject.GetComponent<EnemyController>().StartCoroutine(collision.gameObject.GetComponent<EnemyController>().Stunned(projectileStunDuration));
+            }
+            else
+            {
+                collision.gameObject.GetComponent<EnemyHealth>().TakeDamage(projectileDamage);
             }
             Destroy(this.gameObject);
         }

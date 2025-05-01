@@ -4670,11 +4670,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1165158660375422462, guid: 47dea2b8b1dcb834dbedf4adbeed9cfc, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -12.92
+      value: -438.6109
       objectReference: {fileID: 0}
     - target: {fileID: 1165158660375422462, guid: 47dea2b8b1dcb834dbedf4adbeed9cfc, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -2.2080002
+      value: -237.40144
       objectReference: {fileID: 0}
     - target: {fileID: 1241193982795318343, guid: 47dea2b8b1dcb834dbedf4adbeed9cfc, type: 3}
       propertyPath: m_Sprite
@@ -4757,9 +4757,21 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 8300000, guid: 95fc4e8877a6ea8448a0e0622a46c9bc, type: 3}
     - target: {fileID: 3218445902191801378, guid: 47dea2b8b1dcb834dbedf4adbeed9cfc, type: 3}
+      propertyPath: flightSpeed
+      value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: 3218445902191801378, guid: 47dea2b8b1dcb834dbedf4adbeed9cfc, type: 3}
+      propertyPath: shieldCooldown
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 3218445902191801378, guid: 47dea2b8b1dcb834dbedf4adbeed9cfc, type: 3}
       propertyPath: flightParticles
       value: 
       objectReference: {fileID: 5202179070832867968}
+    - target: {fileID: 3218445902191801378, guid: 47dea2b8b1dcb834dbedf4adbeed9cfc, type: 3}
+      propertyPath: moveHorizontalFlightSpeed
+      value: 15
+      objectReference: {fileID: 0}
     - target: {fileID: 3339691256927174103, guid: 47dea2b8b1dcb834dbedf4adbeed9cfc, type: 3}
       propertyPath: m_Name
       value: PlayerPrefabGroup
@@ -4786,11 +4798,11 @@ PrefabInstance:
       objectReference: {fileID: 109281087904294929}
     - target: {fileID: 5792401886189985410, guid: 47dea2b8b1dcb834dbedf4adbeed9cfc, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -15.959998
+      value: -441.65088
       objectReference: {fileID: 0}
     - target: {fileID: 5792401886189985410, guid: 47dea2b8b1dcb834dbedf4adbeed9cfc, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -2.2480001
+      value: -237.44145
       objectReference: {fileID: 0}
     - target: {fileID: 6346564350906822544, guid: 47dea2b8b1dcb834dbedf4adbeed9cfc, type: 3}
       propertyPath: m_DefaultControlScheme
@@ -4888,6 +4900,10 @@ PrefabInstance:
       propertyPath: altShootSFX
       value: 
       objectReference: {fileID: 8300000, guid: 95fc4e8877a6ea8448a0e0622a46c9bc, type: 3}
+    - target: {fileID: 8869578208568761204, guid: 47dea2b8b1dcb834dbedf4adbeed9cfc, type: 3}
+      propertyPath: shieldCooldown
+      value: 4
+      objectReference: {fileID: 0}
     - target: {fileID: 8869578208568761204, guid: 47dea2b8b1dcb834dbedf4adbeed9cfc, type: 3}
       propertyPath: flightParticles
       value: 

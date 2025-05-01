@@ -53,6 +53,7 @@ public class EnemyController : MonoBehaviour
 
     // Sprite rendering
     public SpriteRenderer spriteRenderer;
+    private Color originalColor;
 
     protected virtual void Start()
     {
@@ -66,6 +67,7 @@ public class EnemyController : MonoBehaviour
 
         player2 = GameObject.FindGameObjectWithTag("Player2").transform;
         player2Health = player2.GetComponent<PlayerHealth>();
+        originalColor = GetComponentInChildren<SpriteRenderer>().color;
     }
 
     public void Update()
@@ -154,8 +156,8 @@ public class EnemyController : MonoBehaviour
         }
 
         // Flash red effect during stun
-        Color originalColor = spriteRenderer.color;
-        Color flashColor = Color.red;
+        
+        Color flashColor = Color.gray;
         float flashInterval = 0.1f;
         bool isFlashing = false;
 

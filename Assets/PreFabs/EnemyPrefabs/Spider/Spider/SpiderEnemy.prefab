@@ -403,6 +403,7 @@ MonoBehaviour:
   health: 100
   advancedEnemyController: {fileID: 6887030443603698633}
   spiderlingPrefab: {fileID: 0}
+  spriteRenderer: {fileID: 7277027488985425439}
 --- !u!114 &6887030443603698633
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -418,7 +419,7 @@ MonoBehaviour:
   pointA: {fileID: 0}
   pointB: {fileID: 0}
   patrolSpeed: 2
-  chaseSpeed: 5
+  chaseSpeed: 3
   detectionRange: 10
   attackRange: 1
   attackCooldown: 1

@@ -7,10 +7,13 @@ public class EnemyHealth : MonoBehaviour
     public int health = 100;
     public AdvancedEnemyController advancedEnemyController;
     public GameObject spiderlingPrefab;
+    public SpriteRenderer spriteRenderer;
+    public Color originalColor;
 
     public void Start()
     {
         advancedEnemyController = GetComponent<AdvancedEnemyController>();
+        originalColor = spriteRenderer.color;
     }
 
     // Function to handle taking damage
@@ -18,8 +21,10 @@ public class EnemyHealth : MonoBehaviour
     {
         health -= damage;
         Debug.Log("Enemy DAMAGED!");
+        StartCoroutine(EnemyFlashOnDamage());
         if (health <= 0)
         {
+           
             // Handle death, like destroying the object
             Destroy(transform.gameObject);
             if (advancedEnemyController != null)
@@ -49,5 +54,26 @@ public class EnemyHealth : MonoBehaviour
             }
             
         }
+    }
+
+    public virtual IEnumerator EnemyFlashOnDamage()
+    {
+        Debug.Log("Get Wrecked Damaging enemy should change color");
+        
+        
+        
+        Color flashColor = Color.red;
+        float flashInterval = 0.05f;
+        bool isFlashing = false;
+        float elapsed = 0f;
+
+        while (elapsed < 1f)
+        {
+            spriteRenderer.color = isFlashing ? originalColor : flashColor;
+            isFlashing = !isFlashing;
+            yield return new WaitForSeconds(flashInterval);
+            elapsed += flashInterval;
+        }
+        spriteRenderer.color = originalColor;
     }
 }
