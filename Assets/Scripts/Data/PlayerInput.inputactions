@@ -556,7 +556,7 @@
                     "path": "<Keyboard>/space",
                     "interactions": "",
                     "processors": "",
-                    "groups": ";Arcade;P2Arcade",
+                    "groups": ";Arcade",
                     "action": "Pause",
                     "isComposite": false,
                     "isPartOfComposite": false
