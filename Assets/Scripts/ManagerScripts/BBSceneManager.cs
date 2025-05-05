@@ -45,11 +45,13 @@ public class BBSceneManager : MonoBehaviour
 
     public void LoadCooperativeBossPlaythrough()
     {
+        
         SceneManager.LoadScene("BossLevel");
     }
 
     public void LoadVersusPlaythrough()
     {
+        GameSettings.competetiveMode = true;
         SceneManager.LoadScene("ArenaScene");
     }
 
@@ -61,7 +63,7 @@ public class BBSceneManager : MonoBehaviour
     {
         GameSettings.singlePlayerMode = true;
         GameSettings.competetiveMode = false;
-        GameSettings.arcadeMode = false;
+        GameSettings.arcadeMode = true;
 
         LevelSelect.SetActive(true);
         Versus.SetActive(false);
@@ -79,8 +81,8 @@ public class BBSceneManager : MonoBehaviour
     public void StartTwoPlayerMode()
     {
         GameSettings.singlePlayerMode = false;
-        GameSettings.competetiveMode = true;
-        GameSettings.arcadeMode = false;
+        GameSettings.competetiveMode = false;
+        GameSettings.arcadeMode = true;
 
         LevelSelect.SetActive(true);
         Versus.SetActive(true);
@@ -110,7 +112,7 @@ public class BBSceneManager : MonoBehaviour
     {
         GameSettings.singlePlayerMode = false;
         GameSettings.competetiveMode = false;
-        GameSettings.arcadeMode = false;
+        GameSettings.arcadeMode = true;
 
         LevelSelect.SetActive(false);
         Versus.SetActive(false);

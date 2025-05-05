@@ -37,6 +37,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] public int player2IngredientCount = 0;
     private int totalScore;
     [SerializeField] public float remainingTime = 30f;
+    [SerializeField] public int roundRequiredScore = 0;
     private bool winStateMet = false;
 
 
@@ -91,7 +92,7 @@ public class GameManager : MonoBehaviour
         singlePlayerMode = GameSettings.singlePlayerMode;
         competetiveMode = GameSettings.competetiveMode;
         arcadeMode = GameSettings.arcadeMode;
-
+        uiManager.SetScores(0, player2IngredientCount, competetiveMode);
         // Find players by tag
         player1GameObject = GameObject.FindWithTag("Player");
         player2GameObject = GameObject.FindWithTag("Player2");
@@ -109,6 +110,7 @@ public class GameManager : MonoBehaviour
             splitBarObject.SetActive(false);
             p1HealthObject.SetActive(false);
             p1BossIndicator.SetActive(false);
+            
         }
 
         // Cache components
@@ -123,7 +125,7 @@ public class GameManager : MonoBehaviour
         playerLayer2 = playerCollider2.gameObject.layer;
 
         bossHp = FindFirstObjectByType<BossHP>();
-
+        
         InitializeCooldowns();
     }
 
@@ -169,6 +171,7 @@ public class GameManager : MonoBehaviour
         HandleCooldowns();
         HandleTimer();
         CheckEndConditions();
+        DisplayRoundRequired();
     }
 
     // Toggle physics layers and update score/lives text
@@ -181,7 +184,7 @@ public class GameManager : MonoBehaviour
             Physics2D.IgnoreLayerCollision(playerLayer1, playerLayer1, true);
             Physics2D.IgnoreLayerCollision(playerLayer2, playerLayer2, true);
 
-            uiManager.SetScores(player1IngredientCount, player2IngredientCount, false);
+            uiManager.SetScores(player1IngredientCount, player2IngredientCount, competetiveMode);
         }
         else
         {
@@ -192,27 +195,30 @@ public class GameManager : MonoBehaviour
 
             uiManager.SetScores(player1Health.playerLifeCountRemaining,
                                 player2Health.playerLifeCountRemaining,
-                                true);
+                                competetiveMode);
         }
     }
 
     // Advance each player’s cooldown and notify UIManager
     private void HandleCooldowns()
     {
-
+        Debug.Log("getting cooldown references");
         if (!singlePlayerMode)
         {
             UpdateCooldown(ref p1ShootCdTimer, p1ShootCdMax, player1Controller.fired, ref p1ShootCdEnabled, player1ShootCdTrigger, uiManager.Player1shootCDDisplay);
+            UpdateCooldown(ref p1ShootCdTimer, p1ShootCdMax, player1Controller.backShoot, ref p1ShootCdEnabled, player1ShootCdTrigger, uiManager.Player1shootCDDisplay);
             UpdateCooldown(ref p1ShieldCdTimer, p1ShieldCdMax, player1Controller.shielded, ref p1ShieldCdEnabled, player1ShieldCdTrigger, uiManager.Player1shieldCDDisplay);
             UpdateCooldown(ref p1StunCdTimer, p1StunCdMax, player1Controller.altFired, ref p1StunCdEnabled, player1StunCdTrigger, uiManager.Player1StunCDDisplay);
 
             UpdateCooldown(ref p2ShootCdTimer, p2ShootCdMax, player2Controller.fired, ref p2ShootCdEnabled, player2ShootCdTrigger, uiManager.Player2shootCDDisplay);
+            UpdateCooldown(ref p2ShootCdTimer, p2ShootCdMax, player2Controller.backShoot, ref p2ShootCdEnabled, player2ShootCdTrigger, uiManager.Player2shootCDDisplay);
             UpdateCooldown(ref p2ShieldCdTimer, p2ShieldCdMax, player2Controller.shielded, ref p2ShieldCdEnabled, player2ShieldCdTrigger, uiManager.Player2shieldCDDisplay);
             UpdateCooldown(ref p2StunCdTimer, p2StunCdMax, player2Controller.altFired, ref p2StunCdEnabled, player2StunCdTrigger, uiManager.Player2StunCDDisplay);
         }
         else
         {
             UpdateCooldown(ref p2ShootCdTimer, p2ShootCdMax, player2Controller.fired, ref p2ShootCdEnabled, player2ShootCdTrigger, uiManager.Player2shootCDDisplay);
+            UpdateCooldown(ref p2ShootCdTimer, p2ShootCdMax, player2Controller.backShoot, ref p2ShootCdEnabled, player2ShootCdTrigger, uiManager.Player2shootCDDisplay);
             UpdateCooldown(ref p2ShieldCdTimer, p2ShieldCdMax, player2Controller.shielded, ref p2ShieldCdEnabled, player2ShieldCdTrigger, uiManager.Player2shieldCDDisplay);
             UpdateCooldown(ref p2StunCdTimer, p2StunCdMax, player2Controller.altFired, ref p2StunCdEnabled, player2StunCdTrigger, uiManager.Player2StunCDDisplay);
         }
@@ -245,6 +251,27 @@ public class GameManager : MonoBehaviour
         int seconds = Mathf.FloorToInt(remainingTime % 60);   // local var
 
         uiManager.SetTimer(string.Format("{0:00}:{1:00}", minutes, seconds));
+    }
+
+    private void DisplayRoundRequired()
+    {
+        if (!competetiveMode)
+        {
+            if (singlePlayerMode)
+            {
+                Debug.Log("SINGLE PLAYER DISPLAY");
+                uiManager.SetIngredientGoal("Ingredients Required: " + (Mathf.Floor(roundRequiredScore / 2) - player2IngredientCount));
+            }
+            else
+            {
+                uiManager.SetIngredientGoal("Ingredients Required: " + (roundRequiredScore - (player1IngredientCount + player2IngredientCount)));
+            }
+            
+        }
+        else
+        {
+            uiManager.SetIngredientGoal("Witch Duel!!!");
+        }
     }
 
     // Check for end‑of‑round and trigger sequence
@@ -288,7 +315,7 @@ public class GameManager : MonoBehaviour
     }
 
     // Called by trigger when players enter the end zone
-    public void EndZoneEntry(int roundRequiredScore)
+    public void EndZoneEntry()
     {
         if (player1IngredientCount + player2IngredientCount < roundRequiredScore)
         {

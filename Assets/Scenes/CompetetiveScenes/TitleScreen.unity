@@ -520,7 +520,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Online
+  m_text: TBD DLC
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 4fa49fcbf3b917f4290cfff75a84afbf, type: 2}
   m_sharedMaterial: {fileID: -549731551375141613, guid: 4fa49fcbf3b917f4290cfff75a84afbf, type: 2}
@@ -2489,7 +2489,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1666366416}
         m_TargetAssemblyTypeName: BBSceneManager, Assembly-CSharp
-        m_MethodName: HowToPlay
+        m_MethodName: HowToPlayArcade
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -4485,12 +4485,20 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0.000061035156
       objectReference: {fileID: 0}
+    - target: {fileID: 679963642887341423, guid: 30c36e55939341f48ac0dc6bd21fda14, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1398161794068460135, guid: 30c36e55939341f48ac0dc6bd21fda14, type: 3}
       propertyPath: m_text
       value: "PLACE HOLDER UNTIL MY TEAM TELLS ME WHO THEY WANT TO ADD HERE!!!!!!!!!!!!!!!!
         GRW#EROIJEQFONMEQWrtujgh#qewbRTJFERSGKLOJN\n\nThis message was brought to
         you from THE GROUCH\n\n\n\n\n\n\n\nTassi: Special Thanks to my other half
         Nadia Ayad, \nmy cat companion Louis Ayad, \nand Coco Ayad, the Wolf Whistler"
+      objectReference: {fileID: 0}
+    - target: {fileID: 1945467586650912716, guid: 30c36e55939341f48ac0dc6bd21fda14, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2272781120366470602, guid: 30c36e55939341f48ac0dc6bd21fda14, type: 3}
       propertyPath: m_AnchoredPosition.y
@@ -4504,7 +4512,23 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0.000061035156
       objectReference: {fileID: 0}
+    - target: {fileID: 2902081994856050849, guid: 30c36e55939341f48ac0dc6bd21fda14, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3383388782241506948, guid: 30c36e55939341f48ac0dc6bd21fda14, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3627878529203625922, guid: 30c36e55939341f48ac0dc6bd21fda14, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3756253952973140493, guid: 30c36e55939341f48ac0dc6bd21fda14, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4844521646623396393, guid: 30c36e55939341f48ac0dc6bd21fda14, type: 3}
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
@@ -4514,6 +4538,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5214887596719050901, guid: 30c36e55939341f48ac0dc6bd21fda14, type: 3}
       propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5250865675183778671, guid: 30c36e55939341f48ac0dc6bd21fda14, type: 3}
+      propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5455002720469107922, guid: 30c36e55939341f48ac0dc6bd21fda14, type: 3}
@@ -4620,7 +4648,23 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7073027851622404018, guid: 30c36e55939341f48ac0dc6bd21fda14, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7723092876457647814, guid: 30c36e55939341f48ac0dc6bd21fda14, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8212528722096499923, guid: 30c36e55939341f48ac0dc6bd21fda14, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8470459987571502289, guid: 30c36e55939341f48ac0dc6bd21fda14, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9132786727646370321, guid: 30c36e55939341f48ac0dc6bd21fda14, type: 3}
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
@@ -6489,8 +6533,8 @@ MonoBehaviour:
   Exit: {fileID: 751303806}
   BackButton: {fileID: 1470379838}
   Tutorial: {fileID: 535476868}
-  TutorialPanal: {fileID: 718897372}
-  TutorialPanalArcade: {fileID: 1884166466}
+  TutorialPanel: {fileID: 718897372}
+  TutorialPanelArcade: {fileID: 1884166466}
 --- !u!114 &1666366417
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6803,7 +6847,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1870948976
 RectTransform:
   m_ObjectHideFlags: 0
@@ -6872,8 +6916,8 @@ MonoBehaviour:
   onValueChanged:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: 
+      - m_Target: {fileID: 11500000, guid: 5a5ddb9773e38314a8770c56489fdcdc, type: 3}
+        m_TargetAssemblyTypeName: UnityEditor.MonoScript, UnityEditor.CoreModule
         m_MethodName: 
         m_Mode: 1
         m_Arguments:
