@@ -112,6 +112,7 @@ MonoBehaviour:
   lifetime: 1
   rb: {fileID: 0}
   playerAim: {fileID: 0}
+  projectileCollsion: {fileID: 6287951610818144433, guid: 7f9245607055d014bbe548cf613f57b2, type: 3}
   gameManager: {fileID: 0}
 --- !u!50 &7048848087908441889
 Rigidbody2D:

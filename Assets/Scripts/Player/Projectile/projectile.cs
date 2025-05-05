@@ -12,6 +12,7 @@ public class projectile : MonoBehaviour
     public float lifetime = 5f;
     public Rigidbody2D rb;
     public GameObject playerAim;
+    public GameObject projectileCollsion;
     [SerializeField] GameManager gameManager;
 
 
@@ -36,6 +37,7 @@ public class projectile : MonoBehaviour
         Debug.Log("Collided with: " + collision.gameObject.name);
         if (!collision.gameObject.GetComponent<PlayerController>() && !collision.gameObject.GetComponent<EnemyHealth>())
         {
+            Instantiate(projectileCollsion, new Vector3(transform.position.x, transform.position.y, transform.position.z), Quaternion.identity);
             Destroy(this.gameObject);
         }
         else if (collision.gameObject.GetComponent<PlayerController>() != null)
@@ -45,6 +47,7 @@ public class projectile : MonoBehaviour
             {
                 collision.gameObject.GetComponent<PlayerController>().StartCoroutine(collision.gameObject.GetComponent<PlayerController>().Stunned(projectileStunDuration));
             }
+            Instantiate(projectileCollsion, new Vector3(transform.position.x, transform.position.y, transform.position.z), Quaternion.identity);
             Destroy(this.gameObject);
         }
         else if (collision.gameObject.GetComponent<EnemyController>() != null)
@@ -58,6 +61,7 @@ public class projectile : MonoBehaviour
             {
                 collision.gameObject.GetComponent<EnemyHealth>().TakeDamage(projectileDamage);
             }
+            Instantiate(projectileCollsion, new Vector3(transform.position.x, transform.position.y, transform.position.z), Quaternion.identity);
             Destroy(this.gameObject);
         }
         else if (collision.gameObject.GetComponent<BossHP>() != null)
@@ -65,8 +69,10 @@ public class projectile : MonoBehaviour
 
 
             
-                collision.gameObject.GetComponent<BossHP>().TakeDamage(projectileDamage);
-            
+            collision.gameObject.GetComponent<BossHP>().TakeDamage(projectileDamage);
+            Instantiate(projectileCollsion, new Vector3(transform.position.x, transform.position.y, transform.position.z), Quaternion.identity);
+            Destroy(this.gameObject);
+
 
         }
     }
