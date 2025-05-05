@@ -12,6 +12,7 @@ public class UIManager : MonoBehaviour
     [Header("Timer & Round‑End Message")]
     [SerializeField] private TMP_Text gameTimerText;         // Displays the countdown timer
     [SerializeField] private TMP_Text roundEndText;          // Displays the end‑of‑round message
+    [SerializeField] private TMP_Text roundRequiredText;          // Displays the end‑of‑round message
 
     [Header("Pause Menu")]
     [SerializeField] private GameObject pauseMenuUI;         // The pause‑menu panel
@@ -32,15 +33,19 @@ public class UIManager : MonoBehaviour
     /// </summary>
     public void SetScores(int p1Value, int p2Value, bool isCompetitive)
     {
-        if (!isCompetitive)
+        if (!isCompetitive && !GameSettings.singlePlayerMode)
         {
             player1ScoreText.text = $"Ingredients Collected: {p1Value}";
             player2ScoreText.text = $"Ingredients Collected: {p2Value}";
         }
-        else
+        else if (isCompetitive && !GameSettings.singlePlayerMode)
         {
             player1ScoreText.text = $"Lives Remaining: {p1Value}";
             player2ScoreText.text = $"Lives Remaining: {p2Value}";
+        }
+        else
+        {
+            player2ScoreText.text = $"Ingredients Collected: {p2Value}";
         }
     }
     void Update()
@@ -57,6 +62,11 @@ public class UIManager : MonoBehaviour
     public void SetTimer(string timeString)
     {
         gameTimerText.text = timeString;
+    }
+
+    public void SetIngredientGoal(string goalString)
+    {
+        roundRequiredText.text = goalString;
     }
 
     /// <summary>
