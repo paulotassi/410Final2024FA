@@ -70,3 +70,212 @@ crashlytics-build.properties
 # Temporary auto-generated Android Assets
 /[Aa]ssets/[Ss]treamingAssets/aa.meta
 /[Aa]ssets/[Ss]treamingAssets/aa/*
+New folder/UnityPlayer.dll
+New folder/UnityCrashHandler64.exe
+New folder/MonoBleedingEdge/etc/mono/mconfig/config.xml
+New folder/MonoBleedingEdge/etc/mono/config
+New folder/MonoBleedingEdge/etc/mono/browscap.ini
+New folder/MonoBleedingEdge/etc/mono/4.5/web.config
+New folder/MonoBleedingEdge/etc/mono/4.5/settings.map
+New folder/MonoBleedingEdge/etc/mono/4.5/machine.config
+New folder/MonoBleedingEdge/etc/mono/4.5/DefaultWsdlHelpGenerator.aspx
+New folder/MonoBleedingEdge/etc/mono/4.5/Browsers/Compat.browser
+New folder/MonoBleedingEdge/etc/mono/4.0/web.config
+New folder/MonoBleedingEdge/etc/mono/4.0/settings.map
+New folder/MonoBleedingEdge/etc/mono/4.0/machine.config
+New folder/MonoBleedingEdge/etc/mono/4.0/DefaultWsdlHelpGenerator.aspx
+New folder/MonoBleedingEdge/etc/mono/4.0/Browsers/Compat.browser
+New folder/MonoBleedingEdge/etc/mono/2.0/web.config
+New folder/MonoBleedingEdge/etc/mono/2.0/settings.map
+New folder/MonoBleedingEdge/etc/mono/2.0/machine.config
+New folder/MonoBleedingEdge/etc/mono/2.0/DefaultWsdlHelpGenerator.aspx
+New folder/MonoBleedingEdge/etc/mono/2.0/Browsers/Compat.browser
+New folder/MonoBleedingEdge/EmbedRuntime/MonoPosixHelper.dll
+New folder/MonoBleedingEdge/EmbedRuntime/mono-2.0-bdwgc.dll
+New folder/D3D12/D3D12Core.dll
+New folder/410Final2024FA_Data/sharedassets4.assets
+New folder/410Final2024FA_Data/sharedassets3.assets
+New folder/410Final2024FA_Data/sharedassets2.resource
+New folder/410Final2024FA_Data/sharedassets2.assets.resS
+New folder/410Final2024FA_Data/sharedassets2.assets
+New folder/410Final2024FA_Data/sharedassets1.resource
+New folder/410Final2024FA_Data/sharedassets1.assets.resS
+New folder/410Final2024FA_Data/sharedassets1.assets
+New folder/410Final2024FA_Data/sharedassets0.resource
+New folder/410Final2024FA_Data/sharedassets0.assets.resS
+New folder/410Final2024FA_Data/sharedassets0.assets
+New folder/410Final2024FA_Data/ScriptingAssemblies.json
+New folder/410Final2024FA_Data/RuntimeInitializeOnLoads.json
+New folder/410Final2024FA_Data/Resources/unity_builtin_extra
+New folder/410Final2024FA_Data/Resources/unity default resources
+New folder/410Final2024FA_Data/resources.assets.resS
+New folder/410Final2024FA_Data/resources.assets
+New folder/410Final2024FA_Data/Plugins/x86_64/lib_burst_generated.dll
+New folder/410Final2024FA_Data/Managed/UnityEngine.XRModule.dll
+New folder/410Final2024FA_Data/Managed/UnityEngine.WindModule.dll
+New folder/410Final2024FA_Data/Managed/UnityEngine.VRModule.dll
+New folder/410Final2024FA_Data/Managed/UnityEngine.VirtualTexturingModule.dll
+New folder/410Final2024FA_Data/Managed/UnityEngine.VideoModule.dll
+New folder/410Final2024FA_Data/Managed/UnityEngine.VFXModule.dll
+New folder/410Final2024FA_Data/Managed/UnityEngine.VehiclesModule.dll
+New folder/410Final2024FA_Data/Managed/UnityEngine.UnityWebRequestWWWModule.dll
+New folder/410Final2024FA_Data/Managed/UnityEngine.UnityWebRequestTextureModule.dll
+New folder/410Final2024FA_Data/Managed/UnityEngine.UnityWebRequestModule.dll
+New folder/410Final2024FA_Data/Managed/UnityEngine.UnityWebRequestAudioModule.dll
+New folder/410Final2024FA_Data/Managed/UnityEngine.UnityWebRequestAssetBundleModule.dll
+New folder/410Final2024FA_Data/Managed/UnityEngine.UnityTestProtocolModule.dll
+New folder/410Final2024FA_Data/Managed/UnityEngine.UnityCurlModule.dll
+New folder/410Final2024FA_Data/Managed/UnityEngine.UnityConnectModule.dll
+New folder/410Final2024FA_Data/Managed/UnityEngine.UnityAnalyticsModule.dll
+New folder/410Final2024FA_Data/Managed/UnityEngine.UnityAnalyticsCommonModule.dll
+New folder/410Final2024FA_Data/Managed/UnityEngine.UmbraModule.dll
+New folder/410Final2024FA_Data/Managed/UnityEngine.UIModule.dll
+New folder/410Final2024FA_Data/Managed/UnityEngine.UIElementsModule.dll
+New folder/410Final2024FA_Data/Managed/UnityEngine.UI.dll
+New folder/410Final2024FA_Data/Managed/UnityEngine.TLSModule.dll
+New folder/410Final2024FA_Data/Managed/UnityEngine.TilemapModule.dll
+New folder/410Final2024FA_Data/Managed/UnityEngine.TextRenderingModule.dll
+New folder/410Final2024FA_Data/Managed/UnityEngine.TextCoreTextEngineModule.dll
+New folder/410Final2024FA_Data/Managed/UnityEngine.TextCoreFontEngineModule.dll
+New folder/410Final2024FA_Data/Managed/UnityEngine.TerrainPhysicsModule.dll
+New folder/410Final2024FA_Data/Managed/UnityEngine.TerrainModule.dll
+New folder/410Final2024FA_Data/Managed/UnityEngine.SubsystemsModule.dll
+New folder/410Final2024FA_Data/Managed/UnityEngine.SubstanceModule.dll
+New folder/410Final2024FA_Data/Managed/UnityEngine.StreamingModule.dll
+New folder/410Final2024FA_Data/Managed/UnityEngine.SpriteShapeModule.dll
+New folder/410Final2024FA_Data/Managed/UnityEngine.SpriteMaskModule.dll
+New folder/410Final2024FA_Data/Managed/UnityEngine.SharedInternalsModule.dll
+New folder/410Final2024FA_Data/Managed/UnityEngine.ShaderVariantAnalyticsModule.dll
+New folder/410Final2024FA_Data/Managed/UnityEngine.ScreenCaptureModule.dll
+New folder/410Final2024FA_Data/Managed/UnityEngine.RuntimeInitializeOnLoadManagerInitializerModule.dll
+New folder/410Final2024FA_Data/Managed/UnityEngine.PropertiesModule.dll
+New folder/410Final2024FA_Data/Managed/UnityEngine.PhysicsModule.dll
+New folder/410Final2024FA_Data/Managed/UnityEngine.Physics2DModule.dll
+New folder/410Final2024FA_Data/Managed/UnityEngine.PerformanceReportingModule.dll
+New folder/410Final2024FA_Data/Managed/UnityEngine.ParticleSystemModule.dll
+New folder/410Final2024FA_Data/Managed/UnityEngine.NVIDIAModule.dll
+New folder/410Final2024FA_Data/Managed/UnityEngine.MultiplayerModule.dll
+New folder/410Final2024FA_Data/Managed/UnityEngine.MarshallingModule.dll
+New folder/410Final2024FA_Data/Managed/UnityEngine.LocalizationModule.dll
+New folder/410Final2024FA_Data/Managed/UnityEngine.JSONSerializeModule.dll
+New folder/410Final2024FA_Data/Managed/UnityEngine.InputModule.dll
+New folder/410Final2024FA_Data/Managed/UnityEngine.InputLegacyModule.dll
+New folder/410Final2024FA_Data/Managed/UnityEngine.InputForUIModule.dll
+New folder/410Final2024FA_Data/Managed/UnityEngine.IMGUIModule.dll
+New folder/410Final2024FA_Data/Managed/UnityEngine.ImageConversionModule.dll
+New folder/410Final2024FA_Data/Managed/UnityEngine.HotReloadModule.dll
+New folder/410Final2024FA_Data/Managed/UnityEngine.HierarchyCoreModule.dll
+New folder/410Final2024FA_Data/Managed/UnityEngine.GridModule.dll
+New folder/410Final2024FA_Data/Managed/UnityEngine.GraphicsStateCollectionSerializerModule.dll
+New folder/410Final2024FA_Data/Managed/UnityEngine.GIModule.dll
+New folder/410Final2024FA_Data/Managed/UnityEngine.GameCenterModule.dll
+New folder/410Final2024FA_Data/Managed/UnityEngine.DSPGraphModule.dll
+New folder/410Final2024FA_Data/Managed/UnityEngine.dll
+New folder/410Final2024FA_Data/Managed/UnityEngine.DirectorModule.dll
+New folder/410Final2024FA_Data/Managed/UnityEngine.CrashReportingModule.dll
+New folder/410Final2024FA_Data/Managed/UnityEngine.CoreModule.dll
+New folder/410Final2024FA_Data/Managed/UnityEngine.ContentLoadModule.dll
+New folder/410Final2024FA_Data/Managed/UnityEngine.ClusterRendererModule.dll
+New folder/410Final2024FA_Data/Managed/UnityEngine.ClusterInputModule.dll
+New folder/410Final2024FA_Data/Managed/UnityEngine.ClothModule.dll
+New folder/410Final2024FA_Data/Managed/UnityEngine.AudioModule.dll
+New folder/410Final2024FA_Data/Managed/UnityEngine.AssetBundleModule.dll
+New folder/410Final2024FA_Data/Managed/UnityEngine.ARModule.dll
+New folder/410Final2024FA_Data/Managed/UnityEngine.AnimationModule.dll
+New folder/410Final2024FA_Data/Managed/UnityEngine.AndroidJNIModule.dll
+New folder/410Final2024FA_Data/Managed/UnityEngine.AMDModule.dll
+New folder/410Final2024FA_Data/Managed/UnityEngine.AIModule.dll
+New folder/410Final2024FA_Data/Managed/UnityEngine.AccessibilityModule.dll
+New folder/410Final2024FA_Data/Managed/Unity.VisualScripting.State.dll
+New folder/410Final2024FA_Data/Managed/Unity.VisualScripting.Flow.dll
+New folder/410Final2024FA_Data/Managed/Unity.VisualScripting.Core.dll
+New folder/410Final2024FA_Data/Managed/Unity.VisualScripting.Antlr3.Runtime.dll
+New folder/410Final2024FA_Data/Managed/Unity.Timeline.dll
+New folder/410Final2024FA_Data/Managed/Unity.TextMeshPro.dll
+New folder/410Final2024FA_Data/Managed/Unity.RenderPipelines.ShaderGraph.ShaderGraphLibrary.dll
+New folder/410Final2024FA_Data/Managed/Unity.RenderPipelines.GPUDriven.Runtime.dll
+New folder/410Final2024FA_Data/Managed/Unity.RenderPipelines.Core.ShaderLibrary.dll
+New folder/410Final2024FA_Data/Managed/Unity.RenderPipelines.Core.Runtime.Shared.dll
+New folder/410Final2024FA_Data/Managed/Unity.RenderPipelines.Core.Runtime.dll
+New folder/410Final2024FA_Data/Managed/Unity.Rendering.LightTransport.Runtime.dll
+New folder/410Final2024FA_Data/Managed/Unity.Multiplayer.Center.Common.dll
+New folder/410Final2024FA_Data/Managed/Unity.Mathematics.dll
+New folder/410Final2024FA_Data/Managed/Unity.InternalAPIEngineBridge.001.dll
+New folder/410Final2024FA_Data/Managed/Unity.InputSystem.ForUI.dll
+New folder/410Final2024FA_Data/Managed/Unity.InputSystem.dll
+New folder/410Final2024FA_Data/Managed/Unity.Collections.LowLevel.ILSupport.dll
+New folder/410Final2024FA_Data/Managed/Unity.Collections.dll
+New folder/410Final2024FA_Data/Managed/Unity.Burst.Unsafe.dll
+New folder/410Final2024FA_Data/Managed/Unity.Burst.dll
+New folder/410Final2024FA_Data/Managed/Unity.2D.Tilemap.Extras.dll
+New folder/410Final2024FA_Data/Managed/Unity.2D.SpriteShape.Runtime.dll
+New folder/410Final2024FA_Data/Managed/Unity.2D.PixelPerfect.dll
+New folder/410Final2024FA_Data/Managed/Unity.2D.IK.Runtime.dll
+New folder/410Final2024FA_Data/Managed/Unity.2D.Common.Runtime.dll
+New folder/410Final2024FA_Data/Managed/Unity.2D.Animation.Runtime.dll
+New folder/410Final2024FA_Data/Managed/System.Xml.Linq.dll
+New folder/410Final2024FA_Data/Managed/System.Xml.dll
+New folder/410Final2024FA_Data/Managed/System.Transactions.dll
+New folder/410Final2024FA_Data/Managed/System.ServiceModel.Internals.dll
+New folder/410Final2024FA_Data/Managed/System.Security.dll
+New folder/410Final2024FA_Data/Managed/System.Runtime.Serialization.dll
+New folder/410Final2024FA_Data/Managed/System.Runtime.dll
+New folder/410Final2024FA_Data/Managed/System.Numerics.dll
+New folder/410Final2024FA_Data/Managed/System.Net.Http.dll
+New folder/410Final2024FA_Data/Managed/System.IO.Compression.FileSystem.dll
+New folder/410Final2024FA_Data/Managed/System.IO.Compression.dll
+New folder/410Final2024FA_Data/Managed/System.EnterpriseServices.dll
+New folder/410Final2024FA_Data/Managed/System.Drawing.dll
+New folder/410Final2024FA_Data/Managed/System.dll
+New folder/410Final2024FA_Data/Managed/System.Data.dll
+New folder/410Final2024FA_Data/Managed/System.Data.DataSetExtensions.dll
+New folder/410Final2024FA_Data/Managed/System.Core.dll
+New folder/410Final2024FA_Data/Managed/System.Configuration.dll
+New folder/410Final2024FA_Data/Managed/System.ComponentModel.Composition.dll
+New folder/410Final2024FA_Data/Managed/netstandard.dll
+New folder/410Final2024FA_Data/Managed/mscorlib.dll
+New folder/410Final2024FA_Data/Managed/Mono.Security.dll
+New folder/410Final2024FA_Data/Managed/Cinemachine.dll
+New folder/410Final2024FA_Data/Managed/Assembly-CSharp.dll
+New folder/410Final2024FA_Data/level4
+New folder/410Final2024FA_Data/level3
+New folder/410Final2024FA_Data/level2
+New folder/410Final2024FA_Data/level1
+New folder/410Final2024FA_Data/level0
+New folder/410Final2024FA_Data/globalgamemanagers.assets.resS
+New folder/410Final2024FA_Data/globalgamemanagers.assets
+New folder/410Final2024FA_Data/globalgamemanagers
+New folder/410Final2024FA_Data/boot.config
+New folder/410Final2024FA_Data/app.info
+New folder/410Final2024FA.exe
+*.zip
+BroomStickBlitz.zip
+BroomStickBlitz/BroomStickBlitz_BurstDebugInformation_DoNotShip/Data/Plugins/x86_64/lib_burst_generated.txt
+BroomStickBlitz/BroomStickBlitz_Data/boot.config
+BroomStickBlitz/BroomStickBlitz_Data/globalgamemanagers
+BroomStickBlitz/BroomStickBlitz_Data/globalgamemanagers.assets
+BroomStickBlitz/BroomStickBlitz_Data/level1
+BroomStickBlitz/BroomStickBlitz_Data/level2
+BroomStickBlitz/BroomStickBlitz_Data/level3
+BroomStickBlitz/BroomStickBlitz_Data/level4
+BroomStickBlitz/BroomStickBlitz_Data/Managed/Assembly-CSharp.dll
+BroomStickBlitz/BroomStickBlitz_Data/sharedassets0.assets
+BroomStickBlitz/BroomStickBlitz_Data/sharedassets0.assets.resS
+BroomStickBlitz/BroomStickBlitz_Data/sharedassets0.resource
+BroomStickBlitz/BroomStickBlitz_Data/sharedassets1.assets
+BroomStickBlitz/BroomStickBlitz_Data/sharedassets1.assets.resS
+BroomStickBlitz/BroomStickBlitz_Data/sharedassets1.resource
+BroomStickBlitz/BroomStickBlitz_Data/sharedassets2.assets
+BroomStickBlitz/BroomStickBlitz_Data/sharedassets2.assets.resS
+BroomStickBlitz/BroomStickBlitz_Data/sharedassets2.resource
+BroomStickBlitz/BroomStickBlitz_Data/sharedassets3.assets
+BroomStickBlitz.zip
+BroomStickBlitz/BroomStickBlitz_BurstDebugInformation_DoNotShip/Data/Plugins/x86_64/lib_burst_generated.txt
+BroomStickBlitz/BroomStickBlitz_Data/boot.config
+BroomStickBlitz/BroomStickBlitz_Data/globalgamemanagers
+BroomStickBlitz/BroomStickBlitz_Data/globalgamemanagers.assets
+BroomStickBlitz/BroomStickBlitz_Data/level1
+BroomStickBlitz/BroomStickBlitz_Data/level2
+BroomStickBlitz/BroomStickBlitz_Data/level3
+BroomStickBlitz/BroomStickBlitz_Data/level4
+BroomStickBlitz/BroomStickBlitz_Data/Managed/Assembly-CSharp.dll

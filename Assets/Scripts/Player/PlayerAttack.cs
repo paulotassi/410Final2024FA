@@ -78,6 +78,14 @@ public class PlayerAttack : MonoBehaviour
 
             aimAngle = Mathf.Atan2(lastAimDir.y, lastAimDir.x) * Mathf.Rad2Deg; //Using CHATGPT Math it creates the equivilant angle of the lastAimDir
             aimObject.rotation = Quaternion.Euler(0, 0, aimAngle); //rotates the rotate object based on the angle on the line above
+            if (GetComponentInParent<PlayerController>().backShoot)
+            {
+                aimObject.rotation = Quaternion.Euler(0, 0, aimAngle-180); //rotates the rotate object based on the angle on the line above
+            }
+            else
+            {
+                aimObject.rotation = Quaternion.Euler(0, 0, aimAngle); //rotates the rotate object based on the angle on the line above
+            }
 
         }
 

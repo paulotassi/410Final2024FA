@@ -4426,6 +4426,10 @@ PrefabInstance:
       propertyPath: 'm_ActiveFontFeatures.Array.data[0]'
       value: 1801810542
       objectReference: {fileID: 0}
+    - target: {fileID: 2688092006210190822, guid: 181817ce13e6f634a92e2c16be981625, type: 3}
+      propertyPath: m_DefaultControlScheme
+      value: Arcade
+      objectReference: {fileID: 0}
     - target: {fileID: 3015926223027169957, guid: 181817ce13e6f634a92e2c16be981625, type: 3}
       propertyPath: m_LocalPosition.x
       value: -18.920002
@@ -4509,6 +4513,10 @@ PrefabInstance:
     - target: {fileID: 5152296429719158953, guid: 181817ce13e6f634a92e2c16be981625, type: 3}
       propertyPath: competetiveMode
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7341278084195794793, guid: 181817ce13e6f634a92e2c16be981625, type: 3}
+      propertyPath: m_DefaultControlScheme
+      value: P2Arcade
       objectReference: {fileID: 0}
     - target: {fileID: 7887767182449932168, guid: 181817ce13e6f634a92e2c16be981625, type: 3}
       propertyPath: m_LocalPosition.x

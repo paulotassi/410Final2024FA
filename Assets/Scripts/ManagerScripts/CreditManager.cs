@@ -4,6 +4,8 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.UIElements;
 using TMPro;
+using UnityEngine.EventSystems;
+using UnityEngine.InputSystem;
 
 public class CreditManager : MonoBehaviour
 {
@@ -37,7 +39,7 @@ public class CreditManager : MonoBehaviour
     }
     private void Update()
     {
-        if (creditsPlaying && Input.anyKeyDown)
+        if (creditsPlaying && !GameSettings.arcadeMode && Input.anyKeyDown)
         {
             StopCredits();
         }

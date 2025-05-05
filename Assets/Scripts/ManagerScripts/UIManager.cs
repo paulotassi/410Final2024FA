@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.EventSystems;
 using TMPro;
 
 public class UIManager : MonoBehaviour
@@ -14,6 +15,8 @@ public class UIManager : MonoBehaviour
 
     [Header("Pause Menu")]
     [SerializeField] private GameObject pauseMenuUI;         // The pause‑menu panel
+    public GameObject resumeButtonObject;
+
 
     [Header("Cooldown Displays")]
     [SerializeField] public Image Player1shootCDDisplay;     // P1 shoot cooldown fill
@@ -40,7 +43,14 @@ public class UIManager : MonoBehaviour
             player2ScoreText.text = $"Lives Remaining: {p2Value}";
         }
     }
-
+    void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.V))
+        {
+            var selected = EventSystem.current.currentSelectedGameObject;
+            Debug.Log("Selected object: " + (selected ? selected.name : "null"));
+        }
+    }
     /// <summary>
     /// SetTimer: update the countdown timer display.
     /// </summary>
@@ -71,5 +81,18 @@ public class UIManager : MonoBehaviour
     public void TogglePauseMenu(bool show)
     {
         pauseMenuUI.SetActive(show);
+        if (pauseMenuUI.activeSelf)
+        {
+            StartCoroutine(SelectDefault(resumeButtonObject));
+        }
     }
+
+    private System.Collections.IEnumerator SelectDefault(GameObject target)
+    {
+        Debug.Log("running the button");
+        yield return null; // Wait 1 frame
+        //EventSystem.current.SetSelectedGameObject(null); // Clear selection
+        EventSystem.current.SetSelectedGameObject(target); // Select the new one
+    }
+
 }

@@ -179,7 +179,7 @@ public class PlayerHealth : MonoBehaviour
 
         // Reset player settings after countdown
         transform.position = lastPosition;
-        transform.localScale = new Vector3(1.6187f, 1.6187f, 1.6187f); // Reset scale
+        transform.localScale = new Vector3(2.2f, 2.2f, 2.2f); // Reset scale
         playerController.enabled = true;   // Re-enable player controls
         playerRB.simulated = true;         // Reactivate Rigidbody
         currentHealth = maxHealth;         // Reset health

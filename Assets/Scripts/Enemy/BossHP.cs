@@ -30,6 +30,7 @@ public class BossHP : MonoBehaviour
     
 
     // Reference to the UI image for the boss's health bar
+    
     public Image healthBar;
 
     void Start()
