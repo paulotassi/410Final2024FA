@@ -7,6 +7,7 @@ public class EndZone : DesignatedZoneClass
 {
     public override void EnteredDesignatedZone()
     {
+        gm.EndZoneEntry();
         base.EnteredDesignatedZone();
     }
 
