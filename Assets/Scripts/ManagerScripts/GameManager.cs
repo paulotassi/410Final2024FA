@@ -199,13 +199,23 @@ public class GameManager : MonoBehaviour
     // Advance each player’s cooldown and notify UIManager
     private void HandleCooldowns()
     {
-        UpdateCooldown(ref p1ShootCdTimer, p1ShootCdMax, player1Controller.fired, ref p1ShootCdEnabled, player1ShootCdTrigger, uiManager.Player1shootCDDisplay);
-        UpdateCooldown(ref p1ShieldCdTimer, p1ShieldCdMax, player1Controller.shielded, ref p1ShieldCdEnabled, player1ShieldCdTrigger, uiManager.Player1shieldCDDisplay);
-        UpdateCooldown(ref p1StunCdTimer, p1StunCdMax, player1Controller.altFired, ref p1StunCdEnabled, player1StunCdTrigger, uiManager.Player1StunCDDisplay);
 
-        UpdateCooldown(ref p2ShootCdTimer, p2ShootCdMax, player2Controller.fired, ref p2ShootCdEnabled, player2ShootCdTrigger, uiManager.Player2shootCDDisplay);
-        UpdateCooldown(ref p2ShieldCdTimer, p2ShieldCdMax, player2Controller.shielded, ref p2ShieldCdEnabled, player2ShieldCdTrigger, uiManager.Player2shieldCDDisplay);
-        UpdateCooldown(ref p2StunCdTimer, p2StunCdMax, player2Controller.altFired, ref p2StunCdEnabled, player2StunCdTrigger, uiManager.Player2StunCDDisplay);
+        if (!singlePlayerMode)
+        {
+            UpdateCooldown(ref p1ShootCdTimer, p1ShootCdMax, player1Controller.fired, ref p1ShootCdEnabled, player1ShootCdTrigger, uiManager.Player1shootCDDisplay);
+            UpdateCooldown(ref p1ShieldCdTimer, p1ShieldCdMax, player1Controller.shielded, ref p1ShieldCdEnabled, player1ShieldCdTrigger, uiManager.Player1shieldCDDisplay);
+            UpdateCooldown(ref p1StunCdTimer, p1StunCdMax, player1Controller.altFired, ref p1StunCdEnabled, player1StunCdTrigger, uiManager.Player1StunCDDisplay);
+
+            UpdateCooldown(ref p2ShootCdTimer, p2ShootCdMax, player2Controller.fired, ref p2ShootCdEnabled, player2ShootCdTrigger, uiManager.Player2shootCDDisplay);
+            UpdateCooldown(ref p2ShieldCdTimer, p2ShieldCdMax, player2Controller.shielded, ref p2ShieldCdEnabled, player2ShieldCdTrigger, uiManager.Player2shieldCDDisplay);
+            UpdateCooldown(ref p2StunCdTimer, p2StunCdMax, player2Controller.altFired, ref p2StunCdEnabled, player2StunCdTrigger, uiManager.Player2StunCDDisplay);
+        }
+        else
+        {
+            UpdateCooldown(ref p2ShootCdTimer, p2ShootCdMax, player2Controller.fired, ref p2ShootCdEnabled, player2ShootCdTrigger, uiManager.Player2shootCDDisplay);
+            UpdateCooldown(ref p2ShieldCdTimer, p2ShieldCdMax, player2Controller.shielded, ref p2ShieldCdEnabled, player2ShieldCdTrigger, uiManager.Player2shieldCDDisplay);
+            UpdateCooldown(ref p2StunCdTimer, p2StunCdMax, player2Controller.altFired, ref p2StunCdEnabled, player2StunCdTrigger, uiManager.Player2StunCDDisplay);
+        }
     }
 
     // Generic cooldown helper

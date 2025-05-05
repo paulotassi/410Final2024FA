@@ -24,13 +24,30 @@ public class BossPhase2Attack : MonoBehaviour
 
     void Start()
     {
-        // Find both players in the scene
-        player1 = GameObject.FindGameObjectWithTag("Player").transform; // Assume player1 has tag "Player"
-        player2 = GameObject.FindGameObjectWithTag("Player2").transform; // Assume player2 has tag "Player2"
+        GameObject p1Obj = GameObject.FindGameObjectWithTag("Player");
+        GameObject p2Obj = GameObject.FindGameObjectWithTag("Player2");
 
-        // Get PlayerHealth components for both players
-        player1Health = player1.GetComponent<PlayerHealth>();
-        player2Health = player2.GetComponent<PlayerHealth>();
+        if (p1Obj != null)
+        {
+            player1 = p1Obj.transform;
+            player1Health = player1.GetComponent<PlayerHealth>();
+        }
+        else
+        {
+            Debug.LogWarning("Player with tag 'Player' not found.");
+        }
+
+        if (p2Obj != null)
+        {
+            player2 = p2Obj.transform;
+            player2Health = player2.GetComponent<PlayerHealth>();
+        }
+        else
+        {
+            Debug.LogWarning("Player with tag 'Player2' not found.");
+        }
+
+
     }
 
     void Update()
@@ -89,12 +106,25 @@ public class BossPhase2Attack : MonoBehaviour
 
     Transform GetNearestPlayer()
     {
-        // Calculate distances to both players
-        float distanceToPlayer1 = Vector2.Distance(transform.position, player1.position);
-        float distanceToPlayer2 = Vector2.Distance(transform.position, player2.position);
+        bool hasP1 = player1 != null;
+        bool hasP2 = player2 != null;
 
-        // Determine which player is closer
-        return distanceToPlayer1 < distanceToPlayer2 ? player1 : player2;
+        if (hasP1 && hasP2)
+        {
+            float dist1 = Vector2.Distance(transform.position, player1.position);
+            float dist2 = Vector2.Distance(transform.position, player2.position);
+            return dist1 < dist2 ? player1 : player2;
+        }
+        else if (hasP1)
+        {
+            return player1;
+        }
+        else if (hasP2)
+        {
+            return player2;
+        }
+
+        return null;
     }
 
     IEnumerator FireProjectileSet(Transform targetPlayer)
