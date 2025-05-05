@@ -4,5 +4,5 @@ public static class GameSettings
 {
     public static bool singlePlayerMode = false;
     public static bool competetiveMode = false;
-    public static bool arcadeMode = true;
+    public static bool arcadeMode = false;
 }

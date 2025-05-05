@@ -5527,11 +5527,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1165158660375422462, guid: 47dea2b8b1dcb834dbedf4adbeed9cfc, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -119.99976
+      value: -438.6109
       objectReference: {fileID: 0}
     - target: {fileID: 1165158660375422462, guid: 47dea2b8b1dcb834dbedf4adbeed9cfc, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -557.1675
+      value: -237.40144
+      objectReference: {fileID: 0}
+    - target: {fileID: 1165158660375422462, guid: 47dea2b8b1dcb834dbedf4adbeed9cfc, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -4.7718
       objectReference: {fileID: 0}
     - target: {fileID: 1241193982795318343, guid: 47dea2b8b1dcb834dbedf4adbeed9cfc, type: 3}
       propertyPath: m_Sprite
@@ -5539,7 +5543,7 @@ PrefabInstance:
       objectReference: {fileID: -2136903515, guid: ec74cf39536a4474f91590768c3e1ff5, type: 3}
     - target: {fileID: 1782570390411111711, guid: 47dea2b8b1dcb834dbedf4adbeed9cfc, type: 3}
       propertyPath: m_DefaultControlScheme
-      value: P2Arcade
+      value: 
       objectReference: {fileID: 0}
     - target: {fileID: 1782570390411111711, guid: 47dea2b8b1dcb834dbedf4adbeed9cfc, type: 3}
       propertyPath: m_ActionEvents.Array.size
@@ -5547,7 +5551,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1782570390411111711, guid: 47dea2b8b1dcb834dbedf4adbeed9cfc, type: 3}
       propertyPath: m_NeverAutoSwitchControlSchemes
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1782570390411111711, guid: 47dea2b8b1dcb834dbedf4adbeed9cfc, type: 3}
       propertyPath: m_ActionEvents.Array.data[8].m_ActionId
@@ -5635,7 +5639,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3853361327446792769, guid: 47dea2b8b1dcb834dbedf4adbeed9cfc, type: 3}
       propertyPath: orthographic size
-      value: 8
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 4430991325692321237, guid: 47dea2b8b1dcb834dbedf4adbeed9cfc, type: 3}
       propertyPath: m_IsActive
@@ -5655,15 +5659,19 @@ PrefabInstance:
       objectReference: {fileID: 109281087904294929}
     - target: {fileID: 5792401886189985410, guid: 47dea2b8b1dcb834dbedf4adbeed9cfc, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -123.039764
+      value: -441.65088
       objectReference: {fileID: 0}
     - target: {fileID: 5792401886189985410, guid: 47dea2b8b1dcb834dbedf4adbeed9cfc, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -557.20746
+      value: -237.44145
+      objectReference: {fileID: 0}
+    - target: {fileID: 5792401886189985410, guid: 47dea2b8b1dcb834dbedf4adbeed9cfc, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -9.139335
       objectReference: {fileID: 0}
     - target: {fileID: 6346564350906822544, guid: 47dea2b8b1dcb834dbedf4adbeed9cfc, type: 3}
       propertyPath: m_DefaultControlScheme
-      value: P2Arcade
+      value: 
       objectReference: {fileID: 0}
     - target: {fileID: 6346564350906822544, guid: 47dea2b8b1dcb834dbedf4adbeed9cfc, type: 3}
       propertyPath: m_ActionEvents.Array.size
@@ -5671,7 +5679,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6346564350906822544, guid: 47dea2b8b1dcb834dbedf4adbeed9cfc, type: 3}
       propertyPath: m_NeverAutoSwitchControlSchemes
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6346564350906822544, guid: 47dea2b8b1dcb834dbedf4adbeed9cfc, type: 3}
       propertyPath: m_ActionEvents.Array.data[8].m_ActionId
@@ -5735,7 +5743,7 @@ PrefabInstance:
       objectReference: {fileID: 109281087904294929}
     - target: {fileID: 8744971342292421080, guid: 47dea2b8b1dcb834dbedf4adbeed9cfc, type: 3}
       propertyPath: orthographic size
-      value: 8
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 8869578208568761204, guid: 47dea2b8b1dcb834dbedf4adbeed9cfc, type: 3}
       propertyPath: jumpSFX
