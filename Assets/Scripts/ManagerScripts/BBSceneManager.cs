@@ -5,14 +5,20 @@ using UnityEngine.SceneManagement;
 
 public class BBSceneManager : MonoBehaviour
 {
+    [SerializeField] private TitleEventSystemManager eventSystemManager;
+
     [SerializeField] public GameObject SinglePlayer;
     [SerializeField] public GameObject TwoPlayer;
 
+    [SerializeField] public GameObject LevelSelectButton;
     [SerializeField] public GameObject LevelSelect;
     [SerializeField] public GameObject Versus;
     [SerializeField] public GameObject Credits;
     [SerializeField] public GameObject Exit;
     [SerializeField] public GameObject BackButton;
+    [SerializeField] public GameObject Tutorial;
+    [SerializeField] public GameObject TutorialPanel;
+    [SerializeField] public GameObject TutorialPanelArcade;
 
 
     //Eventual intent is to make the play to go as follows. Player hits initial button choice bringing you to either coop gamestate. when players finish a round they returnt to titlescreen and the button changes from coopmode to continue coop
@@ -22,8 +28,10 @@ public class BBSceneManager : MonoBehaviour
         LevelSelect.SetActive(false);
         Versus.SetActive(false);
         Credits.SetActive(false);
-        Exit.SetActive(false);
+        Exit.SetActive(true);
         BackButton.SetActive(false);
+        TutorialPanel.SetActive(false);
+        TutorialPanelArcade.SetActive(false);
     }
     public void LoadCoopPlaythrough1()
     {
@@ -63,6 +71,9 @@ public class BBSceneManager : MonoBehaviour
         SinglePlayer.SetActive(false);
         TwoPlayer.SetActive(false);
 
+        eventSystemManager.NewButton = LevelSelectButton;
+        eventSystemManager.UpdateFirstSelected();
+
     }
 
     public void StartTwoPlayerMode()
@@ -78,6 +89,21 @@ public class BBSceneManager : MonoBehaviour
         BackButton.SetActive(true);
         SinglePlayer.SetActive(false);
         TwoPlayer.SetActive(false);
+
+        eventSystemManager.NewButton = LevelSelectButton;
+        eventSystemManager.UpdateFirstSelected();
+    }
+
+    public void HowToPlay() 
+    {
+        bool isActive = TutorialPanel.activeSelf;
+        TutorialPanel.SetActive(!isActive);
+    }
+
+    public void HowToPlayArcade()
+    {
+        bool isActive = TutorialPanelArcade.activeSelf;
+        TutorialPanelArcade.SetActive(!isActive);
     }
 
     public void Back()
@@ -89,10 +115,12 @@ public class BBSceneManager : MonoBehaviour
         LevelSelect.SetActive(false);
         Versus.SetActive(false);
         Credits.SetActive(false);
-        Exit.SetActive(false);
         BackButton.SetActive(false);
         SinglePlayer.SetActive(true);
         TwoPlayer.SetActive(true);
+
+        eventSystemManager.NewButton = SinglePlayer; 
+        eventSystemManager.UpdateFirstSelected();
     }
 
 }
