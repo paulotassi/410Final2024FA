@@ -746,6 +746,10 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: 3b436354-3d60-4851-819f-082653671c9a
     m_ActionName: 'Player/Pause[/Keyboard/enter]'
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 4f1e8300-a99e-487f-b6c0-3c0380dcca70
+    m_ActionName: 'Player/BackShoot[/Keyboard/b,/Keyboard/4]'
   m_NeverAutoSwitchControlSchemes: 1
   m_DefaultControlScheme: GamePad
   m_DefaultActionMap: Player
@@ -766,8 +770,8 @@ MonoBehaviour:
   movementInput: {x: 0, y: 0}
   initialMoveSpeed: 0
   moveSpeed: 0.5
-  moveHorizontalFlightSpeed: 20
-  flightSpeed: 20
+  moveHorizontalFlightSpeed: 15
+  flightSpeed: 15
   topSpeed: 10
   jumpForce: 1
   transitionThreshold: 10
@@ -779,6 +783,11 @@ MonoBehaviour:
   inactivityThreshold: 2
   stunnable: 1
   stunDR: 3.5
+  shootSFX: {fileID: 0}
+  altShootSFX: {fileID: 0}
+  shieldSFX: {fileID: 0}
+  stunSFX: {fileID: 0}
+  jumpSFX: {fileID: 0}
   aimInput: {x: 0, y: 0}
   canShoot: 1
   canAltShoot: 1
@@ -798,6 +807,7 @@ MonoBehaviour:
   shielded: 0
   altFired: 0
   paused: 0
+  backShoot: 0
   groundCheck: {fileID: 1216195194795179885}
   groundLayer:
     serializedVersion: 2
@@ -1755,7 +1765,7 @@ Transform:
   m_GameObject: {fileID: 5109670534862012840}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -12.360003, y: -2.2480001, z: -9.139335}
+  m_LocalPosition: {x: -341.1711, y: -0.99800014, z: -10.010196}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1874,7 +1884,7 @@ Transform:
   m_GameObject: {fileID: 5495657024639112019}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -9.319995, y: -2.2080002, z: -4.7718}
+  m_LocalPosition: {x: -338.1311, y: -0.9580002, z: -5.642661}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -2772,6 +2782,11 @@ MonoBehaviour:
   inactivityThreshold: 2
   stunnable: 1
   stunDR: 3.5
+  shootSFX: {fileID: 0}
+  altShootSFX: {fileID: 0}
+  shieldSFX: {fileID: 0}
+  stunSFX: {fileID: 0}
+  jumpSFX: {fileID: 0}
   aimInput: {x: 0, y: 0}
   canShoot: 1
   canAltShoot: 1
@@ -2791,6 +2806,7 @@ MonoBehaviour:
   shielded: 0
   altFired: 0
   paused: 0
+  backShoot: 0
   groundCheck: {fileID: 8331015421776359968}
   groundLayer:
     serializedVersion: 2

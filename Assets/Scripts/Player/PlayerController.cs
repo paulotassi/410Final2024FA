@@ -230,7 +230,9 @@ public class PlayerController : MonoBehaviour
         switch (buffType)
         {
             case BuffType.SpeedBoost:
-                topSpeed *= 3f; // Increase speed by 50%
+                topSpeed *= 2f;
+                moveHorizontalFlightSpeed *= 2f;
+                flightSpeed *= 2f;// Increase speed by 50%
                 Debug.Log("Speed Boost Applied!");
                 break;
 
