@@ -259,12 +259,15 @@ public class GameManager : MonoBehaviour
         {
             if (singlePlayerMode)
             {
-                Debug.Log("SINGLE PLAYER DISPLAY");
-                uiManager.SetIngredientGoal("Ingredients Required: " + (Mathf.Floor(roundRequiredScore / 2) - player2IngredientCount));
+                float doubleplayerreqScore = Mathf.Floor(roundRequiredScore / 2) - player2IngredientCount;
+                if (doubleplayerreqScore < 0) { doubleplayerreqScore =  0; }    
+                uiManager.SetIngredientGoal("Ingredients Required: " + doubleplayerreqScore);
             }
             else
             {
-                uiManager.SetIngredientGoal("Ingredients Required: " + (roundRequiredScore - (player1IngredientCount + player2IngredientCount)));
+                float singleplayerreqScore = (roundRequiredScore - (player1IngredientCount + player2IngredientCount));
+                if (singleplayerreqScore < 0) { singleplayerreqScore = 0; }
+                uiManager.SetIngredientGoal("Ingredients Required: " + singleplayerreqScore);
             }
             
         }

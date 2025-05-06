@@ -4428,7 +4428,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2688092006210190822, guid: 181817ce13e6f634a92e2c16be981625, type: 3}
       propertyPath: m_DefaultControlScheme
-      value: Arcade
+      value: 
       objectReference: {fileID: 0}
     - target: {fileID: 3015926223027169957, guid: 181817ce13e6f634a92e2c16be981625, type: 3}
       propertyPath: m_LocalPosition.x
@@ -4516,7 +4516,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7341278084195794793, guid: 181817ce13e6f634a92e2c16be981625, type: 3}
       propertyPath: m_DefaultControlScheme
-      value: P2Arcade
+      value: 
       objectReference: {fileID: 0}
     - target: {fileID: 7887767182449932168, guid: 181817ce13e6f634a92e2c16be981625, type: 3}
       propertyPath: m_LocalPosition.x
