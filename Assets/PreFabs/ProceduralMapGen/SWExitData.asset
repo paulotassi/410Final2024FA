@@ -1,0 +1,17 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 67e1d15675ea293449f9c126d376243d, type: 3}
+  m_Name: SWExitData
+  m_EditorClassIdentifier: 
+  tileName: SW
+  tilePrefab: {fileID: 4745463514535846050, guid: 044fd455d7da0f44996fafa5f40df6de, type: 3}
+  exits: 0200000003000000

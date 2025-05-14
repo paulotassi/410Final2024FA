@@ -1,0 +1,17 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 67e1d15675ea293449f9c126d376243d, type: 3}
+  m_Name: NWExitData
+  m_EditorClassIdentifier: 
+  tileName: NW
+  tilePrefab: {fileID: 2923798781680948611, guid: 04327e860f95d724d9d93fa1f2164a8a, type: 3}
+  exits: 0000000003000000
