@@ -269,7 +269,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: c3aff28ba0b3fa34cb4c3092ecb7af6c, type: 2}
   - {fileID: 11400000, guid: 1e8b9dc7a0d9ce14faab6b0bba4d3b48, type: 2}
   startingTile: {fileID: 11400000, guid: 62d2f1d50b52aae4f8ac80ac4e2c3270, type: 2}
-  maxTiles: 100
+  maxTiles: 400
   tileSpacing: 22
   tileParent: {fileID: 1760604730}
 --- !u!1660057539 &9223372036854775807
