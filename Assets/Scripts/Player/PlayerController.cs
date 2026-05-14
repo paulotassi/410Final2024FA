@@ -7,7 +7,7 @@ using UnityEngine.SceneManagement;
 
 public class PlayerController : MonoBehaviour
 {
-    [SerializeField] private enum State { Idle, Walking, Flying }
+    private enum State { Idle, Walking, Flying }
     private State currentState = State.Idle;
 
     // Player movement variables
