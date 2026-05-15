@@ -14,4 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   tileName: NESW
   tilePrefab: {fileID: 6807850122747873363, guid: cf57ad77011461f42ba1b8d6da6b1427, type: 3}
+  size: {x: 1, y: 1}
   exits: 00000000010000000200000003000000

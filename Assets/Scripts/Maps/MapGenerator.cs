@@ -4,11 +4,12 @@ using UnityEngine;
 
 public class MapGenerator : MonoBehaviour
 {
-    public TileData[] tileDatas;                     // All available tile types (set in Inspector)
-    public TileData startingTile;                    // The tile to start with
-    public int maxTiles = 10;                        // Total number of tiles to generate
-    public float tileSpacing = 22f;                  // Space between tiles in world units
-    public Transform tileParent;                     // Parent object to keep hierarchy clean
+    public TileData[] tileDatas;        // All available tile types (set in Inspector)
+    public TileData startingTile;       // The tile to start map generation from
+    public int minTiles = 5;            // Minimum number of tiles before capping exits
+    public int maxTiles = 10;           // Maximum number of tiles to generate
+    public float tileSpacing = 22f;     // Space between tiles in world units
+    public Transform tileParent;        // Parent object to keep hierarchy clean
 
     private Dictionary<Vector2Int, TileData> placedTiles = new Dictionary<Vector2Int, TileData>();
     private Queue<OpenExit> openExits = new Queue<OpenExit>();
@@ -18,76 +19,86 @@ public class MapGenerator : MonoBehaviour
         GenerateMap();
     }
 
-
     void GenerateMap()
     {
         Vector2Int startPos = Vector2Int.zero;
         PlaceTile(startingTile, startPos);
 
-        // Add exits of the starting tile to the open exit list
-        foreach (Direction exit in startingTile.exits)
-        {
-            openExits.Enqueue(new OpenExit(GetOffsetPosition(startPos, exit), GetOppositeDirection(exit)));
-        }
+        // Always populate exits from the starting tile first
+        AddExits(startPos, startingTile.exits, null);
 
-        // Generate the map by filling in exits
+        // Keep filling exits until we hit maxTiles or run out of exits
         while (openExits.Count > 0 && placedTiles.Count < maxTiles)
         {
             OpenExit open = openExits.Dequeue();
 
-            // Skip if tile already exists at this position
+            // Skip if a tile already exists at this position
             if (placedTiles.ContainsKey(open.position)) continue;
 
-            // Find all tile options that contain the needed exit
-            List<TileData> matchingTiles = new List<TileData>();
-            foreach (TileData tile in tileDatas)
+            if (placedTiles.Count < minTiles)
             {
-                if (tile.exits.Contains(open.neededExit))
+                // Still building - exclude cap tiles until minTiles is reached
+                bool reachedMin = placedTiles.Count >= minTiles; // flag passed into tile picker
+                TileData selected = GetRandomMatchingTile(open.neededExit, reachedMin);
+                if (selected == null) continue;
+
+                PlaceTile(selected, open.position);
+                AddExits(open.position, selected.exits, open.neededExit);
+            }
+            else
+            {
+                // Hit minTiles - cap remaining exits with dead-end tiles
+                TileData capTile = GetSingleExitTile(open.neededExit);
+                if (capTile != null)
                 {
-                    matchingTiles.Add(tile);
+                    PlaceTile(capTile, open.position);
                 }
-            }
-
-            if (matchingTiles.Count == 0) continue; // No match, skip
-
-            // Pick a random matching tile
-            TileData selectedTile = matchingTiles[Random.Range(0, matchingTiles.Count)];
-            PlaceTile(selectedTile, open.position);
-
-            // Add new open exits from this tile, except the one that was just filled
-            foreach (Direction newExit in selectedTile.exits)
-            {
-                if (newExit == open.neededExit) continue; // Don’t loop back
-
-                Vector2Int newPos = GetOffsetPosition(open.position, newExit);
-                openExits.Enqueue(new OpenExit(newPos, GetOppositeDirection(newExit)));
-            }
-        }
-
-        // Close remaining exits with single-exit tiles
-        while (openExits.Count > 0)
-        {
-            OpenExit finalOpen = openExits.Dequeue();
-
-            if (placedTiles.ContainsKey(finalOpen.position)) continue;
-
-            TileData capTile = GetSingleExitTile(finalOpen.neededExit);
-            if (capTile != null)
-            {
-                PlaceTile(capTile, finalOpen.position);
             }
         }
     }
 
+    // Places a tile prefab at the given grid position
     void PlaceTile(TileData tileData, Vector2Int gridPosition)
     {
-        Vector3 worldPos = new Vector3(gridPosition.x * tileSpacing, gridPosition.y * tileSpacing,0 );
-        GameObject tile = Instantiate(tileData.tilePrefab, worldPos, Quaternion.identity, tileParent);
-        //tile.name = tileData.tileName + "_" + gridPosition;
+        Vector3 worldPos = new Vector3(gridPosition.x * tileSpacing, gridPosition.y * tileSpacing, 0);
+        Instantiate(tileData.tilePrefab, worldPos, Quaternion.identity, tileParent);
         placedTiles.Add(gridPosition, tileData);
     }
 
-    // Gets the grid offset based on a direction
+    // Adds a tile's exits to the open exit queue, skipping the entrance we just came from
+    void AddExits(Vector2Int pos, List<Direction> exits, Direction? entryDirection)
+    {
+        foreach (Direction exit in exits)
+        {
+            // Don't loop back through the entrance we arrived from
+            if (entryDirection.HasValue && exit == entryDirection.Value) continue;
+
+            Vector2Int neighborPos = GetOffsetPosition(pos, exit);
+            openExits.Enqueue(new OpenExit(neighborPos, GetOppositeDirection(exit)));
+        }
+    }
+
+    // Returns a random tile that has the required exit direction
+    // If allowCapTiles is false, single-exit tiles are excluded from the pool
+    TileData GetRandomMatchingTile(Direction neededExit, bool allowCapTiles)
+    {
+        List<TileData> matches = new List<TileData>();
+
+        foreach (TileData tile in tileDatas)
+        {
+            if (!tile.exits.Contains(neededExit)) continue;
+
+            // Before minTiles is reached, skip any tile with only one exit
+            if (!allowCapTiles && tile.exits.Count == 1) continue;
+
+            matches.Add(tile);
+        }
+
+        if (matches.Count == 0) return null;
+        return matches[Random.Range(0, matches.Count)];
+    }
+
+    // Returns the grid position one step in the given direction
     Vector2Int GetOffsetPosition(Vector2Int pos, Direction dir)
     {
         switch (dir)
@@ -100,7 +111,7 @@ public class MapGenerator : MonoBehaviour
         }
     }
 
-    // Reverses the direction (needed for exit compatibility)
+    // Flips a direction to its opposite
     Direction GetOppositeDirection(Direction dir)
     {
         switch (dir)
@@ -113,7 +124,7 @@ public class MapGenerator : MonoBehaviour
         }
     }
 
-    // Picks a tile with only one exit in the specified direction
+    // Returns a dead-end tile with only one exit in the specified direction
     TileData GetSingleExitTile(Direction dir)
     {
         foreach (TileData tile in tileDatas)
