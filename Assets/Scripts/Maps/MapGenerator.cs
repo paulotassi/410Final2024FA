@@ -4,18 +4,35 @@ using UnityEngine;
 
 public class MapGenerator : MonoBehaviour
 {
-    public TileData[] tileDatas;        // All available tile types (set in Inspector)
-    public TileData startingTile;       // The tile to start map generation from
-    public int minTiles = 5;            // Minimum number of tiles before capping exits
-    public int maxTiles = 10;           // Maximum number of tiles to generate
-    public float tileSpacing = 22f;     // Space between tiles in world units
-    public Transform tileParent;        // Parent object to keep hierarchy clean
+    [Header("Designer Controls")]
+    [Tooltip("Controls the overall size of the generated map. 1 = small, 10 = large")]
+    [Range(1, 10)]
+    public int mapSize = 5;
+
+    [Space]
+    [Header("References - DO NOT TOUCH")]
+    [Tooltip("DO NOT TOUCH - All available tile types, assigned by a programmer")]
+    public TileData[] tileDatas;
+    [Tooltip("DO NOT TOUCH - The tile placed at the center of the map")]
+    public TileData startingTile;
+    [Tooltip("DO NOT TOUCH - Distance between tiles in world units")]
+    public float tileSpacing = 22f;
+    [Tooltip("DO NOT TOUCH - Parent object that keeps the tile hierarchy clean")]
+    public Transform tileParent;
+
+    // Calculated from mapSize at runtime, never exposed to the Inspector
+    private int minTiles;
+    private int maxTiles;
 
     private Dictionary<Vector2Int, TileData> placedTiles = new Dictionary<Vector2Int, TileData>();
     private Queue<OpenExit> openExits = new Queue<OpenExit>();
 
     void Start()
     {
+        // Translate the designer-facing mapSize into internal tile counts
+        minTiles = mapSize * 20;
+        maxTiles = mapSize * 30;
+
         GenerateMap();
     }
 

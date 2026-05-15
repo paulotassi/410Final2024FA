@@ -202,7 +202,7 @@ public class GameManager : MonoBehaviour
     // Advance each player’s cooldown and notify UIManager
     private void HandleCooldowns()
     {
-        Debug.Log("getting cooldown references");
+        //Debug.Log("getting cooldown references");
         if (!singlePlayerMode)
         {
             UpdateCooldown(ref p1ShootCdTimer, p1ShootCdMax, player1Controller.fired, ref p1ShootCdEnabled, player1ShootCdTrigger, uiManager.Player1shootCDDisplay);
