@@ -265,7 +265,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 21913b93927e653458ffbed176f35710, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mapSize: 8
+  mapSize: 1
   tileDatas:
   - {fileID: 11400000, guid: 62d2f1d50b52aae4f8ac80ac4e2c3270, type: 2}
   - {fileID: 11400000, guid: fe8d7916997f96046bd4d5d3b767f8df, type: 2}
@@ -276,6 +276,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 774bc3ec87059ec46b80e74e2b6d0fe2, type: 2}
   - {fileID: 11400000, guid: c746b87b9e30840459b2391d26bd77f0, type: 2}
   - {fileID: 11400000, guid: 66223c1a340f9664492380f784c37a1d, type: 2}
+  - {fileID: 11400000, guid: aeeb68df36c0094478106374717992e0, type: 2}
   - {fileID: 11400000, guid: c3aff28ba0b3fa34cb4c3092ecb7af6c, type: 2}
   - {fileID: 11400000, guid: 1e8b9dc7a0d9ce14faab6b0bba4d3b48, type: 2}
   - {fileID: 11400000, guid: c63cc01b98566dd4ca62216e878d3b76, type: 2}
