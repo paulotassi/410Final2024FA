@@ -12,6 +12,7 @@ public class OpenExit
     }
 }
 
+
 public enum Direction
 {
     North,

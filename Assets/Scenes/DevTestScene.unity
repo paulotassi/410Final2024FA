@@ -192,6 +192,14 @@ PrefabInstance:
       propertyPath: singlePlayerMode
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 6542681500388260620, guid: 181817ce13e6f634a92e2c16be981625, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -19.199951
+      objectReference: {fileID: 0}
+    - target: {fileID: 7436512901791669050, guid: 181817ce13e6f634a92e2c16be981625, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7887767182449932168, guid: 181817ce13e6f634a92e2c16be981625, type: 3}
       propertyPath: m_LocalPosition.x
       value: -12.920001
@@ -257,6 +265,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 21913b93927e653458ffbed176f35710, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  mapSize: 8
   tileDatas:
   - {fileID: 11400000, guid: 62d2f1d50b52aae4f8ac80ac4e2c3270, type: 2}
   - {fileID: 11400000, guid: fe8d7916997f96046bd4d5d3b767f8df, type: 2}
@@ -269,9 +278,8 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 66223c1a340f9664492380f784c37a1d, type: 2}
   - {fileID: 11400000, guid: c3aff28ba0b3fa34cb4c3092ecb7af6c, type: 2}
   - {fileID: 11400000, guid: 1e8b9dc7a0d9ce14faab6b0bba4d3b48, type: 2}
+  - {fileID: 11400000, guid: c63cc01b98566dd4ca62216e878d3b76, type: 2}
   startingTile: {fileID: 11400000, guid: 62d2f1d50b52aae4f8ac80ac4e2c3270, type: 2}
-  minTiles: 50
-  maxTiles: 400
   tileSpacing: 16.5
   tileParent: {fileID: 840317518}
 --- !u!1660057539 &9223372036854775807
