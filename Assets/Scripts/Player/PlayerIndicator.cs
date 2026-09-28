@@ -21,11 +21,64 @@ public class PlayerIndicator : MonoBehaviour
     {
         // Locate the UI element named "Pointer" within the hierarchy and get its RectTransform component
         //pointerRectTransform = transform.Find("Pointer").GetComponent<RectTransform>();
+
+        // In generated maps the target is an exit on the current tile, not a fixed object
+        mapGenerator = FindFirstObjectByType<MapGenerator>();
+        if (mapGenerator != null)
+        {
+            guideTarget = new GameObject("PathGuideTarget").transform;
+            targetPosition = guideTarget;
+        }
+    }
+
+    // True for indicators that point at a scene object (versus mode); false for boss-style ones assigned at runtime
+    public bool HasFixedTarget => targetPosition != null;
+    public Camera CameraObject => camObject;
+
+    private MapGenerator mapGenerator;
+    private Transform guideTarget;
+    private Transform trackedPlayer;
+    private Vector2Int currentCell;
+    private bool hasCell;
+
+    // Which player's tile this indicator follows (set by GameManager)
+    public void SetTrackedPlayer(Transform player) { trackedPlayer = player; }
+
+    // Returns false until a valid direction is known
+    private bool UpdateGuideTarget()
+    {
+        if (!mapGenerator.Generated) return false;
+
+        Vector3 pos = trackedPlayer != null ? trackedPlayer.position : camPosition.position;
+        Vector2Int cell = mapGenerator.CellOf(pos);
+
+        // Switch tiles only once the player is clearly inside the new one, so the arrow doesn't flicker in doorways
+        if (!hasCell || (cell != currentCell && mapGenerator.IsInsideCell(pos, cell, 2f)))
+        {
+            if (mapGenerator.TryGetGuidePoint(cell, out Vector3 point))
+            {
+                currentCell = cell;
+                hasCell = true;
+                guideTarget.position = point;
+            }
+        }
+        return hasCell;
     }
 
     // Called once per frame
     void Update()
     {
+        // Generated maps: aim at whichever exit of the current tile leads toward the finish.
+        // The aim only changes once the player is properly inside a different tile.
+        if (guideTarget != null)
+        {
+            if (!UpdateGuideTarget())
+            {
+                pointerRectTransform.gameObject.SetActive(false);
+                return;
+            }
+        }
+
         // Get the position of the target in world space
         Vector3 toPosition = targetPosition.position;
         // Get the position of the camera in world space and ignore its Z component
@@ -79,8 +132,9 @@ public class PlayerIndicator : MonoBehaviour
         {
             // If the target is on-screen, position the pointer directly at the target's screen position
             pointerRectTransform.position = targetPositionScreenpoint;
-            pointImage.SetActive(false);
-            
+            // Versus mode hides the arrow while the target is visible; the path guide keeps showing it
+            pointImage.SetActive(guideTarget != null);
+
         }
     }
 

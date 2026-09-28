@@ -15,4 +15,11 @@ MonoBehaviour:
   tileName: NESW
   tilePrefab: {fileID: 6807850122747873363, guid: cf57ad77011461f42ba1b8d6da6b1427, type: 3}
   size: {x: 1, y: 1}
+  exitVectors:
+  - {x: 0, y: 0}
+  - {x: 0, y: 0}
+  - {x: 0, y: 0}
+  - {x: 0, y: 0}
   exits: 00000000010000000200000003000000
+  weight: 1
+  isExit: 0

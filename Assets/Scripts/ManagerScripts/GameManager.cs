@@ -40,6 +40,11 @@ public class GameManager : MonoBehaviour
     [SerializeField] public int roundRequiredScore = 0;
     private bool winStateMet = false;
 
+    // Procedural (roguelike) run state
+    private bool proceduralMode = false;
+    private bool runEnded = false;
+    private int[] runIngredientCounts = new int[System.Enum.GetValues(typeof(IngredientType)).Length];
+
 
     //======================================================
     // Player & Boss References
@@ -89,6 +94,7 @@ public class GameManager : MonoBehaviour
 
     private void Start()
     {
+        proceduralMode = GameSettings.proceduralMode;
         singlePlayerMode = GameSettings.singlePlayerMode;
         competetiveMode = GameSettings.competetiveMode;
         arcadeMode = GameSettings.arcadeMode;
@@ -111,6 +117,19 @@ public class GameManager : MonoBehaviour
             p1HealthObject.SetActive(false);
             p1BossIndicator.SetActive(false);
             
+        }
+
+        // Procedural levels reuse the boss-style indicators (the ones with no fixed target) to point at the exit.
+        // Skip any whose camera is off, e.g. player 1's in single player.
+        if (proceduralMode)
+        {
+            foreach (PlayerIndicator indicator in FindObjectsByType<PlayerIndicator>(FindObjectsInactive.Include, FindObjectsSortMode.None))
+            {
+                if (indicator.HasFixedTarget) continue;
+                if (indicator.CameraObject != null && !indicator.CameraObject.gameObject.activeInHierarchy) continue;
+                indicator.SetTrackedPlayer(indicator.CameraObject == p2Camera ? player2GameObject.transform : player1GameObject.transform);
+                indicator.gameObject.SetActive(true);
+            }
         }
 
         // Cache components
@@ -245,6 +264,7 @@ public class GameManager : MonoBehaviour
     // Decrement game timer and update UI
     private void HandleTimer()
     {
+        if (runEnded) return;
         remainingTime -= Time.deltaTime;
 
         int minutes = Mathf.FloorToInt(remainingTime / 60);   // local var
@@ -255,6 +275,12 @@ public class GameManager : MonoBehaviour
 
     private void DisplayRoundRequired()
     {
+        if (proceduralMode)
+        {
+            uiManager.SetIngredientGoal("Find the exit!  Banked: " + SaveManager.Data.totalBanked + "/" + SaveManager.BossUnlockTotal);
+            return;
+        }
+
         if (!competetiveMode)
         {
             if (singlePlayerMode)
@@ -280,6 +306,18 @@ public class GameManager : MonoBehaviour
     // Check for end‑of‑round and trigger sequence
     private void CheckEndConditions()
     {
+        if (proceduralMode)
+        {
+            // A failed run ends on timeout or death; escaping is handled by EndZoneEntry
+            if (!runEnded && (remainingTime <= 0 ||
+                player1Health.playerLifeCountRemaining == 0 ||
+                player2Health.playerLifeCountRemaining == 0))
+            {
+                FinishProceduralRun(false);
+            }
+            return;
+        }
+
         if (remainingTime <= 0 ||
             (bossHp != null && bossHp.bossDead) ||
             player1Health.playerLifeCountRemaining == 0 ||
@@ -318,8 +356,33 @@ public class GameManager : MonoBehaviour
     }
 
     // Called by trigger when players enter the end zone
+    // Ends a procedural run: an escape banks everything, a failure banks only a fraction
+    private void FinishProceduralRun(bool escaped)
+    {
+        if (runEnded) return;
+        runEnded = true;
+
+        bool wasUnlocked = SaveManager.BossUnlocked;
+        int banked = SaveManager.BankRun(runIngredientCounts, escaped ? 1f : SaveManager.FailKeepFraction);
+
+        string msg = escaped
+            ? "Escaped with " + banked + " ingredients!"
+            : "Run failed... kept " + banked + " ingredients.";
+        if (!wasUnlocked && SaveManager.BossUnlocked) msg += "\nThe boss level is unlocked!";
+
+        uiManager.SetTimer(string.Format("{0:00}:{1:00}", Mathf.Max(0, Mathf.FloorToInt(remainingTime / 60)), Mathf.Max(0, Mathf.FloorToInt(remainingTime % 60))));
+        uiManager.ShowRoundEnd(msg);
+        StartCoroutine(GameEnd());
+    }
+
     public void EndZoneEntry()
     {
+        if (proceduralMode)
+        {
+            FinishProceduralRun(true);
+            return;
+        }
+
         if (player1IngredientCount + player2IngredientCount < roundRequiredScore)
         {
             winStateMet = false;
@@ -432,6 +495,7 @@ public class GameManager : MonoBehaviour
 
         player1Ingredients[type]++;
         player1IngredientCount++;
+        runIngredientCounts[(int)type]++;
 
         if (player1Ingredients[type] >= 5)
         {
@@ -453,6 +517,7 @@ public class GameManager : MonoBehaviour
 
         player2Ingredients[type]++;
         player2IngredientCount++;
+        runIngredientCounts[(int)type]++;
 
         if (player2Ingredients[type] >= 5)
         {

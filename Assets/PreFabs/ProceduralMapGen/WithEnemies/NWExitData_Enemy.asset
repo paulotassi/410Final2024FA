@@ -15,4 +15,11 @@ MonoBehaviour:
   tileName: NW_Enemy_ReaperSpawn
   tilePrefab: {fileID: 2923798781680948611, guid: cf17eed3a3a8a6e4dad7f1b2442f1bb7, type: 3}
   size: {x: 1, y: 1}
+  exitVectors:
+  - {x: 0, y: 0}
+  - {x: 0, y: 0}
+  - {x: 0, y: 0}
+  - {x: 0, y: 0}
   exits: 0000000003000000
+  weight: 1
+  isExit: 0

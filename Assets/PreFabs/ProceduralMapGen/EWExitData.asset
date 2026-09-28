@@ -14,4 +14,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   tileName: EW
   tilePrefab: {fileID: 4629564482263102921, guid: b9a6a1adb18dc744bb406977a143e962, type: 3}
+  size: {x: 1, y: 1}
+  exitVectors:
+  - {x: 0, y: 0}
+  - {x: 0, y: 0}
+  - {x: 0, y: 0}
+  - {x: 0, y: 0}
   exits: 0100000003000000
+  weight: 1
+  isExit: 0

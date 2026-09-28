@@ -21,3 +21,5 @@ MonoBehaviour:
   - {x: 0, y: 0}
   - {x: 0, y: 0}
   exits: 0200000003000000
+  weight: 1
+  isExit: 0

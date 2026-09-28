@@ -14,4 +14,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   tileName: NS
   tilePrefab: {fileID: 1653224574082305885, guid: 46712f727cb91bb4790e6e28067815f0, type: 3}
+  size: {x: 1, y: 1}
+  exitVectors:
+  - {x: 0, y: 0}
+  - {x: 0, y: 0}
+  - {x: 0, y: 0}
+  - {x: 0, y: 0}
   exits: 0000000002000000
+  weight: 1
+  isExit: 0

@@ -32,26 +32,71 @@ public class BBSceneManager : MonoBehaviour
         BackButton.SetActive(false);
         TutorialPanel.SetActive(false);
         TutorialPanelArcade.SetActive(false);
+
+        GameSettings.proceduralMode = false;
+        RefreshBossLock();
     }
+    // Level select buttons: 1 = Small procedural level, 2 = Large procedural level, 3 = Boss (locked until enough is banked)
+    private const string ProceduralSceneName = "ProceduralLevel";
+    [SerializeField] private int smallMapSize = 3;
+    [SerializeField] private int largeMapSize = 8;
+    [SerializeField] public UnityEngine.UI.Button bossLevelButton;
+
+    private void RefreshBossLock()
+    {
+        // Find the level buttons under the (inactive) LevelSelect panel and label them
+        foreach (UnityEngine.UI.Button b in FindObjectsByType<UnityEngine.UI.Button>(FindObjectsInactive.Include, FindObjectsSortMode.None))
+        {
+            TMPro.TMP_Text text = b.GetComponentInChildren<TMPro.TMP_Text>(true);
+            if (text == null) continue;
+            if (b.name == "Level 1") text.text = "Small Level";
+            else if (b.name == "Level 2") text.text = "Large Level";
+            else if (b.name == "Level 3" && bossLevelButton == null) bossLevelButton = b;
+        }
+
+        if (bossLevelButton == null) return;
+
+        bool unlocked = SaveManager.BossUnlocked;
+        bossLevelButton.interactable = unlocked;
+
+        TMPro.TMP_Text label = bossLevelButton.GetComponentInChildren<TMPro.TMP_Text>(true);
+        if (label != null)
+        {
+            label.text = unlocked
+                ? "Boss Level"
+                : "Boss Locked " + SaveManager.Data.totalBanked + "/" + SaveManager.BossUnlockTotal;
+        }
+    }
+
+    private void LoadProcedural(int size)
+    {
+        GameSettings.proceduralMode = true;
+        GameSettings.proceduralMapSize = size;
+        SceneManager.LoadScene(ProceduralSceneName);
+    }
+
     public void LoadCoopPlaythrough1()
     {
-        SceneManager.LoadScene("CompetetiveLevel1");
+        LoadProcedural(smallMapSize);
     }
 
     public void LoadCoopPlaythrough2()
     {
-        SceneManager.LoadScene("CompetitiveLevel2");
+        LoadProcedural(largeMapSize);
     }
 
     public void LoadCooperativeBossPlaythrough()
     {
-        
+        if (!SaveManager.BossUnlocked) return;
+
+        GameSettings.proceduralMode = false;
         SceneManager.LoadScene("BossLevel");
     }
 
     public void LoadVersusPlaythrough()
     {
         GameSettings.competetiveMode = true;
+        GameSettings.proceduralMode = false;
         SceneManager.LoadScene("ArenaScene");
     }
 
