@@ -145,6 +145,13 @@ public class GameManager : MonoBehaviour
 
         bossHp = FindFirstObjectByType<BossHP>();
         
+        // Versus stays fair; every other mode gets the bought upgrades
+        if (!competetiveMode)
+        {
+            ApplyPurchasedUpgrades(player1Controller);
+            ApplyPurchasedUpgrades(player2Controller);
+        }
+
         InitializeCooldowns();
     }
 
@@ -497,11 +504,7 @@ public class GameManager : MonoBehaviour
         player1IngredientCount++;
         runIngredientCounts[(int)type]++;
 
-        if (player1Ingredients[type] >= 5)
-        {
-            ApplyBuff(player, type);
-            player1Ingredients[type] = 0;
-        }
+        // Buffs are no longer earned mid-run; they are bought with banked ingredients on the title screen
     }
 
     public void Player1DecreaseIngredient()
@@ -519,11 +522,6 @@ public class GameManager : MonoBehaviour
         player2IngredientCount++;
         runIngredientCounts[(int)type]++;
 
-        if (player2Ingredients[type] >= 5)
-        {
-            ApplyBuff(player, type);
-            player2Ingredients[type] = 0;
-        }
     }
 
     public void Player2DecreaseIngredient()
@@ -542,46 +540,35 @@ public class GameManager : MonoBehaviour
             ingredients.Remove(randomType);
     }
 
-    private void ApplyBuff(GameObject player, IngredientType type)
+    // Gives a player every upgrade bought in the title screen shop
+    private void ApplyPurchasedUpgrades(PlayerController controller)
     {
-        PlayerController controller = player.GetComponent<PlayerController>();
+        if (controller == null) return;
 
-        if (controller == null)
-            return;
-
-        BuffType buffToApply;
-
-        switch (type)
+        foreach (BuffType buff in System.Enum.GetValues(typeof(BuffType)))
         {
-            case IngredientType.Herb:
-                if (controller.SpeedBuff) return;
-                buffToApply = BuffType.SpeedBoost;
-                controller.SpeedBuff = true;
-                break;
+            if (!SaveManager.HasUpgrade(buff)) continue;
 
-            case IngredientType.Finger:
-                if (controller.ShootBuff) return;
-                buffToApply = BuffType.FireRateIncrease;
-                controller.ShootBuff = true;
-                break;
-
-            case IngredientType.FrogLeg:
-                if (controller.StunBuff) return;
-                buffToApply = BuffType.StunMultiplier;
-                controller.StunBuff = true;
-                break;
-
-            case IngredientType.Spider:
-                if (controller.ShieldBuff) return;
-                buffToApply = BuffType.ShieldExtension;
-                controller.ShieldBuff = true;
-                break;
-
-            default:
-                return;
+            switch (buff)
+            {
+                case BuffType.SpeedBoost:
+                    if (controller.SpeedBuff) continue;
+                    controller.SpeedBuff = true;
+                    break;
+                case BuffType.FireRateIncrease:
+                    if (controller.ShootBuff) continue;
+                    controller.ShootBuff = true;
+                    break;
+                case BuffType.StunMultiplier:
+                    if (controller.StunBuff) continue;
+                    controller.StunBuff = true;
+                    break;
+                case BuffType.ShieldExtension:
+                    if (controller.ShieldBuff) continue;
+                    controller.ShieldBuff = true;
+                    break;
+            }
+            controller.ApplyBuff(buff);
         }
-
-        controller.ApplyBuff(buffToApply);
-        InitializeCooldowns();
     }
 }

@@ -14,6 +14,8 @@ public class BBSceneManager : MonoBehaviour
     [SerializeField] public GameObject LevelSelect;
     [SerializeField] public GameObject Versus;
     [SerializeField] public GameObject Credits;
+    [SerializeField] public GameObject Upgrades;       // "Upgrades" menu button
+    [SerializeField] private UpgradeShop upgradeShop;
     [SerializeField] public GameObject Exit;
     [SerializeField] public GameObject BackButton;
     [SerializeField] public GameObject Tutorial;
@@ -28,6 +30,8 @@ public class BBSceneManager : MonoBehaviour
         LevelSelect.SetActive(false);
         Versus.SetActive(false);
         Credits.SetActive(false);
+        if (Upgrades != null) Upgrades.SetActive(false);
+        if (upgradeShop != null) upgradeShop.Close();
         Exit.SetActive(true);
         BackButton.SetActive(false);
         TutorialPanel.SetActive(false);
@@ -113,6 +117,7 @@ public class BBSceneManager : MonoBehaviour
         LevelSelect.SetActive(true);
         Versus.SetActive(false);
         Credits.SetActive(true);
+        if (Upgrades != null) Upgrades.SetActive(true);
         Exit.SetActive(true);
         BackButton.SetActive(true);
         SinglePlayer.SetActive(false);
@@ -132,6 +137,7 @@ public class BBSceneManager : MonoBehaviour
         LevelSelect.SetActive(true);
         Versus.SetActive(true);
         Credits.SetActive(true);
+        if (Upgrades != null) Upgrades.SetActive(true);
         Exit.SetActive(true);
         BackButton.SetActive(true);
         SinglePlayer.SetActive(false);
@@ -162,6 +168,8 @@ public class BBSceneManager : MonoBehaviour
         LevelSelect.SetActive(false);
         Versus.SetActive(false);
         Credits.SetActive(false);
+        if (Upgrades != null) Upgrades.SetActive(false);
+        if (upgradeShop != null) upgradeShop.Close();
         BackButton.SetActive(false);
         SinglePlayer.SetActive(true);
         TwoPlayer.SetActive(true);
