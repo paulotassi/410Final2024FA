@@ -119,6 +119,8 @@ public class MapGenerator : MonoBehaviour
             bool hasBounds = false;
             foreach (UnityEngine.Tilemaps.TilemapRenderer tr in instance.GetComponentsInChildren<UnityEngine.Tilemaps.TilemapRenderer>())
             {
+                // measure the wall layer only (the background layer behind it is not part of the tile's footprint)
+                if (tr.GetComponent<Collider2D>() == null) continue;
                 if (!hasBounds) { bounds = tr.bounds; hasBounds = true; }
                 else bounds.Encapsulate(tr.bounds);
             }

@@ -65,6 +65,32 @@ public class PlayerIndicator : MonoBehaviour
         return hasCell;
     }
 
+    private Vector2 lastDirection = Vector2.right;
+
+    // Path guide: the arrow always sits on the border of this player's screen and points along the direction
+    // from the player toward the exit to take. It never sits on the exit itself, even when the exit is on screen.
+    private void SlideAlongScreenEdge()
+    {
+        Vector3 from = trackedPlayer != null ? trackedPlayer.position : camPosition.position;
+        Vector2 toTarget = (Vector2)(guideTarget.position - from);
+        Vector2 dir = toTarget.sqrMagnitude > 0.0001f ? toTarget.normalized : lastDirection;
+        lastDirection = dir;
+
+        pointerRectTransform.localEulerAngles = new Vector3(0f, 0f, Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg);
+
+        // Where a ray from the middle of the screen in that direction meets the border
+        Rect view = camObject.pixelRect;
+        float halfW = Mathf.Max(1f, view.width * 0.5f - borderSize);
+        float halfH = Mathf.Max(1f, view.height * 0.5f - borderSize);
+        float tx = Mathf.Abs(dir.x) > 0.0001f ? halfW / Mathf.Abs(dir.x) : float.MaxValue;
+        float ty = Mathf.Abs(dir.y) > 0.0001f ? halfH / Mathf.Abs(dir.y) : float.MaxValue;
+        Vector2 screenPos = view.center + dir * Mathf.Min(tx, ty);
+
+        pointerRectTransform.gameObject.SetActive(true);
+        pointerRectTransform.position = new Vector3(screenPos.x, screenPos.y, pointerRectTransform.position.z);
+        pointImage.SetActive(true);
+    }
+
     // Called once per frame
     void Update()
     {
@@ -77,6 +103,9 @@ public class PlayerIndicator : MonoBehaviour
                 pointerRectTransform.gameObject.SetActive(false);
                 return;
             }
+
+            SlideAlongScreenEdge();
+            return;
         }
 
         // Get the position of the target in world space

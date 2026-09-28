@@ -150,6 +150,7 @@ public class GameManager : MonoBehaviour
         {
             ApplyPurchasedUpgrades(player1Controller);
             ApplyPurchasedUpgrades(player2Controller);
+            DimLockedAbilityIcons();
         }
 
         InitializeCooldowns();
@@ -315,12 +316,13 @@ public class GameManager : MonoBehaviour
     {
         if (proceduralMode)
         {
-            // A failed run ends on timeout or death; escaping is handled by EndZoneEntry
-            if (!runEnded && (remainingTime <= 0 ||
-                player1Health.playerLifeCountRemaining == 0 ||
-                player2Health.playerLifeCountRemaining == 0))
+            // Dying loses everything collected; running out of time keeps a share; escaping is handled by EndZoneEntry
+            if (!runEnded)
             {
-                FinishProceduralRun(false);
+                if (player1Health.playerLifeCountRemaining == 0 || player2Health.playerLifeCountRemaining == 0)
+                    FinishProceduralRun(false, 0f);
+                else if (remainingTime <= 0)
+                    FinishProceduralRun(false, SaveManager.FailKeepFraction);
             }
             return;
         }
@@ -364,17 +366,20 @@ public class GameManager : MonoBehaviour
 
     // Called by trigger when players enter the end zone
     // Ends a procedural run: an escape banks everything, a failure banks only a fraction
-    private void FinishProceduralRun(bool escaped)
+    private void FinishProceduralRun(bool escaped, float keepFraction = 1f)
     {
         if (runEnded) return;
         runEnded = true;
 
-        bool wasUnlocked = SaveManager.BossUnlocked;
-        int banked = SaveManager.BankRun(runIngredientCounts, escaped ? 1f : SaveManager.FailKeepFraction);
+        int carried = 0;
+        foreach (int c in runIngredientCounts) carried += c;
 
-        string msg = escaped
-            ? "Escaped with " + banked + " ingredients!"
-            : "Run failed... kept " + banked + " ingredients.";
+        bool wasUnlocked = SaveManager.BossUnlocked;
+        int banked = SaveManager.BankRun(runIngredientCounts, escaped ? 1f : keepFraction);
+
+        string msg = escaped ? "Escaped with " + banked + " ingredients!"
+            : keepFraction <= 0f ? "You died... lost the " + carried + " ingredients you carried."
+            : "Time's up... kept " + banked + " ingredients.";
         if (!wasUnlocked && SaveManager.BossUnlocked) msg += "\nThe boss level is unlocked!";
 
         uiManager.SetTimer(string.Format("{0:00}:{1:00}", Mathf.Max(0, Mathf.FloorToInt(remainingTime / 60)), Mathf.Max(0, Mathf.FloorToInt(remainingTime % 60))));
@@ -545,30 +550,47 @@ public class GameManager : MonoBehaviour
     {
         if (controller == null) return;
 
+        // Shield and stun are locked until enough upgrades have been bought
+        controller.shieldUnlocked = SaveManager.ShieldUnlocked;
+        controller.stunUnlocked = SaveManager.StunUnlocked;
+
+        // Every purchased tier applies the buff once more (for shield/stun, tier 1 only unlocks the ability)
+        UpgradeConfig config = UpgradeConfig.Instance;
         foreach (BuffType buff in System.Enum.GetValues(typeof(BuffType)))
         {
-            if (!SaveManager.HasUpgrade(buff)) continue;
+            UpgradeConfig.Entry entry = config != null ? config.Find(buff) : null;
+            int tiers = entry != null ? SaveManager.BuffApplications(entry) : SaveManager.Tier(buff);
+            if (tiers <= 0) continue;
 
             switch (buff)
             {
-                case BuffType.SpeedBoost:
-                    if (controller.SpeedBuff) continue;
-                    controller.SpeedBuff = true;
-                    break;
-                case BuffType.FireRateIncrease:
-                    if (controller.ShootBuff) continue;
-                    controller.ShootBuff = true;
-                    break;
-                case BuffType.StunMultiplier:
-                    if (controller.StunBuff) continue;
-                    controller.StunBuff = true;
-                    break;
-                case BuffType.ShieldExtension:
-                    if (controller.ShieldBuff) continue;
-                    controller.ShieldBuff = true;
-                    break;
+                case BuffType.SpeedBoost: controller.SpeedBuff = true; break;
+                case BuffType.FireRateIncrease: controller.ShootBuff = true; break;
+                case BuffType.StunMultiplier: controller.StunBuff = true; break;
+                case BuffType.ShieldExtension: controller.ShieldBuff = true; break;
             }
-            controller.ApplyBuff(buff);
+            for (int i = 0; i < tiers; i++)
+                controller.ApplyBuff(buff);
         }
+
+        if (SaveManager.Data.skinOwned && SaveManager.Data.skinEquipped)
+            controller.ApplySkin(UpgradeConfig.Instance);
+    }
+
+    // Fade the HUD icons of abilities the player hasn't unlocked yet
+    private void DimLockedAbilityIcons()
+    {
+        DimIcon(uiManager.Player1shieldCDDisplay, SaveManager.ShieldUnlocked);
+        DimIcon(uiManager.Player2shieldCDDisplay, SaveManager.ShieldUnlocked);
+        DimIcon(uiManager.Player1StunCDDisplay, SaveManager.StunUnlocked);
+        DimIcon(uiManager.Player2StunCDDisplay, SaveManager.StunUnlocked);
+    }
+
+    private static void DimIcon(Image icon, bool unlocked)
+    {
+        if (icon == null || unlocked) return;
+        Color c = icon.color;
+        c.a = 0.25f;
+        icon.color = c;
     }
 }

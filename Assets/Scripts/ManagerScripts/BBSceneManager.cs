@@ -13,6 +13,8 @@ public class BBSceneManager : MonoBehaviour
     [SerializeField] public GameObject LevelSelectButton;
     [SerializeField] public GameObject LevelSelect;
     [SerializeField] public GameObject Versus;
+    [Tooltip("Temporarily hides the Versus button on the title screen")]
+    [SerializeField] private bool hideVersus = true;
     [SerializeField] public GameObject Credits;
     [SerializeField] public GameObject Upgrades;       // "Upgrades" menu button
     [SerializeField] private UpgradeShop upgradeShop;
@@ -135,7 +137,7 @@ public class BBSceneManager : MonoBehaviour
         GameSettings.arcadeMode = true;
 
         LevelSelect.SetActive(true);
-        Versus.SetActive(true);
+        Versus.SetActive(!hideVersus);
         Credits.SetActive(true);
         if (Upgrades != null) Upgrades.SetActive(true);
         Exit.SetActive(true);

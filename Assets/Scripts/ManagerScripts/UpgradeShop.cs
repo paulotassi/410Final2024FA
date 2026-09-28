@@ -5,22 +5,14 @@ using UnityEngine.UI;
 using TMPro;
 
 // Title screen shop: spend banked ingredients on permanent upgrades.
-// Each upgrade is paid for with its matching ingredient type.
+// Costs, tiers and unlock rules are set in Assets/Resources/UpgradeConfig.asset.
 public class UpgradeShop : MonoBehaviour
 {
     [Serializable]
-    public class UpgradeOption
+    public class Row
     {
-        public string displayName = "Upgrade";
-        [TextArea] public string description;
-        [Tooltip("Ingredient type that pays for this upgrade")]
-        public IngredientType ingredient;
-        [Tooltip("The buff the player gets")]
-        public BuffType buff;
-        [Tooltip("How many of the ingredient it costs")]
-        [Min(1)] public int cost = 5;
-
-        [Header("UI (assigned in the scene)")]
+        [Tooltip("Index into the Upgrade Config's upgrades list. -1 = the witch skin")]
+        public int upgradeIndex;
         public TMP_Text nameText;
         public TMP_Text costText;
         public Button buyButton;
@@ -31,16 +23,16 @@ public class UpgradeShop : MonoBehaviour
     public TMP_Text bankText;
     public Button firstSelected;
 
-    [Header("Upgrades - change the costs here")]
-    public UpgradeOption[] upgrades;
+    [Header("Rows (costs live in Resources/UpgradeConfig)")]
+    public Row[] rows;
 
     private void Awake()
     {
-        for (int i = 0; i < upgrades.Length; i++)
+        for (int i = 0; i < rows.Length; i++)
         {
             int index = i;
-            if (upgrades[i].buyButton != null)
-                upgrades[i].buyButton.onClick.AddListener(() => Buy(index));
+            if (rows[i].buyButton != null)
+                rows[i].buyButton.onClick.AddListener(() => Click(index));
         }
         if (panel != null) panel.SetActive(false);
     }
@@ -58,15 +50,32 @@ public class UpgradeShop : MonoBehaviour
         panel.SetActive(false);
     }
 
-    private void Buy(int index)
+    private void Click(int index)
     {
-        UpgradeOption o = upgrades[index];
-        SaveManager.TryPurchase(o.buff, o.ingredient, o.cost);
+        UpgradeConfig config = UpgradeConfig.Instance;
+        Row row = rows[index];
+
+        if (row.upgradeIndex < 0)
+        {
+            if (SaveManager.Data.skinOwned) SaveManager.SetSkinEquipped(!SaveManager.Data.skinEquipped);
+            else SaveManager.TryBuySkin();
+        }
+        else
+        {
+            SaveManager.TryPurchase(config.upgrades[row.upgradeIndex]);
+        }
         Refresh();
     }
 
     public void Refresh()
     {
+        UpgradeConfig config = UpgradeConfig.Instance;
+        if (config == null)
+        {
+            if (bankText != null) bankText.text = "Missing Resources/UpgradeConfig";
+            return;
+        }
+
         if (bankText != null)
         {
             string text = "";
@@ -75,21 +84,59 @@ public class UpgradeShop : MonoBehaviour
             bankText.text = text;
         }
 
-        foreach (UpgradeOption o in upgrades)
+        foreach (Row row in rows)
         {
-            bool owned = SaveManager.HasUpgrade(o.buff);
-            int have = SaveManager.Banked(o.ingredient);
-
-            if (o.nameText != null)
-                o.nameText.text = o.displayName + (string.IsNullOrEmpty(o.description) ? "" : "\n<size=70%>" + o.description + "</size>");
-            if (o.costText != null)
-                o.costText.text = owned ? "Owned" : o.cost + " " + o.ingredient + " (have " + have + ")";
-            if (o.buyButton != null)
-            {
-                o.buyButton.interactable = !owned && have >= o.cost;
-                TMP_Text label = o.buyButton.GetComponentInChildren<TMP_Text>(true);
-                if (label != null) label.text = owned ? "Owned" : "Buy";
-            }
+            if (row.upgradeIndex < 0) RefreshSkin(config, row);
+            else RefreshUpgrade(config.upgrades[row.upgradeIndex], row);
         }
+    }
+
+    private void RefreshUpgrade(UpgradeConfig.Entry entry, Row row)
+    {
+        bool unlocked = SaveManager.IsUnlocked(entry);
+        bool maxed = SaveManager.IsMaxed(entry);
+        int tier = SaveManager.Tier(entry.buff);
+
+        SetTexts(row,
+            entry.displayName + "  " + tier + "/" + entry.tierCosts.Length,
+            entry.description,
+            !unlocked ? "Locked: own " + entry.requiresUpgradesOwned + " upgrades (" + SaveManager.UnlockProgress() + "/" + entry.requiresUpgradesOwned + ")"
+                : maxed ? "Max tier"
+                : (entry.firstTierUnlocksAbility && tier == 0 ? "Unlock: " : "Tier " + (tier + 1) + ": ")
+                    + SaveManager.NextCost(entry) + " " + entry.ingredient + " (have " + SaveManager.Banked(entry.ingredient) + ")");
+
+        SetButton(row, unlocked && !maxed && SaveManager.CanAfford(entry), !unlocked ? "Locked" : maxed ? "Max" : (entry.firstTierUnlocksAbility && tier == 0 ? "Unlock" : "Buy"));
+    }
+
+    private void RefreshSkin(UpgradeConfig config, Row row)
+    {
+        SaveData data = SaveManager.Data;
+        bool ready = SaveManager.AllUpgradesMaxed();
+
+        SetTexts(row,
+            config.skinName,
+            "Final upgrade: a new look for your witch",
+            data.skinOwned ? (data.skinEquipped ? "Equipped" : "Owned")
+                : !ready ? "Locked: max every upgrade"
+                : config.skinCost + " " + config.skinIngredient + " (have " + SaveManager.Banked(config.skinIngredient) + ")");
+
+        if (data.skinOwned) SetButton(row, true, data.skinEquipped ? "Unequip" : "Equip");
+        else SetButton(row, ready && SaveManager.Banked(config.skinIngredient) >= config.skinCost, ready ? "Buy" : "Locked");
+    }
+
+    private static void SetTexts(Row row, string title, string description, string cost)
+    {
+        if (row.nameText != null)
+            row.nameText.text = title + (string.IsNullOrEmpty(description) ? "" : "\n<size=70%>" + description + "</size>");
+        if (row.costText != null)
+            row.costText.text = cost;
+    }
+
+    private static void SetButton(Row row, bool interactable, string label)
+    {
+        if (row.buyButton == null) return;
+        row.buyButton.interactable = interactable;
+        TMP_Text text = row.buyButton.GetComponentInChildren<TMP_Text>(true);
+        if (text != null) text.text = label;
     }
 }

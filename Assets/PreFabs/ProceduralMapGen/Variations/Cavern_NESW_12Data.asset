@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Cavern_NESW_12Data
   m_EditorClassIdentifier: Assembly-CSharp::TileData
   tileName: Cavern_NESW_12
-  tilePrefab: {fileID: 1653224574082305885, guid: caac75272df9f344290b19eb812782eb, type: 3}
+  tilePrefab: {fileID: 1653224574082305885, guid: e55742138f9fe0749b54115ff92ca9c6, type: 3}
   size: {x: 1, y: 1}
   exitVectors:
   - {x: 0, y: 0}

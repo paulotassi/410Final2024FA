@@ -1,0 +1,25 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 67e1d15675ea293449f9c126d376243d, type: 3}
+  m_Name: Gate_EW_47Data
+  m_EditorClassIdentifier: Assembly-CSharp::TileData
+  tileName: Gate_EW_47
+  tilePrefab: {fileID: 1653224574082305885, guid: c0b758d4d0631314fa546e74ed59b0f4, type: 3}
+  size: {x: 1, y: 1}
+  exitVectors:
+  - {x: 0, y: 0}
+  - {x: 0, y: 0}
+  - {x: 0, y: 0}
+  - {x: 0, y: 0}
+  exits: 0100000003000000
+  weight: 2
+  isExit: 0
