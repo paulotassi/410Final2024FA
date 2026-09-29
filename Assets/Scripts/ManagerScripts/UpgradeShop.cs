@@ -26,8 +26,18 @@ public class UpgradeShop : MonoBehaviour
     [Header("Rows (costs live in Resources/UpgradeConfig)")]
     public Row[] rows;
 
+    [Header("Dev")]
+    [Tooltip("Wipes the save: banked ingredients, upgrades, skin and boss unlock. Only shown in the editor and development builds")]
+    public Button devResetButton;
+
     private void Awake()
     {
+        if (devResetButton != null)
+        {
+            devResetButton.gameObject.SetActive(Debug.isDebugBuild);
+            devResetButton.onClick.AddListener(DevReset);
+        }
+
         for (int i = 0; i < rows.Length; i++)
         {
             int index = i;
@@ -48,6 +58,16 @@ public class UpgradeShop : MonoBehaviour
     public void Close()
     {
         panel.SetActive(false);
+    }
+
+    // Dev tool: back to a fresh save
+    public void DevReset()
+    {
+        SaveManager.ResetProgress();
+        Refresh();
+        BBSceneManager menu = FindFirstObjectByType<BBSceneManager>();
+        if (menu != null) menu.RefreshMenu();
+        Debug.Log("Dev reset: save wiped (ingredients, upgrades, skin, boss unlock)");
     }
 
     private void Click(int index)

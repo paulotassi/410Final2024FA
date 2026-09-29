@@ -136,6 +136,18 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 1018062241794957925, guid: 181817ce13e6f634a92e2c16be981625, type: 3}
+      propertyPath: orbitSpeed
+      value: 80
+      objectReference: {fileID: 0}
+    - target: {fileID: 1018062241794957925, guid: 181817ce13e6f634a92e2c16be981625, type: 3}
+      propertyPath: returnSpeed
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 1018062241794957925, guid: 181817ce13e6f634a92e2c16be981625, type: 3}
+      propertyPath: waitingAlpha
+      value: 0.7
+      objectReference: {fileID: 0}
     - target: {fileID: 3260391750025661684, guid: 181817ce13e6f634a92e2c16be981625, type: 3}
       propertyPath: m_LocalPosition.x
       value: -15.959998
@@ -401,6 +413,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: c2be23afec393df43b598675467320ad, type: 2}
   startingTile: {fileID: 11400000, guid: 62d2f1d50b52aae4f8ac80ac4e2c3270, type: 2}
   tileSpacing: 16.5
+  tileScale: 1.25
   tileParent: {fileID: 840317518}
   exitPrefab: {fileID: 0}
 --- !u!1660057539 &9223372036854775807

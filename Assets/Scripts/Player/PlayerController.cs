@@ -135,7 +135,9 @@ public class PlayerController : MonoBehaviour
         gameManager = FindFirstObjectByType<GameManager>();
 
         // Three familiars orbit the witch and act as her ammo
-        familiars = gameObject.AddComponent<FamiliarLauncher>();
+        // tune it on the player prefab; one is added automatically if the prefab doesn't have it
+        familiars = GetComponent<FamiliarLauncher>();
+        if (familiars == null) familiars = gameObject.AddComponent<FamiliarLauncher>();
         familiars.Init(this, FindFamiliarVisual());
 
        if (gameManager.arcadeMode)

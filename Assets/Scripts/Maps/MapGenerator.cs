@@ -17,6 +17,10 @@ public class MapGenerator : MonoBehaviour
     public TileData startingTile;
     [Tooltip("DO NOT TOUCH - Distance between tiles in world units")]
     public float tileSpacing = 22f;
+    [Tooltip("Scales every tile (walls, backdrop, hallways) and the spacing between them. Above 1 = roomier maps. Enemies keep their normal size")]
+    [Range(0.75f, 2f)]
+    public float tileScale = 1.25f;
+    float Spacing => tileSpacing * tileScale;
     [Tooltip("DO NOT TOUCH - Parent object that keeps the tile hierarchy clean")]
     public Transform tileParent;
 
@@ -107,8 +111,13 @@ public class MapGenerator : MonoBehaviour
     // Places a tile prefab at the given grid position
     void PlaceTile(TileData tileData, Vector2Int gridPosition)
     {
-        Vector3 worldPos = new Vector3(gridPosition.x * tileSpacing, gridPosition.y * tileSpacing, 0);
+        Vector3 worldPos = new Vector3(gridPosition.x * Spacing, gridPosition.y * Spacing, 0);
         GameObject instance = Instantiate(tileData.tilePrefab, worldPos, Quaternion.identity, tileParent);
+        instance.transform.localScale *= tileScale;
+        // enemies are children of the tile: undo the scaling on them so only the space grows
+        foreach (EnemyHealth enemy in instance.GetComponentsInChildren<EnemyHealth>(true))
+            if (enemy.transform != instance.transform)
+                enemy.transform.localScale /= tileScale;
         placedTiles[gridPosition] = tileData;
         placedObjects[gridPosition] = instance;
 
@@ -324,13 +333,13 @@ public class MapGenerator : MonoBehaviour
 
     Vector3 CellToWorld(Vector2Int cell)
     {
-        return new Vector3(cell.x * tileSpacing, cell.y * tileSpacing, 0f) + tileCenterOffset;
+        return new Vector3(cell.x * Spacing, cell.y * Spacing, 0f) + tileCenterOffset;
     }
 
     Vector2Int WorldToCell(Vector3 world)
     {
         world -= tileCenterOffset;
-        return new Vector2Int(Mathf.RoundToInt(world.x / tileSpacing), Mathf.RoundToInt(world.y / tileSpacing));
+        return new Vector2Int(Mathf.RoundToInt(world.x / Spacing), Mathf.RoundToInt(world.y / Spacing));
     }
 
     // Returns the point (on the edge of the tile the position is in) where the player should head next
@@ -344,7 +353,7 @@ public class MapGenerator : MonoBehaviour
     public bool IsInsideCell(Vector3 worldPos, Vector2Int cell, float margin)
     {
         Vector3 d = worldPos - CellToWorld(cell);
-        float half = tileSpacing * 0.5f - margin;
+        float half = Spacing * 0.5f - margin;
         return Mathf.Abs(d.x) <= half && Mathf.Abs(d.y) <= half;
     }
 
@@ -379,7 +388,7 @@ public class MapGenerator : MonoBehaviour
         if (!found) return false;
 
         Vector2Int step = GetOffsetPosition(Vector2Int.zero, bestDir);
-        point = CellToWorld(cell) + new Vector3(step.x, step.y, 0f) * (tileSpacing * 0.5f);
+        point = CellToWorld(cell) + new Vector3(step.x, step.y, 0f) * (Spacing * 0.5f);
         return true;
     }
 

@@ -48,6 +48,12 @@ public class BBSceneManager : MonoBehaviour
     [SerializeField] private int largeMapSize = 8;
     [SerializeField] public UnityEngine.UI.Button bossLevelButton;
 
+    // Re-reads the save (boss lock label etc.); called after a dev reset
+    public void RefreshMenu()
+    {
+        RefreshBossLock();
+    }
+
     private void RefreshBossLock()
     {
         // Find the level buttons under the (inactive) LevelSelect panel and label them
@@ -55,8 +61,8 @@ public class BBSceneManager : MonoBehaviour
         {
             TMPro.TMP_Text text = b.GetComponentInChildren<TMPro.TMP_Text>(true);
             if (text == null) continue;
-            if (b.name == "Level 1") text.text = "Small Level";
-            else if (b.name == "Level 2") text.text = "Large Level";
+            if (b.name == "Level 1") text.text = "Easy";
+            else if (b.name == "Level 2") text.text = "Hard";
             else if (b.name == "Level 3" && bossLevelButton == null) bossLevelButton = b;
         }
 
@@ -70,7 +76,7 @@ public class BBSceneManager : MonoBehaviour
         {
             label.text = unlocked
                 ? "Boss Level"
-                : "Boss Locked " + SaveManager.Data.totalBanked + "/" + SaveManager.BossUnlockTotal;
+                : "Secret";
         }
     }
 
