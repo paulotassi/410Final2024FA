@@ -5,6 +5,9 @@ using UnityEngine;
 public class EnemyHealth : MonoBehaviour
 {
     public int health = 100;
+    [Tooltip("If above 0, a familiar hit takes off 1/N of the enemy's health, so it dies in exactly N hits. 0 = use the projectile's damage")]
+    public int hitsToKill = 0;
+    private int maxHealth;
     public AdvancedEnemyController advancedEnemyController;
     public GameObject spiderlingPrefab;
     public SpriteRenderer spriteRenderer;
@@ -14,6 +17,14 @@ public class EnemyHealth : MonoBehaviour
     {
         advancedEnemyController = GetComponent<AdvancedEnemyController>();
         originalColor = spriteRenderer.color;
+        maxHealth = health;
+    }
+
+    // One whole hit: 1/hitsToKill of the enemy's health
+    public void TakeHit()
+    {
+        int damage = hitsToKill > 0 ? Mathf.CeilToInt(maxHealth / (float)hitsToKill) : health;
+        TakeDamage(damage);
     }
 
     // Function to handle taking damage

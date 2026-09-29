@@ -1,6 +1,7 @@
 using UnityEngine;
 using System.Collections;
 using UnityEngine.Audio;
+using System.Diagnostics;
 
 public class EnemyController : MonoBehaviour
 {
@@ -127,8 +128,10 @@ public class EnemyController : MonoBehaviour
         FlipSprite(targetPoint.position.x);
         transform.position = Vector2.MoveTowards(transform.position, targetPoint.position, step);
 
-        if (Vector2.Distance(transform.position, targetPoint.position) < 0.1f && !isStunned)
+        if (Vector2.Distance(transform.position, targetPoint.position) < 0.5f && !isStunned)
         {
+        
+
             movingToPointB = !movingToPointB;
         }
     }
@@ -147,11 +150,12 @@ public class EnemyController : MonoBehaviour
         isStunned = true;
         stunnable = false;
         PlaySound(stunSFX, true);
-        Debug.Log(gameObject.name + " is Stunned for " + stunDuration);
+        UnityEngine.Debug.Log(gameObject.name + " is Stunned for " + stunDuration);
+   
 
         if (spriteRenderer == null)
         {
-            Debug.LogError("No SpriteRenderer found!");
+            UnityEngine.Debug.LogError("No SpriteRenderer found!");
             yield break;
         }
 
@@ -172,7 +176,7 @@ public class EnemyController : MonoBehaviour
         spriteRenderer.color = originalColor;
 
         isStunned = false;
-        Debug.Log(gameObject.name + " no longer Stunned.");
+        UnityEngine.Debug.Log(gameObject.name + " no longer Stunned.");
         yield return new WaitForSeconds(stunDuration * stunDiminishingReturn);
         stunnable = true;
     }

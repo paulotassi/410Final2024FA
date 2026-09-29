@@ -13,7 +13,11 @@ public class BBSceneManager : MonoBehaviour
     [SerializeField] public GameObject LevelSelectButton;
     [SerializeField] public GameObject LevelSelect;
     [SerializeField] public GameObject Versus;
+    [Tooltip("Temporarily hides the Versus button on the title screen")]
+    [SerializeField] private bool hideVersus = true;
     [SerializeField] public GameObject Credits;
+    [SerializeField] public GameObject Upgrades;       // "Upgrades" menu button
+    [SerializeField] private UpgradeShop upgradeShop;
     [SerializeField] public GameObject Exit;
     [SerializeField] public GameObject BackButton;
     [SerializeField] public GameObject Tutorial;
@@ -28,30 +32,83 @@ public class BBSceneManager : MonoBehaviour
         LevelSelect.SetActive(false);
         Versus.SetActive(false);
         Credits.SetActive(false);
+        if (Upgrades != null) Upgrades.SetActive(false);
+        if (upgradeShop != null) upgradeShop.Close();
         Exit.SetActive(true);
         BackButton.SetActive(false);
         TutorialPanel.SetActive(false);
         TutorialPanelArcade.SetActive(false);
+
+        GameSettings.proceduralMode = false;
+        RefreshBossLock();
     }
+    // Level select buttons: 1 = Small procedural level, 2 = Large procedural level, 3 = Boss (locked until enough is banked)
+    private const string ProceduralSceneName = "ProceduralLevel";
+    [SerializeField] private int smallMapSize = 3;
+    [SerializeField] private int largeMapSize = 8;
+    [SerializeField] public UnityEngine.UI.Button bossLevelButton;
+
+    // Re-reads the save (boss lock label etc.); called after a dev reset
+    public void RefreshMenu()
+    {
+        RefreshBossLock();
+    }
+
+    private void RefreshBossLock()
+    {
+        // Find the level buttons under the (inactive) LevelSelect panel and label them
+        foreach (UnityEngine.UI.Button b in FindObjectsByType<UnityEngine.UI.Button>(FindObjectsInactive.Include, FindObjectsSortMode.None))
+        {
+            TMPro.TMP_Text text = b.GetComponentInChildren<TMPro.TMP_Text>(true);
+            if (text == null) continue;
+            if (b.name == "Level 1") text.text = "Easy";
+            else if (b.name == "Level 2") text.text = "Hard";
+            else if (b.name == "Level 3" && bossLevelButton == null) bossLevelButton = b;
+        }
+
+        if (bossLevelButton == null) return;
+
+        bool unlocked = SaveManager.BossUnlocked;
+        bossLevelButton.interactable = unlocked;
+
+        TMPro.TMP_Text label = bossLevelButton.GetComponentInChildren<TMPro.TMP_Text>(true);
+        if (label != null)
+        {
+            label.text = unlocked
+                ? "Boss Level"
+                : "Secret";
+        }
+    }
+
+    private void LoadProcedural(int size)
+    {
+        GameSettings.proceduralMode = true;
+        GameSettings.proceduralMapSize = size;
+        SceneManager.LoadScene(ProceduralSceneName);
+    }
+
     public void LoadCoopPlaythrough1()
     {
-        SceneManager.LoadScene("CompetetiveLevel1");
+        LoadProcedural(smallMapSize);
     }
 
     public void LoadCoopPlaythrough2()
     {
-        SceneManager.LoadScene("CompetitiveLevel2");
+        LoadProcedural(largeMapSize);
     }
 
     public void LoadCooperativeBossPlaythrough()
     {
-        
+        if (!SaveManager.BossUnlocked) return;
+
+        GameSettings.proceduralMode = false;
         SceneManager.LoadScene("BossLevel");
     }
 
     public void LoadVersusPlaythrough()
     {
         GameSettings.competetiveMode = true;
+        GameSettings.proceduralMode = false;
         SceneManager.LoadScene("ArenaScene");
     }
 
@@ -68,6 +125,7 @@ public class BBSceneManager : MonoBehaviour
         LevelSelect.SetActive(true);
         Versus.SetActive(false);
         Credits.SetActive(true);
+        if (Upgrades != null) Upgrades.SetActive(true);
         Exit.SetActive(true);
         BackButton.SetActive(true);
         SinglePlayer.SetActive(false);
@@ -85,8 +143,9 @@ public class BBSceneManager : MonoBehaviour
         GameSettings.arcadeMode = true;
 
         LevelSelect.SetActive(true);
-        Versus.SetActive(true);
+        Versus.SetActive(!hideVersus);
         Credits.SetActive(true);
+        if (Upgrades != null) Upgrades.SetActive(true);
         Exit.SetActive(true);
         BackButton.SetActive(true);
         SinglePlayer.SetActive(false);
@@ -117,6 +176,8 @@ public class BBSceneManager : MonoBehaviour
         LevelSelect.SetActive(false);
         Versus.SetActive(false);
         Credits.SetActive(false);
+        if (Upgrades != null) Upgrades.SetActive(false);
+        if (upgradeShop != null) upgradeShop.Close();
         BackButton.SetActive(false);
         SinglePlayer.SetActive(true);
         TwoPlayer.SetActive(true);

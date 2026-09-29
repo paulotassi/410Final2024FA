@@ -42,7 +42,8 @@ public class PlayerHealth : MonoBehaviour
         // Set ingredient loss variables from the gameManager for each player
         player1IngredientLossOnDeath = gameManager.player1IngredientCount;
         player2IngredientLossOnDeath = gameManager.player2IngredientCount;
-        playerLifeCountRemaining = gameManager.playerStartingLifeCount;
+        // Co-op and procedural runs are single-life: dying ends the run. Versus keeps its lives.
+        playerLifeCountRemaining = GameSettings.competetiveMode ? gameManager.playerStartingLifeCount : 1;
     }
 
     private void Start()

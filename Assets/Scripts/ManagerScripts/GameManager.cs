@@ -40,6 +40,11 @@ public class GameManager : MonoBehaviour
     [SerializeField] public int roundRequiredScore = 0;
     private bool winStateMet = false;
 
+    // Procedural (roguelike) run state
+    private bool proceduralMode = false;
+    private bool runEnded = false;
+    private int[] runIngredientCounts = new int[System.Enum.GetValues(typeof(IngredientType)).Length];
+
 
     //======================================================
     // Player & Boss References
@@ -89,6 +94,7 @@ public class GameManager : MonoBehaviour
 
     private void Start()
     {
+        proceduralMode = GameSettings.proceduralMode;
         singlePlayerMode = GameSettings.singlePlayerMode;
         competetiveMode = GameSettings.competetiveMode;
         arcadeMode = GameSettings.arcadeMode;
@@ -113,6 +119,19 @@ public class GameManager : MonoBehaviour
             
         }
 
+        // Procedural levels reuse the boss-style indicators (the ones with no fixed target) to point at the exit.
+        // Skip any whose camera is off, e.g. player 1's in single player.
+        if (proceduralMode)
+        {
+            foreach (PlayerIndicator indicator in FindObjectsByType<PlayerIndicator>(FindObjectsInactive.Include, FindObjectsSortMode.None))
+            {
+                if (indicator.HasFixedTarget) continue;
+                if (indicator.CameraObject != null && !indicator.CameraObject.gameObject.activeInHierarchy) continue;
+                indicator.SetTrackedPlayer(indicator.CameraObject == p2Camera ? player2GameObject.transform : player1GameObject.transform);
+                indicator.gameObject.SetActive(true);
+            }
+        }
+
         // Cache components
         player1Controller = player1GameObject.GetComponent<PlayerController>();
         player2Controller = player2GameObject.GetComponent<PlayerController>();
@@ -126,6 +145,14 @@ public class GameManager : MonoBehaviour
 
         bossHp = FindFirstObjectByType<BossHP>();
         
+        // Versus stays fair; every other mode gets the bought upgrades
+        if (!competetiveMode)
+        {
+            ApplyPurchasedUpgrades(player1Controller);
+            ApplyPurchasedUpgrades(player2Controller);
+            DimLockedAbilityIcons();
+        }
+
         InitializeCooldowns();
     }
 
@@ -202,7 +229,7 @@ public class GameManager : MonoBehaviour
     // Advance each player’s cooldown and notify UIManager
     private void HandleCooldowns()
     {
-        Debug.Log("getting cooldown references");
+        //Debug.Log("getting cooldown references");
         if (!singlePlayerMode)
         {
             UpdateCooldown(ref p1ShootCdTimer, p1ShootCdMax, player1Controller.fired, ref p1ShootCdEnabled, player1ShootCdTrigger, uiManager.Player1shootCDDisplay);
@@ -245,6 +272,7 @@ public class GameManager : MonoBehaviour
     // Decrement game timer and update UI
     private void HandleTimer()
     {
+        if (runEnded) return;
         remainingTime -= Time.deltaTime;
 
         int minutes = Mathf.FloorToInt(remainingTime / 60);   // local var
@@ -255,6 +283,12 @@ public class GameManager : MonoBehaviour
 
     private void DisplayRoundRequired()
     {
+        if (proceduralMode)
+        {
+            uiManager.SetIngredientGoal("Find the exit!  Banked: " + SaveManager.Data.totalBanked + "/" + SaveManager.BossUnlockTotal);
+            return;
+        }
+
         if (!competetiveMode)
         {
             if (singlePlayerMode)
@@ -280,6 +314,19 @@ public class GameManager : MonoBehaviour
     // Check for end‑of‑round and trigger sequence
     private void CheckEndConditions()
     {
+        if (proceduralMode)
+        {
+            // Dying loses everything collected; running out of time keeps a share; escaping is handled by EndZoneEntry
+            if (!runEnded)
+            {
+                if (player1Health.playerLifeCountRemaining == 0 || player2Health.playerLifeCountRemaining == 0)
+                    FinishProceduralRun(false, 0f);
+                else if (remainingTime <= 0)
+                    FinishProceduralRun(false, SaveManager.FailKeepFraction);
+            }
+            return;
+        }
+
         if (remainingTime <= 0 ||
             (bossHp != null && bossHp.bossDead) ||
             player1Health.playerLifeCountRemaining == 0 ||
@@ -318,8 +365,36 @@ public class GameManager : MonoBehaviour
     }
 
     // Called by trigger when players enter the end zone
+    // Ends a procedural run: an escape banks everything, a failure banks only a fraction
+    private void FinishProceduralRun(bool escaped, float keepFraction = 1f)
+    {
+        if (runEnded) return;
+        runEnded = true;
+
+        int carried = 0;
+        foreach (int c in runIngredientCounts) carried += c;
+
+        bool wasUnlocked = SaveManager.BossUnlocked;
+        int banked = SaveManager.BankRun(runIngredientCounts, escaped ? 1f : keepFraction);
+
+        string msg = escaped ? "Escaped with " + banked + " ingredients!"
+            : keepFraction <= 0f ? "You died... lost the " + carried + " ingredients you carried."
+            : "Time's up... kept " + banked + " ingredients.";
+        if (!wasUnlocked && SaveManager.BossUnlocked) msg += "\nThe boss level is unlocked!";
+
+        uiManager.SetTimer(string.Format("{0:00}:{1:00}", Mathf.Max(0, Mathf.FloorToInt(remainingTime / 60)), Mathf.Max(0, Mathf.FloorToInt(remainingTime % 60))));
+        uiManager.ShowRoundEnd(msg);
+        StartCoroutine(GameEnd());
+    }
+
     public void EndZoneEntry()
     {
+        if (proceduralMode)
+        {
+            FinishProceduralRun(true);
+            return;
+        }
+
         if (player1IngredientCount + player2IngredientCount < roundRequiredScore)
         {
             winStateMet = false;
@@ -432,12 +507,9 @@ public class GameManager : MonoBehaviour
 
         player1Ingredients[type]++;
         player1IngredientCount++;
+        runIngredientCounts[(int)type]++;
 
-        if (player1Ingredients[type] >= 5)
-        {
-            ApplyBuff(player, type);
-            player1Ingredients[type] = 0;
-        }
+        // Buffs are no longer earned mid-run; they are bought with banked ingredients on the title screen
     }
 
     public void Player1DecreaseIngredient()
@@ -453,12 +525,8 @@ public class GameManager : MonoBehaviour
 
         player2Ingredients[type]++;
         player2IngredientCount++;
+        runIngredientCounts[(int)type]++;
 
-        if (player2Ingredients[type] >= 5)
-        {
-            ApplyBuff(player, type);
-            player2Ingredients[type] = 0;
-        }
     }
 
     public void Player2DecreaseIngredient()
@@ -477,46 +545,52 @@ public class GameManager : MonoBehaviour
             ingredients.Remove(randomType);
     }
 
-    private void ApplyBuff(GameObject player, IngredientType type)
+    // Gives a player every upgrade bought in the title screen shop
+    private void ApplyPurchasedUpgrades(PlayerController controller)
     {
-        PlayerController controller = player.GetComponent<PlayerController>();
+        if (controller == null) return;
 
-        if (controller == null)
-            return;
+        // Shield and stun are locked until enough upgrades have been bought
+        controller.shieldUnlocked = SaveManager.ShieldUnlocked;
+        controller.stunUnlocked = SaveManager.StunUnlocked;
 
-        BuffType buffToApply;
-
-        switch (type)
+        // Every purchased tier applies the buff once more (for shield/stun, tier 1 only unlocks the ability)
+        UpgradeConfig config = UpgradeConfig.Instance;
+        foreach (BuffType buff in System.Enum.GetValues(typeof(BuffType)))
         {
-            case IngredientType.Herb:
-                if (controller.SpeedBuff) return;
-                buffToApply = BuffType.SpeedBoost;
-                controller.SpeedBuff = true;
-                break;
+            UpgradeConfig.Entry entry = config != null ? config.Find(buff) : null;
+            int tiers = entry != null ? SaveManager.BuffApplications(entry) : SaveManager.Tier(buff);
+            if (tiers <= 0) continue;
 
-            case IngredientType.Finger:
-                if (controller.ShootBuff) return;
-                buffToApply = BuffType.FireRateIncrease;
-                controller.ShootBuff = true;
-                break;
-
-            case IngredientType.FrogLeg:
-                if (controller.StunBuff) return;
-                buffToApply = BuffType.StunMultiplier;
-                controller.StunBuff = true;
-                break;
-
-            case IngredientType.Spider:
-                if (controller.ShieldBuff) return;
-                buffToApply = BuffType.ShieldExtension;
-                controller.ShieldBuff = true;
-                break;
-
-            default:
-                return;
+            switch (buff)
+            {
+                case BuffType.SpeedBoost: controller.SpeedBuff = true; break;
+                case BuffType.FireRateIncrease: controller.ShootBuff = true; break;
+                case BuffType.StunMultiplier: controller.StunBuff = true; break;
+                case BuffType.ShieldExtension: controller.ShieldBuff = true; break;
+            }
+            for (int i = 0; i < tiers; i++)
+                controller.ApplyBuff(buff);
         }
 
-        controller.ApplyBuff(buffToApply);
-        InitializeCooldowns();
+        if (SaveManager.Data.skinOwned && SaveManager.Data.skinEquipped)
+            controller.ApplySkin(UpgradeConfig.Instance);
+    }
+
+    // Fade the HUD icons of abilities the player hasn't unlocked yet
+    private void DimLockedAbilityIcons()
+    {
+        DimIcon(uiManager.Player1shieldCDDisplay, SaveManager.ShieldUnlocked);
+        DimIcon(uiManager.Player2shieldCDDisplay, SaveManager.ShieldUnlocked);
+        DimIcon(uiManager.Player1StunCDDisplay, SaveManager.StunUnlocked);
+        DimIcon(uiManager.Player2StunCDDisplay, SaveManager.StunUnlocked);
+    }
+
+    private static void DimIcon(Image icon, bool unlocked)
+    {
+        if (icon == null || unlocked) return;
+        Color c = icon.color;
+        c.a = 0.25f;
+        icon.color = c;
     }
 }

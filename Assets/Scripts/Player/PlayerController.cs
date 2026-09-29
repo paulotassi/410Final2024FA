@@ -7,7 +7,7 @@ using UnityEngine.SceneManagement;
 
 public class PlayerController : MonoBehaviour
 {
-    [SerializeField] private enum State { Idle, Walking, Flying }
+    private enum State { Idle, Walking, Flying }
     private State currentState = State.Idle;
 
     // Player movement variables
@@ -97,6 +97,17 @@ public class PlayerController : MonoBehaviour
     [SerializeField] public bool ShieldBuff = false;
     [SerializeField] public bool SpeedBuff = false;
 
+    // Upgrade state (set from the title screen shop via GameManager)
+    [Header("Upgrades")]
+    [Tooltip("Rapid Fire: familiars fly out and back faster, so they reload faster")]
+    public float familiarSpeedMultiplier = 1f;
+    [Tooltip("Big Stun: extra size on top of the buffed stun prefab, per tier after the first")]
+    public float stunExtraScale = 1f;
+    public bool shieldUnlocked = true;
+    public bool stunUnlocked = true;
+    private int stunTiersApplied = 0;
+    public FamiliarLauncher familiars;
+
 
     // Animation variables
     public Animator animator; // Reference to the Animator for controlling animations
@@ -122,6 +133,13 @@ public class PlayerController : MonoBehaviour
         leftNoise = virtualCameraLeft.GetCinemachineComponent<CinemachineBasicMultiChannelPerlin>();
         rightNoise = virtualCameraRight.GetCinemachineComponent<CinemachineBasicMultiChannelPerlin>();
         gameManager = FindFirstObjectByType<GameManager>();
+
+        // Three familiars orbit the witch and act as her ammo
+        // tune it on the player prefab; one is added automatically if the prefab doesn't have it
+        familiars = GetComponent<FamiliarLauncher>();
+        if (familiars == null) familiars = gameObject.AddComponent<FamiliarLauncher>();
+        familiars.Init(this, FindFamiliarVisual());
+
        if (gameManager.arcadeMode)
         {
             if (this.gameObject.CompareTag("Player2"))
@@ -158,10 +176,10 @@ public class PlayerController : MonoBehaviour
 
         // Handle player actions
         if (jumped && isGrounded && !isStunned) Jump();
-        if (fired && canShoot && !isStunned) StartCoroutine(Shoot());
-        if (backShoot && canShoot && !isStunned) StartCoroutine(BackShoot());
-        if (altFired && canAltShoot && !isStunned) StartCoroutine(AltShoot());
-        if (shielded && canShield && !isStunned) StartCoroutine(Shield());
+        if (fired && canShoot && !isStunned && familiars.HasAmmo) StartCoroutine(Shoot());
+        if (backShoot && canShoot && !isStunned && familiars.HasAmmo) StartCoroutine(BackShoot());
+        if (altFired && canAltShoot && !isStunned && stunUnlocked) StartCoroutine(AltShoot());
+        if (shielded && canShield && !isStunned && shieldUnlocked) StartCoroutine(Shield());
         if (paused) gameManager.TogglePause();
 
         // Reset move speed if no horizontal input
@@ -225,6 +243,34 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+    // The familiar sprite the witch already has (used as the template for the orbiting ammo familiars)
+    private GameObject FindFamiliarVisual()
+    {
+        foreach (SpriteRenderer sr in GetComponentsInChildren<SpriteRenderer>(true))
+        {
+            if (sr.gameObject.name.StartsWith("Familiar") && sr.gameObject.name.EndsWith("Sprite"))
+                return sr.gameObject;
+        }
+        return null;
+    }
+
+    // Swaps in the unlockable witch skin. Assign the animator / sprite on Resources/UpgradeConfig.
+    public void ApplySkin(UpgradeConfig config)
+    {
+        if (config == null) return;
+
+        Animator anim = GetComponent<Animator>();
+        if (config.skinAnimator != null && anim != null)
+        {
+            anim.runtimeAnimatorController = config.skinAnimator;
+        }
+        else if (config.skinSprite != null)
+        {
+            SpriteRenderer sr = GetComponent<SpriteRenderer>();
+            if (sr != null) sr.sprite = config.skinSprite;
+        }
+    }
+
     public void ApplyBuff(BuffType buffType)
     {
         switch (buffType)
@@ -237,8 +283,8 @@ public class PlayerController : MonoBehaviour
                 break;
 
             case BuffType.FireRateIncrease:
-                shootCoolDown /= 2; // Decrease fire rate cooldown by 25% (higher fire rate)
-                Debug.Log("Fire Rate Increased!");
+                familiarSpeedMultiplier *= 1.5f; // familiars fly out and back faster, so they reload faster
+                Debug.Log("Familiars are faster!");
                 break;
 
             case BuffType.ShieldExtension:
@@ -246,7 +292,10 @@ public class PlayerController : MonoBehaviour
                 Debug.Log("Shield Duration Extended!");
                 break;
             case BuffType.StunMultiplier:
-                altProjectilePrefab = altProjectileBuffPrefab; // Extend shield duration by 2 seconds
+                // Tier 1 swaps in the bigger stun prefab; every further tier scales it up again
+                if (stunTiersApplied == 0) altProjectilePrefab = altProjectileBuffPrefab;
+                else stunExtraScale *= 1.4f;
+                stunTiersApplied++;
                 Debug.Log("Stun size increased!!");
                 break;
         }
@@ -330,29 +379,30 @@ public class PlayerController : MonoBehaviour
     private IEnumerator Shoot()
     {
         canShoot = false;
-        Instantiate(projectilePrefab, projectileSpawnLocation.transform.position , projectileSpawnRotation.transform.rotation);
+        familiars.TryFire(projectilePrefab, projectileSpawnLocation.transform.position, projectileSpawnRotation.transform.rotation);
         PlaySound(shootSFX, true); // Random pitch for shoot
 
         StartCoroutine(createScreenShake(2));
-        yield return new WaitForSeconds(shootCoolDown);
+        yield return new WaitForSeconds(familiars.fireInterval); // ammo (the familiars) is the real limit now
         canShoot = true;
     }
 
     private IEnumerator BackShoot()
     {
         canShoot = false;
-        Instantiate(projectilePrefab, projectileSpawnLocation.transform.position, projectileSpawnRotation.transform.rotation);
+        familiars.TryFire(projectilePrefab, projectileSpawnLocation.transform.position, projectileSpawnRotation.transform.rotation);
         PlaySound(shootSFX, true); // Random pitch for shoot
 
         StartCoroutine(createScreenShake(2));
-        yield return new WaitForSeconds(shootCoolDown);
+        yield return new WaitForSeconds(familiars.fireInterval); // ammo (the familiars) is the real limit now
         canShoot = true;
     }
 
     private IEnumerator AltShoot()
     {
         canAltShoot = false;
-        Instantiate(altProjectilePrefab, projectileSpawnLocation.transform.position, projectileSpawnRotation.transform.rotation);
+        GameObject stunShot = Instantiate(altProjectilePrefab, projectileSpawnLocation.transform.position, projectileSpawnRotation.transform.rotation);
+        stunShot.transform.localScale *= stunExtraScale;
         PlaySound(altShootSFX, true);
         StartCoroutine(createScreenShake(2));
         yield return new WaitForSeconds(altShootCoolDown);

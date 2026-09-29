@@ -1,0 +1,52 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 16c308b4a3cbca94f9f026d4830dc540, type: 3}
+  m_Name: UpgradeConfig
+  m_EditorClassIdentifier: Assembly-CSharp::UpgradeConfig
+  upgrades:
+  - displayName: Swift Broom
+    description: Faster movement and flight
+    ingredient: 1
+    buff: 0
+    tierCosts: 050000000a000000
+    countsTowardUnlocks: 1
+    requiresUpgradesOwned: 0
+    firstTierUnlocksAbility: 0
+  - displayName: Rapid Fire
+    description: Familiars fly faster, so they reload faster
+    ingredient: 3
+    buff: 1
+    tierCosts: 050000000a000000
+    countsTowardUnlocks: 1
+    requiresUpgradesOwned: 0
+    firstTierUnlocksAbility: 0
+  - displayName: Shield
+    description: Tier 1 unlocks the shield, tier 2 makes it last longer
+    ingredient: 2
+    buff: 2
+    tierCosts: 050000000a000000
+    countsTowardUnlocks: 0
+    requiresUpgradesOwned: 0
+    firstTierUnlocksAbility: 1
+  - displayName: Stun Shot
+    description: Tier 1 unlocks the stun shot, tier 2 makes it bigger
+    ingredient: 4
+    buff: 3
+    tierCosts: 050000000a000000
+    countsTowardUnlocks: 0
+    requiresUpgradesOwned: 0
+    firstTierUnlocksAbility: 1
+  skinName: Witch Skin
+  skinIngredient: 0
+  skinCost: 10
+  skinAnimator: {fileID: 0}
+  skinSprite: {fileID: 0}

@@ -254,6 +254,7 @@ MonoBehaviour:
   m_VerticalAlignment: 256
   m_textAlignment: 65535
   m_characterSpacing: 0
+  m_characterHorizontalScale: 1
   m_wordSpacing: 0
   m_lineSpacing: 0
   m_lineSpacingMax: 0
@@ -390,6 +391,7 @@ MonoBehaviour:
   m_VerticalAlignment: 256
   m_textAlignment: 65535
   m_characterSpacing: 0
+  m_characterHorizontalScale: 1
   m_wordSpacing: 0
   m_lineSpacing: 0
   m_lineSpacingMax: 0
@@ -683,6 +685,7 @@ MonoBehaviour:
   m_VerticalAlignment: 256
   m_textAlignment: 65535
   m_characterSpacing: 0
+  m_characterHorizontalScale: 1
   m_wordSpacing: 0
   m_lineSpacing: 0
   m_lineSpacingMax: 0
@@ -1163,6 +1166,7 @@ MonoBehaviour:
   m_VerticalAlignment: 512
   m_textAlignment: 65535
   m_characterSpacing: 0
+  m_characterHorizontalScale: 1
   m_wordSpacing: 0
   m_lineSpacing: 0
   m_lineSpacingMax: 0
@@ -1299,6 +1303,7 @@ MonoBehaviour:
   m_VerticalAlignment: 256
   m_textAlignment: 65535
   m_characterSpacing: 0
+  m_characterHorizontalScale: 1
   m_wordSpacing: 0
   m_lineSpacing: 0
   m_lineSpacingMax: 0
@@ -1654,6 +1659,7 @@ MonoBehaviour:
   m_VerticalAlignment: 512
   m_textAlignment: 65535
   m_characterSpacing: 0
+  m_characterHorizontalScale: 1
   m_wordSpacing: 0
   m_lineSpacing: 0
   m_lineSpacingMax: 0
@@ -2077,6 +2083,7 @@ MonoBehaviour:
   m_VerticalAlignment: 256
   m_textAlignment: 65535
   m_characterSpacing: 0
+  m_characterHorizontalScale: 1
   m_wordSpacing: 0
   m_lineSpacing: 0
   m_lineSpacingMax: 0
@@ -2367,6 +2374,7 @@ MonoBehaviour:
   player2ScoreText: {fileID: 5009174538512541273}
   gameTimerText: {fileID: 4473425240116686718}
   roundEndText: {fileID: 2106561171339290845}
+  roundEndFontSize: 26
   roundRequiredText: {fileID: 4958277006670587521}
   pauseMenuUI: {fileID: 5182572621553786281}
   resumeButtonObject: {fileID: 0}
@@ -2479,6 +2487,7 @@ MonoBehaviour:
   m_VerticalAlignment: 512
   m_textAlignment: 65535
   m_characterSpacing: 0
+  m_characterHorizontalScale: 1
   m_wordSpacing: 0
   m_lineSpacing: 0
   m_lineSpacingMax: 0
@@ -3693,6 +3702,7 @@ MonoBehaviour:
   m_VerticalAlignment: 512
   m_textAlignment: 65535
   m_characterSpacing: 0
+  m_characterHorizontalScale: 1
   m_wordSpacing: 0
   m_lineSpacing: 0
   m_lineSpacingMax: 0
@@ -4616,6 +4626,7 @@ MonoBehaviour:
   m_VerticalAlignment: 512
   m_textAlignment: 65535
   m_characterSpacing: 0
+  m_characterHorizontalScale: 1
   m_wordSpacing: 0
   m_lineSpacing: 0
   m_lineSpacingMax: 0
@@ -4902,6 +4913,7 @@ MonoBehaviour:
   m_VerticalAlignment: 512
   m_textAlignment: 65535
   m_characterSpacing: 0
+  m_characterHorizontalScale: 1
   m_wordSpacing: 0
   m_lineSpacing: 0
   m_lineSpacingMax: 0
@@ -5038,6 +5050,7 @@ MonoBehaviour:
   m_VerticalAlignment: 512
   m_textAlignment: 65535
   m_characterSpacing: 0
+  m_characterHorizontalScale: 1
   m_wordSpacing: 0
   m_lineSpacing: 0
   m_lineSpacingMax: 0
@@ -5792,9 +5805,15 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 2861679258412669627, guid: 47dea2b8b1dcb834dbedf4adbeed9cfc, type: 3}
       insertIndex: -1
       addedObject: {fileID: 3198459693794516941}
+    - targetCorrespondingSourceObject: {fileID: 2861679258412669627, guid: 47dea2b8b1dcb834dbedf4adbeed9cfc, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1861106817539919211}
     - targetCorrespondingSourceObject: {fileID: 8688231733931432845, guid: 47dea2b8b1dcb834dbedf4adbeed9cfc, type: 3}
       insertIndex: -1
       addedObject: {fileID: 5642541709741377056}
+    - targetCorrespondingSourceObject: {fileID: 8688231733931432845, guid: 47dea2b8b1dcb834dbedf4adbeed9cfc, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 5452690161190762475}
     - targetCorrespondingSourceObject: {fileID: 5109670534862012840, guid: 47dea2b8b1dcb834dbedf4adbeed9cfc, type: 3}
       insertIndex: -1
       addedObject: {fileID: 6974482497297562852}
@@ -5906,6 +5925,29 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &5452690161190762475
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 418640616131299835}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 18b58af5d19b295408625581236bf627, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::FamiliarLauncher
+  maxFamiliars: 3
+  sizeMultiplier: 1
+  orbitRadius: 1.6
+  waitingSize: 0.7
+  waitingAlpha: 0.55
+  orbitSpeed: 60
+  followSpeed: 14
+  fireInterval: 0.6
+  maxRange: 14
+  returnSpeed: 5
+  hitPause: 0.25
 --- !u!114 &453334923156490498 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 8869578208568761204, guid: 47dea2b8b1dcb834dbedf4adbeed9cfc, type: 3}
@@ -6063,6 +6105,29 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &1861106817539919211
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6551393620078266573}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 18b58af5d19b295408625581236bf627, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::FamiliarLauncher
+  maxFamiliars: 3
+  sizeMultiplier: 1
+  orbitRadius: 1.6
+  waitingSize: 0.7
+  waitingAlpha: 0.55
+  orbitSpeed: 60
+  followSpeed: 14
+  fireInterval: 0.6
+  maxRange: 14
+  returnSpeed: 5
+  hitPause: 0.25
 --- !u!4 &7887767182449932168 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1165158660375422462, guid: 47dea2b8b1dcb834dbedf4adbeed9cfc, type: 3}

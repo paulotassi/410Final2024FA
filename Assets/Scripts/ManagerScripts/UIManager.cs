@@ -12,6 +12,7 @@ public class UIManager : MonoBehaviour
     [Header("Timer & Round‑End Message")]
     [SerializeField] private TMP_Text gameTimerText;         // Displays the countdown timer
     [SerializeField] private TMP_Text roundEndText;          // Displays the end‑of‑round message
+    [SerializeField] private float roundEndFontSize = 26f;   // Size of the end-of-round message (was 48)
     [SerializeField] private TMP_Text roundRequiredText;          // Displays the end‑of‑round message
 
     [Header("Pause Menu")]
@@ -82,6 +83,7 @@ public class UIManager : MonoBehaviour
     /// </summary>
     public void ShowRoundEnd(string message)
     {
+        roundEndText.fontSize = roundEndFontSize;
         roundEndText.text = message;
     }
 
